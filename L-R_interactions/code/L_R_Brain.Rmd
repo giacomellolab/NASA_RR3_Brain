@@ -1,0 +1,497 @@
+---
+title: "L_R Brain"
+author: "Christer Sylvén"
+date: "`r format(Sys.time(), '%y-%m-%d')`"
+output: 
+  html_document:
+    self_contained: true
+    highlight: tango
+    df_print: paged
+    code_folding: hide
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: true 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(progress=TRUE,verbose=TRUE)
+#knitr::opts_knit$set(root.dir = "~/Desktop/SPACE2")
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, result='hold',fig.width=12, fig.height = 10)
+```
+
+```{r}
+suppressPackageStartupMessages(require(data.table))
+suppressPackageStartupMessages(require(dplyr))
+suppressPackageStartupMessages(require(biomaRt))
+suppressPackageStartupMessages(require(Rsamtools))
+suppressPackageStartupMessages(require(Signac))
+suppressPackageStartupMessages(require(ggplot2))
+suppressPackageStartupMessages(require(Seurat))
+suppressPackageStartupMessages(require(openxlsx))
+suppressPackageStartupMessages(require(reshape2))
+suppressPackageStartupMessages(require(readxl))
+```
+
+
+```{r}
+path1 <- 'path to directory where the multiomics data resides'
+
+
+file <- 'multiomics data object in the format .RData'
+load_object <- paste0(path1, file)
+load_object
+
+load(load_object)
+
+seurat_multi
+names(seurat_multi[[]])
+
+DefaultAssay(seurat_multi) <- "SCT"
+
+Idents(seurat_multi) <- seurat_multi$wsnn_cc_res.0.2
+table(Idents(seurat_multi))
+
+brain_LR <- subset(seurat_multi, idents = c('4', '5', '11', '14'))
+
+brain_LR_counts <- as.data.frame(brain_LR@assays$SCT@counts)
+
+brain_LR_metadata <- data.frame(Cell = rownames(brain_LR@meta.data),cell_type = brain_LR@meta.data$wsnn_cc_res.0.2)
+
+brain_LR_metadata[,2] <- factor(brain_LR_metadata[,2] )
+
+dim(brain_LR_counts)
+dim(brain_LR_metadata)
+
+rm(seurat_multi)
+
+```
+
+
+```{r}
+x <- rownames(brain_LR_counts)
+head(x)
+length(x)
+
+human = useMart("ensembl", dataset = "hsapiens_gene_ensembl", verbose = TRUE, host = "dec2021.archive.ensembl.org")
+mouse = useMart("ensembl", dataset = "mmusculus_gene_ensembl", verbose = TRUE, host = "dec2021.archive.ensembl.org")
+
+
+
+genesV2 = getLDS(attributes = c("mgi_symbol"), 
+                 filters = "mgi_symbol", 
+                 values = x, 
+                 mart = mouse, 
+                 attributesL = c("hgnc_symbol"), 
+                 martL = human, 
+                 uniqueRows=T)
+head(genesV2)
+```
+
+Mouse genes with human ortologs
+
+```{r}
+# Generally  mouse human ortologs
+dim(genesV2) 
+genesV2 <- distinct(genesV2, MGI.symbol, .keep_all = TRUE)
+dim(genesV2) # Unique mouse humna ortologs
+xx <- x[x %in% genesV2[,1]]
+length(xx) # unique mouse humna ortologs in space data
+
+genesV3 <- genesV2
+genesV3 <- genesV3[match(xx, genesV3[,1]),] # correct order of orthologs
+head(genesV3)
+brain_LR_counts <- brain_LR_counts[xx,]
+dim(brain_LR_counts)
+
+# Human gene symbols needed for CellphoneDB
+row.names(brain_LR_counts) <- make.names(genesV3[,2], unique=TRUE)
+head(brain_LR_counts)
+```
+
+
+```{r}
+
+# normalize counts
+
+brain_LR_counts <- NormalizeData(object = brain_LR_counts)
+
+
+setwd(path1)
+write.table(brain_LR_counts, 'brain_LR_counts.txt', sep='\t',  col.names = T, quote=F)
+
+
+brain_LR_metadata$cell_type[which(brain_LR_metadata$cell_type == '4')] <- '4 Astrocytes'
+brain_LR_metadata$cell_type[which(brain_LR_metadata$cell_type == '5')] <- '5 Gluta Telencephalon'
+brain_LR_metadata$cell_type[which(brain_LR_metadata$cell_type == '11')] <-'11 Gaba Telencephalon'
+brain_LR_metadata$cell_type[which(brain_LR_metadata$cell_type == '14')] <-'14 Hypothalamus'
+head(brain_LR_metadata)
+
+write.table(brain_LR_metadata,
+            file = 'cellPhone/brain_LR_metadata.txt',
+            quote = F,
+            col.names = T,
+            row.names = F,
+            sep = '\t')
+
+```
+
+```{r}
+DE_genes_SC <- data.frame() # Create empty data.frame
+  excel_sheet <- read.xlsx(paste0(path1,"formatted_de_genes_2022_06-09.xlsx"), colNames  = TRUE, sheet = 2) # Read sheet i
+  DE_genes_SC <- rbind(DE_genes_SC, excel_sheet) 
+  Cl4 <-  DE_genes_SC[1:93,1:4] 
+  colnames(Cl4) <-  Cl4[1,]
+  Cl4 <- Cl4[-1,]
+ Cl4$cluster <- '4'
+ Cl4 <- Cl4[,c(5,1:4)]
+ 
+   Cl5 <-  DE_genes_SC[1:171,5:8] 
+  colnames(Cl5) <-  Cl5[1,]
+  Cl5 <- Cl5[-1,]
+   Cl5$cluster <- '5'
+ Cl5 <- Cl5[,c(5,1:4)]
+  
+   Cl11 <-  DE_genes_SC[1:47,17:20] 
+  colnames(Cl11) <-  Cl11[1,]
+  Cl11 <- Cl11[-1,]
+   Cl11$cluster <- '11'
+ Cl11 <- Cl11[,c(5,1:4)]
+  
+    Cl14 <-  DE_genes_SC[1:28,21:24] 
+  colnames(Cl14) <-  Cl14[1,]
+  Cl14 <- Cl14[-1,]
+   Cl14$cluster <- '14'
+ Cl14 <- Cl14[,c(5,1:4)]
+ 
+   brain <- rbind(Cl4, Cl5, Cl11, Cl14)
+```
+
+
+```{r}
+x <- brain[,2]
+head(x)
+length(x)
+
+human = useMart("ensembl", dataset = "hsapiens_gene_ensembl", verbose = TRUE, host = "dec2021.archive.ensembl.org")
+mouse = useMart("ensembl", dataset = "mmusculus_gene_ensembl", verbose = TRUE, host = "dec2021.archive.ensembl.org")
+
+genesV2 = getLDS(attributes = c("mgi_symbol"), 
+                 filters = "mgi_symbol", 
+                 values = x, 
+                 mart = mouse, 
+                 attributesL = c("hgnc_symbol"), 
+                 martL = human, 
+                 uniqueRows=T)
+head(genesV2)
+```
+
+# Mouse genes with human ortologs for formatted DE genes
+
+```{r}
+# Generally  mouse human ortologs
+dim(genesV2) 
+genesV2 <- distinct(genesV2, MGI.symbol, .keep_all = TRUE)
+dim(genesV2) # Unique mouse humna ortologs
+xx <- x[x %in% genesV2[,1]]
+length(xx) # unique mouse humna ortologs in space data
+
+genesV3 <- genesV2
+genesV3 <- genesV3[match(xx, genesV3[,1]),] # correct order of ortologs
+genesV4 <- brain
+head(genesV3)
+
+brain2 <- brain[brain$Gene %in% genesV2[,1],]
+brain2$Gene <- genesV3[,2]
+head(brain2)
+
+```
+  
+ 
+
+
+```{r}
+
+brain2$cluster[which(brain2$cluster == '4')] <- '4 Astrocytes'
+brain2$cluster[which(brain2$cluster == '5')] <- '5 Gluta Telencephalon'
+brain2$cluster[which(brain2$cluster == '11')] <-'11 Gaba Telencephalon'
+brain2$cluster[which(brain2$cluster == '14')] <-'14 Hypothalamus'
+
+brain_up <- brain2[which(brain2$logFC>0),]
+  brain_down <- brain2[which(brain2$logFC<=0),]
+ 
+
+  
+  write.table(brain_up[,1:2],
+            file = 'cellPhone/brain_LR_up.txt',
+            quote = F,
+            col.names = T,
+            row.names = F,
+            sep = '\t')
+  
+   write.table(brain_down,
+            file = 'cellPhone/brain_LR_down.txt',
+            quote = F,
+            col.names = T,
+            row.names = F,
+            sep = '\t')
+```
+
+```{r}
+# install cellphonedb as a system resource and use path as below
+system('python3 -m venv cpdb')
+system('source cpdb/bin/activate')
+system('pip install CellPhoneDB==3.0.2')
+#system('cellphonedb method degs_analysis --help')
+
+#system('python3 -m pip install --upgrade pip')
+
+plot <- "cellphonedb method degs_analysis  /Users/ChristerSylven/Desktop/Space2/cellPhone/brain_LR_metadata.txt  /Users/ChristerSylven/Desktop/Space2/cellPhone/brain_LR_counts.txt  /Users/ChristerSylven/Desktop/Space2/cellPhone/brain_LR_up.txt  --counts-data=gene_name --output-path=/Users/ChristerSylven/Desktop/Space2/cellPhone/out/"
+
+
+plot <- "cellphonedb plot dot_plot --/Users/ChristerSylven/Desktop/Space2/cellPhone/brain_LR_metadata.txt --pvalues-path=/Users/ChristerSylven/Desktop/Space2/cellPhone/out/pvalues.txt
+--means-path=/Users/ChristerSylven/Desktop/Space2/cellPhone/out/means.txt
+--output-path=/Users/ChristerSylven/Desktop/Space2/cellPhone/out/  --output-name Brain_up.pdf"
+
+#address <- "/Users/ChristerSylven/Library/Python/3.8/bin/"
+address = "/Library/Frameworks/Python.framework/Versions/3.8/bin/"
+
+#plot <- "cellphonedb plot heatmap_plot metadata_M7.txt"
+plot_address <- paste0(address, plot)
+plot_address
+system(plot_address)
+
+```
+
+But shortly, we recommend to do differential expression for the same cluster/cell type between your two groups. This will tell you what is significantly upregulated in each of your group.
+Then, you can give this list of differentially expressed genes (DEGs) to cellphoneDB to extract the interactions where these DEGs are participating.
+ 
+You can run:
+cellphonedb method degs_analysis your_meta.txt your_counts.txt your_DEGs_upregulated_in_groupA.txt
+cellphonedb method degs_analysis your_meta.txt your_counts.txt your_DEGs_upregulated_in_groupB.txt
+ 
+If you are using Seurat, you might want to follow https://github.com/ventolab/CellphoneDB/blob/master/notebooks/0_prepare_your_data_from_Seurat.ipynb
+ 
+Hope this is of help,
+ 
+Best
+ 
+Luz
+
+# DotPlot for relevant interactions flight upregulated ligand_recceptor pairs
+
+```{r}
+brain_celltype_interaction <- c(
+  '4 Astrocytes|5 Gluta Telencephalon',
+  '4 Astrocytes|11 Gaba Telencephalon',
+  '4 Astrocytes|14 Hypothalamus',
+  '5 Gluta Telencephalon|4 Astrocytes',
+  '5 Gluta Telencephalon|11 Gaba Telencephalon',
+  '5 Gluta Telencephalon|14 Hypothalamus',
+  '11 Gaba Telencephalon|4 Astrocytes',
+  '11 Gaba Telencephalon|5 Gluta Telencephalon',
+  '11 Gaba Telencephalon|14 Hypothalamus',
+  '14 Hypothalamus|4 Astrocytes',
+  '14 Hypothalamus|5 Gluta Telencephalon',
+  '14 Hypothalamus|11 Gaba Telencephalon')
+
+brain_up_LR <- c(
+'CADM1_NECTIN3',
+'CADM3_CADM1',
+'CADM1_CADM1',
+'EGFR_NRG1',
+'EGFR_TGFA',
+'EGFR_COPA',
+'PTN_PTPRZ1',
+'EFNA5_EPHA5',
+'VEGFA_GRIN2B')
+
+write.table(brain_celltype_interaction, file = '/Users/ChristerSylven/Desktop/SPACE2/cellPhone/in/Brain_celltype_interaction.txt', sep = '\t', quote = F, row.names = F, col.names = F)
+
+write.table(brain_up_LR, '/Users/ChristerSylven/Desktop/SPACE2/cellPhone/in/brain_up_LR_rows.txt', sep = '\t', quote = F, row.names = F, col.names = F)
+
+write.table(brain_celltype_interaction, file = '/Users/ChristerSylven/in/Brain_celltype_interaction.txt', sep = '\t', quote = F, row.names = F, col.names = F)
+
+write.table(brain_up_LR, '/Users/ChristerSylven/in/brain_up_LR_rows.txt', sep = '\t', quote = F, row.names = F, col.names = F)
+
+address = "/Library/Frameworks/Python.framework/Versions/3.8/bin/"
+
+plot <- 'cellphonedb plot dot_plot --rows /Users/ChristerSylven/Desktop/SPACE2/cellPhone/in/brain_up_LR_rows.txt --columns /Users/ChristerSylven/Desktop/SPACE2/cellPhone/in/Brain_celltype_interaction.txt --output-name brain_up_rel_interactions.png'
+
+plot <- 'cellphonedb plot dot_plot --rows /Users/ChristerSylven/Desktop/SPACE2/cellPhone/in/brain_up_LR_rows.txt --columns /Users/ChristerSylven/Desktop/SPACE2/cellPhone/in/Brain_celltype_interaction.txt --output-name brain_up_rel_interactions.png'
+
+plot <- 'cellphonedb plot dot_plot --rows in/brain_up_LR_rows.txt --columns in/Brain_celltype_interaction.txt --output-name brain_up_rel_interactions.png'
+
+
+plot_address <- paste0(address, plot)
+plot_address
+system(plot_address)
+
+```
+
+```{r}
+#subgroup output
+means <-  read.delim("/Users/ChristerSylven/Desktop/SPACE2/cellPhone/out/means.txt", check.names = FALSE)
+pvals <- read.delim("/Users/ChristerSylven/Desktop/SPACE2/cellPhone/out/pvalues.txt", check.names = FALSE)
+#pval[pval==0] = 0.0009
+dim(means)
+dim(pvals)
+
+# delete duplicates of L_R / R_L interactoin pairs
+pvals0 <- pvals[!duplicated(pvals[,2]),]
+#pvals1 <- pvals[unique(pvals[,1]),]
+
+means0 <- means[!duplicated(means[,2]),]
+dim(pvals0)
+dim(means0)
+#add L_R / R_L interaction pairs as rowname
+rownames(pvals0) <- pvals0[,2]
+rownames(means0) <- means0[,2]
+#pvals0[1:2,1:10]
+#means0[1:2,1:10]
+# make dataframe w L_R R_L interaction pairs, secreted, mol 1 rec, mol 2 rec, integrin
+pvals_LR <- pvals0[,c(7:9,11)]
+pvals_LR <- cbind(rownames(pvals_LR), pvals_LR)
+colnames(pvals_LR)[1] <- 'L_R0'
+
+brain_celltype_interaction <- c(
+  '4 Astrocytes|5 Gluta Telencephalon',
+  '4 Astrocytes|11 Gaba Telencephalon',
+  '4 Astrocytes|14 Hypothalamus',
+  '5 Gluta Telencephalon|4 Astrocytes',
+  '5 Gluta Telencephalon|11 Gaba Telencephalon',
+  '5 Gluta Telencephalon|14 Hypothalamus',
+  '11 Gaba Telencephalon|4 Astrocytes',
+  '11 Gaba Telencephalon|5 Gluta Telencephalon',
+  '11 Gaba Telencephalon|14 Hypothalamus',
+  '14 Hypothalamus|4 Astrocytes',
+  '14 Hypothalamus|5 Gluta Telencephalon',
+  '14 Hypothalamus|11 Gaba Telencephalon')
+
+
+pvals2 <- pvals0[,brain_celltype_interaction]
+# to minimze number of interactions, filtered to those with p<0.01
+pvals3 <- pvals2[brain_up_LR, ]
+means3 <- means0[rownames(pvals3),brain_celltype_interaction]
+
+dim(pvals3)
+dim(means3)
+
+
+write.table(rownames(pvals3), '/Users/ChristerSylven/Desktop/Space2/cellPhone/in/brain_up2_rows.txt', sep = '\t', quote = F, row.names = F, col.names = F)
+plot <- 'cellphonedb plot dot_plot --rows in/brain_up2.txt --columns in/brain_celltype-interaction --output-name Brain_up.png'
+
+```
+```{r}
+dotplot_LR <- function(pvals4b, means4b, namn = c(1:dim(pvals4b)[1]))
+{
+#pvals4b <- as.data.frame(pvals4b)
+#means4b <- as.data.frame(means4b)
+#rownames(pvals4b) <- pvals4b[,18]
+#pvals4b <- pvals4b[,c(18, 1:12)]
+pvals4b[pvals4b==0] = 0.0009
+
+#means4b <- means4b[,c(18, 1:12)]
+#means4b[means4b==0] = 1
+#pvals4b <- pvals4b[namn,]
+#means4b <- means4b[namn,]
+
+#pvals4b$L_R <- rownames(pvals4b)
+#means4b$L_R <- rownames(means4b)
+names(pvals4b)
+pvals4b <- pvals4b[,c(18, 1:12)]
+means4b <- means4b[,c(18, 1:12)]
+
+pvals5 <- reshape2::melt(pvals4b, id=c('L_R'))
+means5 <- reshape2::melt(means4b, id = c('L_R'))
+
+
+
+level1 <- pvals5[1:dim(pvals4b)[1],1]
+plot.data = cbind(pvals5,log2(means5[,3]))
+
+colnames(plot.data) = c('pair', 'clusters', 'pvalue', 'mean')
+
+my_palette <- colorRampPalette(c("black", "blue", "yellow", "red"), alpha=TRUE)(n=399)
+#my_palette <- colorRampPalette(c("blue", "red"), alpha=TRUE)(n=399)
+library(ggplot2)
+ggplot2::ggplot(plot.data,aes(x=clusters,y=pair)) +
+  geom_point(aes(size=-log10(pvalue),color=mean)) +
+  scale_color_gradientn('Log2 mean (Molecule1_Molecule2)', colors=my_palette) +
+  scale_y_discrete(limits = level1,
+                   labels = level1)+
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text=element_text(size=12, colour = "black"),
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust=1),
+        axis.text.y = element_text(size=12, colour = "black"),
+        axis.title=element_blank(),
+        panel.border = element_rect(size = 0.7, linetype = "solid", colour = "black"),
+        legend.position="top",
+        plot.margin = unit(c(0.1,1,0,2), "cm")) +
+        scale_x_discrete(
+          labels = c(
+  '4 Astrocytes|5 Gluta Telencephalon',
+  '4 Astrocytes|11 Gaba Telencephalon',
+  '4 Astrocytes|14 Hypothalamus',
+  '5 Gluta Telencephalon|4 Astrocytes',
+  '5 Gluta Telencephalon|11 Gaba Telencephalon',
+  '5 Gluta Telencephalon|14 Hypothalamus',
+  '11 Gaba Telencephalon|4 Astrocytes',
+  '11 Gaba Telencephalon|5 Gluta Telencephalon',
+  '11 Gaba Telencephalon|14 Hypothalamus',
+  '14 Hypothalamus|4 Astrocytes',
+  '14 Hypothalamus|5 Gluta Telencephalon',
+  '14 Hypothalamus|11 Gaba Telencephalon')) +
+coord_flip()
+}
+
+dotplot_LR(pvals3, means3)
+```
+```{r}
+# in order to edit so that all pairs are annotated as L_R and not R_L
+# produce xlsx files as below and edit. R_L becomes L_R in the CONDUIT_SAN_TOP and vice versa. For means the ratio has to be changed by 1/value. Edited xlsx files are saved with suffix c and then opened to make the ggplot manually.
+
+pvals4_calc <- function(name, LRmrna, LRcells )
+{
+  #pvals2 <- pvals0[,LRcells] #pval0 duplicates eliminated above
+  #pvals3 <- pvals2[apply(pvals2, 1, function(x) any(-log10(x) > 2)), ]
+  #pvals3 <- pvals3[LRmrna,]
+ # means3 <- means0[rownames(pvals3), LRcells]
+  pvals_LR_rows <- pvals_LR[rownames(pvals3),]
+  pvals4 <- cbind(pvals3,pvals_LR_rows)
+  means4 <- cbind(means3,pvals_LR_rows)
+  writexl::write_xlsx(pvals4, paste0("/Users/ChristerSylven/Desktop/SPACE2/cellPhone/pvals4_d_", name, ".xlsx"))
+ writexl::write_xlsx(means4, paste0("/Users/ChristerSylven/Desktop/SPACE2/cellPhone/means4_d_", name, ".xlsx"))
+}
+
+
+library(openxlsx)
+library(readxl)
+library(xlsx)
+#install.packages(c("readxl","writexl")) 
+library(readxl)
+library(writexl)
+
+
+
+pvals4_calc('Brain_up', brain_up_LR, brain_celltype_interaction)
+
+# cellphoneDB dotplot with all pairs as L_R
+#View(pvals3)
+#View(means3)
+
+# edit in excel. Change RL to LR into L_R column. Change values accordingly. Save as b for both pvals and meansfiles.
+# Correct mean molecule1/molecule2 in excel with  to molecule2/molecule1
+#corrected files with all pairs as L_R saved as b
+pvals4b <- read_xlsx('/Users/ChristerSylven/Desktop/SPACE2/cellPhone/pvals4_d_brain_upb.xlsx')
+means4b <- read_xlsx('/Users/ChristerSylven/Desktop/SPACE2/cellPhone/means4_d_brain_upb.xlsx')
+
+dotplot_LR(pvals4b, means4b)
+```
+ 
+
+
+

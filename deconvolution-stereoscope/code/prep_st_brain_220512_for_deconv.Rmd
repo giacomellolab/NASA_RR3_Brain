@@ -1,0 +1,96 @@
+---
+title: "Prep ST data for deconv"
+author: "Asa Bjorklund"
+output: 
+  html_document:
+    self_contained: true
+    highlight: tango
+    df_print: paged
+    code_folding: hide
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: true    
+---
+
+Load each of the R objects for st data and save as h5ad.
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(progress=TRUE,verbose=TRUE)
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, result='hold',fig.width=10, fig.height = 8)
+```
+
+
+```{r packages}
+suppressPackageStartupMessages(require(Matrix))
+suppressPackageStartupMessages(require(dplyr))
+suppressPackageStartupMessages(require(Seurat))
+suppressPackageStartupMessages(require(SeuratDisk))
+suppressPackageStartupMessages(require(ggplot2))
+
+```
+
+
+# Brain data
+
+
+```{r load}
+outdir = "path to directory for saving results"
+dir.create(outdir, showWarnings = F)
+
+indir = "path to directory where the analysed ST brain seurat object is present"
+data.int = readRDS(file.path(indir,"RR3-brain_ST_final_object.rds"))
+table(data.int$section.name)
+
+data.int@tools$Staffli = NULL
+
+# @assays$RNA@data contains counts.
+
+
+```
+
+
+```{r}
+DimPlot(data.int, label = T) + NoAxes()
+
+small.leg <- theme(legend.text = element_text(size=6), legend.key.width = unit(0.1,"cm"))
+
+DimPlot(data.int, group.by = "annot") + NoAxes() + small.leg
+```
+
+
+```{r}
+# keep only RNA assay 
+data.int@active.assay = "RNA"
+data.int = DietSeurat(data.int, assays = "RNA")
+g = gc(verbose = F)
+
+alldata = SplitObject(data.int, split.by = "section.name")
+
+force = TRUE
+for (sample in names(alldata)){
+  print(sample)
+  sfile = file.path(outdir, paste0(sample,".h5Seurat"))
+  hfile = file.path(outdir, paste0(sample,".h5ad"))
+  if (!file.exists(hfile) | force){
+    SaveH5Seurat(alldata[[sample]], filename = sfile, overwrite = T)
+    Convert(sfile, dest = "h5ad", overwrite = T)
+    file.remove(sfile)
+  }
+}
+
+brain.genes  = rownames(data.int)
+
+rm(data.int, alldata)
+g = gc(verbose = F)
+```
+
+
+### Session info
+
+```{r}
+sessionInfo()
+```

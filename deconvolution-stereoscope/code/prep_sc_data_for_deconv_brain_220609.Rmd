@@ -1,0 +1,278 @@
+---
+title: "Prep SC data for deconv"
+author: "Asa Bjorklund"
+output: 
+  html_document:
+    self_contained: true
+    highlight: tango
+    df_print: paged
+    code_folding: hide
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: true    
+---
+
+Steps:
+
+Load the R objects from multiomics anlaysis and check them.
+
+Subsample single nuclei data to X cells per celltype.
+
+Run DEG detection and filter markers to have a good set of deconvolution genes.
+
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(progress=TRUE,verbose=TRUE)
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, result='hold',fig.width=10, fig.height = 8)
+```
+
+
+```{r packages}
+suppressPackageStartupMessages(require(Matrix))
+suppressPackageStartupMessages(require(dplyr))
+suppressPackageStartupMessages(require(ggplot2))
+suppressPackageStartupMessages(require(Seurat))
+suppressPackageStartupMessages(require(gridExtra))
+suppressPackageStartupMessages(require(pheatmap))
+```
+
+
+```{r}
+cc = scale_color_gradientn(colors = c("grey", "yellow", "red", "black"))
+small.leg <- theme(legend.text = element_text(size = 6), legend.key.width = unit(0.1,
+    "cm"))
+```
+
+
+# Brain data
+
+## Load data.
+
+Remove all assays except "RNA"
+
+```{r load}
+indir = "input directory path"
+outdir = "output directory path to save deconvolution results"
+dir.create(outdir, showWarnings = F)
+
+load("~/seurat_data_brain_cc_2022-12-22.RData")
+
+seurat_multi
+
+# keep only RNA assay to save space
+# need to rename the 
+
+seurat_multi = DietSeurat(seurat_multi, assays = "RNA", dimreducs = c("wnn_umap", "wnn_cc_umap"))
+seurat_multi
+
+g = gc(verbose = F)
+
+```
+
+Plot
+
+```{r, fig.height=10}
+cl.sel = "wsnn_cc_res.0.2"
+
+seurat_multi = SetIdent(seurat_multi, value = cl.sel)
+
+p1 = DimPlot(seurat_multi, label = T, reduction = "wnn_cc_umap", group.by = cl.sel) + NoAxes()
+p2 = DimPlot(seurat_multi,  reduction = "wnn_cc_umap", group.by = "cell_flight_status") + NoAxes()
+p3 = DimPlot(seurat_multi,  reduction = "wnn_cc_umap", group.by = "bio_origin") + NoAxes()
+p4 = FeaturePlot(seurat_multi, features = "nFeature_RNA", reduction = "wnn_cc_umap") + cc + small.leg + NoAxes()
+
+
+grid.arrange(p1,p2,p3,p4, ncol = 2)
+```
+
+```{r}
+ct.names = c("predicted.celltype.l1","predicted.celltype.l2","predicted.celltype.l3","predicted.celltype.l4")
+
+pl = DimPlot(seurat_multi,  reduction = "wnn_cc_umap", group.by = ct.names, label = T, combine = F) 
+pl = lapply(pl, function(x) x + NoAxes() + NoLegend())
+grid.arrange(grobs = pl, ncol = 2)
+```
+
+
+```{r, fig.height=4, fig.width=10}
+
+p1 = VlnPlot(seurat_multi, features = "nFeature_ATAC", pt.size = 0) + NoLegend()
+p2 = VlnPlot(seurat_multi, features = "nFeature_RNA", pt.size = 0) + NoLegend()
+p3 = VlnPlot(seurat_multi, features = "percent_mt", pt.size = 0) + NoLegend()
+grid.arrange(p1,p2,p3, ncol=2)
+
+```
+
+## Subsample
+
+```{r}
+table(as.matrix(seurat_multi[[cl.sel]]), seurat_multi$bio_origin)
+table(seurat_multi$bio_origin)
+```
+
+Use clustering in column seurat_multi$wsnn_cc_res.0.3, smallest cluster has 128 cells. Subsample to 50 or less cells per sample -> maximum 250 cells per cluster.
+
+```{r}
+table(seurat_multi[[cl.sel]])
+
+keep.cells = c()
+
+for (sample in unique(seurat_multi$bio_origin)){
+   cells = WhichCells(seurat_multi[, seurat_multi$bio_origin == sample], downsample = 50)
+   keep.cells = c(keep.cells, cells)
+}
+
+data.sub = seurat_multi[,keep.cells]
+table(data.sub[[cl.sel]])
+
+table(as.matrix(data.sub[[cl.sel]]), data.sub$bio_origin)
+table(data.sub$bio_origin)
+```
+
+## Marker genes
+
+```{r}
+mfile = file.path(outdir, paste0("markers_", cl.sel, ".csv"))
+if (file.exists(mfile)){
+  markers = read.csv(mfile)
+}else{
+  markers = FindAllMarkers(data.sub, only.pos = T, max.cells.per.ident = 500)
+  write.csv(markers, file = mfile)
+}
+
+table(markers$cluster)
+
+source("../../functions/overlap_phyper_v2.R")
+l = split(markers$gene, markers$cluster)
+o = overlap_phyper2(l,l,title = "All DEGs", remove.diag = T)
+
+```
+
+Check overlap to ST data and only use genes that are also expressed in ST.
+
+```{r}
+
+outdir2 = "directory to output results"
+
+indir2 = "directory path where ST seurat object is located"
+data.int = readRDS(file.path(indir2,"RR3-brain_ST_final_object.rds"))
+
+st.genes = rownames(data.int@assays$RNA@counts)
+length(st.genes)
+
+rm(data.int)
+g = gc(verbose = F)
+
+nrow(markers)
+markers = markers[markers$gene %in% st.genes,]
+nrow(markers)
+```
+
+
+### Top 50 genes
+
+Filter out top 50 genes (or less) per cluster.
+
+```{r}
+
+
+
+markers$pct.diff <- markers$pct.1 - markers$pct.2
+markers$log.pct.diff <- log2((markers$pct.1 * 99 + 1)/(markers$pct.2 * 99 +
+    1))
+markers %>%
+    group_by(cluster) %>%
+    top_n(-150, p_val) %>%
+    top_n(100, pct.diff) %>%
+    top_n(50, log.pct.diff) -> top50
+de.genes50 <- unique(as.character(top50$gene))
+print(length(de.genes50))
+
+l2 = split(top50$gene,top50$cluster)
+o = overlap_phyper2(l2,l2, title = "Top 50 DEGs", remove.diag = T)
+
+write.table(de.genes50, file = file.path(outdir2,"top50_degs_220609.csv"), quote = F, col.names = F, row.names = F)
+```
+
+### Top 100 genes
+
+Filter out top 100 genes (or less) per cluster.
+
+```{r}
+markers %>%
+    group_by(cluster) %>%
+    top_n(-200, p_val) %>%
+    top_n(150, pct.diff) %>%
+    top_n(100, log.pct.diff) -> top100
+de.genes100 <- unique(as.character(top100$gene))
+print(length(de.genes100))
+
+l2 = split(top100$gene,top100$cluster)
+o = overlap_phyper2(l2,l2, title = "Top 100 DEGs", remove.diag = T)
+
+write.table(de.genes100, file = file.path(outdir2,"top100_degs_220609.csv"), quote = F, col.names = F, row.names = F)
+```
+
+### Top 20 genes
+
+Filter out top 100 genes (or less) per cluster.
+
+```{r}
+markers %>%
+    group_by(cluster) %>%
+    top_n(-100, p_val) %>%
+    top_n(50, pct.diff) %>%
+    top_n(20, log.pct.diff) -> top20
+de.genes20 <- unique(as.character(top20$gene))
+print(length(de.genes20))
+
+l2 = split(top20$gene,top20$cluster)
+o = overlap_phyper2(l2,l2, title = "Top 20 DEGs", remove.diag = T)
+
+write.table(de.genes20, file = file.path(outdir2,"top20_degs_220609.csv"), quote = F, col.names = F, row.names = F)
+```
+
+### Variable genes
+
+Select top 2000 variable genes and use also for deconv. OBS, do batch aware selection with `SelectIntegrationFeatures`.
+
+```{r}
+common.genes = intersect(st.genes, rownames(data.sub))
+tmp = SplitObject(data.sub[common.genes,], split.by = "bio_origin")
+var.genes = SelectIntegrationFeatures(tmp, nfeatures = 2000)
+
+write.table(var.genes, file = file.path(outdir2,"hvg2000_220609.csv"), quote = F, col.names = F, row.names = F)
+
+```
+
+
+
+### Save data
+
+Save the SC data, make sure that scale.data is empty and that data contains counts.
+
+```{r}
+library(SeuratDisk)
+
+dim(data.sub@assays$RNA@scale.data)
+data.sub@assays$RNA@data = data.sub@assays$RNA@counts
+
+
+
+saveRDS(data.sub, file = file.path(outdir, "snRNAseq_subsampled.rds"))
+
+SaveH5Seurat(data.sub, filename = file.path(outdir2,"snRNAseq_subsampled_220609.h5Seurat"), overwrite = T)
+Convert(file.path(outdir2,"snRNAseq_subsampled_220609.h5Seurat"), dest = "h5ad", overwrite = T)
+
+file.remove(file.path(outdir2,"snRNAseq_subsampled_220609.h5Seurat"))
+
+```
+
+
+### Session info
+
+```{r}
+sessionInfo()
+```

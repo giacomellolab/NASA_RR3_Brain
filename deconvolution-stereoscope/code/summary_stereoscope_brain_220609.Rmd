@@ -1,0 +1,418 @@
+---
+title: "Summary Stereoscope Brain data"
+author: "Asa Bjorklund"
+output: 
+  html_document:
+    self_contained: true
+    highlight: tango
+    df_print: paged
+    code_folding: hide
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: true    
+---
+
+Stereoscope was run for all sections using top20, top50 or top100 DEGs per snRNAseq cluster. 
+
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(progress=TRUE,verbose=TRUE)
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, result='hold',fig.width=12, fig.height = 10)
+```
+
+
+```{r packages}
+suppressPackageStartupMessages(require(Matrix))
+suppressPackageStartupMessages(require(dplyr))
+suppressPackageStartupMessages(require(ggplot2))
+suppressPackageStartupMessages(require(Seurat))
+suppressPackageStartupMessages(require(STutility))
+suppressPackageStartupMessages(require(gridExtra))
+suppressPackageStartupMessages(require(pheatmap))
+```
+
+```{r}
+small.leg <- theme(legend.text = element_text(size=6), legend.key.width = unit(0.1,"cm"))
+cc = scale_color_gradientn(colors = c("grey", "yellow", "red", "black"))
+
+cl.colors = c("#e6194B", "#3cb44b", "#ffe119", "#4363d8", "#f58231", "#911eb4", "#42d4f4",
+    "#f032e6", "#bfef45", "#fabed4", "#469990", "#dcbeff", "#9A6324", "#fffac8",
+    "#800000", "#aaffc3", "#808000", "#ffd8b1", "#000075", "#a9a9a9", "#000000")
+```
+
+
+## Load ST data
+
+Create seurat object with correct clustering etc.  Cannot load the seurat v4 object in this env, so instead saved the parts needed in `prep_st_brain_220512_for_deconv.Rmd`. 
+
+
+```{r load}
+
+indir1 = "directory path of ST seurat object"
+load(file.path(indir1,"RR3-brain_ST_final_object.rds"), verbose = T)
+
+data.int = CreateSeuratObject(counts, meta.data = meta)
+
+data.int@tools[["Staffli"]] = staffli
+data.int[["umap"]] <- CreateDimReducObject(embeddings = umap, key = "UMAP_")
+     
+     
+```
+
+
+
+```{r}
+p = DimPlot(data.int, group.by = "seurat_clusters", label = T) + NoAxes()
+print(p)
+
+p = DimPlot(data.int, group.by = "annot", label = T, repel = T) + NoAxes() + small.leg
+print(p)
+
+p = ST.FeaturePlot(data.int, features = "nFeature_RNA", ncol = 4, show.sb = FALSE)
+
+```
+
+
+
+
+## Load Stereoscope results
+
+
+```{r}
+types = c("top20_degs","top50_degs","top100_degs", "hvg2000")
+
+
+input_dir = "directory path where deconvolution results are saved"
+samples = sort(unique(data.int$section.name))
+
+for (type in types){
+  input_dir2 = file.path(input_dir, paste0(type,"_220609"))
+  print(sprintf("Reading from %s",input_dir2))
+  alldata = list()
+  for (sample in samples) {
+    dfile = file.path(input_dir2, sample, "proportions.csv")
+    tmp = read.csv(dfile, row.names = 1)
+    alldata[[sample]] = tmp
+  }
+
+  all = Reduce(rbind, alldata)
+  all = t(all)
+  all = all[, colnames(data.int)]
+
+  data.int[[type]] <- CreateAssayObject(counts = all)
+}
+  
+celltypes = rownames(all)
+ct.colors = cl.colors[1:length(celltypes)]
+names(ct.colors)=celltypes
+```
+
+Save a seurat object with all the deconv data
+
+```{r}
+savefile = file.path(input_dir, "summary", "sobject_brain_deconv_220609.Rds")
+saveRDS(data.int, file = savefile)
+```
+
+
+### Violin plots
+
+Plot predicted proportion of each SN-cluster onto each ST-cluster.
+
+```{r, fig.height=10, results='asis'}
+for (type in types){
+  cat("For",type, "\n")
+  p = VlnPlot(data.int, features = celltypes, assay = type, pt.size = 0, ncol=5)
+  print(p)
+}
+```
+
+### Per section
+
+Plot predicted proportion of each SN-cluster for each section.
+
+```{r}
+cell.prop.section = list()
+samples = sort(unique(data.int$section.name))
+
+for (type in types){
+  cell.prop = list()
+  for (s in samples) {
+      cp = rowSums(data.int@assays[[type]]@counts[,data.int$section.name == s])
+      cp = cp/sum(cp)
+      cell.prop[[s]] = cp
+  }
+  cell.prop = Reduce(cbind, cell.prop)
+  colnames(cell.prop) = samples
+  cell.prop.section[[type]] = cell.prop
+}
+
+
+```
+
+
+```{r, fig.height=8}
+
+for (type in types){
+  tot.prop = data.frame(cell.prop.section[[type]])
+  tot.prop$celltype = factor(rownames(tot.prop), levels = celltypes)
+
+  l = reshape2::melt(tot.prop, id.vars = "celltype")
+
+  p5 = ggplot(l, aes(x = variable, y = value, fill = celltype)) + geom_bar(position = "fill",
+    stat = "identity") + RotatedAxis() + scale_fill_manual(values = ct.colors) + ggtitle(type)
+  
+  print(p5)
+}
+```
+
+### Per cluster
+
+Plot predicted proportion of each SN-cluster for each ST-cluster
+
+```{r}
+cell.prop.cl = list()
+clusters = levels(data.int$seurat_clusters)
+
+for (type in types){
+  cell.prop = list()
+  for (cl in clusters) {
+      cp = rowSums(data.int@assays[[type]]@counts[,data.int$seurat_clusters == cl])
+      cp = cp/sum(cp)
+      cell.prop[[cl]] = cp
+  }
+  cell.prop = Reduce(cbind, cell.prop)
+  colnames(cell.prop) = clusters
+  cell.prop.cl[[type]] = cell.prop
+}
+
+
+```
+
+
+```{r, fig.height=8}
+
+for (type in types){
+  tot.prop = data.frame(cell.prop.cl[[type]])
+  tot.prop$celltype = factor(rownames(tot.prop), levels = celltypes)
+
+  l = reshape2::melt(tot.prop, id.vars = "celltype")
+
+  p5 = ggplot(l, aes(x = variable, y = value, fill = celltype)) + geom_bar(position = "fill",
+    stat = "identity") + RotatedAxis() + scale_fill_manual(values = ct.colors) + ggtitle(type)
+  
+  print(p5)
+}
+```
+
+### Celltypes per spot
+
+Proportion of the most abundant celltype per spot.
+
+```{r, fig.height=10}
+
+top.ct = sapply(types, function(x) apply(data.int@assays[[x]]@counts,2,max))
+
+par(mfrow = c(2,2))
+s = sapply(types, function(x) hist(top.ct[,x], 100, main = x))
+```
+
+
+Number of celltypes per spot (only counting celltypes with at least 5% abundance)
+
+```{r, fig.height=10}
+cutoff = 0.05
+n.ct = sapply(types, function(x) colSums(data.int@assays[[x]]@counts>cutoff))
+
+par(mfrow = c(2,2))
+s = sapply(types, function(x) hist(n.ct[,x], 20, main = x))
+
+
+```
+
+
+### Onto sections
+
+Plot the predicted celltype proportions onto ST sections
+
+
+```{r, fig.height=16, results='asis'}
+for (type in types){
+  cat("For",type, "\n")
+  data.int@active.assay = type
+  p = ST.FeaturePlot(data.int, features = celltypes, ncol = 4, grid.ncol = 3, show.sb = FALSE)
+  print(p)
+}
+```
+
+
+Or to PDF for each celltype for higher resolution
+
+```{r}
+for (type in types){
+  plotfile = file.path(input_dir,type,sprintf("celltype_sections_%s.pdf",type))
+  data.int@active.assay = type
+  pdf(plotfile, height = 7, width = 10)
+  for (celltype in celltypes){
+    p = ST.FeaturePlot(data.int, features = celltype, ncol = 4, show.sb = FALSE,pt.border = F)
+    print(p)
+  }
+  dev.off()
+}
+```
+
+### Onto umap
+
+Plot celltype proportions on the ST umap.
+
+```{r, fig.height=12}
+for (type in types){
+  cat("For",type, "\n")
+  data.int@active.assay = type
+  p = lapply(celltypes, function(x) FeaturePlot(data.int, features = x, combine = T) + cc + small.leg + NoAxes())
+  grid.arrange(grobs = p, ncol=4, top = type)
+}
+```
+
+
+### Compare methods
+
+For each celltype, plot distribution of each celltype.
+
+```{r, fig.height=4}
+
+all = lapply(types, function(x) {
+  d = data.frame(t(data.int@assays[[x]]@counts))
+  d$type = x
+  d$sample = data.int$section.name
+  d$cluster = data.int$seurat_clusters
+  m = reshape2::melt(d)
+  return(m)
+})
+
+stats = Reduce(rbind,all)
+
+
+for (ct in celltypes){
+  s = stats[stats$variable == ct,]
+  p = ggplot(s, aes(x=cluster,y=value, fill=type)) + geom_boxplot(outlier.size = .1) + RotatedAxis() + ggtitle(sprintf("SN cluster %s",ct))
+  print(p)
+}
+
+
+```
+
+
+
+### Celltype co-occurence
+
+For now, run with only top100_deg data. Define presence of a celltype in a spot if it has a proportion > 5%. 
+
+```{r}
+source("../../functions/overlap_phyper_v2.R")
+
+cutoff = 0.05
+
+prop = data.int@assays$top100_degs@counts
+co.occ = sapply(celltypes, function(x) which(prop[x,] > cutoff))
+
+o = overlap_phyper2(co.occ, co.occ, title = "All", remove.diag = T)
+
+```
+
+Heatmap with phyper p-value for co-occurence. 
+
+Create a graph based on the p-values from above. Only draw edges if the p-value is > 0.01 and weight edges based on -log10(pvalue).
+
+```{r}
+library(igraph)
+make.igraph = function(ptest, cutoff = 0.01, title = "Celltype co-occurence", color = ct.colors) {
+    pvals = ptest$P[-ncol(ptest$P), -nrow(ptest$P)]
+
+    pseudo = min(pvals[pvals > 0 & !is.na(pvals)])
+    pvals[pvals == 0] = pseudo
+
+    # filer all edgens with pval > cutoff
+    pvals[pvals > cutoff] = 1
+
+    # convert to weights
+    w = -log10(pvals)
+    g = graph_from_adjacency_matrix(w, mode = "undirected", weighted = T, diag = F)
+    set.seed(13)
+    g.layout <- layout_with_graphopt(g)
+    # g.layout<-layout_with_lgl(g, maxiter = 500)
+    V(g)$color = color
+    # scale point size by proportions
+    nC = ptest$M[-ncol(ptest$M), ncol(ptest$M)]
+
+    # plot.igraph(g,layout=g.layout, vertex.label.color='black',
+    # edge.width=E(g)$weight/10, main = title)
+    plot.igraph(g, layout = g.layout, vertex.label.color = "black", edge.width = E(g)$weight/50,
+        vertex.size = nC/sum(nC) * 200, vertex.label.dist = 2, main = title)
+
+    return(list(g = g, layout = g.layout))
+}
+
+g = make.igraph(o, title = "All")
+```
+
+
+
+
+### Clustering with deconv
+
+Take the deconv matrices and redo clustering and umap based on celltype composition.
+
+```{r}
+nPC = 10
+
+data.int$expression_clust = data.int$seurat_clusters
+    p1 = ST.FeaturePlot(object = data.int, 
+               features = "expression_clust", 
+               pt.size = 1.5, 
+               ncol = 4,
+               cols = cl.colors,
+               dark.theme = F)
+
+print(p1)    
+    
+
+
+for (type in types){
+  data.int@active.assay = type
+  data.int = ScaleData(data.int)
+  pc.name = paste0("pca_","type")
+  umap.name = paste0("umap_","type")
+  data.int = RunPCA(data.int, features = celltypes, reduction.name = pc.name, verbose = F)
+  data.int = RunUMAP(data.int, reduction = pc.name, reduction.name = umap.name, dims = 1:nPC, verbose = F)
+  data.int = FindNeighbors(data.int, reduction = pc.name, dims = 1:nPC, verbose = F)
+  data.int = FindClusters(data.int, verbose = F)
+ 
+  cl.name = paste0(type,"_snn_res.0.8")
+  p2 = DimPlot(data.int, group.by = cl.name, label = T, cols = cl.colors) + NoAxes() + ggtitle(type)
+  print(p2)
+  p3 = ST.FeaturePlot(object = data.int, 
+               features = cl.name, 
+               pt.size = 1.5, 
+               ncol = 4,
+               cols = cl.colors,
+               dark.theme = F) + ggtitle(type)
+  print(p3)
+  
+  
+}
+
+
+
+```
+
+
+
+<details>
+  <summary>**Session Info**</summary>
+
+```{r}
+sessionInfo()
+```

@@ -1,0 +1,1399 @@
+---
+title: "RNA-seq + ATAC-seq, all brain data"
+author: "Jakub Orzechowski Westholm"
+output:
+  html_document:
+    code_folding: hide
+    toc: true
+    toc_float: true
+    toc_depth: 5
+    collapsed: false
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE, tidy=TRUE)
+```
+
+```{r date}
+cat(paste(Sys.Date()))
+```
+
+# Basic processing
+
+```{r libs}
+library(Seurat)
+library(Signac)
+library(hdf5r)
+library(EnsDb.Mmusculus.v79)
+library(DoubletFinder)
+library(harmony)
+library(tidyverse)
+library(knitr)
+library(pheatmap)
+library(kableExtra)
+library(patchwork)
+library(MAST)
+library(edgeR)
+library(sctransform)
+library(BSgenome.Mmusculus.UCSC.mm10)
+library(JASPAR2020)
+library(TFBSTools)
+library(car)
+library(lme4)
+```
+
+```{r help_functions}
+run_doublet_finder <- function(x, do_plot=T, header=""){
+  # Given the number of cells in a library, return the estimated doublet rate. Number taken from 
+  # https://kb.10xgenomics.com/hc/en-us/articles/360001378811-What-is-the-maximum-number-of-cells-that-can-be-profiled-
+  doublet_rate <- function(n_cells){
+    if(n_cells < 750){ return(0.004) }
+    if(n_cells < 1500){ return(0.008) }
+    if(n_cells < 2500){ return(0.016) }
+    if(n_cells < 3500){ return(0.024) }
+    if(n_cells < 4500){ return(0.032) }
+    if(n_cells < 5500){ return(0.040) }
+    if(n_cells < 6500){ return(0.048) }
+    if(n_cells < 7500){ return(0.056) }
+    if(n_cells < 8500){ return(0.064) }
+    if(n_cells < 9500){ return(0.072) }
+    if(n_cells < 10500){ return(0.08) }
+    
+    # extrapolating, 0.01 for each additional 1000 cells.
+    if(n_cells < 11500){ return(0.09) }
+    if(n_cells < 12500){ return(0.1) }
+    if(n_cells < 13500){ return(0.11) }
+    if(n_cells < 13500){ return(0.12) }
+    if(n_cells < 14500){ return(0.13) }
+    if(n_cells < 15500){ return(0.14) }
+    if(n_cells < 16500){ return(0.16) }
+    else(return(0.17))
+  }
+  
+  # Normalize for doublet finder
+  DefaultAssay(x) <- "RNA"
+  x <- NormalizeData(x)
+  x <- FindVariableFeatures(x, selection.method = "vst", nfeatures = 2000)
+  x <- ScaleData(x)
+  x <- RunPCA(x)
+  x <- RunUMAP(x, dims = 1:30)
+  
+  # pK Identification (no ground-truth) 
+  sweep_list <- paramSweep_v3(x, PCs = 1:10)
+  sweep_stats <- summarizeSweep(sweep_list)
+  bcmvny <- find.pK(sweep_stats)
+  use_pK <- as.numeric(levels(bcmvny$pK)[which(bcmvny$BCmetric==max(bcmvny$BCmetric))])
+  
+  # Estimate doublet rate and predict doublets
+  n_cells <- nrow(x@meta.data)
+  nExp_poi <- round(doublet_rate(n_cells)*n_cells)
+  x <- doubletFinder_v3(x, PCs = 1:10, pN = 0.25, pK = use_pK, nExp = nExp_poi)
+  
+  DF.name = colnames(x@meta.data)[grepl("DF.classification", colnames(x@meta.data))]
+  
+  if(do_plot){
+    print(DimPlot(x, group.by = DF.name) + ggtitle(header))
+    print(VlnPlot(x, features = "nFeature_RNA", group.by = DF.name, pt.size = 0))
+  }
+  
+  out_pred <- x@meta.data[, DF.name]
+  names(out_pred) <- colnames(x)
+  return(x)
+}
+
+# Function sample name -> flight/ground
+id_2_flight <- function(sample_name){
+  if(grepl("^CF", sample_name, perl = T))
+  { return("flight") }
+  else if(grepl("^CG", sample_name, perl = T))
+  { return("ground") }
+  else{ return(NA)}
+}
+
+# Collect summary statistics for a given motif in a given cluster.
+cluster_motif_stats <- function(motif_id, motif_name, cluster, closest_genes, 
+                                seurat_object, min_fraction_cluster_peaks=0.2){
+  cluster_cells <- colnames(seurat_object)[which(seurat_object$seurat_clusters %in% cluster)]
+  cluster_peak_fraction <- apply(seurat_object@assays$ATAC@counts[,cluster_cells],1,
+                                 function(x){length(which(x>0))/length(x)})
+  
+  cluster_peaks <- names(which(cluster_peak_fraction >= min_fraction_cluster_peaks))
+  motif_peaks <- names(which(seurat_object@assays$ATAC@motifs@data[,motif_id]==1))
+  motif_cluster_peaks <- intersect(motif_peaks, cluster_peaks)
+  
+  gene_tab <- closest_genes %>%
+    filter(query_region %in% motif_cluster_peaks) %>%
+    filter(distance < 1000) %>%
+    filter(type %in% c("cds", "utr"))
+  
+  return( c(motif_id = motif_id,
+            motif_name = motif_name,
+            cluster = cluster,
+            peaks_with_motif = length(motif_peaks),
+            peaks_in_cluster_with_motif = length(motif_cluster_peaks),
+            peaks_in_cluster_with_motif_near_gene = nrow(gene_tab),
+            genes_near_peaks_in_cluster_with_motif = length(unique(gene_tab$gene_name)),
+            gene_list = paste(unique(gene_tab$gene_name), collapse=" ")) )
+}
+
+
+set.seed(1)
+```
+
+# Load data
+
+```{r load_data, message=F, warning=F}
+setwd("/proj/snic2020-16-156/private/s_giacomello_2005/multiome_data")
+
+inputdata_10x <- Read10X_h5("merged/brain_aggr/outs/filtered_feature_bc_matrix.h5")
+rna_counts <- inputdata_10x$`Gene Expression`
+mt_index <- grepl("^mt-",rownames(rna_counts))
+
+atac_counts <- inputdata_10x$Peaks
+
+rm(inputdata_10x)
+gc()
+
+# Load barcode statistics
+barcode_stat_files <- c(CF2_B="atac_data/counts_arc_real_data_1_CF2/outs/per_barcode_metrics.csv",
+                        CF7_B="atac_data/counts_arc_real_data_1_CF7/outs/per_barcode_metrics.csv",
+                        CG8_B="atac_data/counts_arc_real_data_1_CG8/outs/per_barcode_metrics.csv",
+                        CG9_B="atac_data/counts_arc_real_data_1_CG9/outs/per_barcode_metrics.csv",
+                        CF1_B="atac_data/counts_arc_real_data_2_CF1_B/outs/per_barcode_metrics.csv")
+
+barcode_stats <- lapply(barcode_stat_files, read.csv, row.names=1)
+
+# format barcodes to they match the seurat objects: <barcode>-N where N is sample nr
+barcode_stats <- lapply(1:length(barcode_stats), 
+                        function(i){
+                          x <- barcode_stats[[i]]
+                          rownames(x) <- gsub('-\\d', paste('-',i, sep=''), rownames(x))
+                          return(x)
+                        })
+
+# only keep barcodes we have data for
+use_barcodes <- union(colnames(rna_counts), colnames(atac_counts)) 
+barcode_stats <- lapply(barcode_stats, function(x){x[rownames(x) %in% use_barcodes,]})
+
+barcode_stats <- do.call("rbind", barcode_stats)
+```
+
+# Pre-process RNA data
+
+```{r preprocess_rna, fig.height=10}
+seurat_rna <- CreateSeuratObject(counts = rna_counts)
+
+
+# Plot most abundant transctipts
+par(mar = c(4, 8, 2, 1))
+C <- seurat_rna@assays$RNA@counts
+C <- Matrix::t(Matrix::t(C)/Matrix::colSums(C)) * 100
+most_expressed <- order(apply(C, 1, median), decreasing = T)[20:1]
+boxplot(as.matrix(t(C[most_expressed, ])), cex = 0.1, las = 1, xlab = "% total count per cell",
+        col = (scales::hue_pal())(20)[20:1], horizontal = TRUE)
+
+# Remove MALAT1
+seurat_rna <- seurat_rna[!grepl("Malat1", rownames(seurat_rna)), ]
+
+# Remove mitochondrial genes
+seurat_rna[["percent_mt"]] <- PercentageFeatureSet(seurat_rna, pattern = "^mt-")
+seurat_rna <- seurat_rna[!grepl("^mt-", rownames(seurat_rna)), ]
+
+# Remove ribosomal genes
+seurat_rna <- seurat_rna[!grepl("^Rps|^Rpl", rownames(seurat_rna)), ]
+
+rm(rna_counts)
+gc()
+
+# Add meta data about which animal each cell came from
+bio_origin_labels <- c("CF2_B", "CF7_B", "CG8_B", "CG9_B", "CF1_B") # Hard coded for this data set
+bio_origin_nr <- sapply(colnames(seurat_rna@assays$RNA@data), function(x){as.numeric(strsplit(x, "-")[[1]][2])})
+bio_origin <- factor(bio_origin_labels[bio_origin_nr])
+seurat_rna <- AddMetaData(object=seurat_rna,
+                          metadata = bio_origin,
+                          col.name = "bio_origin")
+
+seurat_rna <- AddMetaData(object=seurat_rna,
+                          metadata = barcode_stats[colnames(seurat_rna),"gex_raw_reads"],
+                          col.name = "gex_raw_reads")
+
+seurat_rna_list <- SplitObject(seurat_rna, split.by = "bio_origin")
+
+
+VlnPlot(
+  object = seurat_rna,
+  features = c( "nFeature_RNA"),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = F
+)
+
+VlnPlot(
+  object = seurat_rna,
+  features = c( "nFeature_RNA"),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = T
+)
+
+VlnPlot(
+  object = seurat_rna,
+  features = c( "nCount_RNA"),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = F
+)
+
+VlnPlot(
+  object = seurat_rna,
+  features = c( "nCount_RNA"),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = T
+)
+
+VlnPlot(
+  object = seurat_rna,
+  features = c( "gex_raw_reads"),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = F
+)
+
+VlnPlot(
+  object = seurat_rna,
+  features = c( "gex_raw_reads"),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = T
+)
+
+VlnPlot(
+  object = seurat_rna,
+  features = c( "percent_mt"),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = F
+)
+
+table(bio_origin)
+
+mean_raw_reads <- sapply(unique(seurat_rna$bio_origin),
+                         function(x){
+                           mean(seurat_rna$gex_raw_reads[seurat_rna$bio_origin == x])
+                         })
+names(mean_raw_reads) <- unique(seurat_rna$bio_origin)
+mean_raw_reads
+
+# normalize, identify variable features and filter for each data set independently
+
+count_max <- unlist(lapply(seurat_rna_list, function(x) {
+  y <- x$nCount_RNA
+  y <- y[quantile(y, 0.01) < y & y < quantile(y, 0.99)]
+  round(mean(y) + 5 * sd(y))
+}))
+count_min <- unlist(lapply(seurat_rna_list, function(x) {
+  y <- x$nCount_RNA
+  y <- y[quantile(y, 0.01) < y & y < quantile(y, 0.99)]
+  round(mean(y) - 0.7 * sd(y))
+}))
+feature_min <- unlist(lapply(seurat_rna_list, function(x) {
+  y <- x$nFeature_RNA
+  y <- y[quantile(y, 0.01) < y & y < quantile(y, 0.99)]
+  round(mean(y) - 1 * sd(y))
+}))
+
+count_min <- pmax(count_min, 0)
+feature_min <- pmax(feature_min, 0)
+
+mt_max <-  c(CF1_B=5, CG9_B=5, CG8_B=5, CF2_B=5, CF7_B=5)
+pANN_max <- c(CG8_H=1, CF9_H=1, CF2_H=1, CG9_H=1)
+
+count_min
+count_max
+feature_min
+
+all_doublets <- NULL
+all_doublet_scores <- NULL
+
+for(x_name in names(seurat_rna_list)){
+  x <- seurat_rna_list[[x_name]]
+  
+  VlnPlot(x, features = c("nFeature_RNA", "nCount_RNA", "percent_mt"), ncol = 3, log = T, pt.size = 0) + NoLegend()
+  x <- subset(
+    x = x,
+    nFeature_RNA > feature_min[x_name] &
+      nCount_RNA > count_min[x_name] &
+      nCount_RNA < count_max[x_name] &
+      percent_mt < mt_max[x_name]
+  )
+  
+  x <- run_doublet_finder(x, do_plot=T, header=x_name)
+  doublet_cutoff <- 0.6
+  pANN.name = colnames(x@meta.data)[grepl("pANN", colnames(x@meta.data))]
+  DF.name = colnames(x@meta.data)[grepl("DF", colnames(x@meta.data))]
+  new_doublet_scores <- x[[pANN.name]][,1]
+  names(new_doublet_scores) <- rownames(x[[pANN.name]])
+  new_doublet_calls <- x[[DF.name]][,1]
+  names(new_doublet_calls) <- rownames(x[[DF.name]])
+  new_doublets <- union(names(which(new_doublet_calls == "Doublet")),
+                        names(which(new_doublet_scores >= pANN_max[x_name])))
+  x <- x[, setdiff(colnames(x), new_doublets)]
+  all_doublets <- union(all_doublets, new_doublets)
+  all_doublet_scores <- c(all_doublet_scores, new_doublet_scores)
+  x <- SCTransform(x, verbose = T, variable.features.n = 4000, vst.flavor = "v2")
+  
+  seurat_rna_list[[x_name]] <- x
+}
+
+names(seurat_rna_list) <- NULL
+seurat_rna <- merge(seurat_rna_list[[1]], y=seurat_rna_list[-1], add.cell.ids = names(seurat_rna_list), merge.data=T)
+
+seurat_rna<- AddMetaData(
+  object = seurat_rna ,
+  metadata = all_doublet_scores[colnames(seurat_rna)],
+  col.name = 'pANN'
+)
+
+VariableFeatures(seurat_rna) <- unique(unlist(lapply(seurat_rna_list, VariableFeatures)))
+
+rm(seurat_rna_list)
+gc()
+```
+
+
+# Pre-process ATAC data
+
+```{r preprocess_atac}
+grange_counts <- StringToGRanges(rownames(atac_counts), sep = c(":", "-"))
+seqlevelsStyle(grange_counts) <- "UCSC"
+
+grange_use <- seqnames(grange_counts) %in% standardChromosomes(grange_counts)
+atac_counts <- atac_counts[as.vector(grange_use), ]
+annotations <- GetGRangesFromEnsDb(ensdb = EnsDb.Mmusculus.v79)
+seqlevelsStyle(annotations) <- "UCSC"
+```
+
+## Merge data from different samples
+
+```{r merge_atac}
+setwd("/proj/snic2020-16-156/private/s_giacomello_2005/multiome_data")
+frag_file <- "merged/brain_aggr/outs/atac_fragments.tsv.gz"
+chrom_assay <- CreateChromatinAssay(
+  counts = atac_counts,
+  sep = c(":", "-"),
+  genome = 'mm10',
+  fragments = frag_file,
+  min.cells = 10,
+  annotation = annotations
+)
+
+seurat_atac <- CreateSeuratObject(counts = chrom_assay, assay = "peaks")
+
+# Add meta data about which animal each cell came from
+bio_origin_labels <- c("CF2_B", "CF7_B", "CG8_B", "CG9_B", "CF1_B") # Hard coded for this data set
+bio_origin_nr <- sapply(colnames(seurat_atac@assays$peaks@data), function(x){as.numeric(strsplit(x, "-")[[1]][2])})
+bio_origin <- factor(bio_origin_labels[bio_origin_nr])
+
+table(bio_origin)
+
+seurat_atac <- AddMetaData(object=seurat_atac,
+                           metadata = bio_origin,
+                           col.name = "bio_origin")
+seurat_atac <- AddMetaData(object=seurat_atac,
+                           metadata = barcode_stats[colnames(seurat_atac),"atac_raw_reads" ],
+                           col.name = "atac_raw_reads")
+seurat_atac <- AddMetaData(object=seurat_atac,
+                           metadata = barcode_stats[colnames(seurat_atac),"atac_peak_region_fragments"],
+                           col.name = "atac_peak_region_fragments")
+seurat_atac <- AddMetaData(object=seurat_atac,
+                           metadata = barcode_stats[colnames(seurat_atac),"atac_fragments"],
+                           col.name = "atac_fragments")
+atac_peak_fraction <- barcode_stats[colnames(seurat_atac),"atac_peak_region_fragments"] / barcode_stats[colnames(seurat_atac),"atac_fragments"]
+seurat_atac <- AddMetaData(object=seurat_atac,
+                           metadata = atac_peak_fraction,
+                           col.name = "atac_peak_fraction")
+
+doublet_arr <- as.character(colnames(seurat_atac) %in% all_doublets)
+seurat_atac <- AddMetaData(object=seurat_atac,
+                           metadata = doublet_arr,
+                           col.name = "doublet")
+
+rm(atac_counts)
+rm(annotations)
+rm(chrom_assay)
+rm(grange_counts)
+rm(grange_use)
+gc()
+```
+
+## QC and filter
+
+```{r atac_qc, fig.width=18}
+# compute TSS enrichment score per cell
+seurat_atac <- TSSEnrichment(object = seurat_atac, fast = FALSE)
+gc()
+
+seurat_atac$high.tss <- ifelse(seurat_atac$TSS.enrichment > 2, 'High', 'Low')
+pdf(file="tss_enrichment_brain.pdf")
+TSSPlot(seurat_atac, group.by = 'high.tss') + NoLegend()
+dev.off()
+
+VlnPlot(
+  object = seurat_atac,
+  features = c('nCount_peaks', 'nFeature_peaks', 'TSS.enrichment', 'atac_raw_reads', 'atac_peak_region_fragments', 'atac_peak_fraction'),
+  pt.size = 0.05,
+  log = F,
+  ncol = 6
+)
+
+VlnPlot(
+  object = seurat_atac,
+  features = c('nCount_peaks', 'nFeature_peaks', 'TSS.enrichment', 'atac_raw_reads', 'atac_peak_region_fragments', 'atac_peak_fraction'),
+  pt.size = 0.05,
+  log = T,
+  ncol = 6
+)
+
+
+VlnPlot(
+  object = seurat_atac,
+  features = c( 'atac_raw_reads'),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = F
+)
+
+VlnPlot(
+  object = seurat_atac,
+  features = c( 'atac_raw_reads'),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = T
+)
+
+VlnPlot(
+  object = seurat_atac,
+  features = c( 'nFeature_peaks'),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = F
+)
+
+VlnPlot(
+  object = seurat_atac,
+  features = c( 'nFeature_peaks'),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = T
+)
+
+VlnPlot(
+  object = seurat_atac,
+  features = c( 'nCount_peaks'),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = T
+)
+
+VlnPlot(
+  object = seurat_atac,
+  features = c( 'nCount_peaks'),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = F
+)
+
+VlnPlot(
+  object = seurat_atac,
+  features = c( 'atac_peak_fraction'),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = F
+)
+
+VlnPlot(
+  object = seurat_atac,
+  features = c( 'TSS.enrichment'),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = F
+)
+
+mean_raw_reads <- sapply(unique(seurat_atac$bio_origin),
+                         function(x){
+                           mean(seurat_atac$atac_raw_reads[seurat_atac$bio_origin == x])
+                         })
+names(mean_raw_reads) <- unique(seurat_atac$bio_origin)
+mean_raw_reads
+
+VlnPlot(
+  object = seurat_atac,
+  features = c('nCount_peaks', 'nFeature_peaks', 'TSS.enrichment', 'atac_raw_reads', 'atac_peak_region_fragments', 'atac_peak_fraction'),
+  group.by = "doublet",
+  pt.size = 0,
+  log = T,
+  ncol = 6
+)
+
+seurat_atac <- subset(
+  x = seurat_atac,
+  subset = nCount_peaks > 200 &
+    nCount_peaks < 25000 &
+    nFeature_peaks > 200 &
+    nFeature_peaks < 15000 &
+    atac_peak_fraction > 0.25 &
+    TSS.enrichment > 2
+)
+
+seurat_atac <- AddMetaData(object = seurat_atac, metadata = all_doublet_scores[colnames(seurat_atac)],
+                           col.name = "pANN")
+
+seurat_atac <- RunTFIDF(seurat_atac)
+seurat_atac <- FindTopFeatures(seurat_atac, min.cutoff = 'q5')
+seurat_atac <- RunSVD(seurat_atac)
+gc()
+```
+
+# Combine RNA-seq and ATAC-seq
+
+```{r combine_rna_atac}
+# Select which cells to use
+rna_cells <- colnames(seurat_rna)
+atac_cells <- colnames(seurat_atac)
+
+multiomics_cells <- intersect(rna_cells, atac_cells)
+
+rm(seurat_rna)
+rm(seurat_atac)
+gc()
+
+# Load data again
+setwd("/proj/snic2020-16-156/private/s_giacomello_2005/multiome_data")
+
+inputdata_10x <- Read10X_h5("merged/brain_aggr/outs/filtered_feature_bc_matrix.h5")
+rna_counts <- inputdata_10x$`Gene Expression`
+mt_index <- grepl("^mt-",rownames(rna_counts))
+
+atac_counts <- inputdata_10x$Peaks
+
+rm(inputdata_10x)
+gc()
+
+
+#############################
+# Create common seurat object
+
+# Load RNA data
+seurat_multi <- CreateSeuratObject(counts = rna_counts[,multiomics_cells])
+seurat_multi[["percent_mt"]] <- PercentageFeatureSet(seurat_multi, pattern = "^mt-")
+
+# Remove MALAT1
+seurat_multi <- seurat_multi[!grepl("Malat1", rownames(seurat_multi)), ]
+
+# Remove mitochondrial genes
+seurat_multi <- seurat_multi[!grepl("^mt-", rownames(seurat_multi)), ]
+
+# Remove ribosomal genes
+seurat_multi <- seurat_multi[!grepl("^Rps|^Rpl", rownames(seurat_multi)), ]
+
+
+rm(rna_counts)
+gc()
+
+
+# Load ATAC data
+grange_counts <- StringToGRanges(rownames(atac_counts), sep = c(":", "-"))
+# genome(grange_counts) <- "mm10"
+seqlevelsStyle(grange_counts) <- "UCSC" # 'Ensembl'
+
+grange_use <- seqnames(grange_counts) %in% standardChromosomes(grange_counts)
+atac_counts <- atac_counts[as.vector(grange_use), ]
+annotations <- GetGRangesFromEnsDb(ensdb = EnsDb.Mmusculus.v79)
+# genome(annotations) <- "mm10"
+seqlevelsStyle(annotations) <- "UCSC" # 'Ensembl'
+
+
+frag_file <- "merged/heart_aggr/outs/atac_fragments.tsv.gz"
+chrom_assay <- CreateChromatinAssay(
+  counts = atac_counts[, multiomics_cells],
+  sep = c(":", "-"),
+  genome = 'mm10',
+  # fragments = frag_file, # FIX THIS! "Not all cells requested could be found in the fragment file."
+  min.cells = 10,
+  annotation = annotations
+)
+seurat_multi[["ATAC"]] <- chrom_assay
+
+
+
+
+# No filtering or doublet removal needed
+
+##########################################
+# Do Harmony integration on RNA
+
+DefaultAssay(seurat_multi) <- "RNA"
+
+# Add meta data about which animal each cell came from
+bio_origin_labels <- c("CF2_B", "CF7_B", "CG8_B", "CG9_B", "CF1_B") # Hard coded for this data set
+bio_origin_nr <- sapply(colnames(seurat_multi@assays$RNA@data), function(x){as.numeric(strsplit(x, "-")[[1]][2])})
+bio_origin <- factor(bio_origin_labels[bio_origin_nr])
+seurat_multi <- AddMetaData(object=seurat_multi,
+                            metadata = bio_origin,
+                            col.name = "bio_origin")
+
+table(bio_origin)
+
+seurat_multi <- AddMetaData(object=seurat_multi,
+                            metadata = barcode_stats[colnames(seurat_multi),"atac_raw_reads" ],
+                            col.name = "atac_raw_reads")
+
+seurat_multi <- AddMetaData(object=seurat_multi,
+                            metadata = barcode_stats[colnames(seurat_multi),"gex_raw_reads" ],
+                            col.name = "gex_raw_reads")
+seurat_multi <- AddMetaData(object = seurat_multi, 
+                            metadata = all_doublet_scores[colnames(seurat_multi)],
+                            col.name = "pANN")
+
+
+# Format cell cycle genes from Seurat, e.g. convert 'MCM5' to 'Mcm5'
+cc.genes$g2m.genes %>%
+  str_to_lower %>%
+  str_to_title -> g2m.genes
+cc.genes$s.genes %>%
+  str_to_lower %>%
+  str_to_title -> s.genes
+
+
+seurat_multi_list <- SplitObject(seurat_multi, split.by = "bio_origin")
+
+# normalize and identify variable features for each dataset independently
+seurat_multi_list <- lapply(names(seurat_multi_list), 
+                            function(x_name){
+                              x <- seurat_multi_list[[x_name]]
+                              DefaultAssay(x) <- "RNA"
+                              x <- SCTransform(x, verbose = F, variable.features.n = 4000, vst.flavor = "v1")
+                              x <- CellCycleScoring(object = x, assay = "SCT", g2m.features = g2m.genes, 
+                                                    s.features = s.genes)
+                              x <- SCTransform(x, assay = "RNA", new.assay.name = "SCT_CC", verbose = F,
+                                               variable.features.n = 4000,
+                                               vars.to.regress = c("S.Score", "G2M.Score"), vst.flavor = "v2")
+                            })
+names(seurat_multi_list) <- NULL
+seurat_multi <- merge(seurat_multi_list[[1]], y=seurat_multi_list[-1], add.cell.ids = names(seurat_multi_list), merge.data=T)
+
+VariableFeatures(seurat_multi, assay = "SCT_CC") <- unique(unlist(lapply(seurat_multi_list,
+                                                                         VariableFeatures)))
+VariableFeatures(seurat_multi, assay = "SCT") <- unique(unlist(lapply(seurat_multi_list,
+                                                                      VariableFeatures)))
+
+
+rm(seurat_multi_list)
+gc()
+
+
+# Harmony without regressing out cell cycle effects
+seurat_multi <- RunPCA(seurat_multi, assay = "SCT", reduction.name = "SCT_pca")
+seurat_multi <- RunHarmony(object = seurat_multi, group.by.vars = "bio_origin", reduction = "SCT_pca",
+                           reduction.save = "SCT_harmony", project.dim = FALSE)
+
+# Harmony with regressing out cell cycle effects
+seurat_multi <- RunPCA(seurat_multi, assay = "SCT_CC", reduction.name = "SCT_CC_pca")
+seurat_multi <- RunHarmony(object = seurat_multi, group.by.vars = "bio_origin", reduction = "SCT_CC_pca",
+                           reduction.save = "SCT_CC_harmony", project.dim = FALSE)
+
+
+
+
+
+
+##########################################
+# Do Harmony integration on ATAC
+
+DefaultAssay(seurat_multi) <- "ATAC"
+
+
+seurat_multi <- AddMetaData(object=seurat_multi,
+                            metadata = barcode_stats[colnames(seurat_multi),"atac_peak_region_fragments"],
+                            col.name = "atac_peak_region_fragments")
+seurat_multi <- AddMetaData(object=seurat_multi,
+                            metadata = barcode_stats[colnames(seurat_multi),"atac_fragments"],
+                            col.name = "atac_fragments")
+atac_peak_fraction <- barcode_stats[colnames(seurat_multi),"atac_peak_region_fragments"] /                      
+  barcode_stats[colnames(seurat_multi),"atac_fragments"]
+seurat_multi <- AddMetaData(object=seurat_multi,
+                            metadata = atac_peak_fraction,
+                            col.name = "atac_peak_fraction")
+
+
+seurat_multi <- RunTFIDF(seurat_multi)
+seurat_multi <- FindTopFeatures(seurat_multi, min.cutoff = 'q5')
+seurat_multi <- RunSVD(seurat_multi, reduction.name = "ATAC_lsi",)
+
+seurat_multi <- RunHarmony(
+  object = seurat_multi,
+  group.by.vars = "bio_origin",
+  reduction = 'ATAC_lsi',
+  reduction.save = "ATAC_harmony",
+  assay.use = 'ATAC',
+  project.dim = FALSE
+)
+
+seurat_multi
+```
+
+## Plot stats
+
+### Raw RNA-seq reads
+
+```{r combined_qc_rna}
+VlnPlot(
+  object = seurat_multi,
+  features = c( "gex_raw_reads"),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = F
+)
+
+VlnPlot(
+  object = seurat_multi,
+  features = c( "gex_raw_reads"),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = T
+)
+
+
+mean_raw_reads <- sapply(unique(seurat_multi$bio_origin),
+                         function(x){
+                           mean(seurat_multi$gex_raw_reads[seurat_multi$bio_origin == x])
+                         })
+names(mean_raw_reads) <- unique(seurat_multi$bio_origin)
+mean_raw_reads
+
+
+```
+
+### Raw ATAC-seq reads
+
+```{r combined_qc_atac}
+VlnPlot(
+  object = seurat_multi,
+  features = c( "atac_raw_reads"),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = F
+)
+
+VlnPlot(
+  object = seurat_multi,
+  features = c( "atac_raw_reads"),
+  group.by = "bio_origin",
+  pt.size = 0.05,
+  log = T
+)
+
+
+mean_raw_reads <- sapply(unique(seurat_multi$bio_origin),
+                         function(x){
+                           mean(seurat_multi$atac_raw_reads[seurat_multi$bio_origin == x])
+                         })
+names(mean_raw_reads) <- unique(seurat_multi$bio_origin)
+mean_raw_reads
+```
+
+## Combined clustering of RNA and ATAC-seq
+
+Here we regress out cell cycle effetcs, and cluster based on WNN (weighted nearest neigbours)
+
+```{r wnn_cluster_cc}
+seurat_multi <- FindMultiModalNeighbors(seurat_multi, reduction.list = list("SCT_CC_harmony", "ATAC_harmony"), dims.list = list(1:30, 2:30), k.nn = 30, snn.graph.name = "wsnn_cc", knn.graph.name = "wknn_cc", weighted.nn.name = "weighted.nn_cc")
+seurat_multi <- RunUMAP(seurat_multi, nn.name = "weighted.nn_cc", reduction.name = "wnn_cc_umap", reduction.key = "wnnccUMAP_")
+seurat_multi <- FindClusters(seurat_multi, graph.name = "wsnn_cc", algorithm = 3, verbose = F, resolution = 0.2) # 0.3, 0.25
+
+p1 <- DimPlot(seurat_multi, reduction = "wnn_cc_umap", label = T, label.size = 4, repel = TRUE)
+p2 <- DimPlot(seurat_multi, reduction = "wnn_cc_umap", group.by = "bio_origin", label = T, label.size = 4, repel = TRUE)
+p3 <- DimPlot(seurat_multi, reduction = "wnn_cc_umap", group.by = "Phase", label = T, label.size = 4, repel = TRUE)
+p4 <- FeaturePlot(seurat_multi, reduction = "wnn_cc_umap", features = "nFeature_RNA", label = TRUE, label.size = 4, repel = TRUE)
+p5 <- FeaturePlot(seurat_multi, reduction = "wnn_cc_umap", features = "nFeature_ATAC", label = TRUE, label.size = 4, repel = TRUE)
+p6 <- FeaturePlot(seurat_multi, reduction = "wnn_cc_umap", features = "pANN", label = TRUE,
+                  label.size = 4, repel = TRUE)
+p1
+p2
+p3
+p4 | p5
+p6
+
+
+DimPlot(seurat_multi, reduction = "wnn_cc_umap", split.by = "bio_origin")
+DimPlot(seurat_multi, reduction = "wnn_cc_umap", split.by = "Phase")
+
+wrap_plots(FeaturePlot(seurat_multi, reduction = "wnn_cc_umap", features = "pANN",
+                       split.by = "bio_origin", label = T, label.size = 4, repel = T, combine = F),
+           ncol = 2)
+
+
+print("Cluster distribution")
+print(table(seurat_multi$seurat_clusters))
+print(round(prop.table(table(seurat_multi$seurat_clusters)), 3))
+print(table(seurat_multi$seurat_clusters, seurat_multi$bio_origin))
+print(round(prop.table(table(seurat_multi$seurat_clusters, seurat_multi$bio_origin), margin = 2), 3))
+print(table(seurat_multi$seurat_clusters, seurat_multi$Phase))
+print(round(prop.table(table(seurat_multi$seurat_clusters, seurat_multi$Phase), margin = 2), 3))
+
+VlnPlot(seurat_multi, features = c("nFeature_RNA"), log = TRUE, pt.size = 0) + NoLegend()
+VlnPlot(seurat_multi, features = c("nFeature_ATAC"), log = TRUE, pt.size = 0) + NoLegend()
+VlnPlot(seurat_multi, features = c("percent_mt"), log = FALSE, pt.size = 0) + NoLegend()
+VlnPlot(seurat_multi, features = c("atac_peak_fraction"), log = FALSE, pt.size = 0) + NoLegend()
+VlnPlot(seurat_multi, features = c("pANN"), log = FALSE, pt.size = 0) + NoLegend()
+VlnPlot(seurat_multi, features = c("pANN"), split.by = "bio_origin", log = F, pt.size = 0)
+```
+
+
+
+# Annotate cells
+
+Use data from <http://mousebrain.org> to annotate clusters in our data. For this, we do label transfer from Mouse Brain Atlas data to our RNA-seq data. We then plot the UMAP based on WNN with both RNA-seq and ATAC-seq, with the predicted cell types.
+
+```{r annotate_cells, fig.width=7, fig.height=7}
+setwd("/proj/snic2020-16-156/private/s_giacomello_2005/multiome_data")
+
+n_dim <- 30
+
+mousebrain_data <- readRDS(file="ref_data_asa/mousebrain_tax4_subsampled.Rds")
+mousebrain_data <- RunUMAP(mousebrain_data, dims = 1:n_dim, reduction = 'pca', reduction.name = "umap2",  return.model = T) # UMAP model missing, recalculate
+
+# Find anchors
+DefaultAssay(mousebrain_data) <- "SCT"
+DefaultAssay(seurat_multi) <- "SCT_CC"
+
+transfer.anchors <- FindTransferAnchors(
+  reference = mousebrain_data,
+  query = seurat_multi,
+  reduction = 'cca'
+)
+
+seurat_multi <- MapQuery(
+  anchorset = transfer.anchors,
+  query = seurat_multi,
+  reference = mousebrain_data,
+  refdata = list(
+    celltype.l1 = "TaxonomyRank1",
+    celltype.l2 = "TaxonomyRank2",
+    celltype.l3 = "TaxonomyRank3",
+    celltype.l4 = "TaxonomyRank4"
+  ),
+  reference.reduction = "umap2",  # "spca",
+  reduction.model = "umap2"
+)
+
+# Plot predicted cell types on RNA UMAP
+DimPlot(seurat_multi, reduction = "wnn_cc_umap", group.by = "predicted.celltype.l1", label = TRUE,
+        label.size = 3, repel = TRUE)
+
+DimPlot(seurat_multi, reduction = "wnn_cc_umap", group.by = "predicted.celltype.l2", label = TRUE,
+        label.size = 3, repel = TRUE)
+
+DimPlot(seurat_multi, reduction = "wnn_cc_umap", group.by = "predicted.celltype.l3", label = TRUE,
+        label.size = 3, repel = TRUE) + NoLegend()
+```
+
+# Cluster specific marker genes
+
+## Each cluster vs all other clusters
+
+```{r cluster_markers}
+DefaultAssay(seurat_multi) <- "SCT_CC"
+
+Idents(seurat_multi) <- seurat_multi$wsnn_cc_res.0.2
+
+wnn_markers <- FindAllMarkers(seurat_multi, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25, recorrect_umi=FALSE)
+wnn_markers %>%
+  group_by(cluster) %>%
+  slice_max(n = 10, order_by = avg_log2FC) %>%
+  print(n = 1000)
+```
+
+```{r r wnn_cluster_markers_plot, fig.height=20 , results='asis'}
+wnn_markers %>%
+  group_by(cluster) %>%
+  top_n(n = 10, wt = avg_log2FC) -> top10
+
+for (cl in as.character(unique(top10$cluster))) {
+  cat(paste(c("\n### ", cl, "\n")))
+  tmp_features <- top10$gene[top10$cluster == cl]
+  print(VlnPlot(seurat_multi, features = tmp_features, pt.size = 0, ncol = 1) +
+          labs(x = ""))
+  cat("\n\n")
+}
+```
+
+
+# Differentially expressed genes, flight - ground
+
+Using MAST, with random effects, to do differential expression analysis for each cluster.
+
+```{r de_flight_ground_random, results="asis"}
+options(mc.cores=16)
+
+DefaultAssay(seurat_multi) <- "SCT_CC"
+
+use_clusters <- seurat_multi$wsnn_cc_res.0.2
+all_clusters <- as.character(sort(as.numeric(levels(unique(use_clusters)))))
+
+cell_flight_status <- sapply(seurat_multi$bio_origin,id_2_flight)
+names(cell_flight_status) <- colnames(seurat_multi)
+seurat_multi <- AddMetaData(object = seurat_multi, metadata = cell_flight_status, col.name = "cell_flight_status")
+all_cells <- colnames(seurat_multi)
+flight_vs_ground <- list()
+
+for(cluster in all_clusters){
+  flight_cells <- all_cells[use_clusters == cluster & cell_flight_status == "flight"]
+  ground_cells <- all_cells[use_clusters == cluster & cell_flight_status == "ground"]
+  use_cells <- union(flight_cells, ground_cells)
+  
+  # Check nr of cells where each gene is expressed
+  nE_flight <- rowSums(seurat_multi@assays$SCT_CC@counts[, flight_cells] > 0)
+  nE_ground <- rowSums(seurat_multi@assays$SCT_CC@counts[, ground_cells] > 0)
+  
+  # require expression in at least 30% or 10 cells from one of the groups
+  use_genes <- rownames(seurat_multi)[nE_flight >= max(10,length(flight_cells)*0.3) |      #  0.35
+                                        nE_ground >= max(10,length(ground_cells)*0.3) ]    # 0.35
+  
+  fData <- data.frame(primerid = use_genes)
+  
+  m <- seurat_multi@meta.data[use_cells,]
+  m$wellKey <- rownames(m)
+  m$cdr <- scale(m$nFeature_SCT_CC)
+  
+  # make sure relevant metadata are factors
+  m$cell_flight_status <- factor(m$cell_flight_status)
+  m$cell_flight_status <- relevel(m$cell_flight_status, "ground")
+  m$bio_origin <- factor(m$bio_origin)
+  
+  sca <- MAST::FromMatrix(exprsArray = as.matrix(x = seurat_multi@assays$SCT_CC@data[use_genes, use_cells]),
+                          check_sanity = TRUE, cData = m, fData = fData)
+  
+  zlmCond <- tryCatch({
+    MAST::zlm(~cell_flight_status + cdr + (1 | bio_origin), sca=sca, method = "glmer",
+              ebayes = F, strictConvergence = FALSE, parallel = T)},
+    error = function(e) { next })
+  
+  
+  summaryCond <- MAST::summary(zlmCond, doLRT = "cell_flight_statusflight")
+  summaryDt <- summaryCond$datatable
+  fcHurdle <- merge(summaryDt[summaryDt$contrast == "cell_flight_statusflight" & 
+                                summaryDt$component == "logFC", c(1, 7, 5, 6, 8)], 
+                    summaryDt[summaryDt$contrast == "cell_flight_statusflight" &
+                                summaryDt$component == "H", c(1, 4)], by = "primerid")
+  fcHurdle[,fdr:=p.adjust(`Pr(>Chisq)`, 'fdr')]
+  fcHurdle2 <- stats::na.omit(as.data.frame(fcHurdle))
+  colnames(fcHurdle2)[6] <- "p_val"
+  
+  flight_vs_ground[[cluster]] <- fcHurdle2
+}
+
+# Print number of differentially expressed genes
+n_de_genes <- cbind(up=unlist(lapply(flight_vs_ground,function(x){length(which(x$fdr < 0.05 & x$coef > 0))})),
+                    down=unlist(lapply(flight_vs_ground,function(x){length(which(x$fdr < 0.05 & x$coef < 0))})))
+n_de_genes %>%
+  kable %>%
+  kable_styling(font_size = 10) %>% 
+  print
+
+# Print differentially expressed genes
+max_pval <- 0.05
+for(cluster in names(flight_vs_ground)){ 
+  cat(paste("\n### Cluster ",cluster, "\n\n"))
+  
+  flight_vs_ground[[cluster]] %>%
+    filter(fdr <= max_pval) %>%
+    mutate(
+      p_val = signif(p_val,2),
+      fdr = signif(fdr,2),
+      coef = round(coef,4)
+    ) %>% 
+    select(primerid, coef,  p_val, fdr) %>%
+    arrange(p_val) %>%
+    kable %>%
+    kable_styling(font_size = 10) %>% print
+}
+```
+
+## Plot 10 top genes from each cluster
+
+```{r plot_top_flight_ground_random, results='asis', warning=FALSE, message=FALSE}
+for(cluster in names(flight_vs_ground)){
+  cat(paste("\n\n### Cluster ",cluster, "\n\n"))
+  
+  top_genes <- flight_vs_ground[[cluster]] %>%
+    arrange(p_val) %>%
+    filter(fdr < 0.05) %>%
+    select(primerid) %>%
+    head(n=10)
+  top_genes <- top_genes[,1]
+  
+  
+  bottom_genes <- flight_vs_ground[[cluster]] %>%
+    arrange(p_val) %>%
+    filter(fdr < 0.05) %>%
+    select(primerid) %>%
+    tail(n=10)
+  bottom_genes <- bottom_genes[,1]
+  bottom_genes <- setdiff(bottom_genes,  top_genes)
+  
+  if(length(top_genes)>0){
+    print(DotPlot(seurat_multi[,use_clusters==cluster], features = rev(top_genes), group.by = "bio_origin") +
+            coord_flip() +  RotatedAxis() + ggtitle("Top genes"))
+  }
+  if(length(bottom_genes)>0){
+    print(DotPlot(seurat_multi[,use_clusters==cluster], features = rev(bottom_genes), group.by = "bio_origin") +
+            coord_flip() +  RotatedAxis() + ggtitle("Bottom genes"))
+  }
+}
+```
+
+
+# Differential DNA acessibility, flight - ground
+
+
+Using MAST with random effects.
+
+```{r diff_atac_mast_rand, results='asis', warning=FALSE, message=FALSE}
+options(mc.cores=10)
+
+DefaultAssay(seurat_multi) <- "ATAC"
+
+use_clusters <- seurat_multi$wsnn_cc_res.0.2
+all_clusters <- as.character(sort(as.numeric(levels(unique(use_clusters)))))
+
+cell_flight_status <- sapply(seurat_multi$bio_origin,id_2_flight)
+names(cell_flight_status) <- colnames(seurat_multi)
+seurat_multi <- AddMetaData(object = seurat_multi, metadata = cell_flight_status, col.name = "cell_flight_status")
+all_cells <- colnames(seurat_multi)
+flight_vs_ground <- list()
+
+for(cluster in all_clusters){
+  flight_cells <- all_cells[use_clusters == cluster & cell_flight_status == "flight"]
+  ground_cells <- all_cells[use_clusters == cluster & cell_flight_status == "ground"]
+  use_cells <- union(flight_cells, ground_cells)
+  
+  # Check nr of cells where for each peak
+  nE_flight <- rowSums(seurat_multi@assays$ATAC@counts[, flight_cells] > 0)
+  nE_ground <- rowSums(seurat_multi@assays$ATAC@counts[, ground_cells] > 0)
+  
+  # require presence in at least 30% or 10 cells from one of the groups
+  use_peaks <- rownames(seurat_multi)[nE_flight >= max(10,length(flight_cells)*0.3) |     
+                                        nE_ground >= max(10,length(ground_cells)*0.3) ]    
+  
+  fData <- data.frame(primerid = use_peaks)
+  
+  m <- seurat_multi@meta.data[use_cells,]
+  m$wellKey <- rownames(m)
+  m$cdr <- scale(m$nFeature_ATAC)
+  
+  # make sure relevant metadata are factors
+  m$cell_flight_status <- factor(m$cell_flight_status)
+  m$cell_flight_status <- relevel(m$cell_flight_status, "ground")
+  m$bio_origin <- factor(m$bio_origin)
+  
+  sca <- MAST::FromMatrix(exprsArray = as.matrix(x = seurat_multi@assays$ATAC@data[use_peaks, use_cells]),
+                          check_sanity = TRUE, cData = m, fData = fData)
+  
+  # Right now we just ignore errors. 
+  zlmCond <- tryCatch({
+    MAST::zlm(~cell_flight_status + cdr + (1 | bio_origin), sca=sca, method = "glmer",
+              ebayes = F, strictConvergence = FALSE, parallel = T)},
+    error = function(e) { next })
+  
+  
+  summaryCond <- MAST::summary(zlmCond, doLRT = "cell_flight_statusflight")
+  summaryDt <- summaryCond$datatable
+  fcHurdle <- merge(summaryDt[summaryDt$contrast == "cell_flight_statusflight" & 
+                                summaryDt$component == "logFC", c(1, 7, 5, 6, 8)], 
+                    summaryDt[summaryDt$contrast == "cell_flight_statusflight" &
+                                summaryDt$component == "H", c(1, 4)], by = "primerid")
+  fcHurdle[,fdr:=p.adjust(`Pr(>Chisq)`, 'fdr')]
+  fcHurdle2 <- stats::na.omit(as.data.frame(fcHurdle))
+  colnames(fcHurdle2)[6] <- "p_val"
+  
+  flight_vs_ground[[cluster]] <- fcHurdle2
+}
+
+
+# Print number of differentially acessible regions
+n_de_genes <- cbind(up=unlist(lapply(flight_vs_ground,function(x){length(which(x$fdr < 0.05 & x$coef > 0))})),
+                    down=unlist(lapply(flight_vs_ground,function(x){length(which(x$fdr < 0.05 & x$coef < 0))})))
+n_de_genes %>%
+  kable %>%
+  kable_styling(font_size = 10) %>% 
+  print
+
+# Print differentially acessible regions
+max_pval <- 0.05
+for(cluster in names(flight_vs_ground)){ 
+  cat(paste("\n### Cluster ",cluster, "\n\n"))
+  
+  flight_vs_ground[[cluster]] %>%
+    filter(fdr <= max_pval) %>%
+    mutate(
+      p_val = signif(p_val,2),
+      fdr = signif(fdr,2),
+      coef = round(coef,4)
+    ) %>% 
+    select(primerid, coef,  p_val, fdr) %>%
+    arrange(p_val) %>%
+    kable %>%
+    kable_styling(font_size = 10) %>% print
+}
+```
+
+## Plot 10 top regions from each cluster
+
+```{r plot_top_flight_ground_atac_random, results='asis', warning=FALSE, message=FALSE}
+for(cluster in names(flight_vs_ground)){
+  cat(paste("\n\n### Cluster ",cluster, "\n\n"))
+  
+  top_genes <- flight_vs_ground[[cluster]] %>%
+    arrange(p_val) %>%
+    filter(fdr < 0.05) %>%
+    select(primerid) %>%
+    head(n=10)
+  top_genes <- top_genes[,1]
+  
+  
+  bottom_genes <- flight_vs_ground[[cluster]] %>%
+    arrange(p_val) %>%
+    filter(fdr < 0.05) %>%
+    select(primerid) %>%
+    tail(n=10)
+  bottom_genes <- bottom_genes[,1]
+  bottom_genes <- setdiff(bottom_genes,  top_genes)
+  
+  if(length(top_genes)>0){
+    print(DotPlot(seurat_multi[,use_clusters==cluster], features = rev(top_genes), group.by = "bio_origin") +
+            coord_flip() +  RotatedAxis() + ggtitle("Top genes"))
+  }
+  if(length(bottom_genes)>0){
+    print(DotPlot(seurat_multi[,use_clusters==cluster], features = rev(bottom_genes), group.by = "bio_origin") +
+            coord_flip() +  RotatedAxis() + ggtitle("Bottom genes"))
+  }
+}
+```
+
+
+
+# Differential motif availability
+
+Here we check if there are differences DNA accessibility between flight and ground cells, around know motifs. For this we use a linear model with random effect.
+
+```{r tf_activity_scores}
+DefaultAssay(seurat_multi) <- "ATAC"
+
+# Get a list of motif position frequency matrices from the JASPAR database
+pfm <- getMatrixSet(
+  x = JASPAR2020,
+  opts = list(species = "Mus musculus", all_versions = FALSE)
+)
+
+peak_table <- rownames(seurat_multi) %>% 
+  str_split("-", simplify = T) %>% 
+  as.data.frame()
+colnames(peak_table) <- c("chr", "start", "end")
+
+# Scan the DNA sequence of each peak for the presence of each motif
+motif.matrix <- CreateMotifMatrix(
+  features = makeGRangesFromDataFrame(peak_table),
+  pwm = pfm,
+  genome = 'mm10',
+  use.counts = FALSE
+)
+
+# Create a new Mofif object to store the results
+motif <- CreateMotifObject(
+  data = motif.matrix,
+  pwm = pfm
+)
+
+# Add the Motif object to the assay
+seurat_multi <- SetAssayData(
+  object = seurat_multi,
+  assay = 'ATAC',
+  slot = 'motifs',
+  new.data = motif
+)
+
+seurat_multi <- RegionStats(object = seurat_multi, genome = BSgenome.Mmusculus.UCSC.mm10)
+
+# Use chromVAR to calculate the motif activities of all motifs in all cells.
+seurat_multi <- RunChromVAR(
+  object = seurat_multi,
+  genome = BSgenome.Mmusculus.UCSC.mm10,
+  verbose = TRUE
+)
+```
+
+
+
+```{r chromvar_lme4, results='asis', warning=FALSE}
+DefaultAssay(seurat_multi) <- "chromvar"
+
+cell_flight_status <- sapply(seurat_multi$bio_origin,id_2_flight)
+names(cell_flight_status) <- colnames(seurat_multi)
+seurat_multi <- AddMetaData(object = seurat_multi, metadata = cell_flight_status, col.name = "cell_flight_status")
+
+use_clusters <- seurat_multi$wsnn_cc_res.0.2
+all_clusters <- as.character(sort(as.numeric(levels(unique(use_clusters)))))
+all_cells <- colnames(seurat_multi)
+flight_vs_ground <- list()
+
+for(cluster in all_clusters){
+  # print(file=stderr(), cluster)
+  
+  flight_cells <- all_cells[use_clusters == cluster & cell_flight_status == "flight"]
+  ground_cells <- all_cells[use_clusters == cluster & cell_flight_status == "ground"]
+  
+  if(length(flight_cells)<3 | length(ground_cells)<3){
+    print(file=stderr(), paste("Skipping cluster", cluster, ". Too few cells for rare condition."))
+    next;
+  }
+  use_cells <- union(flight_cells, ground_cells)
+  
+  chromvar_scores <- seurat_multi@assays$chromvar@data[, use_cells]
+  
+  lmm_res <- do.call("rbind",
+                     lapply(rownames(chromvar_scores),
+                            function(motif){
+                              data <- seurat_multi@meta.data[use_cells,]
+                              data$cdr <- scale(data$nFeature_ATAC)
+                              
+                              # make sure relevant metadata are factors
+                              data$cell_flight_status <- factor(data$cell_flight_status)
+                              data$cell_flight_status <- relevel(data$cell_flight_status, "ground")
+                              data$bio_origin <- factor(data$bio_origin)
+                              data$chromvar <- chromvar_scores[motif,]
+                              
+                              form <- chromvar ~ cell_flight_status + cdr + (1 | bio_origin)
+                              
+                              lmm <- lmer(form, data = data)
+                              
+                              coef <- coefficients(lmm)$bio_origin[1,"cell_flight_statusflight"]
+                              p_val <- Anova(lmm)["cell_flight_status","Pr(>Chisq)"]
+                              
+                              return(c(p_val=p_val, coef=coef))
+                            }))
+  lmm_res <- as.data.frame(lmm_res)
+  
+  lmm_res <- lmm_res %>%
+    mutate(motif = rownames(chromvar_scores),
+           FDR = p.adjust(p_val, method = "fdr"))
+  
+  flight_vs_ground[[cluster]] <- lmm_res
+  
+}
+
+
+# Print number of differentially accessible motifs
+n_de_genes <- cbind(up=unlist(lapply(flight_vs_ground,function(x){length(which(x$FDR < 0.05 & x$coef > 0))})),
+                    down=unlist(lapply(flight_vs_ground,function(x){length(which(x$FDR < 0.05 & x$coef < 0))})))
+n_de_genes %>%
+  kable %>%
+  kable_styling(font_size = 10) %>% 
+  print
+
+
+# Print differentially accessible motifs
+max_pval <- 0.05
+for(cluster in names(flight_vs_ground)){ 
+  cat(paste("\n## Cluster ",cluster, "\n\n"))
+  
+  flight_vs_ground[[cluster]] %>%
+    filter(FDR <= max_pval) %>%
+    mutate(
+      name = name(getMatrixByID(JASPAR2020, ID = motif)),
+      p_val = signif(p_val, 2),
+      FDR = signif(FDR, 2),
+      coef = round(coef, 4)
+    ) %>% 
+    select(motif, name, coef,  p_val, FDR) %>%
+    arrange(p_val) %>%
+    kable(digits = 32) %>%
+    kable_styling(font_size = 10) %>% print
+}
+```
+
+## Plot 10 top motifs from each cluster
+
+```{r plot_top_flight_ground_chromvar_lme4, results='asis', warning=FALSE, message=FALSE}
+for(cluster in names(flight_vs_ground)){
+  cat(paste("\n\n### Cluster ",cluster, "\n\n"))
+  
+  top_genes <- flight_vs_ground[[cluster]] %>%
+    arrange(p_val) %>%
+    filter(FDR < 0.05) %>%
+    head(n=10) %>% 
+    select(motif)
+  top_genes <- top_genes[,1]
+  
+  for(motif in top_genes){
+    tmp_matrix <- getMatrixByID(JASPAR2020, ID = motif)
+    motif_name <- name(tmp_matrix)
+    
+    # Print violin plot
+    print(VlnPlot(seurat_multi[,use_clusters==cluster], 
+                  features = motif, 
+                  group.by = "bio_origin", 
+                  pt.size = 0) + 
+            stat_summary(fun.y = median, geom='point', size = 25, colour = "black", shape = 95) +
+            theme(legend.position = "none") + 
+            ylab("chromVAR signal") + 
+            ggtitle(motif_name))
+    
+    # Print sequence logo
+    dummy <- seqLogo(toICM(tmp_matrix))
+  }
+}
+```
+
+## Statistics for some interesting motifs
+
+```{r interesting_motifs, results='asis'}
+DefaultAssay(seurat_multi) <- "ATAC"
+closest_genes <- ClosestFeature(seurat_multi, regions = seurat_multi@assays$ATAC@ranges)
+
+
+interesting_motifs_tab <- rbind(c("MA1619.1", "Ptf1a(var.2)", "2"),
+                                c("MA1628.1", "Zic1::Zic2", "4"),
+                                c("MA1628.1", "Zic1::Zic2", "14"),
+                                c("MA0461.2", "Atoh1", "11"),
+                                c("MA0461.2", "Atoh1", "14"),
+                                c("MA0065.2", "Pparg::Rxra", "11"),
+                                c("MA0677.1", "Nr2f6", "11"),
+                                c("MA0142.1", "Pou5f1::Sox2", "11"),
+                                c("MA0739.1", "Hic1", "14"),
+                                c("MA0006.1", "Ahr::Arnt","14"), 
+                                c("MA0160.1", "NR4A2", "14"))
+interesting_motifs_stats <- t(apply(interesting_motifs_tab,1,
+                                    function(x){cluster_motif_stats(x[1], x[2], x[3], 
+                                                                    closest_genes, seurat_multi)}))
+
+interesting_motifs_stats %>%
+  kable %>%
+  kable_styling(font_size = 10) %>%
+  print
+```
+
+
+# Save seurat object
+
+```{r save_data}
+save(seurat_multi, file = paste("seurat_data_brain_cc_",Sys.Date(),".RData",sep=""))
+```
+
+# Session info
+
+```{r session_info}
+sessionInfo(package = NULL)
+```
