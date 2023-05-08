@@ -1,0 +1,6 @@
+library_id,atac_fragments,per_barcode_metrics,gex_molecule_info
+F2,/path to atac_fragments.tsv.gz file from outs folder of cellranger outputs for F2 sample,/path to per_barcode_metrics.csv file from cellranger output of F2 sample,/path to gex_molecule_info.h5 file for F2 sample
+F3,/path to atac_fragments.tsv.gz file from outs folder of cellranger outputs for F3 sample,/path to per_barcode_metrics.csv file from cellranger output of F3 sample,/path to gex_molecule_info.h5 file for F3 sample
+G2,/path to atac_fragments.tsv.gz file from outs folder of cellranger outputs for G2 sample,/path to per_barcode_metrics.csv file from cellranger output of G2 sample,/path to gex_molecule_info.h5 file for G2 sample
+G3,/path to atac_fragments.tsv.gz file from outs folder of cellranger outputs for G3 sample,/path to per_barcode_metrics.csv file from cellranger output of G3 sample,/path to gex_molecule_info.h5 file for G3 sample
+F1,/path to atac_fragments.tsv.gz file from outs folder of cellranger outputs for F1 sample,/path to per_barcode_metrics.csv file from cellranger output of F1 sample,/path to gex_molecule_info.h5 file for F1 sample

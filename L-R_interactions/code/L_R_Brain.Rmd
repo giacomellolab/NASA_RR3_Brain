@@ -17,7 +17,6 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(progress=TRUE,verbose=TRUE)
-#knitr::opts_knit$set(root.dir = "~/Desktop/SPACE2")
 knitr::opts_chunk$set(message=FALSE, warning=FALSE, result='hold',fig.width=12, fig.height = 10)
 ```
 
@@ -247,14 +246,13 @@ system('pip install CellPhoneDB==3.0.2')
 
 #system('python3 -m pip install --upgrade pip')
 
-plot <- "cellphonedb method degs_analysis  /Users/ChristerSylven/Desktop/Space2/cellPhone/brain_LR_metadata.txt  /Users/ChristerSylven/Desktop/Space2/cellPhone/brain_LR_counts.txt  /Users/ChristerSylven/Desktop/Space2/cellPhone/brain_LR_up.txt  --counts-data=gene_name --output-path=/Users/ChristerSylven/Desktop/Space2/cellPhone/out/"
+plot <- "cellphonedb method degs_analysis  /../../Space2/cellPhone/brain_LR_metadata.txt  /../../Space2/cellPhone/brain_LR_counts.txt  /../../Space2/cellPhone/brain_LR_up.txt  --counts-data=gene_name --output-path=/../../Space2/cellPhone/out/"
 
 
-plot <- "cellphonedb plot dot_plot --/Users/ChristerSylven/Desktop/Space2/cellPhone/brain_LR_metadata.txt --pvalues-path=/Users/ChristerSylven/Desktop/Space2/cellPhone/out/pvalues.txt
---means-path=/Users/ChristerSylven/Desktop/Space2/cellPhone/out/means.txt
---output-path=/Users/ChristerSylven/Desktop/Space2/cellPhone/out/  --output-name Brain_up.pdf"
+plot <- "cellphonedb plot dot_plot --/../../Space2/cellPhone/brain_LR_metadata.txt --pvalues-path=/../../Space2/cellPhone/out/pvalues.txt
+--means-path=/../../Space2/cellPhone/out/means.txt
+--output-path=/../../Space2/cellPhone/out/  --output-name Brain_up.pdf"
 
-#address <- "/Users/ChristerSylven/Library/Python/3.8/bin/"
 address = "/Library/Frameworks/Python.framework/Versions/3.8/bin/"
 
 #plot <- "cellphonedb plot heatmap_plot metadata_M7.txt"
@@ -307,19 +305,19 @@ brain_up_LR <- c(
 'EFNA5_EPHA5',
 'VEGFA_GRIN2B')
 
-write.table(brain_celltype_interaction, file = '/Users/ChristerSylven/Desktop/SPACE2/cellPhone/in/Brain_celltype_interaction.txt', sep = '\t', quote = F, row.names = F, col.names = F)
+write.table(brain_celltype_interaction, file = '/../../SPACE2/cellPhone/in/Brain_celltype_interaction.txt', sep = '\t', quote = F, row.names = F, col.names = F)
 
-write.table(brain_up_LR, '/Users/ChristerSylven/Desktop/SPACE2/cellPhone/in/brain_up_LR_rows.txt', sep = '\t', quote = F, row.names = F, col.names = F)
+write.table(brain_up_LR, '/../../SPACE2/cellPhone/in/brain_up_LR_rows.txt', sep = '\t', quote = F, row.names = F, col.names = F)
 
-write.table(brain_celltype_interaction, file = '/Users/ChristerSylven/in/Brain_celltype_interaction.txt', sep = '\t', quote = F, row.names = F, col.names = F)
+write.table(brain_celltype_interaction, file = '/../../in/Brain_celltype_interaction.txt', sep = '\t', quote = F, row.names = F, col.names = F)
 
-write.table(brain_up_LR, '/Users/ChristerSylven/in/brain_up_LR_rows.txt', sep = '\t', quote = F, row.names = F, col.names = F)
+write.table(brain_up_LR, '/../../in/brain_up_LR_rows.txt', sep = '\t', quote = F, row.names = F, col.names = F)
 
 address = "/Library/Frameworks/Python.framework/Versions/3.8/bin/"
 
-plot <- 'cellphonedb plot dot_plot --rows /Users/ChristerSylven/Desktop/SPACE2/cellPhone/in/brain_up_LR_rows.txt --columns /Users/ChristerSylven/Desktop/SPACE2/cellPhone/in/Brain_celltype_interaction.txt --output-name brain_up_rel_interactions.png'
+plot <- 'cellphonedb plot dot_plot --rows /../../SPACE2/cellPhone/in/brain_up_LR_rows.txt --columns /../../SPACE2/cellPhone/in/Brain_celltype_interaction.txt --output-name brain_up_rel_interactions.png'
 
-plot <- 'cellphonedb plot dot_plot --rows /Users/ChristerSylven/Desktop/SPACE2/cellPhone/in/brain_up_LR_rows.txt --columns /Users/ChristerSylven/Desktop/SPACE2/cellPhone/in/Brain_celltype_interaction.txt --output-name brain_up_rel_interactions.png'
+plot <- 'cellphonedb plot dot_plot --rows /../../SPACE2/cellPhone/in/brain_up_LR_rows.txt --columns /../../SPACE2/cellPhone/in/Brain_celltype_interaction.txt --output-name brain_up_rel_interactions.png'
 
 plot <- 'cellphonedb plot dot_plot --rows in/brain_up_LR_rows.txt --columns in/Brain_celltype_interaction.txt --output-name brain_up_rel_interactions.png'
 
@@ -332,8 +330,8 @@ system(plot_address)
 
 ```{r}
 #subgroup output
-means <-  read.delim("/Users/ChristerSylven/Desktop/SPACE2/cellPhone/out/means.txt", check.names = FALSE)
-pvals <- read.delim("/Users/ChristerSylven/Desktop/SPACE2/cellPhone/out/pvalues.txt", check.names = FALSE)
+means <-  read.delim("/../../SPACE2/cellPhone/out/means.txt", check.names = FALSE)
+pvals <- read.delim("/../../SPACE2/cellPhone/out/pvalues.txt", check.names = FALSE)
 #pval[pval==0] = 0.0009
 dim(means)
 dim(pvals)
@@ -379,7 +377,7 @@ dim(pvals3)
 dim(means3)
 
 
-write.table(rownames(pvals3), '/Users/ChristerSylven/Desktop/Space2/cellPhone/in/brain_up2_rows.txt', sep = '\t', quote = F, row.names = F, col.names = F)
+write.table(rownames(pvals3), '/../../Space2/cellPhone/in/brain_up2_rows.txt', sep = '\t', quote = F, row.names = F, col.names = F)
 plot <- 'cellphonedb plot dot_plot --rows in/brain_up2.txt --columns in/brain_celltype-interaction --output-name Brain_up.png'
 
 ```
@@ -463,8 +461,8 @@ pvals4_calc <- function(name, LRmrna, LRcells )
   pvals_LR_rows <- pvals_LR[rownames(pvals3),]
   pvals4 <- cbind(pvals3,pvals_LR_rows)
   means4 <- cbind(means3,pvals_LR_rows)
-  writexl::write_xlsx(pvals4, paste0("/Users/ChristerSylven/Desktop/SPACE2/cellPhone/pvals4_d_", name, ".xlsx"))
- writexl::write_xlsx(means4, paste0("/Users/ChristerSylven/Desktop/SPACE2/cellPhone/means4_d_", name, ".xlsx"))
+  writexl::write_xlsx(pvals4, paste0("/../../SPACE2/cellPhone/pvals4_d_", name, ".xlsx"))
+ writexl::write_xlsx(means4, paste0("/../../SPACE2/cellPhone/means4_d_", name, ".xlsx"))
 }
 
 
@@ -486,8 +484,8 @@ pvals4_calc('Brain_up', brain_up_LR, brain_celltype_interaction)
 # edit in excel. Change RL to LR into L_R column. Change values accordingly. Save as b for both pvals and meansfiles.
 # Correct mean molecule1/molecule2 in excel with  to molecule2/molecule1
 #corrected files with all pairs as L_R saved as b
-pvals4b <- read_xlsx('/Users/ChristerSylven/Desktop/SPACE2/cellPhone/pvals4_d_brain_upb.xlsx')
-means4b <- read_xlsx('/Users/ChristerSylven/Desktop/SPACE2/cellPhone/means4_d_brain_upb.xlsx')
+pvals4b <- read_xlsx('/../../SPACE2/cellPhone/pvals4_d_brain_upb.xlsx')
+means4b <- read_xlsx('/../../SPACE2/cellPhone/means4_d_brain_upb.xlsx')
 
 dotplot_LR(pvals4b, means4b)
 ```

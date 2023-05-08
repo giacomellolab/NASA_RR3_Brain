@@ -615,12 +615,12 @@ annotations <- GetGRangesFromEnsDb(ensdb = EnsDb.Mmusculus.v79)
 seqlevelsStyle(annotations) <- "UCSC" # 'Ensembl'
 
 
-frag_file <- "merged/heart_aggr/outs/atac_fragments.tsv.gz"
+frag_file <- "merged/brain_aggr/outs/atac_fragments.tsv.gz"
 chrom_assay <- CreateChromatinAssay(
   counts = atac_counts[, multiomics_cells],
   sep = c(":", "-"),
   genome = 'mm10',
-  # fragments = frag_file, # FIX THIS! "Not all cells requested could be found in the fragment file."
+  fragments = frag_file, # FIX THIS! "Not all cells requested could be found in the fragment file."
   min.cells = 10,
   annotation = annotations
 )
@@ -1327,6 +1327,8 @@ for(cluster in names(flight_vs_ground)){
 ## Plot 10 top motifs from each cluster
 
 ```{r plot_top_flight_ground_chromvar_lme4, results='asis', warning=FALSE, message=FALSE}
+# pdf("motifs.pdf")
+
 for(cluster in names(flight_vs_ground)){
   cat(paste("\n\n### Cluster ",cluster, "\n\n"))
   
@@ -1355,6 +1357,8 @@ for(cluster in names(flight_vs_ground)){
     dummy <- seqLogo(toICM(tmp_matrix))
   }
 }
+
+# dev.off()
 ```
 
 ## Statistics for some interesting motifs
