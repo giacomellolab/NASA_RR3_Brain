@@ -1,6 +1,10 @@
 # NASA_RR3_Brain
 Here, one can find the scripts used in the analysis of the mouse brain data used in the study titled "**_Spatially resolved multiomics on the neuronal effects induced by spaceflight_**"
 
+*Impairment of the central nervous system (CNS) functions in astronauts is a major health risk for long-duration space missions. Here, for the first time, we combine single-cell multiomics (transcriptomics and chromatin accessibility) and spatial transcriptomics analyses to discover spaceflight-mediated changes in the mouse brain. By comparing ground control and spaceflight animals, we found that the main processes affected by spaceflight include neurogenesis, synaptogenesis and synaptic transmission in cortex, hippocampus, striatum and neuroendocrine structures as well as astrocyte activation and immune dysfunction. At the pathway level, spaceflight resembles neurodegenerative diseases with oxidative stress and protein misfolding components, such as in Parkinson’s disease. Our integrated spatial multiomics approach reveals both widespread and localized brain impairments and suggests key structures and mechanisms to be targeted for countermeasure development. All datasets can be mined through an interactive data portal as well as the National Aeronautics and Space Administration (NASA) GeneLab repositories.*
+
+## Analysis and scripts
+
 ### Spatial Transcriptomics data analysis
 The code for spatial transcriptomics data analysis can be found under the [code](spatial-transcriptomics/code/RR3_brain_ST_clustering.Rmd) section of the spatial-transcriptomics folder. Corresponding metadata and geneslist used for filtering is also provided in the [data](spatial-transcriptomics/data) section.
 Processed count matrices from spaceranger used in the analysis, original HnE tissue images, and the final seurat object are available under this dataset in Mendeley Data.
