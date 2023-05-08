@@ -6,7 +6,9 @@ The code for spatial transcriptomics data analysis can be found under the [code]
 Processed count matrices from spaceranger used in the analysis, original HnE tissue images, and the final seurat object are available under this dataset in Mendeley Data.
 
 ### Multiomics data analysis
-Combined code for snRNAseq, ATACseq, integrated analysis, differential expression analysis, motif analysis is available in rmarkdown format under the [code](multiomics/code/real_data_B_multiomics_20221222.rmd) section of multiomics folder. The corresponding html document with results and plots, and final seurat object with corresponding metadata can be downloaded from Mendeley Dataset [https://data.mendeley.com/datasets/fjxrcbh672/draft?a=69394d54-235c-436e-be60-520cd2899517].
+Combined code for snRNAseq, ATACseq, integrated analysis, differential expression analysis, motif analysis is available in rmarkdown format under the [code](multiomics/code/real_data_B_multiomics_20230404.rmd) section of multiomics folder. The corresponding html document with results and plots, and final seurat object with corresponding metadata can be downloaded from Mendeley Dataset https://data.mendeley.com/datasets/fjxrcbh672/draft?a=69394d54-235c-436e-be60-520cd2899517.
+
+Genecount matrices and ATAC peaks matrices for each sample were generated using cellranger (details of parameters available in *Methods* section of the manuscript. The results were merged again to get aggregated counts and peak matrices for all samples. The [script](multiomics/data/run_merge_brain.sh) to merge the sample and the corresponding [input csv](multiomics/data/libraries_brain.csv) file with input paths are under the data section of multiomics folder.
 
 ### Deconvolution
 ST spot decomposition was performed using Stereoscope. The steps include:
@@ -14,7 +16,7 @@ ST spot decomposition was performed using Stereoscope. The steps include:
 2. Run deconvolution: [Bash](deconvolution-stereoscope/code/run_stereoscope_brain.bash) script (have only changed the line with SC_LIST to define different gene sets)
 3. Summarize results: Finally, summarize the results using this [script](deconvolution-stereoscope/code/summary_stereoscope_brain.Rmd).
 
-The deconvolution results saved as an R object can be downloaded from the Mendeley Dataset [https://data.mendeley.com/datasets/fjxrcbh672/draft?a=69394d54-235c-436e-be60-520cd2899517].
+The deconvolution results saved as an R object can be downloaded from the Mendeley Dataset https://data.mendeley.com/datasets/fjxrcbh672/draft?a=69394d54-235c-436e-be60-520cd2899517.
 
 ### Ligand Receptor interactions analysis
 L-R interactions were annalysed via this [code](L-R_interactions/code/L_R_Brain.Rmd). Resultant plots are shown and discussed in the manuscript.
