@@ -21,5 +21,8 @@ The deconvolution results saved as an R object can be downloaded from the Mendel
 ### Ligand Receptor interactions analysis
 L-R interactions were annalysed via this [code](L-R_interactions/code/L_R_Brain.Rmd). Resultant plots are shown and discussed in the manuscript.
 
+### Celltype interactions analysis using Misty and Progeny
+More details on this analysis can be found in our manuscript and all the code required to run this analysis is available as a Snakemake pipeline in the github repository: https://github.com/saezlab/astromouse
+
 
 
