@@ -1,5 +1,5 @@
 # NASA_RR3_Brain
-Here, one can find the scripts used in the analysis of the mouse brain data used in the study titled "**_Neurological effects of spaceflight on mouse brains revealed by spatial and single-cell multiomics_**"
+Here, one can find the scripts used in the analysis of the mouse brain data used in the study titled "**_Spatially resolved multiomics on the neuronal effects induced by spaceflight_**"
 
 ### Spatial Transcriptomics data analysis
 The code for spatial transcriptomics data analysis can be found under the [code](spatial-transcriptomics/code/RR3_brain_ST_clustering.Rmd) section of the spatial-transcriptomics folder. Corresponding metadata and geneslist used for filtering is also provided in the [data](spatial-transcriptomics/data) section.
