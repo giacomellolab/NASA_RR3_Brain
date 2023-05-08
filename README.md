@@ -13,8 +13,8 @@ Genecount matrices and ATAC peaks matrices for each sample were generated using 
 ### Deconvolution
 ST spot decomposition was performed using Stereoscope. The steps include:
 1. Prepare data: First, create h5ad objects of both ST and SN data. For SN data, subsample by cluster to similar number of cells per cluster and run DEG detection. Select a geneset for deconvolution. Was done with either top20, top50 or top100 genes per cluster, or by taking top 2000 variable genes. Also, only select genes that are expressed in the ST data as well.
-2. Run deconvolution: [Bash](deconvolution-stereoscope/code/run_stereoscope_brain.bash) script (have only changed the line with SC_LIST to define different gene sets)
-3. Summarize results: Finally, summarize the results using this [script](deconvolution-stereoscope/code/summary_stereoscope_brain.Rmd).
+2. Run deconvolution: [Bash](deconvolution-stereoscope/code/run_stereoscope_brain_220609.bash) script (have only changed the line with SC_LIST to define different gene sets)
+3. Summarize results: Finally, summarize the results using this [script](deconvolution-stereoscope/code/summary_stereoscope_brain_220609.Rmd).
 
 The deconvolution results saved as an R object can be downloaded from the Mendeley Dataset https://data.mendeley.com/datasets/fjxrcbh672/draft?a=69394d54-235c-436e-be60-520cd2899517.
 
