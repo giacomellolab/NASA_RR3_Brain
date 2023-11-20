@@ -47,7 +47,7 @@ Recon3D is described in *Brunk E, Sahoo S, Zielinski DC, Altunkaya A, Dräger A,
 4. Analysis was executed in R (RStudio) and all files and output are in the directory [R_analyses_from_Seurat_4_output](metabolic_analysis/code/R_analyses_from_Seurat_4_output). Analyses were done using the R Markdown File [brain_Seurat_4_FGSEA_analysis.Rmd](metabolic_analysis/code/R_analyses_from_Seurat_4_output/brain_Seurat_4_FGSEA_analysis.Rmd) which is well-annotated. All steps above generate the [Recon3D_pathway_Mm_gene_symbol_withATP_tbl.tab](metabolic_analysis/code/RECON3D_Hs_genes_subsystems_to_Mm/Recon3D_pathway_Mm_gene_symbol_withATP_tbl.tab) file used in the analysis. The first part of the script is annotated as configurable and is very specific to this dataset. This particular analysis just calculates the pathway enrichment from the Recon3D gmt files created in steps 1-3.
 This script also generates the figures from the paper.
 
-The input files and output data are available via Mendeley dataset link of which is available in the 'Data availability' section of the paper. 
+The input files and output data are available via Mendeley dataset https://data.mendeley.com/datasets/fjxrcbh672/draft?a=69394d54-235c-436e-be60-520cd2899517 as also mentioned in the 'Data availability' section of the paper. 
 
 
 
