@@ -1,0 +1,1744 @@
+metabolic_pathway	gene_symbol
+Alanine and Aspartate Metabolism	Acy3
+Alanine and Aspartate Metabolism	Agxt
+Alanine and Aspartate Metabolism	Agxt2
+Alanine and Aspartate Metabolism	Asl
+Alanine and Aspartate Metabolism	Asns
+Alanine and Aspartate Metabolism	Aspa
+Alanine and Aspartate Metabolism	Asrgl1
+Alanine and Aspartate Metabolism	Ass1
+Alanine and Aspartate Metabolism	Ddo
+Alanine and Aspartate Metabolism	Etnppl
+Alanine and Aspartate Metabolism	Got1
+Alanine and Aspartate Metabolism	Got2
+Alanine and Aspartate Metabolism	Plpbp
+Alkaloid biosynthesis II	Aadac
+Alkaloid biosynthesis II	Aoc1
+Alkaloid biosynthesis II	Aoc2
+Alkaloid biosynthesis II	Aoc3
+Alkaloid biosynthesis II	Ces2h
+Aminosugar Metabolism	Amdhd2
+Aminosugar Metabolism	Chia1
+Aminosugar Metabolism	Chit1
+Aminosugar Metabolism	Cmas
+Aminosugar Metabolism	Gale
+Aminosugar Metabolism	Gck
+Aminosugar Metabolism	Gfpt1
+Aminosugar Metabolism	Gfpt2
+Aminosugar Metabolism	Gne
+Aminosugar Metabolism	Gnpda1
+Aminosugar Metabolism	Gnpda2
+Aminosugar Metabolism	Gnpnat1
+Aminosugar Metabolism	Hk1
+Aminosugar Metabolism	Hk2
+Aminosugar Metabolism	Hk3
+Aminosugar Metabolism	Hkdc1
+Aminosugar Metabolism	Mansc1
+Aminosugar Metabolism	Nagk
+Aminosugar Metabolism	Nans
+Aminosugar Metabolism	Pgm3
+Aminosugar Metabolism	Renbp
+Aminosugar Metabolism	Uap1
+Arginine and Proline Metabolism	4844
+Arginine and Proline Metabolism	4845
+Arginine and Proline Metabolism	Agmat
+Arginine and Proline Metabolism	Aldh1a1
+Arginine and Proline Metabolism	Aldh1a2
+Arginine and Proline Metabolism	Aldh1b1
+Arginine and Proline Metabolism	Aldh2
+Arginine and Proline Metabolism	Aldh3a2
+Arginine and Proline Metabolism	Aldh4a1
+Arginine and Proline Metabolism	Aldh7a1
+Arginine and Proline Metabolism	Aldh9a1
+Arginine and Proline Metabolism	Amd1
+Arginine and Proline Metabolism	Aoc1
+Arginine and Proline Metabolism	Aoc2
+Arginine and Proline Metabolism	Aoc3
+Arginine and Proline Metabolism	Azin2
+Arginine and Proline Metabolism	Dao
+Arginine and Proline Metabolism	Got1
+Arginine and Proline Metabolism	Got2
+Arginine and Proline Metabolism	Maoa
+Arginine and Proline Metabolism	Maob
+Arginine and Proline Metabolism	Mtap
+Arginine and Proline Metabolism	Nos1
+Arginine and Proline Metabolism	Nos2
+Arginine and Proline Metabolism	Nos3
+Arginine and Proline Metabolism	P4ha1
+Arginine and Proline Metabolism	P4ha2
+Arginine and Proline Metabolism	P4hb
+Arginine and Proline Metabolism	Prodh
+Arginine and Proline Metabolism	Prodh2
+Arginine and Proline Metabolism	Pycr1
+Arginine and Proline Metabolism	Sat1
+Arginine and Proline Metabolism	Sat2
+Ascorbate and Aldarate Metabolism	Aldh3b2
+Ascorbate and Aldarate Metabolism	Aldh1a1
+Ascorbate and Aldarate Metabolism	Aldh1a2
+Ascorbate and Aldarate Metabolism	Aldh1a3
+Ascorbate and Aldarate Metabolism	Aldh1b1
+Ascorbate and Aldarate Metabolism	Aldh2
+Ascorbate and Aldarate Metabolism	Aldh3a1
+Ascorbate and Aldarate Metabolism	Aldh3a2
+Ascorbate and Aldarate Metabolism	Aldh3b1
+Ascorbate and Aldarate Metabolism	Aldh4a1
+Ascorbate and Aldarate Metabolism	Aldh9a1
+Ascorbate and Aldarate Metabolism	Glrx
+Ascorbate and Aldarate Metabolism	Glrx2
+Bile Acid Biosynthesis	Acox2
+Bile Acid Biosynthesis	Akr1c6
+Bile Acid Biosynthesis	Akr1d1
+Bile Acid Biosynthesis	Amacr
+Bile Acid Biosynthesis	Baat
+Bile Acid Biosynthesis	Ch25h
+Bile Acid Biosynthesis	Cyp27a1
+Bile Acid Biosynthesis	Cyp39a1
+Bile Acid Biosynthesis	Cyp46a1
+Bile Acid Biosynthesis	Cyp7a1
+Bile Acid Biosynthesis	Cyp7b1
+Bile Acid Biosynthesis	Cyp8b1
+Bile Acid Biosynthesis	Hsd17b4
+Bile Acid Biosynthesis	Hsd3b7
+Bile Acid Biosynthesis	Scp2
+Bile Acid Biosynthesis	Slc27a2
+Biotin Metabolism	Btd
+Biotin Metabolism	Hlcs
+Blood Group Biosynthesis	B3gnt2
+Blood Group Biosynthesis	B3gnt3
+Blood Group Biosynthesis	B3gnt5
+Blood Group Biosynthesis	Fut1
+Blood Group Biosynthesis	Fut9
+Blood Group Biosynthesis	Gcnt2
+Blood Group Biosynthesis	St3gal6
+Blood Group Biosynthesis	St8sia5
+Butanoate Metabolism	Acad10
+Butanoate Metabolism	Acad11
+Butanoate Metabolism	Acad8
+Butanoate Metabolism	Acad9
+Butanoate Metabolism	Acadm
+Butanoate Metabolism	Acads
+Butanoate Metabolism	Acadsb
+Butanoate Metabolism	Bdh1
+Butanoate Metabolism	Echdc2
+C5-Branched dibasic acid metabolism	Sucla2
+C5-Branched dibasic acid metabolism	Suclg1
+C5-Branched dibasic acid metabolism	Suclg2
+CYP Metabolism	Cyp2c54
+CYP Metabolism	Cyp2c55
+CYP Metabolism	Cyp2c66
+CYP Metabolism	Cyp2d22
+CYP Metabolism	Cyp2e1
+CYP Metabolism	Cyp2f2
+CYP Metabolism	Cyp3a13
+CYP Metabolism	Cyp3a41b
+CYP Metabolism	Cyp4a10
+CYP Metabolism	Cyp4f14
+Carnitine shuttle	Cpt1a
+Carnitine shuttle	Cpt1b
+Carnitine shuttle	Cpt1c
+Carnitine shuttle	Cpt2
+Carnitine shuttle	Crat
+Carnitine shuttle	Slc25a20
+Cholesterol Metabolism	Idi2
+Cholesterol Metabolism	Acat3
+Cholesterol Metabolism	Cyp4f17
+Cholesterol Metabolism	Cyp51
+Cholesterol Metabolism	Dhcr24
+Cholesterol Metabolism	Dhcr7
+Cholesterol Metabolism	Ebp
+Cholesterol Metabolism	Fdft1
+Cholesterol Metabolism	Fdps
+Cholesterol Metabolism	Ggps1
+Cholesterol Metabolism	Hmgcl
+Cholesterol Metabolism	Hmgcll1
+Cholesterol Metabolism	Hmgcr
+Cholesterol Metabolism	Hmgcs1
+Cholesterol Metabolism	Hmgcs2
+Cholesterol Metabolism	Hsd17b4
+Cholesterol Metabolism	Idi1
+Cholesterol Metabolism	Lss
+Cholesterol Metabolism	Msmo1
+Cholesterol Metabolism	Mvd
+Cholesterol Metabolism	Mvk
+Cholesterol Metabolism	Nsdhl
+Cholesterol Metabolism	Pmvk
+Cholesterol Metabolism	Sc5d
+Cholesterol Metabolism	Soat1
+Cholesterol Metabolism	Sqle
+Cholesterol Metabolism	Tm7sf2
+Chondroitin / heparan sulfate biosynthesis	Chpf2
+Chondroitin / heparan sulfate biosynthesis	9952
+Chondroitin / heparan sulfate biosynthesis	9954
+Chondroitin / heparan sulfate biosynthesis	B3galt6
+Chondroitin / heparan sulfate biosynthesis	B3gat1
+Chondroitin / heparan sulfate biosynthesis	B3gat2
+Chondroitin / heparan sulfate biosynthesis	B3gat3
+Chondroitin / heparan sulfate biosynthesis	B4galt7
+Chondroitin / heparan sulfate biosynthesis	Chpf
+Chondroitin / heparan sulfate biosynthesis	Chst11
+Chondroitin / heparan sulfate biosynthesis	Chst12
+Chondroitin / heparan sulfate biosynthesis	Chst13
+Chondroitin / heparan sulfate biosynthesis	Chst14
+Chondroitin / heparan sulfate biosynthesis	Chst3
+Chondroitin / heparan sulfate biosynthesis	Chst7
+Chondroitin / heparan sulfate biosynthesis	Chsy1
+Chondroitin / heparan sulfate biosynthesis	Chsy3
+Chondroitin / heparan sulfate biosynthesis	Csgalnact1
+Chondroitin / heparan sulfate biosynthesis	Csgalnact2
+Chondroitin / heparan sulfate biosynthesis	Ext1
+Chondroitin / heparan sulfate biosynthesis	Ext2
+Chondroitin / heparan sulfate biosynthesis	Extl1
+Chondroitin / heparan sulfate biosynthesis	Extl2
+Chondroitin / heparan sulfate biosynthesis	Extl3
+Chondroitin / heparan sulfate biosynthesis	Glce
+Chondroitin / heparan sulfate biosynthesis	Hs2st1
+Chondroitin / heparan sulfate biosynthesis	Hs3st1
+Chondroitin / heparan sulfate biosynthesis	Hs3st2
+Chondroitin / heparan sulfate biosynthesis	Hs3st3a1
+Chondroitin / heparan sulfate biosynthesis	Hs3st3b1
+Chondroitin / heparan sulfate biosynthesis	Hs3st4
+Chondroitin / heparan sulfate biosynthesis	Hs3st5
+Chondroitin / heparan sulfate biosynthesis	Hs3st6
+Chondroitin / heparan sulfate biosynthesis	Hs6st1
+Chondroitin / heparan sulfate biosynthesis	Hs6st2
+Chondroitin / heparan sulfate biosynthesis	Hs6st3
+Chondroitin / heparan sulfate biosynthesis	Ndst1
+Chondroitin / heparan sulfate biosynthesis	Ndst2
+Chondroitin / heparan sulfate biosynthesis	Ndst3
+Chondroitin / heparan sulfate biosynthesis	Ndst4
+Chondroitin / heparan sulfate biosynthesis	Ust
+Chondroitin / heparan sulfate biosynthesis	Xylt1
+Chondroitin / heparan sulfate biosynthesis	Xylt2
+Chondroitin sulfate degradation	Arsb
+Chondroitin sulfate degradation	Ctsa
+Chondroitin sulfate degradation	Galns
+Chondroitin sulfate degradation	Glb1
+Chondroitin sulfate degradation	Gusb
+Chondroitin sulfate degradation	Hexa
+Chondroitin sulfate degradation	Hexb
+Chondroitin sulfate degradation	Ids
+Chondroitin sulfate degradation	Idua
+Chondroitin sulfate degradation	Neu1
+Citric Acid Cycle	Acly
+Citric Acid Cycle	Aco1
+Citric Acid Cycle	Aco2
+Citric Acid Cycle	Clybl
+Citric Acid Cycle	Cs
+Citric Acid Cycle	Dld
+Citric Acid Cycle	Dlst
+Citric Acid Cycle	Fh1
+Citric Acid Cycle	Idh1
+Citric Acid Cycle	Idh2
+Citric Acid Cycle	Idh3a
+Citric Acid Cycle	Idh3b
+Citric Acid Cycle	Idh3g
+Citric Acid Cycle	Ireb2
+Citric Acid Cycle	Mdh1
+Citric Acid Cycle	Mdh1b
+Citric Acid Cycle	Mdh2
+Citric Acid Cycle	Ogdh
+Citric Acid Cycle	Pdhx
+Citric Acid Cycle	Sdha
+Citric Acid Cycle	Sdhb
+Citric Acid Cycle	Sdhc
+Citric Acid Cycle	Sdhd
+Citric Acid Cycle	Sucla2
+Citric Acid Cycle	Suclg1
+Citric Acid Cycle	Suclg2
+CoA Biosynthesis	Coasy
+CoA Biosynthesis	Pank1
+CoA Biosynthesis	Pank2
+CoA Biosynthesis	Pank3
+CoA Biosynthesis	Pank4
+CoA Biosynthesis	Ppcdc
+CoA Biosynthesis	Ppcs
+CoA Catabolism	55350
+CoA Catabolism	Acp2
+CoA Catabolism	Vnn1
+CoA Catabolism	Vnn3
+Cysteine Metabolism	Cth
+Cysteine Metabolism	Got1
+Cysteine Metabolism	Got2
+Cysteine Metabolism	Mdh1
+Cysteine Metabolism	Mdh1b
+Cysteine Metabolism	Mdh2
+Cysteine Metabolism	Mpst
+Cysteine Metabolism	Suox
+Cysteine Metabolism	Tst
+D-alanine metabolism	Dao
+D-alanine metabolism	Slc16a1
+D-alanine metabolism	Slc16a7
+D-arg and D-orn metabolism	Dao
+Eicosanoid Metabolism	Alox12
+Eicosanoid Metabolism	Alox12b
+Eicosanoid Metabolism	Alox15
+Eicosanoid Metabolism	Alox5
+Eicosanoid Metabolism	Alox8
+Eicosanoid Metabolism	Cbr1
+Eicosanoid Metabolism	Cyp2f2
+Eicosanoid Metabolism	Cyp4f14
+Eicosanoid Metabolism	Cyp4f15
+Eicosanoid Metabolism	Cyp4f17
+Eicosanoid Metabolism	Cyp4f18
+Eicosanoid Metabolism	Ggt5
+Eicosanoid Metabolism	Hpgds
+Eicosanoid Metabolism	Lta4h
+Eicosanoid Metabolism	Ltc4s
+Eicosanoid Metabolism	Mgst2
+Eicosanoid Metabolism	Mgst3
+Eicosanoid Metabolism	Ptgds
+Eicosanoid Metabolism	Ptges
+Eicosanoid Metabolism	Ptges2
+Eicosanoid Metabolism	Ptgis
+Eicosanoid Metabolism	Ptgs1
+Eicosanoid Metabolism	Ptgs2
+Eicosanoid Metabolism	Tbxas1
+Fatty Acid Metabolism	26062
+Fatty Acid Metabolism	Acaa1a
+Fatty Acid Metabolism	Acaca
+Fatty Acid Metabolism	Acacb
+Fatty Acid Metabolism	Acot2
+Fatty Acid Metabolism	Acot8
+Fatty Acid Metabolism	Acox1
+Fatty Acid Metabolism	Aldh1l1
+Fatty Acid Metabolism	Aldh3a2
+Fatty Acid Metabolism	Crat
+Fatty Acid Metabolism	Crot
+Fatty Acid Metabolism	Eci1
+Fatty Acid Metabolism	Fasn
+Fatty Acid Metabolism	Lcat
+Fatty Acid Metabolism	Lipc
+Fatty Acid Metabolism	Mcat
+Fatty Acid Metabolism	Mlycd
+Fatty Acid Metabolism	Olah
+Fatty acid activation	Acadm
+Fatty acid activation	Acads
+Fatty acid activation	Acsl1
+Fatty acid activation	Acsl3
+Fatty acid activation	Acsl4
+Fatty acid activation	Acsl5
+Fatty acid activation	Acsm1
+Fatty acid activation	Slc27a2
+Fatty acid activation	Vmn2r37
+Fatty acid elongation	Elovl4
+Fatty acid elongation	Fads1
+Fatty acid elongation	Fads2
+Fatty acid elongation	Fasn
+Fatty acid elongation	Scd1
+Fatty acid oxidation	Acadm
+Fatty acid oxidation	Acads
+Fatty acid oxidation	Etfa
+Fatty acid oxidation	Etfb
+Fatty acid oxidation	Etfdh
+Fatty acid oxidation, peroxisome	Acaa1a
+Fatty acid oxidation, peroxisome	Acox1
+Fatty acid oxidation, peroxisome	Acox3
+Fatty acid oxidation, peroxisome	Ehhadh
+Fatty acid oxidation, peroxisome	Hsd17b4
+Fatty acid oxidation, peroxisome	Phyh
+Folate Metabolism	B3gntl1
+Folate Metabolism	286297
+Folate Metabolism	Ggh
+Folate Metabolism	Mthfd2l
+Folate Metabolism	Aldh1l1
+Folate Metabolism	Dhfr
+Folate Metabolism	Fpgs
+Folate Metabolism	Ftcd
+Folate Metabolism	Mthfd1
+Folate Metabolism	Mthfd1l
+Folate Metabolism	Mthfd2
+Folate Metabolism	Mthfr
+Folate Metabolism	Mthfs
+Fructose and Mannose Metabolism	Akr1a1
+Fructose and Mannose Metabolism	Akr1b3
+Fructose and Mannose Metabolism	Akr7a5
+Fructose and Mannose Metabolism	Aldoa
+Fructose and Mannose Metabolism	Aldob
+Fructose and Mannose Metabolism	Aldoc
+Fructose and Mannose Metabolism	Fbp1
+Fructose and Mannose Metabolism	Fbp2
+Fructose and Mannose Metabolism	Fpgt
+Fructose and Mannose Metabolism	Fcsk
+Fructose and Mannose Metabolism	Gck
+Fructose and Mannose Metabolism	Gmds
+Fructose and Mannose Metabolism	Gmppa
+Fructose and Mannose Metabolism	Gmppb
+Fructose and Mannose Metabolism	Hk1
+Fructose and Mannose Metabolism	Hk2
+Fructose and Mannose Metabolism	Hk3
+Fructose and Mannose Metabolism	Hkdc1
+Fructose and Mannose Metabolism	Khk
+Fructose and Mannose Metabolism	Mpi
+Fructose and Mannose Metabolism	Pfkfb1
+Fructose and Mannose Metabolism	Pfkfb2
+Fructose and Mannose Metabolism	Pfkfb3
+Fructose and Mannose Metabolism	Pfkfb4
+Fructose and Mannose Metabolism	Pgm1
+Fructose and Mannose Metabolism	Pmm1
+Fructose and Mannose Metabolism	Pmm2
+Fructose and Mannose Metabolism	Sord
+Fructose and Mannose Metabolism	Tsta3
+Galactose metabolism	Ugp2
+Galactose metabolism	Akr1a1
+Galactose metabolism	Akr1b3
+Galactose metabolism	Aldob
+Galactose metabolism	B4galt1
+Galactose metabolism	B4galt2
+Galactose metabolism	Ctsa
+Galactose metabolism	Gale
+Galactose metabolism	Galk1
+Galactose metabolism	Galk2
+Galactose metabolism	Galns
+Galactose metabolism	Galt
+Galactose metabolism	Glb1
+Galactose metabolism	Khk
+Galactose metabolism	Lalba
+Galactose metabolism	Lct
+Galactose metabolism	Mgam
+Galactose metabolism	Neu1
+Galactose metabolism	Sis
+Glutamate metabolism	Abat
+Glutamate metabolism	Aldh4a1
+Glutamate metabolism	Aldh5a1
+Glutamate metabolism	Cps1
+Glutamate metabolism	Gad1
+Glutamate metabolism	Gad2
+Glutamate metabolism	Gls
+Glutamate metabolism	Gls2
+Glutamate metabolism	Glul
+Glutamate metabolism	Gpt
+Glutamate metabolism	Gpt2
+Glutamate metabolism	Gsr
+Glutamate metabolism	Lgsn
+Glutathione Metabolism	2655
+Glutathione Metabolism	2679
+Glutathione Metabolism	Anpep
+Glutathione Metabolism	Gclc
+Glutathione Metabolism	Gclm
+Glutathione Metabolism	Ggt1
+Glutathione Metabolism	Gpx1
+Glutathione Metabolism	Gpx2
+Glutathione Metabolism	Gpx3
+Glutathione Metabolism	Gpx4
+Glutathione Metabolism	Gpx6
+Glutathione Metabolism	Gss
+Glutathione Metabolism	Oplah
+Glutathione Metabolism	Prdx1
+Glutathione Metabolism	Prdx2
+Glutathione Metabolism	Prdx3
+Glycerophospholipid Metabolism	2713
+Glycerophospholipid Metabolism	Ache
+Glycerophospholipid Metabolism	Agps
+Glycerophospholipid Metabolism	Alpi
+Glycerophospholipid Metabolism	Alpl
+Glycerophospholipid Metabolism	Alppl2
+Glycerophospholipid Metabolism	Cdipt
+Glycerophospholipid Metabolism	Cds1
+Glycerophospholipid Metabolism	Cds2
+Glycerophospholipid Metabolism	Cept1
+Glycerophospholipid Metabolism	Chat
+Glycerophospholipid Metabolism	Chka
+Glycerophospholipid Metabolism	Chkb
+Glycerophospholipid Metabolism	Chpt1
+Glycerophospholipid Metabolism	Crls1
+Glycerophospholipid Metabolism	Dgki
+Glycerophospholipid Metabolism	Dgkz
+Glycerophospholipid Metabolism	Etnk1
+Glycerophospholipid Metabolism	Etnk2
+Glycerophospholipid Metabolism	Gk
+Glycerophospholipid Metabolism	Gk2
+Glycerophospholipid Metabolism	Gpd1
+Glycerophospholipid Metabolism	Pafah1b1
+Glycerophospholipid Metabolism	Pafah1b2
+Glycerophospholipid Metabolism	Pafah1b3
+Glycerophospholipid Metabolism	Pafah2
+Glycerophospholipid Metabolism	Pcyt1a
+Glycerophospholipid Metabolism	Pcyt1b
+Glycerophospholipid Metabolism	Pcyt2
+Glycerophospholipid Metabolism	Pemt
+Glycerophospholipid Metabolism	Pgs1
+Glycerophospholipid Metabolism	Phospho1
+Glycerophospholipid Metabolism	Pi4k2a
+Glycerophospholipid Metabolism	Pi4ka
+Glycerophospholipid Metabolism	Pi4kb
+Glycerophospholipid Metabolism	Pikfyve
+Glycerophospholipid Metabolism	Pip4k2a
+Glycerophospholipid Metabolism	Pip4k2b
+Glycerophospholipid Metabolism	Pip4k2c
+Glycerophospholipid Metabolism	Pip5k1a
+Glycerophospholipid Metabolism	Pip5k1b
+Glycerophospholipid Metabolism	Pip5k1c
+Glycerophospholipid Metabolism	Pla2g7
+Glycerophospholipid Metabolism	Pld1
+Glycerophospholipid Metabolism	Pld2
+Glycerophospholipid Metabolism	Ptdss1
+Glycerophospholipid Metabolism	Ptdss2
+Glycine, Serine, and Threonine Metabolism	8781
+Glycine, Serine, and Threonine Metabolism	Agxt
+Glycine, Serine, and Threonine Metabolism	Akr1b3
+Glycine, Serine, and Threonine Metabolism	Alas1
+Glycine, Serine, and Threonine Metabolism	Alas2
+Glycine, Serine, and Threonine Metabolism	Aldh9a1
+Glycine, Serine, and Threonine Metabolism	Amt
+Glycine, Serine, and Threonine Metabolism	Aoc3
+Glycine, Serine, and Threonine Metabolism	Bhmt
+Glycine, Serine, and Threonine Metabolism	Bhmt2
+Glycine, Serine, and Threonine Metabolism	Chdh
+Glycine, Serine, and Threonine Metabolism	Dld
+Glycine, Serine, and Threonine Metabolism	Dmgdh
+Glycine, Serine, and Threonine Metabolism	Gcat
+Glycine, Serine, and Threonine Metabolism	Gcsh
+Glycine, Serine, and Threonine Metabolism	Gldc
+Glycine, Serine, and Threonine Metabolism	Gnmt
+Glycine, Serine, and Threonine Metabolism	Phgdh
+Glycine, Serine, and Threonine Metabolism	Pipox
+Glycine, Serine, and Threonine Metabolism	Psat1
+Glycine, Serine, and Threonine Metabolism	Psph
+Glycine, Serine, and Threonine Metabolism	Sds
+Glycine, Serine, and Threonine Metabolism	Shmt1
+Glycine, Serine, and Threonine Metabolism	Shmt2
+Glycine, Serine, and Threonine Metabolism	Thnsl1
+Glycolysis/Gluconeogenesis	100043349
+Glycolysis/Gluconeogenesis	Aldh3b2
+Glycolysis/Gluconeogenesis	Eno1b
+Glycolysis/Gluconeogenesis	286016
+Glycolysis/Gluconeogenesis	Mia3
+Glycolysis/Gluconeogenesis	Aacs
+Glycolysis/Gluconeogenesis	Acss1
+Glycolysis/Gluconeogenesis	Acss2
+Glycolysis/Gluconeogenesis	Acyp1
+Glycolysis/Gluconeogenesis	Acyp2
+Glycolysis/Gluconeogenesis	Akr1a1
+Glycolysis/Gluconeogenesis	Aldh1a1
+Glycolysis/Gluconeogenesis	Aldh1a2
+Glycolysis/Gluconeogenesis	Aldh1a3
+Glycolysis/Gluconeogenesis	Aldh1b1
+Glycolysis/Gluconeogenesis	Aldh2
+Glycolysis/Gluconeogenesis	Aldh3a1
+Glycolysis/Gluconeogenesis	Aldh3a2
+Glycolysis/Gluconeogenesis	Aldh3b1
+Glycolysis/Gluconeogenesis	Aldh7a1
+Glycolysis/Gluconeogenesis	Aldh9a1
+Glycolysis/Gluconeogenesis	Aldoa
+Glycolysis/Gluconeogenesis	Aldob
+Glycolysis/Gluconeogenesis	Aldoc
+Glycolysis/Gluconeogenesis	Bpgm
+Glycolysis/Gluconeogenesis	Cat
+Glycolysis/Gluconeogenesis	Cyp2e1
+Glycolysis/Gluconeogenesis	Dlat
+Glycolysis/Gluconeogenesis	Dld
+Glycolysis/Gluconeogenesis	Eno1
+Glycolysis/Gluconeogenesis	Eno2
+Glycolysis/Gluconeogenesis	Eno3
+Glycolysis/Gluconeogenesis	Fbp1
+Glycolysis/Gluconeogenesis	Fbp2
+Glycolysis/Gluconeogenesis	G6pc
+Glycolysis/Gluconeogenesis	G6pc2
+Glycolysis/Gluconeogenesis	G6pc3
+Glycolysis/Gluconeogenesis	Gapdhs
+Glycolysis/Gluconeogenesis	Gck
+Glycolysis/Gluconeogenesis	Gpd2
+Glycolysis/Gluconeogenesis	Gpi1
+Glycolysis/Gluconeogenesis	Hk1
+Glycolysis/Gluconeogenesis	Hk2
+Glycolysis/Gluconeogenesis	Hk3
+Glycolysis/Gluconeogenesis	Hkdc1
+Glycolysis/Gluconeogenesis	Pck1
+Glycolysis/Gluconeogenesis	Pck2
+Glycolysis/Gluconeogenesis	Pdha1
+Glycolysis/Gluconeogenesis	Pdha2
+Glycolysis/Gluconeogenesis	Pdhb
+Glycolysis/Gluconeogenesis	Pdhx
+Glycolysis/Gluconeogenesis	Pfkl
+Glycolysis/Gluconeogenesis	Pfkm
+Glycolysis/Gluconeogenesis	Pfkp
+Glycolysis/Gluconeogenesis	Pgam1
+Glycolysis/Gluconeogenesis	Pgam2
+Glycolysis/Gluconeogenesis	Pgk1
+Glycolysis/Gluconeogenesis	Pgk2
+Glycolysis/Gluconeogenesis	Pgm1
+Glycolysis/Gluconeogenesis	Pgm2
+Glycolysis/Gluconeogenesis	Pklr
+Glycolysis/Gluconeogenesis	Pkm
+Glycolysis/Gluconeogenesis	Rwdd2a
+Glycolysis/Gluconeogenesis	Tmem54
+Glycolysis/Gluconeogenesis	Tpi1
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Dpm2
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Gpaa1
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pgap1
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Piga
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigb
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigc
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigf
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigg
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigh
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigk
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigl
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigm
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pign
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigo
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigp
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigq
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigs
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigt
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigu
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigv
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigw
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigx
+Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Pigz
+Glyoxylate and Dicarboxylate Metabolism	160287
+Glyoxylate and Dicarboxylate Metabolism	Aldh3b2
+Glyoxylate and Dicarboxylate Metabolism	Pgp
+Glyoxylate and Dicarboxylate Metabolism	Aldh18a1
+Glyoxylate and Dicarboxylate Metabolism	Aldh1a1
+Glyoxylate and Dicarboxylate Metabolism	Aldh1a2
+Glyoxylate and Dicarboxylate Metabolism	Aldh1a3
+Glyoxylate and Dicarboxylate Metabolism	Aldh1b1
+Glyoxylate and Dicarboxylate Metabolism	Aldh2
+Glyoxylate and Dicarboxylate Metabolism	Aldh3a1
+Glyoxylate and Dicarboxylate Metabolism	Aldh3a2
+Glyoxylate and Dicarboxylate Metabolism	Aldh3b1
+Glyoxylate and Dicarboxylate Metabolism	Aldh4a1
+Glyoxylate and Dicarboxylate Metabolism	Aldh5a1
+Glyoxylate and Dicarboxylate Metabolism	Aldh6a1
+Glyoxylate and Dicarboxylate Metabolism	Aldh7a1
+Glyoxylate and Dicarboxylate Metabolism	Aldh9a1
+Glyoxylate and Dicarboxylate Metabolism	Aldoa
+Glyoxylate and Dicarboxylate Metabolism	Aldob
+Glyoxylate and Dicarboxylate Metabolism	Aldoc
+Glyoxylate and Dicarboxylate Metabolism	Grhpr
+Glyoxylate and Dicarboxylate Metabolism	Hao1
+Glyoxylate and Dicarboxylate Metabolism	Hao2
+Glyoxylate and Dicarboxylate Metabolism	Khk
+Glyoxylate and Dicarboxylate Metabolism	Ldha
+Glyoxylate and Dicarboxylate Metabolism	Ldhal6b
+Glyoxylate and Dicarboxylate Metabolism	Ldhb
+Glyoxylate and Dicarboxylate Metabolism	Ldhc
+Glyoxylate and Dicarboxylate Metabolism	Ldhd
+Heme Biosynthesis	Alad
+Heme Biosynthesis	Cpox
+Heme Biosynthesis	Cybrd1
+Heme Biosynthesis	Fech
+Heme Biosynthesis	Hmbs
+Heme Biosynthesis	Ppox
+Heme Biosynthesis	Urod
+Heme Biosynthesis	Uros
+Heme Degradation	Blvra
+Heme Degradation	Blvrb
+Heme Degradation	Hmox1
+Heme Degradation	Hmox2
+Heparan sulfate degradation	Gns
+Heparan sulfate degradation	Gusb
+Heparan sulfate degradation	Ids
+Heparan sulfate degradation	Idua
+Heparan sulfate degradation	Naglu
+Heparan sulfate degradation	Sgsh
+Histidine Metabolism	Aldh3b2
+Histidine Metabolism	Aldh1a1
+Histidine Metabolism	Aldh1a2
+Histidine Metabolism	Aldh1a3
+Histidine Metabolism	Aldh1b1
+Histidine Metabolism	Aldh2
+Histidine Metabolism	Aldh3a1
+Histidine Metabolism	Aldh3a2
+Histidine Metabolism	Aldh3b1
+Histidine Metabolism	Aldh4a1
+Histidine Metabolism	Aldh7a1
+Histidine Metabolism	Aldh9a1
+Histidine Metabolism	Aoc1
+Histidine Metabolism	Aoc2
+Histidine Metabolism	Aoc3
+Histidine Metabolism	Ddc
+Histidine Metabolism	Ftcd
+Histidine Metabolism	Hal
+Histidine Metabolism	Hdc
+Histidine Metabolism	Hnmt
+Histidine Metabolism	Maob
+Histidine Metabolism	Uroc1
+Hyaluronan Metabolism	Gusb
+Hyaluronan Metabolism	Has1
+Hyaluronan Metabolism	Has2
+Hyaluronan Metabolism	Has3
+Hyaluronan Metabolism	Hexa
+Hyaluronan Metabolism	Hexb
+IMP Biosynthesis	Adsl
+IMP Biosynthesis	Atic
+IMP Biosynthesis	Gart
+IMP Biosynthesis	Paics
+IMP Biosynthesis	Pfas
+IMP Biosynthesis	Ppat
+Inositol Phosphate Metabolism	Inpp5j
+Inositol Phosphate Metabolism	Plcl1
+Inositol Phosphate Metabolism	Hcst
+Inositol Phosphate Metabolism	Impa1
+Inositol Phosphate Metabolism	Impa2
+Inositol Phosphate Metabolism	Inpp1
+Inositol Phosphate Metabolism	Inpp4a
+Inositol Phosphate Metabolism	Inpp4b
+Inositol Phosphate Metabolism	Inpp5a
+Inositol Phosphate Metabolism	Inpp5b
+Inositol Phosphate Metabolism	Inpp5d
+Inositol Phosphate Metabolism	Inpp5e
+Inositol Phosphate Metabolism	Inppl1
+Inositol Phosphate Metabolism	Ip6k1
+Inositol Phosphate Metabolism	Ip6k2
+Inositol Phosphate Metabolism	Ip6k3
+Inositol Phosphate Metabolism	Ipmk
+Inositol Phosphate Metabolism	Isyna1
+Inositol Phosphate Metabolism	Itpka
+Inositol Phosphate Metabolism	Itpkb
+Inositol Phosphate Metabolism	Itpkc
+Inositol Phosphate Metabolism	Miox
+Inositol Phosphate Metabolism	Mtmr3
+Inositol Phosphate Metabolism	Ocrl
+Inositol Phosphate Metabolism	Pi4k2a
+Inositol Phosphate Metabolism	Pi4ka
+Inositol Phosphate Metabolism	Pi4kb
+Inositol Phosphate Metabolism	Pik3c2a
+Inositol Phosphate Metabolism	Pik3c2b
+Inositol Phosphate Metabolism	Pik3c2g
+Inositol Phosphate Metabolism	Pik3c3
+Inositol Phosphate Metabolism	Pik3ca
+Inositol Phosphate Metabolism	Pik3cb
+Inositol Phosphate Metabolism	Pik3cd
+Inositol Phosphate Metabolism	Pik3cg
+Inositol Phosphate Metabolism	Pik3r1
+Inositol Phosphate Metabolism	Pik3r2
+Inositol Phosphate Metabolism	Pik3r3
+Inositol Phosphate Metabolism	Pik3r5
+Inositol Phosphate Metabolism	Pip5k1a
+Inositol Phosphate Metabolism	Pip5k1b
+Inositol Phosphate Metabolism	Pip5k1c
+Inositol Phosphate Metabolism	Plcb1
+Inositol Phosphate Metabolism	Plcb2
+Inositol Phosphate Metabolism	Plcb3
+Inositol Phosphate Metabolism	Plcb4
+Inositol Phosphate Metabolism	Plcd1
+Inositol Phosphate Metabolism	Plcd3
+Inositol Phosphate Metabolism	Plcd4
+Inositol Phosphate Metabolism	Plce1
+Inositol Phosphate Metabolism	Plcg1
+Inositol Phosphate Metabolism	Plcg2
+Inositol Phosphate Metabolism	Plch1
+Inositol Phosphate Metabolism	Plch2
+Inositol Phosphate Metabolism	Plcxd2
+Inositol Phosphate Metabolism	Plcz1
+Inositol Phosphate Metabolism	Pten
+Inositol Phosphate Metabolism	Synj1
+Inositol Phosphate Metabolism	Synj2
+Keratan sulfate biosynthesis	23563
+Keratan sulfate biosynthesis	284208
+Keratan sulfate biosynthesis	St3gal3
+Keratan sulfate biosynthesis	B3gnt2
+Keratan sulfate biosynthesis	B3gnt3
+Keratan sulfate biosynthesis	B3gnt4
+Keratan sulfate biosynthesis	B3gnt7
+Keratan sulfate biosynthesis	B3gnt8
+Keratan sulfate biosynthesis	B4galt1
+Keratan sulfate biosynthesis	B4galt2
+Keratan sulfate biosynthesis	B4galt3
+Keratan sulfate biosynthesis	B4galt5
+Keratan sulfate biosynthesis	B4gat1
+Keratan sulfate biosynthesis	Chst1
+Keratan sulfate biosynthesis	Chst2
+Keratan sulfate biosynthesis	Chst3
+Keratan sulfate biosynthesis	Chst4
+Keratan sulfate biosynthesis	Chst5
+Keratan sulfate biosynthesis	St3gal1
+Keratan sulfate biosynthesis	St3gal2
+Keratan sulfate biosynthesis	St3gal4
+Keratan sulfate degradation	Aga
+Keratan sulfate degradation	Ctsa
+Keratan sulfate degradation	Fuca1
+Keratan sulfate degradation	Fuca2
+Keratan sulfate degradation	Galns
+Keratan sulfate degradation	Glb1
+Keratan sulfate degradation	Gns
+Keratan sulfate degradation	Hexa
+Keratan sulfate degradation	Hexb
+Keratan sulfate degradation	Naga
+Keratan sulfate degradation	Neu1
+Limonene and pinene degradation	Aldh1a1
+Limonene and pinene degradation	Aldh1a2
+Limonene and pinene degradation	Aldh1b1
+Limonene and pinene degradation	Aldh2
+Limonene and pinene degradation	Aldh3a2
+Limonene and pinene degradation	Aldh4a1
+Limonene and pinene degradation	Aldh7a1
+Limonene and pinene degradation	Aldh9a1
+Limonene and pinene degradation	Auh
+Limonene and pinene degradation	Ech1
+Limonene and pinene degradation	Ehhadh
+Limonene and pinene degradation	Hadha
+Limonene and pinene degradation	Hadhb
+Lysine Metabolism	Tmlhe
+Lysine Metabolism	Aadat
+Lysine Metabolism	Aass
+Lysine Metabolism	Aldh9a1
+Lysine Metabolism	Bbox1
+Lysine Metabolism	Dld
+Lysine Metabolism	Dlst
+Lysine Metabolism	Dot1l
+Lysine Metabolism	Ehmt1
+Lysine Metabolism	Ehmt2
+Lysine Metabolism	Kmt2c
+Lysine Metabolism	Kmt5a
+Lysine Metabolism	Ogdh
+Lysine Metabolism	Pdhx
+Lysine Metabolism	Pipox
+Lysine Metabolism	Plod1
+Lysine Metabolism	Plod2
+Lysine Metabolism	Plod3
+Lysine Metabolism	Sec11a
+Lysine Metabolism	Sec11c
+Lysine Metabolism	Setd7
+Lysine Metabolism	Setdb1
+Lysine Metabolism	Setdb2
+Lysine Metabolism	Shmt1
+Lysine Metabolism	Shmt2
+Lysine Metabolism	Slc25a21
+Lysine Metabolism	Spcs1
+Lysine Metabolism	Spcs2
+Lysine Metabolism	Spcs3
+Lysine Metabolism	Suv39h1
+Lysine Metabolism	Suv39h2
+Methionine Metabolism	Ahcy
+Methionine Metabolism	Ahcyl1
+Methionine Metabolism	Cbs
+Methionine Metabolism	Dnmt1
+Methionine Metabolism	Dnmt3a
+Methionine Metabolism	Dnmt3b
+Methionine Metabolism	Mat1a
+Methionine Metabolism	Mat2a
+Methionine Metabolism	Mat2b
+Methionine Metabolism	Mtr
+Methionine Metabolism	Trdmt1
+Miscellaneous	Car1
+Miscellaneous	Car12
+Miscellaneous	Car13
+Miscellaneous	Car14
+Miscellaneous	Car2
+Miscellaneous	Car3
+Miscellaneous	Car4
+Miscellaneous	Car5a
+Miscellaneous	Car5b
+Miscellaneous	Car7
+Miscellaneous	Car9
+Miscellaneous	Cat
+Miscellaneous	Epx
+Miscellaneous	G6pc
+Miscellaneous	G6pc2
+Miscellaneous	G6pc3
+Miscellaneous	Mpo
+Miscellaneous	Txnrd1
+N-Glycan Biosynthesis	Man2a2
+N-Glycan Biosynthesis	Alg12
+N-Glycan Biosynthesis	Alg1
+N-Glycan Biosynthesis	Alg10b
+N-Glycan Biosynthesis	Alg2
+N-Glycan Biosynthesis	Alg3
+N-Glycan Biosynthesis	Alg5
+N-Glycan Biosynthesis	Alg6
+N-Glycan Biosynthesis	Alg8
+N-Glycan Biosynthesis	B4galt1
+N-Glycan Biosynthesis	B4galt2
+N-Glycan Biosynthesis	B4galt3
+N-Glycan Biosynthesis	B4galt5
+N-Glycan Biosynthesis	Dad1
+N-Glycan Biosynthesis	Ddost
+N-Glycan Biosynthesis	Dolpp1
+N-Glycan Biosynthesis	Dpagt1
+N-Glycan Biosynthesis	Dpm1
+N-Glycan Biosynthesis	Dpm2
+N-Glycan Biosynthesis	Dpm3
+N-Glycan Biosynthesis	Fut8
+N-Glycan Biosynthesis	Man1a
+N-Glycan Biosynthesis	Man1a2
+N-Glycan Biosynthesis	Man1b1
+N-Glycan Biosynthesis	Man1c1
+N-Glycan Biosynthesis	Man2a1
+N-Glycan Biosynthesis	Mgat1
+N-Glycan Biosynthesis	Mgat2
+N-Glycan Biosynthesis	Mgat3
+N-Glycan Biosynthesis	Mgat4a
+N-Glycan Biosynthesis	Mgat4b
+N-Glycan Biosynthesis	Mgat5
+N-Glycan Biosynthesis	Mogs
+N-Glycan Biosynthesis	Rpn1
+N-Glycan Biosynthesis	Rpn2
+N-Glycan Biosynthesis	St6gal1
+N-Glycan Degradation	Aga
+N-Glycan Degradation	Ctsa
+N-Glycan Degradation	Engase
+N-Glycan Degradation	Fuca1
+N-Glycan Degradation	Fuca2
+N-Glycan Degradation	Galns
+N-Glycan Degradation	Glb1
+N-Glycan Degradation	Hexa
+N-Glycan Degradation	Hexb
+N-Glycan Degradation	Man2b1
+N-Glycan Degradation	Man2c1
+N-Glycan Degradation	Manba
+N-Glycan Degradation	Neu1
+N-Glycan Degradation	Neu2
+N-Glycan Degradation	Neu4
+NAD Metabolism	Cd38
+NAD Metabolism	Enpp1
+NAD Metabolism	Enpp2
+NAD Metabolism	Enpp3
+NAD Metabolism	Nadk
+NAD Metabolism	Nadsyn1
+NAD Metabolism	Nmnat1
+NAD Metabolism	Nmnat2
+NAD Metabolism	Nmnat3
+NAD Metabolism	Nmrk1
+NAD Metabolism	Nnmt
+NAD Metabolism	Nnt
+NAD Metabolism	Nt5c2
+NAD Metabolism	Pnp2
+NAD Metabolism	Qprt
+Nucleic acid degradation	Acp2
+Nucleotide Sugar Metabolism	Tgds
+Nucleotide Sugar Metabolism	Uxs1
+Nucleotides	2974
+Nucleotides	619653
+Nucleotides	Ada
+Nucleotides	Adcy1
+Nucleotides	Adcy10
+Nucleotides	Adcy2
+Nucleotides	Adcy3
+Nucleotides	Adcy4
+Nucleotides	Adcy5
+Nucleotides	Adcy6
+Nucleotides	Adcy7
+Nucleotides	Adcy8
+Nucleotides	Adcy9
+Nucleotides	Adk
+Nucleotides	Adsl
+Nucleotides	Adss
+Nucleotides	Adssl1
+Nucleotides	Aicda
+Nucleotides	Ak1
+Nucleotides	Ak3
+Nucleotides	Ak5
+Nucleotides	Ak7
+Nucleotides	Ampd1
+Nucleotides	Ampd2
+Nucleotides	Ampd3
+Nucleotides	Bpnt1
+Nucleotides	Cant1
+Nucleotides	Cmpk1
+Nucleotides	Ctps
+Nucleotides	Dck
+Nucleotides	Dguok
+Nucleotides	Dtymk
+Nucleotides	Dut
+Nucleotides	Entpd1
+Nucleotides	Entpd2
+Nucleotides	Entpd3
+Nucleotides	Entpd4
+Nucleotides	Entpd5
+Nucleotides	Entpd6
+Nucleotides	Gmpr
+Nucleotides	Gmpr2
+Nucleotides	Gmps
+Nucleotides	Gucy1a2
+Nucleotides	Gucy1a3
+Nucleotides	Gucy1b3
+Nucleotides	Gucy2c
+Nucleotides	Gucy2e
+Nucleotides	Gucy2f
+Nucleotides	Guk1
+Nucleotides	Impdh1
+Nucleotides	Impdh2
+Nucleotides	Itpa
+Nucleotides	Nme1
+Nucleotides	Nme2
+Nucleotides	Nme3
+Nucleotides	Nme4
+Nucleotides	Nme6
+Nucleotides	Nme7
+Nucleotides	Npr1
+Nucleotides	Npr2
+Nucleotides	Nt5c
+Nucleotides	Nt5c2
+Nucleotides	Nt5e
+Nucleotides	Nt5m
+Nucleotides	Nudt2
+Nucleotides	Nudt5
+Nucleotides	Nudt9
+Nucleotides	Papss1
+Nucleotides	Papss2
+Nucleotides	Pde10a
+Nucleotides	Pde11a
+Nucleotides	Pde1a
+Nucleotides	Pde1b
+Nucleotides	Pde1c
+Nucleotides	Pde2a
+Nucleotides	Pde3a
+Nucleotides	Pde3b
+Nucleotides	Pde4b
+Nucleotides	Pde4c
+Nucleotides	Pde4d
+Nucleotides	Pde5a
+Nucleotides	Pde6a
+Nucleotides	Pde6b
+Nucleotides	Pde6c
+Nucleotides	Pde6d
+Nucleotides	Pde6g
+Nucleotides	Pde6h
+Nucleotides	Pde7a
+Nucleotides	Pde7b
+Nucleotides	Pde8a
+Nucleotides	Pde8b
+Nucleotides	Pnp2
+Nucleotides	Rrm1
+Nucleotides	Rrm2
+Nucleotides	Tk2
+Nucleotides	Txnrd1
+Nucleotides	Txnrd2
+Nucleotides	Txnrd3
+Nucleotides	Tyms
+Nucleotides	Uck1
+Nucleotides	Uck2
+Nucleotides	Upp2
+O-Glycan Biosynthesis	A4gnt
+O-Glycan Biosynthesis	B3gnt6
+O-Glycan Biosynthesis	C1galt1
+O-Glycan Biosynthesis	Gcnt1
+O-Glycan Biosynthesis	Gcnt3
+O-Glycan Biosynthesis	St3gal1
+O-Glycan Biosynthesis	St6galnac1
+Oxidative Phosphorylation	100039108
+Oxidative Phosphorylation	100042918
+Oxidative Phosphorylation	100043472
+Oxidative Phosphorylation	Atp5h
+Oxidative Phosphorylation	mt-Nd6
+Oxidative Phosphorylation	Ndufb1-ps
+Oxidative Phosphorylation	Ndufb4
+Oxidative Phosphorylation	Atp5e
+Oxidative Phosphorylation	627998
+Oxidative Phosphorylation	Atp5a1
+Oxidative Phosphorylation	Atp5b
+Oxidative Phosphorylation	Atp5c1
+Oxidative Phosphorylation	Atp5d
+Oxidative Phosphorylation	Atp5f1
+Oxidative Phosphorylation	Atp5g1
+Oxidative Phosphorylation	Atp5g3
+Oxidative Phosphorylation	Atp5j
+Oxidative Phosphorylation	Atp5j2
+Oxidative Phosphorylation	Atp5k
+Oxidative Phosphorylation	mt-Cytb
+Oxidative Phosphorylation	Cyc1
+Oxidative Phosphorylation	mt-Nd1
+Oxidative Phosphorylation	mt-Nd2
+Oxidative Phosphorylation	mt-Nd3
+Oxidative Phosphorylation	mt-Nd4
+Oxidative Phosphorylation	mt-Nd4l
+Oxidative Phosphorylation	mt-Nd5
+Oxidative Phosphorylation	Ndufa1
+Oxidative Phosphorylation	Ndufa10
+Oxidative Phosphorylation	Ndufa11
+Oxidative Phosphorylation	Ndufa12
+Oxidative Phosphorylation	Ndufa13
+Oxidative Phosphorylation	Ndufa2
+Oxidative Phosphorylation	Ndufa3
+Oxidative Phosphorylation	Ndufa4
+Oxidative Phosphorylation	Ndufa5
+Oxidative Phosphorylation	Ndufa6
+Oxidative Phosphorylation	Ndufa7
+Oxidative Phosphorylation	Ndufa8
+Oxidative Phosphorylation	Ndufa9
+Oxidative Phosphorylation	Ndufb10
+Oxidative Phosphorylation	Ndufb2
+Oxidative Phosphorylation	Ndufb3
+Oxidative Phosphorylation	Ndufb5
+Oxidative Phosphorylation	Ndufb6
+Oxidative Phosphorylation	Ndufb7
+Oxidative Phosphorylation	Ndufb8
+Oxidative Phosphorylation	Ndufb9
+Oxidative Phosphorylation	Ndufc1
+Oxidative Phosphorylation	Ndufc2
+Oxidative Phosphorylation	Ndufs1
+Oxidative Phosphorylation	Ndufs2
+Oxidative Phosphorylation	Ndufs3
+Oxidative Phosphorylation	Ndufs4
+Oxidative Phosphorylation	Ndufs5
+Oxidative Phosphorylation	Ndufs6
+Oxidative Phosphorylation	Ndufs7
+Oxidative Phosphorylation	Ndufs8
+Oxidative Phosphorylation	Ndufv1
+Oxidative Phosphorylation	Ndufv2
+Oxidative Phosphorylation	Ndufv3
+Oxidative Phosphorylation	Nsf
+Oxidative Phosphorylation	Ppa1
+Oxidative Phosphorylation	Ppa2
+Oxidative Phosphorylation	Tusc3
+Oxidative Phosphorylation	Uqcr10
+Oxidative Phosphorylation	Uqcr11
+Oxidative Phosphorylation	Uqcrb
+Oxidative Phosphorylation	Uqcrc1
+Oxidative Phosphorylation	Uqcrc2
+Oxidative Phosphorylation	Uqcrfs1
+Oxidative Phosphorylation	Uqcrq
+Pentose Phosphate Pathway	G6pdx
+Pentose Phosphate Pathway	H6pd
+Pentose Phosphate Pathway	Pgd
+Pentose Phosphate Pathway	Pgls
+Pentose Phosphate Pathway	Pgm2
+Pentose Phosphate Pathway	Prps1
+Pentose Phosphate Pathway	Prps1l1
+Pentose Phosphate Pathway	Prps2
+Pentose Phosphate Pathway	Rbks
+Pentose Phosphate Pathway	Rpe
+Pentose Phosphate Pathway	Rpia
+Pentose Phosphate Pathway	Taldo1
+Pentose Phosphate Pathway	Tkt
+Pentose Phosphate Pathway	Tktl1
+Pentose Phosphate Pathway	Tktl2
+Pentose and Glucuronate Interconversions	Akr1a1
+Pentose and Glucuronate Interconversions	Akr1b3
+Pentose and Glucuronate Interconversions	Akr7a5
+Pentose and Glucuronate Interconversions	Dcxr
+Pentose and Glucuronate Interconversions	Xylb
+Phenylalanine metabolism	Aldh3b2
+Phenylalanine metabolism	Aldh1a3
+Phenylalanine metabolism	Aldh3a1
+Phenylalanine metabolism	Aldh3b1
+Phenylalanine metabolism	Aoc1
+Phenylalanine metabolism	Aoc2
+Phenylalanine metabolism	Ddc
+Phenylalanine metabolism	Got1
+Phenylalanine metabolism	Got2
+Phenylalanine metabolism	Hpd
+Phenylalanine metabolism	Maoa
+Phenylalanine metabolism	Maob
+Phenylalanine metabolism	Tat
+Propanoate Metabolism	Aacs
+Propanoate Metabolism	Acad10
+Propanoate Metabolism	Acad11
+Propanoate Metabolism	Acad8
+Propanoate Metabolism	Acad9
+Propanoate Metabolism	Acadm
+Propanoate Metabolism	Acads
+Propanoate Metabolism	Acadsb
+Propanoate Metabolism	Acss1
+Propanoate Metabolism	Acss2
+Propanoate Metabolism	Aldh6a1
+Purine Catabolism	Ada
+Purine Catabolism	Gda
+Purine Catabolism	Pnp2
+Purine Catabolism	Xdh
+Pyrimidine Biosynthesis	Cad
+Pyrimidine Biosynthesis	Ctps2
+Pyrimidine Biosynthesis	Dhodh
+Pyrimidine Biosynthesis	Uck1
+Pyrimidine Biosynthesis	Uck2
+Pyrimidine Biosynthesis	Umps
+Pyrimidine Catabolism	Aicda
+Pyrimidine Catabolism	Cda
+Pyrimidine Catabolism	Dctd
+Pyrimidine Catabolism	Dpyd
+Pyrimidine Catabolism	Dpys
+Pyrimidine Catabolism	Dpysl2
+Pyrimidine Catabolism	Dpysl3
+Pyrimidine Catabolism	Nt5c
+Pyrimidine Catabolism	Nt5c3
+Pyrimidine Catabolism	Tymp
+Pyrimidine Catabolism	Upb1
+Pyrimidine Catabolism	Upp1
+Pyrimidine Catabolism	Upp2
+Pyruvate Metabolism	Aldh3b2
+Pyruvate Metabolism	626571
+Pyruvate Metabolism	Acot12
+Pyruvate Metabolism	Adh5
+Pyruvate Metabolism	Akr1a1
+Pyruvate Metabolism	Akr1b3
+Pyruvate Metabolism	Akr7a5
+Pyruvate Metabolism	Aldh18a1
+Pyruvate Metabolism	Aldh1a1
+Pyruvate Metabolism	Aldh1a2
+Pyruvate Metabolism	Aldh1a3
+Pyruvate Metabolism	Aldh1b1
+Pyruvate Metabolism	Aldh2
+Pyruvate Metabolism	Aldh3a1
+Pyruvate Metabolism	Aldh3a2
+Pyruvate Metabolism	Aldh3b1
+Pyruvate Metabolism	Aldh4a1
+Pyruvate Metabolism	Aldh5a1
+Pyruvate Metabolism	Aldh6a1
+Pyruvate Metabolism	Aldh7a1
+Pyruvate Metabolism	Aldh9a1
+Pyruvate Metabolism	Cyp2e1
+Pyruvate Metabolism	Glo1
+Pyruvate Metabolism	Grhpr
+Pyruvate Metabolism	Hagh
+Pyruvate Metabolism	Haghl
+Pyruvate Metabolism	Ldha
+Pyruvate Metabolism	Ldhd
+Pyruvate Metabolism	Me1
+Pyruvate Metabolism	Me2
+Pyruvate Metabolism	Me3
+Pyruvate Metabolism	Pcx
+ROS Detoxification	Cat
+ROS Detoxification	Sod1
+ROS Detoxification	Sod2
+ROS Detoxification	Sod3
+Riboflavin Metabolism	Acp1
+Riboflavin Metabolism	Enpp1
+Riboflavin Metabolism	Flad1
+Salvage Pathway	Aprt
+Salvage Pathway	Hprt
+Selenoamino acid metabolism	Ahcy
+Selenoamino acid metabolism	Ahcyl1
+Selenoamino acid metabolism	Ahcyl2
+Selenoamino acid metabolism	Cbs
+Selenoamino acid metabolism	Cth
+Selenoamino acid metabolism	Dnmt1
+Selenoamino acid metabolism	Dnmt3a
+Selenoamino acid metabolism	Dnmt3b
+Selenoamino acid metabolism	Mat1a
+Selenoamino acid metabolism	Mat2a
+Selenoamino acid metabolism	Mat2b
+Selenoamino acid metabolism	Papss1
+Selenoamino acid metabolism	Papss2
+Selenoamino acid metabolism	Scly
+Selenoamino acid metabolism	Sephs1
+Selenoamino acid metabolism	Sephs2
+Selenoamino acid metabolism	Trdmt1
+Sphingolipid Metabolism	A4galt
+Sphingolipid Metabolism	Arsa
+Sphingolipid Metabolism	Asah1
+Sphingolipid Metabolism	B3galnt1
+Sphingolipid Metabolism	B3galt4
+Sphingolipid Metabolism	B3galt5
+Sphingolipid Metabolism	B3gnt3
+Sphingolipid Metabolism	B4galnt1
+Sphingolipid Metabolism	Cerk
+Sphingolipid Metabolism	Ctsa
+Sphingolipid Metabolism	Degs1
+Sphingolipid Metabolism	Fut1
+Sphingolipid Metabolism	Gal3st1
+Sphingolipid Metabolism	Galc
+Sphingolipid Metabolism	Galns
+Sphingolipid Metabolism	Gba
+Sphingolipid Metabolism	Gbgt1
+Sphingolipid Metabolism	Gla
+Sphingolipid Metabolism	Glb1
+Sphingolipid Metabolism	Kdsr
+Sphingolipid Metabolism	Naga
+Sphingolipid Metabolism	Neu1
+Sphingolipid Metabolism	Sgms1
+Sphingolipid Metabolism	Sgpl1
+Sphingolipid Metabolism	Sgpp1
+Sphingolipid Metabolism	Slc33a1
+Sphingolipid Metabolism	Smpd3
+Sphingolipid Metabolism	Sphk2
+Sphingolipid Metabolism	Sptlc1
+Sphingolipid Metabolism	Sptlc2
+Sphingolipid Metabolism	St3gal2
+Sphingolipid Metabolism	St3gal5
+Sphingolipid Metabolism	St6galnac2
+Sphingolipid Metabolism	St6galnac3
+Sphingolipid Metabolism	St6galnac5
+Sphingolipid Metabolism	St6galnac6
+Sphingolipid Metabolism	St8sia1
+Sphingolipid Metabolism	St8sia5
+Sphingolipid Metabolism	Ugcg
+Starch and Sucrose Metabolism	Amy2b
+Starch and Sucrose Metabolism	8908
+Starch and Sucrose Metabolism	Agl
+Starch and Sucrose Metabolism	Amy1
+Starch and Sucrose Metabolism	Amy2a4
+Starch and Sucrose Metabolism	Pgghg
+Starch and Sucrose Metabolism	Enpp1
+Starch and Sucrose Metabolism	Enpp2
+Starch and Sucrose Metabolism	Enpp3
+Starch and Sucrose Metabolism	Gaa
+Starch and Sucrose Metabolism	Ganc
+Starch and Sucrose Metabolism	Gbe1
+Starch and Sucrose Metabolism	Gyg
+Starch and Sucrose Metabolism	Gys1
+Starch and Sucrose Metabolism	Gys2
+Starch and Sucrose Metabolism	Mgam
+Starch and Sucrose Metabolism	Pygb
+Starch and Sucrose Metabolism	Pygl
+Starch and Sucrose Metabolism	Pygm
+Starch and Sucrose Metabolism	Sis
+Starch and Sucrose Metabolism	Slc3a1
+Starch and Sucrose Metabolism	Slc3a2
+Starch and Sucrose Metabolism	Slc7a9
+Starch and Sucrose Metabolism	Treh
+Starch and Sucrose Metabolism	Ugdh
+Steroid Metabolism	Akr1c21
+Steroid Metabolism	Akr1c6
+Steroid Metabolism	Cyp11a1
+Steroid Metabolism	Cyp11b1
+Steroid Metabolism	Cyp11b2
+Steroid Metabolism	Cyp17a1
+Steroid Metabolism	Cyp19a1
+Steroid Metabolism	Cyp1b1
+Steroid Metabolism	Cyp21a1
+Steroid Metabolism	Cyp3a13
+Steroid Metabolism	Cyp3a25
+Steroid Metabolism	H2-Ke6
+Steroid Metabolism	Hsd11b1
+Steroid Metabolism	Hsd11b2
+Steroid Metabolism	Hsd17b1
+Steroid Metabolism	Hsd17b2
+Steroid Metabolism	Hsd17b3
+Steroid Metabolism	Hsd17b7
+Steroid Metabolism	Hsd3b1
+Steroid Metabolism	Hsd3b2
+Steroid Metabolism	Srd5a1
+Steroid Metabolism	Srd5a2
+Steroid Metabolism	Sult1a1
+Steroid Metabolism	Sult1e1
+Steroid Metabolism	Sult2a1
+Steroid Metabolism	Sult2b1
+Steroid Metabolism	Ugt2b38
+Stilbene, coumarine and lignin biosynthesis	Tyr
+Taurine and hypotaurine metabolism	Cdo1
+Taurine and hypotaurine metabolism	Csad
+Taurine and hypotaurine metabolism	Gad1
+Taurine and hypotaurine metabolism	Gad2
+Taurine and hypotaurine metabolism	Slc6a6
+Tetrahydrobiopterin	Gch1
+Tetrahydrobiopterin	Pcbd1
+Tetrahydrobiopterin	Pts
+Tetrahydrobiopterin	Qdpr
+Tetrahydrobiopterin	Spr
+Thiamine Metabolism	Thtpa
+Thiamine Metabolism	Tpk1
+Transport, Endoplasmic Reticular	2544
+Transport, Endoplasmic Reticular	Col4a3bp
+Transport, Endoplasmic Reticular	Slc33a1
+Transport, Endoplasmic Reticular	Slc35d1
+Transport, Endoplasmic Reticular	Slc37a4
+Transport, Extracellular	6537
+Transport, Extracellular	Abca1
+Transport, Extracellular	Abcb11
+Transport, Extracellular	Abcb4
+Transport, Extracellular	Abcc1
+Transport, Extracellular	Abcc3
+Transport, Extracellular	Abcc4
+Transport, Extracellular	Abcc5
+Transport, Extracellular	Atp10a
+Transport, Extracellular	Atp2b1
+Transport, Extracellular	Atp2b2
+Transport, Extracellular	Atp2b3
+Transport, Extracellular	Atp2b4
+Transport, Extracellular	Atp4a
+Transport, Extracellular	Atp4b
+Transport, Extracellular	Atp8a1
+Transport, Extracellular	Cd38
+Transport, Extracellular	Rhag
+Transport, Extracellular	Rhbg
+Transport, Extracellular	Slc10a1
+Transport, Extracellular	Slc10a2
+Transport, Extracellular	Slc12a1
+Transport, Extracellular	Slc12a2
+Transport, Extracellular	Slc12a3
+Transport, Extracellular	Slc12a4
+Transport, Extracellular	Slc12a5
+Transport, Extracellular	Slc12a6
+Transport, Extracellular	Slc12a7
+Transport, Extracellular	Slc13a1
+Transport, Extracellular	Slc13a2
+Transport, Extracellular	Slc13a3
+Transport, Extracellular	Slc13a4
+Transport, Extracellular	Slc13a5
+Transport, Extracellular	Slc14a1
+Transport, Extracellular	Slc14a2
+Transport, Extracellular	Slc15a2
+Transport, Extracellular	Slc16a1
+Transport, Extracellular	Slc16a2
+Transport, Extracellular	Slc16a3
+Transport, Extracellular	Slc16a7
+Transport, Extracellular	Slc16a8
+Transport, Extracellular	Slc17a1
+Transport, Extracellular	Slc17a3
+Transport, Extracellular	Slc17a4
+Transport, Extracellular	Slc18a1
+Transport, Extracellular	Slc18a2
+Transport, Extracellular	Slc18a3
+Transport, Extracellular	Slc19a1
+Transport, Extracellular	Slc19a2
+Transport, Extracellular	Slc19a3
+Transport, Extracellular	Slc1a1
+Transport, Extracellular	Slc1a2
+Transport, Extracellular	Slc1a3
+Transport, Extracellular	Slc1a4
+Transport, Extracellular	Slc1a5
+Transport, Extracellular	Slc1a6
+Transport, Extracellular	Slc1a7
+Transport, Extracellular	Slc20a1
+Transport, Extracellular	Slc20a2
+Transport, Extracellular	Slc22a1
+Transport, Extracellular	Slc22a2
+Transport, Extracellular	Slc22a3
+Transport, Extracellular	Slc22a4
+Transport, Extracellular	Slc22a5
+Transport, Extracellular	Slc23a1
+Transport, Extracellular	Slc23a2
+Transport, Extracellular	Slc24a1
+Transport, Extracellular	Slc24a2
+Transport, Extracellular	Slc24a3
+Transport, Extracellular	Slc24a4
+Transport, Extracellular	Slc26a1
+Transport, Extracellular	Slc26a11
+Transport, Extracellular	Slc26a2
+Transport, Extracellular	Slc26a3
+Transport, Extracellular	Slc26a4
+Transport, Extracellular	Slc26a6
+Transport, Extracellular	Slc26a7
+Transport, Extracellular	Slc26a8
+Transport, Extracellular	Slc26a9
+Transport, Extracellular	Slc27a1
+Transport, Extracellular	Slc27a2
+Transport, Extracellular	Slc27a3
+Transport, Extracellular	Slc27a4
+Transport, Extracellular	Slc27a5
+Transport, Extracellular	Slc28a1
+Transport, Extracellular	Slc28a2
+Transport, Extracellular	Slc28a3
+Transport, Extracellular	Slc29a1
+Transport, Extracellular	Slc29a2
+Transport, Extracellular	Slc2a1
+Transport, Extracellular	Slc2a10
+Transport, Extracellular	Slc2a13
+Transport, Extracellular	Slc2a2
+Transport, Extracellular	Slc2a3
+Transport, Extracellular	Slc2a4
+Transport, Extracellular	Slc2a8
+Transport, Extracellular	Slc32a1
+Transport, Extracellular	Slc33a1
+Transport, Extracellular	Slc34a1
+Transport, Extracellular	Slc34a2
+Transport, Extracellular	Slc34a3
+Transport, Extracellular	Slc36a1
+Transport, Extracellular	Slc38a1
+Transport, Extracellular	Slc38a2
+Transport, Extracellular	Slc38a3
+Transport, Extracellular	Slc38a4
+Transport, Extracellular	Slc38a5
+Transport, Extracellular	Slc3a1
+Transport, Extracellular	Slc3a2
+Transport, Extracellular	Slc43a1
+Transport, Extracellular	Slc43a2
+Transport, Extracellular	Slc46a1
+Transport, Extracellular	Slc4a1
+Transport, Extracellular	Slc4a10
+Transport, Extracellular	Slc4a2
+Transport, Extracellular	Slc4a3
+Transport, Extracellular	Slc4a4
+Transport, Extracellular	Slc4a5
+Transport, Extracellular	Slc4a7
+Transport, Extracellular	Slc4a8
+Transport, Extracellular	Slc4a9
+Transport, Extracellular	Slc5a1
+Transport, Extracellular	Slc5a10
+Transport, Extracellular	Slc5a11
+Transport, Extracellular	Slc5a12
+Transport, Extracellular	Slc5a2
+Transport, Extracellular	Slc5a3
+Transport, Extracellular	Slc5a5
+Transport, Extracellular	Slc5a6
+Transport, Extracellular	Slc5a7
+Transport, Extracellular	Slc5a8
+Transport, Extracellular	Slc5a9
+Transport, Extracellular	Slc6a1
+Transport, Extracellular	Slc6a11
+Transport, Extracellular	Slc6a12
+Transport, Extracellular	Slc6a13
+Transport, Extracellular	Slc6a14
+Transport, Extracellular	Slc6a2
+Transport, Extracellular	Slc6a3
+Transport, Extracellular	Slc6a4
+Transport, Extracellular	Slc6a5
+Transport, Extracellular	Slc6a6
+Transport, Extracellular	Slc6a7
+Transport, Extracellular	Slc6a8
+Transport, Extracellular	Slc6a9
+Transport, Extracellular	Slc7a1
+Transport, Extracellular	Slc7a10
+Transport, Extracellular	Slc7a11
+Transport, Extracellular	Slc7a2
+Transport, Extracellular	Slc7a3
+Transport, Extracellular	Slc7a5
+Transport, Extracellular	Slc7a6
+Transport, Extracellular	Slc7a7
+Transport, Extracellular	Slc7a8
+Transport, Extracellular	Slc7a9
+Transport, Extracellular	Slc8a1
+Transport, Extracellular	Slc8a2
+Transport, Extracellular	Slc8a3
+Transport, Extracellular	Slc9a1
+Transport, Extracellular	Slc9a2
+Transport, Extracellular	Slc9a3
+Transport, Extracellular	Slc9a4
+Transport, Extracellular	Slc9a5
+Transport, Extracellular	Slco1a4
+Transport, Extracellular	Slco2a1
+Transport, Extracellular	Slco3a1
+Transport, Extracellular	Slco4a1
+Transport, Golgi Apparatus	Abca1
+Transport, Golgi Apparatus	Col4a3bp
+Transport, Golgi Apparatus	Slc2a1
+Transport, Golgi Apparatus	Slc35a1
+Transport, Golgi Apparatus	Slc35a2
+Transport, Golgi Apparatus	Slc35a3
+Transport, Golgi Apparatus	Slc35b2
+Transport, Golgi Apparatus	Slc35b4
+Transport, Golgi Apparatus	Slc35c1
+Transport, Golgi Apparatus	Slc35d2
+Transport, Golgi Apparatus	Slc9a7
+Transport, Golgi Apparatus	Slc9a8
+Transport, Lysosomal	Atp6v0a1
+Transport, Lysosomal	Atp6v0a2
+Transport, Lysosomal	Atp6v0a4
+Transport, Lysosomal	Atp6v0b
+Transport, Lysosomal	Atp6v0c
+Transport, Lysosomal	Atp6v0d1
+Transport, Lysosomal	Atp6v0d2
+Transport, Lysosomal	Atp6v0e
+Transport, Lysosomal	Atp6v1a
+Transport, Lysosomal	Atp6v1b1
+Transport, Lysosomal	Atp6v1b2
+Transport, Lysosomal	Atp6v1c1
+Transport, Lysosomal	Atp6v1c2
+Transport, Lysosomal	Atp6v1d
+Transport, Lysosomal	Atp6v1e1
+Transport, Lysosomal	Atp6v1e2
+Transport, Lysosomal	Atp6v1f
+Transport, Lysosomal	Atp6v1g1
+Transport, Lysosomal	Atp6v1g2
+Transport, Lysosomal	Atp6v1g3
+Transport, Lysosomal	Atp6v1h
+Transport, Lysosomal	Slc17a5
+Transport, Lysosomal	Slc29a3
+Transport, Lysosomal	Slc36a1
+Transport, Lysosomal	Tcirg1
+Transport, Mitochondrial	433923
+Transport, Mitochondrial	Aqp8
+Transport, Mitochondrial	Aqp9
+Transport, Mitochondrial	Atp10a
+Transport, Mitochondrial	Atp8a1
+Transport, Mitochondrial	Mmaa
+Transport, Mitochondrial	Slc16a1
+Transport, Mitochondrial	Slc25a1
+Transport, Mitochondrial	Slc25a10
+Transport, Mitochondrial	Slc25a11
+Transport, Mitochondrial	Slc25a12
+Transport, Mitochondrial	Slc25a13
+Transport, Mitochondrial	Slc25a14
+Transport, Mitochondrial	Slc25a15
+Transport, Mitochondrial	Slc25a16
+Transport, Mitochondrial	Slc25a18
+Transport, Mitochondrial	Slc25a19
+Transport, Mitochondrial	Slc25a2
+Transport, Mitochondrial	Slc25a20
+Transport, Mitochondrial	Slc25a22
+Transport, Mitochondrial	Slc25a26
+Transport, Mitochondrial	Slc25a27
+Transport, Mitochondrial	Slc25a3
+Transport, Mitochondrial	Slc25a4
+Transport, Mitochondrial	Slc25a5
+Transport, Mitochondrial	Slc29a1
+Transport, Mitochondrial	Stard3
+Transport, Mitochondrial	Ucp1
+Transport, Mitochondrial	Ucp2
+Transport, Mitochondrial	Ucp3
+Transport, Peroxisomal	Scp2
+Triacylglycerol Synthesis	Agpat1
+Triacylglycerol Synthesis	Agpat2
+Triacylglycerol Synthesis	Agpat3
+Triacylglycerol Synthesis	Agpat4
+Triacylglycerol Synthesis	Agpat5
+Triacylglycerol Synthesis	Dgat1
+Triacylglycerol Synthesis	Dgat2
+Triacylglycerol Synthesis	Gnpat
+Triacylglycerol Synthesis	Gpam
+Triacylglycerol Synthesis	Gpat4
+Triacylglycerol Synthesis	Lipc
+Triacylglycerol Synthesis	Lipf
+Triacylglycerol Synthesis	Lipg
+Triacylglycerol Synthesis	Lpl
+Triacylglycerol Synthesis	Mgll
+Triacylglycerol Synthesis	Mogat1
+Triacylglycerol Synthesis	Mogat2
+Triacylglycerol Synthesis	Pla2g3
+Triacylglycerol Synthesis	Plpp1
+Triacylglycerol Synthesis	Plpp2
+Triacylglycerol Synthesis	Plpp3
+Triacylglycerol Synthesis	Pnlip
+Triacylglycerol Synthesis	Pnliprp1
+Triacylglycerol Synthesis	Pnliprp2
+Tryptophan metabolism	Aadat
+Tryptophan metabolism	Aanat
+Tryptophan metabolism	Acat1
+Tryptophan metabolism	Acat3
+Tryptophan metabolism	Acmsd
+Tryptophan metabolism	Aldh1a1
+Tryptophan metabolism	Aldh1a2
+Tryptophan metabolism	Aldh1b1
+Tryptophan metabolism	Aldh2
+Tryptophan metabolism	Aldh3a2
+Tryptophan metabolism	Aldh4a1
+Tryptophan metabolism	Aldh7a1
+Tryptophan metabolism	Aldh9a1
+Tryptophan metabolism	Aoc1
+Tryptophan metabolism	Aoc2
+Tryptophan metabolism	Aox1
+Tryptophan metabolism	Auh
+Tryptophan metabolism	Cyp1a1
+Tryptophan metabolism	Cyp1a2
+Tryptophan metabolism	Cyp1b1
+Tryptophan metabolism	Cyp2c54
+Tryptophan metabolism	Ddc
+Tryptophan metabolism	Ech1
+Tryptophan metabolism	Echs1
+Tryptophan metabolism	Ehhadh
+Tryptophan metabolism	Gcdh
+Tryptophan metabolism	Haao
+Tryptophan metabolism	Hadh
+Tryptophan metabolism	Hadha
+Tryptophan metabolism	Hadhb
+Tryptophan metabolism	Hsd17b10
+Tryptophan metabolism	Hsd17b4
+Tryptophan metabolism	Ido1
+Tryptophan metabolism	Inmt
+Tryptophan metabolism	Kmo
+Tryptophan metabolism	Kyat1
+Tryptophan metabolism	Kynu
+Tryptophan metabolism	Maoa
+Tryptophan metabolism	Maob
+Tryptophan metabolism	Slc25a21
+Tryptophan metabolism	Tdo2
+Tryptophan metabolism	Tph1
+Tryptophan metabolism	Tph2
+Tyr, Phe, Trp Biosynthesis	Pah
+Tyrosine metabolism	Aldh3b2
+Tyrosine metabolism	Adh5
+Tyrosine metabolism	Aldh1a3
+Tyrosine metabolism	Aldh3a1
+Tyrosine metabolism	Aldh3b1
+Tyrosine metabolism	Aoc1
+Tyrosine metabolism	Aoc2
+Tyrosine metabolism	Aoc3
+Tyrosine metabolism	Comt
+Tyrosine metabolism	Comtd1
+Tyrosine metabolism	Dbh
+Tyrosine metabolism	Dct
+Tyrosine metabolism	Ddc
+Tyrosine metabolism	Duox1
+Tyrosine metabolism	Duox2
+Tyrosine metabolism	Esd
+Tyrosine metabolism	Fah
+Tyrosine metabolism	Got1
+Tyrosine metabolism	Got2
+Tyrosine metabolism	Gstz1
+Tyrosine metabolism	Hgd
+Tyrosine metabolism	Hpd
+Tyrosine metabolism	Maoa
+Tyrosine metabolism	Maob
+Tyrosine metabolism	Moxd1
+Tyrosine metabolism	Pnmt
+Tyrosine metabolism	Sult1a1
+Tyrosine metabolism	Tat
+Tyrosine metabolism	Th
+Tyrosine metabolism	Tpo
+Tyrosine metabolism	Tyr
+Tyrosine metabolism	Tyrp1
+Ubiquinone Biosynthesis	Coq2
+Ubiquinone Biosynthesis	Coq3
+Ubiquinone Biosynthesis	Coq6
+Ubiquinone Biosynthesis	Coq7
+Urea cycle/amino group metabolism	Ckmt1
+Urea cycle/amino group metabolism	Acy1
+Urea cycle/amino group metabolism	Aldh18a1
+Urea cycle/amino group metabolism	Aqp9
+Urea cycle/amino group metabolism	Arg1
+Urea cycle/amino group metabolism	Arg2
+Urea cycle/amino group metabolism	Ckb
+Urea cycle/amino group metabolism	Ckm
+Urea cycle/amino group metabolism	Ckmt2
+Urea cycle/amino group metabolism	Gamt
+Urea cycle/amino group metabolism	Gatm
+Urea cycle/amino group metabolism	Nags
+Urea cycle/amino group metabolism	Oat
+Urea cycle/amino group metabolism	Odc1
+Urea cycle/amino group metabolism	Otc
+Urea cycle/amino group metabolism	Pycr2
+Urea cycle/amino group metabolism	Pycrl
+Urea cycle/amino group metabolism	Sardh
+Urea cycle/amino group metabolism	Sms
+Urea cycle/amino group metabolism	Srm
+Valine, Leucine, and Isoleucine Metabolism	Abat
+Valine, Leucine, and Isoleucine Metabolism	Acad8
+Valine, Leucine, and Isoleucine Metabolism	Acadm
+Valine, Leucine, and Isoleucine Metabolism	Acadsb
+Valine, Leucine, and Isoleucine Metabolism	Acat1
+Valine, Leucine, and Isoleucine Metabolism	Aldh6a1
+Valine, Leucine, and Isoleucine Metabolism	Auh
+Valine, Leucine, and Isoleucine Metabolism	Bcat1
+Valine, Leucine, and Isoleucine Metabolism	Bcat2
+Valine, Leucine, and Isoleucine Metabolism	Bckdha
+Valine, Leucine, and Isoleucine Metabolism	Bckdhb
+Valine, Leucine, and Isoleucine Metabolism	Dbt
+Valine, Leucine, and Isoleucine Metabolism	Dld
+Valine, Leucine, and Isoleucine Metabolism	Echs1
+Valine, Leucine, and Isoleucine Metabolism	Hadha
+Valine, Leucine, and Isoleucine Metabolism	Hadhb
+Valine, Leucine, and Isoleucine Metabolism	Hibadh
+Valine, Leucine, and Isoleucine Metabolism	Hsd17b10
+Valine, Leucine, and Isoleucine Metabolism	Ivd
+Valine, Leucine, and Isoleucine Metabolism	Mccc1
+Valine, Leucine, and Isoleucine Metabolism	Mccc2
+Valine, Leucine, and Isoleucine Metabolism	Mcee
+Valine, Leucine, and Isoleucine Metabolism	Mlycd
+Valine, Leucine, and Isoleucine Metabolism	Mmut
+Valine, Leucine, and Isoleucine Metabolism	Oxct1
+Valine, Leucine, and Isoleucine Metabolism	Oxct2a
+Valine, Leucine, and Isoleucine Metabolism	Pcca
+Valine, Leucine, and Isoleucine Metabolism	Pccb
+Vitamin A Metabolism	Bco1
+Vitamin A Metabolism	Gstm2
+Vitamin A Metabolism	Lrat
+Vitamin A Metabolism	Rdh1
+Vitamin A Metabolism	Rdh10
+Vitamin A Metabolism	Rdh11
+Vitamin A Metabolism	Rdh12
+Vitamin A Metabolism	Rdh13
+Vitamin A Metabolism	Rdh14
+Vitamin A Metabolism	Rdh5
+Vitamin A Metabolism	Rdh8
+Vitamin A Metabolism	Sdr16c5
+Vitamin B12 Metabolism	Mmaa
+Vitamin B6 Metabolism	Aox1
+Vitamin B6 Metabolism	Pdxk
+Vitamin B6 Metabolism	Pdxp
+Vitamin B6 Metabolism	Pnpo
+Vitamin D	Cyp24a1
+Vitamin D	Cyp27a1
+Vitamin D	Cyp27b1
+beta-Alanine metabolism	Abat
+beta-Alanine metabolism	Aldh1a1
+beta-Alanine metabolism	Aldh1a2
+beta-Alanine metabolism	Aldh1b1
+beta-Alanine metabolism	Aldh2
+beta-Alanine metabolism	Aldh3a2
+beta-Alanine metabolism	Aldh4a1
+beta-Alanine metabolism	Aldh7a1
+beta-Alanine metabolism	Aldh9a1
+beta-Alanine metabolism	Aoc1
+beta-Alanine metabolism	Aoc2
+beta-Alanine metabolism	Aoc3
+beta-Alanine metabolism	Auh
+beta-Alanine metabolism	Cndp1
+beta-Alanine metabolism	Echs1
+beta-Alanine metabolism	Ehhadh
+beta-Alanine metabolism	Gad1
+beta-Alanine metabolism	Hadha
+beta-Alanine metabolism	Hadhb
+beta-Alanine metabolism	Hibch

@@ -1,0 +1,2991 @@
+,pathway,gene_symbol
+0,Alanine and aspartate metabolism,ACY3
+1,Alanine and aspartate metabolism,AGXT
+2,Alanine and aspartate metabolism,AGXT2
+3,Alanine and aspartate metabolism,ASL
+4,Alanine and aspartate metabolism,ASNS
+5,Alanine and aspartate metabolism,ASPA
+6,Alanine and aspartate metabolism,ASPG
+7,Alanine and aspartate metabolism,ASRGL1
+8,Alanine and aspartate metabolism,ASS1
+9,Alanine and aspartate metabolism,DDO
+10,Alanine and aspartate metabolism,ETNPPL
+11,Alanine and aspartate metabolism,GOT1
+12,Alanine and aspartate metabolism,GOT2
+13,Alanine and aspartate metabolism,PROSC
+14,Alkaloid synthesis,CES2
+15,Aminosugar metabolism,ACP5
+16,Aminosugar metabolism,ACP6
+17,Aminosugar metabolism,AMDHD2
+18,Aminosugar metabolism,CHIA
+19,Aminosugar metabolism,CHIT1
+20,Aminosugar metabolism,CMAS
+21,Aminosugar metabolism,GALE
+22,Aminosugar metabolism,GCK
+23,Aminosugar metabolism,GFPT1
+24,Aminosugar metabolism,GFPT2
+25,Aminosugar metabolism,GNE
+26,Aminosugar metabolism,GNPDA1
+27,Aminosugar metabolism,GNPDA2
+28,Aminosugar metabolism,GNPNAT1
+29,Aminosugar metabolism,HEXA
+30,Aminosugar metabolism,HEXB
+31,Aminosugar metabolism,HK1
+32,Aminosugar metabolism,HK2
+33,Aminosugar metabolism,HK3
+34,Aminosugar metabolism,HKDC1
+35,Aminosugar metabolism,MANSC1
+36,Aminosugar metabolism,MGEA5
+37,Aminosugar metabolism,NAGK
+38,Aminosugar metabolism,NANP
+39,Aminosugar metabolism,NANS
+40,Aminosugar metabolism,PGM3
+41,Aminosugar metabolism,RENBP
+42,Aminosugar metabolism,TSTA3
+43,Aminosugar metabolism,UAP1
+44,Aminosugar metabolism,UAP1L1
+45,Aminosugar metabolism,UXS1
+46,Androgen and estrogen synthesis and metabolism,AKR1C1
+47,Androgen and estrogen synthesis and metabolism,AKR1C2
+48,Androgen and estrogen synthesis and metabolism,AKR1C3
+49,Androgen and estrogen synthesis and metabolism,AKR1C4
+50,Androgen and estrogen synthesis and metabolism,AKR1D1
+51,Androgen and estrogen synthesis and metabolism,CYP17A1
+52,Androgen and estrogen synthesis and metabolism,CYP19A1
+53,Androgen and estrogen synthesis and metabolism,CYP1A1
+54,Androgen and estrogen synthesis and metabolism,CYP1A2
+55,Androgen and estrogen synthesis and metabolism,CYP1B1
+56,Androgen and estrogen synthesis and metabolism,CYP2A13
+57,Androgen and estrogen synthesis and metabolism,CYP2A6
+58,Androgen and estrogen synthesis and metabolism,CYP2A7
+59,Androgen and estrogen synthesis and metabolism,CYP2B6
+60,Androgen and estrogen synthesis and metabolism,CYP2C18
+61,Androgen and estrogen synthesis and metabolism,CYP2C19
+62,Androgen and estrogen synthesis and metabolism,CYP2C8
+63,Androgen and estrogen synthesis and metabolism,CYP2C9
+64,Androgen and estrogen synthesis and metabolism,CYP2D6
+65,Androgen and estrogen synthesis and metabolism,CYP2E1
+66,Androgen and estrogen synthesis and metabolism,CYP2F1
+67,Androgen and estrogen synthesis and metabolism,CYP2J2
+68,Androgen and estrogen synthesis and metabolism,CYP2S1
+69,Androgen and estrogen synthesis and metabolism,CYP2U1
+70,Androgen and estrogen synthesis and metabolism,CYP3A4
+71,Androgen and estrogen synthesis and metabolism,CYP3A43
+72,Androgen and estrogen synthesis and metabolism,CYP3A5
+73,Androgen and estrogen synthesis and metabolism,CYP3A7
+74,Androgen and estrogen synthesis and metabolism,CYP4B1
+75,Androgen and estrogen synthesis and metabolism,CYP4F11
+76,Androgen and estrogen synthesis and metabolism,CYP4F12
+77,Androgen and estrogen synthesis and metabolism,CYP4F8
+78,Androgen and estrogen synthesis and metabolism,CYP4X1
+79,Androgen and estrogen synthesis and metabolism,CYP4Z1
+80,Androgen and estrogen synthesis and metabolism,EPX
+81,Androgen and estrogen synthesis and metabolism,HSD3B1
+82,Androgen and estrogen synthesis and metabolism,HSD3B2
+83,Androgen and estrogen synthesis and metabolism,LPO
+84,Androgen and estrogen synthesis and metabolism,MPO
+85,Androgen and estrogen synthesis and metabolism,PRDX6
+86,Androgen and estrogen synthesis and metabolism,SRD5A1
+87,Androgen and estrogen synthesis and metabolism,SRD5A2
+88,Androgen and estrogen synthesis and metabolism,SRD5A3
+89,Androgen and estrogen synthesis and metabolism,STS
+90,Androgen and estrogen synthesis and metabolism,SULT2B1
+91,Androgen and estrogen synthesis and metabolism,TPO
+92,Arachidonic acid metabolism,ALOX12
+93,Arachidonic acid metabolism,ALOX15
+94,Arachidonic acid metabolism,ALOX15B
+95,Arachidonic acid metabolism,ALOX5
+96,Arachidonic acid metabolism,CBR1
+97,Arachidonic acid metabolism,CBR3
+98,Arachidonic acid metabolism,CYP19A1
+99,Arachidonic acid metabolism,CYP1A1
+100,Arachidonic acid metabolism,CYP1A2
+101,Arachidonic acid metabolism,CYP1B1
+102,Arachidonic acid metabolism,CYP2A13
+103,Arachidonic acid metabolism,CYP2A6
+104,Arachidonic acid metabolism,CYP2A7
+105,Arachidonic acid metabolism,CYP2B6
+106,Arachidonic acid metabolism,CYP2C18
+107,Arachidonic acid metabolism,CYP2C19
+108,Arachidonic acid metabolism,CYP2C8
+109,Arachidonic acid metabolism,CYP2C9
+110,Arachidonic acid metabolism,CYP2D6
+111,Arachidonic acid metabolism,CYP2E1
+112,Arachidonic acid metabolism,CYP2F1
+113,Arachidonic acid metabolism,CYP2J2
+114,Arachidonic acid metabolism,CYP2S1
+115,Arachidonic acid metabolism,CYP2U1
+116,Arachidonic acid metabolism,CYP3A4
+117,Arachidonic acid metabolism,CYP3A43
+118,Arachidonic acid metabolism,CYP3A5
+119,Arachidonic acid metabolism,CYP3A7
+120,Arachidonic acid metabolism,CYP4B1
+121,Arachidonic acid metabolism,CYP4F11
+122,Arachidonic acid metabolism,CYP4F12
+123,Arachidonic acid metabolism,CYP4F2
+124,Arachidonic acid metabolism,CYP4F22
+125,Arachidonic acid metabolism,CYP4F3
+126,Arachidonic acid metabolism,CYP4F8
+127,Arachidonic acid metabolism,CYP4X1
+128,Arachidonic acid metabolism,CYP4Z1
+129,Arachidonic acid metabolism,DHRS4
+130,Arachidonic acid metabolism,EPHX2
+131,Arachidonic acid metabolism,GPX1
+132,Arachidonic acid metabolism,GPX2
+133,Arachidonic acid metabolism,GPX3
+134,Arachidonic acid metabolism,GPX4
+135,Arachidonic acid metabolism,GPX5
+136,Arachidonic acid metabolism,GPX6
+137,Arachidonic acid metabolism,GPX7
+138,Arachidonic acid metabolism,GPX8
+139,Arachidonic acid metabolism,PRDX6
+140,Arginine and proline metabolism,201288_AT1
+141,Arginine and proline metabolism,645740_AT1
+142,Arginine and proline metabolism,AGMAT
+143,Arginine and proline metabolism,ALDH1A1
+144,Arginine and proline metabolism,ALDH1A2
+145,Arginine and proline metabolism,ALDH3A2
+146,Arginine and proline metabolism,ALDH4A1
+147,Arginine and proline metabolism,ALDH7A1
+148,Arginine and proline metabolism,ALDH9A1
+149,Arginine and proline metabolism,AMD1
+150,Arginine and proline metabolism,AOC1
+151,Arginine and proline metabolism,AOC2
+152,Arginine and proline metabolism,AOC3
+153,Arginine and proline metabolism,AZIN2
+154,Arginine and proline metabolism,DAO
+155,Arginine and proline metabolism,GOT2
+156,Arginine and proline metabolism,MAOA
+157,Arginine and proline metabolism,MAOB
+158,Arginine and proline metabolism,MTAP
+159,Arginine and proline metabolism,NOS1
+160,Arginine and proline metabolism,NOS2
+161,Arginine and proline metabolism,NOS3
+162,Arginine and proline metabolism,ODC1
+163,Arginine and proline metabolism,P4HA1
+164,Arginine and proline metabolism,P4HA2
+165,Arginine and proline metabolism,P4HA3
+166,Arginine and proline metabolism,PRODH
+167,Arginine and proline metabolism,PRODH2
+168,Arginine and proline metabolism,PYCR1
+169,Arginine and proline metabolism,PYCR2
+170,Arginine and proline metabolism,PYCRL
+171,Arginine and proline metabolism,SAT1
+172,Arginine and proline metabolism,SAT2
+173,Beta-Alanine metabolism,ABAT
+174,Beta-Alanine metabolism,ALDH1A1
+175,Beta-Alanine metabolism,ALDH1A2
+176,Beta-Alanine metabolism,ALDH1B1
+177,Beta-Alanine metabolism,ALDH2
+178,Beta-Alanine metabolism,ALDH3A2
+179,Beta-Alanine metabolism,ALDH7A1
+180,Beta-Alanine metabolism,ALDH9A1
+181,Beta-Alanine metabolism,AOC1
+182,Beta-Alanine metabolism,AOC2
+183,Beta-Alanine metabolism,AOC3
+184,Beta-Alanine metabolism,CARNS1
+185,Beta-Alanine metabolism,CNDP1
+186,Beta-Alanine metabolism,CNDP2
+187,Beta-Alanine metabolism,GAD1
+188,Bile acid synthesis,ABCB11
+189,Bile acid synthesis,ABCC11
+190,Bile acid synthesis,ABCC3
+191,Bile acid synthesis,ACAA1
+192,Bile acid synthesis,ACAA2
+193,Bile acid synthesis,ACAD9
+194,Bile acid synthesis,ACOT1
+195,Bile acid synthesis,ACOT2
+196,Bile acid synthesis,ACOT4
+197,Bile acid synthesis,ACOT6
+198,Bile acid synthesis,ACOT7
+199,Bile acid synthesis,ACOT8
+200,Bile acid synthesis,ACOX1
+201,Bile acid synthesis,ACOX2
+202,Bile acid synthesis,ACOX3
+203,Bile acid synthesis,ADH1A
+204,Bile acid synthesis,ADH1B
+205,Bile acid synthesis,ADH1C
+206,Bile acid synthesis,ADH4
+207,Bile acid synthesis,ADH5
+208,Bile acid synthesis,ADH6
+209,Bile acid synthesis,ADH7
+210,Bile acid synthesis,AKR1C4
+211,Bile acid synthesis,AKR1D1
+212,Bile acid synthesis,ALDH1B1
+213,Bile acid synthesis,ALDH2
+214,Bile acid synthesis,ALDH3A1
+215,Bile acid synthesis,ALDH3A2
+216,Bile acid synthesis,ALDH7A1
+217,Bile acid synthesis,ALDH9A1
+218,Bile acid synthesis,AMACR
+219,Bile acid synthesis,BAAT
+220,Bile acid synthesis,CH25H
+221,Bile acid synthesis,CYP27A1
+222,Bile acid synthesis,CYP39A1
+223,Bile acid synthesis,CYP3A4
+224,Bile acid synthesis,CYP46A1
+225,Bile acid synthesis,CYP7A1
+226,Bile acid synthesis,CYP7B1
+227,Bile acid synthesis,CYP8B1
+228,Bile acid synthesis,GMPS
+229,Bile acid synthesis,HADHB
+230,Bile acid synthesis,HSD17B4
+231,Bile acid synthesis,HSD3B1
+232,Bile acid synthesis,HSD3B2
+233,Bile acid synthesis,HSD3B7
+234,Bile acid synthesis,MYO5B
+235,Bile acid synthesis,SCP2
+236,Bile acid synthesis,SLC27A2
+237,Bile acid synthesis,SLC27A5
+238,Bile acid synthesis,STS
+239,Bile acid synthesis,SULT2A1
+240,Bile acid synthesis,UGT1A3
+241,Bile acid synthesis,UGT2A1
+242,Bile acid synthesis,UGT2A3
+243,Bile acid synthesis,UGT2B4
+244,Bile acid synthesis,UGT2B7
+245,Biotin metabolism,BTD
+246,Biotin metabolism,HLCS
+247,Blood group synthesis,ABO
+248,Blood group synthesis,B3GNT2
+249,Blood group synthesis,B3GNT3
+250,Blood group synthesis,B3GNT5
+251,Blood group synthesis,FUT1
+252,Blood group synthesis,FUT3
+253,Blood group synthesis,FUT5
+254,Blood group synthesis,FUT6
+255,Blood group synthesis,FUT9
+256,Blood group synthesis,GCNT2
+257,Blood group synthesis,ST3GAL3
+258,Blood group synthesis,ST3GAL6
+259,Blood group synthesis,ST8SIA5
+260,Butanoate metabolism,ACAD10
+261,Butanoate metabolism,ACAD11
+262,Butanoate metabolism,ACAD8
+263,Butanoate metabolism,ACAD9
+264,Butanoate metabolism,ACADM
+265,Butanoate metabolism,ACADS
+266,Butanoate metabolism,ACADSB
+267,Butanoate metabolism,BDH1
+268,Butanoate metabolism,ECHDC2
+269,C5-branched dibasic acid metabolism,SUCLA2
+270,C5-branched dibasic acid metabolism,SUCLG1
+271,C5-branched dibasic acid metabolism,SUCLG2
+272,Cholesterol metabolism,AACS
+273,Cholesterol metabolism,ACAT2
+274,Cholesterol metabolism,CEL
+275,Cholesterol metabolism,CYP4F8
+276,Cholesterol metabolism,CYP51A1
+277,Cholesterol metabolism,CYP7A1
+278,Cholesterol metabolism,DHCR24
+279,Cholesterol metabolism,DHCR7
+280,Cholesterol metabolism,EBP
+281,Cholesterol metabolism,FAXDC2
+282,Cholesterol metabolism,FDFT1
+283,Cholesterol metabolism,FDPS
+284,Cholesterol metabolism,GGPS1
+285,Cholesterol metabolism,HMGCL
+286,Cholesterol metabolism,HMGCLL1
+287,Cholesterol metabolism,HMGCR
+288,Cholesterol metabolism,HMGCS1
+289,Cholesterol metabolism,HMGCS2
+290,Cholesterol metabolism,HSD17B4
+291,Cholesterol metabolism,HSD17B7
+292,Cholesterol metabolism,IDI1
+293,Cholesterol metabolism,IDI2
+294,Cholesterol metabolism,LBR
+295,Cholesterol metabolism,LCAT
+296,Cholesterol metabolism,LIPA
+297,Cholesterol metabolism,LSS
+298,Cholesterol metabolism,MAGEA2B
+299,Cholesterol metabolism,MSMO1
+300,Cholesterol metabolism,MVD
+301,Cholesterol metabolism,MVK
+302,Cholesterol metabolism,NSDHL
+303,Cholesterol metabolism,PMVK
+304,Cholesterol metabolism,SC5D
+305,Cholesterol metabolism,SOAT1
+306,Cholesterol metabolism,SOAT2
+307,Cholesterol metabolism,SQLE
+308,Cholesterol metabolism,TM7SF2
+309,Chondroitin sulfate degradation,ARSB
+310,Chondroitin sulfate degradation,CTSA
+311,Chondroitin sulfate degradation,GALNS
+312,Chondroitin sulfate degradation,GLB1
+313,Chondroitin sulfate degradation,GUSB
+314,Chondroitin sulfate degradation,HEXA
+315,Chondroitin sulfate degradation,HEXB
+316,Chondroitin sulfate degradation,IDS
+317,Chondroitin sulfate degradation,IDUA
+318,Chondroitin sulfate degradation,NEU1
+319,Chondroitin synthesis,B3GALT6
+320,Chondroitin synthesis,B3GAT1
+321,Chondroitin synthesis,B3GAT2
+322,Chondroitin synthesis,B3GAT3
+323,Chondroitin synthesis,B4GALT7
+324,Chondroitin synthesis,CHPF
+325,Chondroitin synthesis,CHPF2
+326,Chondroitin synthesis,CHST11
+327,Chondroitin synthesis,CHST12
+328,Chondroitin synthesis,CHST13
+329,Chondroitin synthesis,CHST14
+330,Chondroitin synthesis,CHST3
+331,Chondroitin synthesis,CHST7
+332,Chondroitin synthesis,CHSY1
+333,Chondroitin synthesis,CHSY3
+334,Chondroitin synthesis,CSGALNACT1
+335,Chondroitin synthesis,CSGALNACT2
+336,Chondroitin synthesis,EXT1
+337,Chondroitin synthesis,EXT2
+338,Chondroitin synthesis,EXTL1
+339,Chondroitin synthesis,EXTL2
+340,Chondroitin synthesis,EXTL3
+341,Chondroitin synthesis,GLCE
+342,Chondroitin synthesis,HS2ST1
+343,Chondroitin synthesis,HS3ST1
+344,Chondroitin synthesis,HS3ST2
+345,Chondroitin synthesis,HS3ST3A1
+346,Chondroitin synthesis,HS3ST3B1
+347,Chondroitin synthesis,HS3ST4
+348,Chondroitin synthesis,HS3ST5
+349,Chondroitin synthesis,HS3ST6
+350,Chondroitin synthesis,HS6ST1
+351,Chondroitin synthesis,HS6ST2
+352,Chondroitin synthesis,HS6ST3
+353,Chondroitin synthesis,NDST1
+354,Chondroitin synthesis,NDST2
+355,Chondroitin synthesis,NDST3
+356,Chondroitin synthesis,NDST4
+357,Chondroitin synthesis,UST
+358,Chondroitin synthesis,XYLT1
+359,Chondroitin synthesis,XYLT2
+360,Citric acid cycle,ACLY
+361,Citric acid cycle,ACO1
+362,Citric acid cycle,ACO2
+363,Citric acid cycle,CLYBL
+364,Citric acid cycle,CS
+365,Citric acid cycle,DLD
+366,Citric acid cycle,DLST
+367,Citric acid cycle,FH
+368,Citric acid cycle,GPT
+369,Citric acid cycle,GPT2
+370,Citric acid cycle,IDH1
+371,Citric acid cycle,IDH2
+372,Citric acid cycle,IDH3A
+373,Citric acid cycle,IDH3B
+374,Citric acid cycle,IDH3G
+375,Citric acid cycle,IREB2
+376,Citric acid cycle,MDH1
+377,Citric acid cycle,MDH1B
+378,Citric acid cycle,MDH2
+379,Citric acid cycle,OGDH
+380,Citric acid cycle,PDHX
+381,Citric acid cycle,SDHA
+382,Citric acid cycle,SDHB
+383,Citric acid cycle,SDHC
+384,Citric acid cycle,SDHD
+385,Citric acid cycle,SUCLA2
+386,Citric acid cycle,SUCLG1
+387,Citric acid cycle,SUCLG2
+388,CoA catabolism,ACP2
+389,CoA catabolism,ACP5
+390,CoA catabolism,ACP6
+391,CoA catabolism,ACPP
+392,CoA catabolism,VNN1
+393,CoA catabolism,VNN2
+394,CoA catabolism,VNN3
+395,CoA synthesis,COASY
+396,CoA synthesis,ENPP1
+397,CoA synthesis,ENPP3
+398,CoA synthesis,HIBCH
+399,CoA synthesis,PANK1
+400,CoA synthesis,PANK2
+401,CoA synthesis,PANK3
+402,CoA synthesis,PANK4
+403,CoA synthesis,PPCDC
+404,CoA synthesis,PPCS
+405,Cytochrome metabolism,CYP2A13
+406,Cytochrome metabolism,CYP2A6
+407,Cytochrome metabolism,CYP2C18
+408,Cytochrome metabolism,CYP2C19
+409,Cytochrome metabolism,CYP2C8
+410,Cytochrome metabolism,CYP2C9
+411,Cytochrome metabolism,CYP2D6
+412,Cytochrome metabolism,CYP2E1
+413,Cytochrome metabolism,CYP2F1
+414,Cytochrome metabolism,CYP3A4
+415,Cytochrome metabolism,CYP3A5
+416,Cytochrome metabolism,CYP4A11
+417,Cytochrome metabolism,CYP4F12
+418,Cytochrome metabolism,SULT1A1
+419,Cytochrome metabolism,SULT1A2
+420,Cytochrome metabolism,SULT1A3
+421,D-alanine metabolism,DAO
+422,D-alanine metabolism,SLC16A1
+423,D-alanine metabolism,SLC16A7
+424,Drug metabolism,ABCB1
+425,Drug metabolism,ABCB11
+426,Drug metabolism,ABCC2
+427,Drug metabolism,ABCC3
+428,Drug metabolism,ABCC4
+429,Drug metabolism,ABCG2
+430,Drug metabolism,ACAA1
+431,Drug metabolism,ACADVL
+432,Drug metabolism,ACOT11
+433,Drug metabolism,ACOT2
+434,Drug metabolism,ACOT4
+435,Drug metabolism,ACOT8
+436,Drug metabolism,ACOX1
+437,Drug metabolism,ACSL1
+438,Drug metabolism,AMACR
+439,Drug metabolism,AOX1
+440,Drug metabolism,CYP2A6
+441,Drug metabolism,CYP2C18
+442,Drug metabolism,CYP2C19
+443,Drug metabolism,CYP2C8
+444,Drug metabolism,CYP2C9
+445,Drug metabolism,CYP2D6
+446,Drug metabolism,CYP2E1
+447,Drug metabolism,CYP3A4
+448,Drug metabolism,CYP3A5
+449,Drug metabolism,CYP4F2
+450,Drug metabolism,CYP4F3
+451,Drug metabolism,EHHADH
+452,Drug metabolism,GUSB
+453,Drug metabolism,HADHA
+454,Drug metabolism,HADHB
+455,Drug metabolism,HSD17B4
+456,Drug metabolism,PON3
+457,Drug metabolism,SLC16A1
+458,Drug metabolism,SLC22A6
+459,Drug metabolism,SLC22A7
+460,Drug metabolism,SLC28A1
+461,Drug metabolism,SLC28A2
+462,Drug metabolism,SLC28A3
+463,Drug metabolism,SLCO1A2
+464,Drug metabolism,SLCO1B1
+465,Drug metabolism,SLCO2B1
+466,Drug metabolism,SULT1A1
+467,Drug metabolism,UGT1A1
+468,Drug metabolism,UGT1A10
+469,Drug metabolism,UGT1A3
+470,Drug metabolism,UGT1A4
+471,Drug metabolism,UGT1A6
+472,Drug metabolism,UGT1A7
+473,Drug metabolism,UGT1A8
+474,Drug metabolism,UGT1A9
+475,Drug metabolism,UGT2B17
+476,Drug metabolism,UGT2B4
+477,Drug metabolism,UGT2B7
+478,Drug metabolism,XDH
+479,Eicosanoid metabolism,ADHFE1
+480,Eicosanoid metabolism,AKR1C3
+481,Eicosanoid metabolism,ALDH1B1
+482,Eicosanoid metabolism,ALDH2
+483,Eicosanoid metabolism,ALDH3A1
+484,Eicosanoid metabolism,ALDH3A2
+485,Eicosanoid metabolism,ALDH7A1
+486,Eicosanoid metabolism,ALDH9A1
+487,Eicosanoid metabolism,ALOX12
+488,Eicosanoid metabolism,ALOX15
+489,Eicosanoid metabolism,ALOX15B
+490,Eicosanoid metabolism,ALOX5
+491,Eicosanoid metabolism,CBR1
+492,Eicosanoid metabolism,CBR3
+493,Eicosanoid metabolism,CYP2F1
+494,Eicosanoid metabolism,CYP4F12
+495,Eicosanoid metabolism,CYP4F2
+496,Eicosanoid metabolism,CYP4F22
+497,Eicosanoid metabolism,CYP4F3
+498,Eicosanoid metabolism,CYP4F8
+499,Eicosanoid metabolism,DHRS4
+500,Eicosanoid metabolism,GGT5
+501,Eicosanoid metabolism,HPGD
+502,Eicosanoid metabolism,HPGDS
+503,Eicosanoid metabolism,LTA4H
+504,Eicosanoid metabolism,LTC4S
+505,Eicosanoid metabolism,MGST2
+506,Eicosanoid metabolism,MGST3
+507,Eicosanoid metabolism,PTGDS
+508,Eicosanoid metabolism,PTGES
+509,Eicosanoid metabolism,PTGES2
+510,Eicosanoid metabolism,PTGES3
+511,Eicosanoid metabolism,PTGIS
+512,Eicosanoid metabolism,PTGS1
+513,Eicosanoid metabolism,PTGS2
+514,Eicosanoid metabolism,RPP14
+515,Eicosanoid metabolism,SCARF2
+516,Eicosanoid metabolism,TBXAS1
+517,Exchange/demand reaction,ACER1
+518,Exchange/demand reaction,ACER2
+519,Exchange/demand reaction,ACER3
+520,Fatty acid oxidation,102724197_AT1
+521,Fatty acid oxidation,26062_AT1
+522,Fatty acid oxidation,344967_AT1
+523,Fatty acid oxidation,ACAA1
+524,Fatty acid oxidation,ACAA2
+525,Fatty acid oxidation,ACACA
+526,Fatty acid oxidation,ACACB
+527,Fatty acid oxidation,ACAD9
+528,Fatty acid oxidation,ACADL
+529,Fatty acid oxidation,ACADM
+530,Fatty acid oxidation,ACADS
+531,Fatty acid oxidation,ACADSB
+532,Fatty acid oxidation,ACADVL
+533,Fatty acid oxidation,ACOT1
+534,Fatty acid oxidation,ACOT11
+535,Fatty acid oxidation,ACOT13
+536,Fatty acid oxidation,ACOT2
+537,Fatty acid oxidation,ACOT4
+538,Fatty acid oxidation,ACOT6
+539,Fatty acid oxidation,ACOT7
+540,Fatty acid oxidation,ACOT8
+541,Fatty acid oxidation,ACOX1
+542,Fatty acid oxidation,ACOX2
+543,Fatty acid oxidation,ACOX3
+544,Fatty acid oxidation,ACSBG1
+545,Fatty acid oxidation,ACSBG2
+546,Fatty acid oxidation,ACSL1
+547,Fatty acid oxidation,ACSL3
+548,Fatty acid oxidation,ACSL4
+549,Fatty acid oxidation,ACSL5
+550,Fatty acid oxidation,ACSL6
+551,Fatty acid oxidation,ACSM1
+552,Fatty acid oxidation,ADH5
+553,Fatty acid oxidation,ALDH1L1
+554,Fatty acid oxidation,ALDH3A2
+555,Fatty acid oxidation,AMACR
+556,Fatty acid oxidation,BAAT
+557,Fatty acid oxidation,CPT1A
+558,Fatty acid oxidation,CPT1B
+559,Fatty acid oxidation,CPT1C
+560,Fatty acid oxidation,CPT2
+561,Fatty acid oxidation,CRAT
+562,Fatty acid oxidation,CROT
+563,Fatty acid oxidation,CYP2D6
+564,Fatty acid oxidation,CYP4F2
+565,Fatty acid oxidation,CYP4F3
+566,Fatty acid oxidation,DBI
+567,Fatty acid oxidation,DECR1
+568,Fatty acid oxidation,DECR2
+569,Fatty acid oxidation,ECH1
+570,Fatty acid oxidation,ECHS1
+571,Fatty acid oxidation,ECI1
+572,Fatty acid oxidation,ECI2
+573,Fatty acid oxidation,EHHADH
+574,Fatty acid oxidation,ELOVL2
+575,Fatty acid oxidation,ELOVL4
+576,Fatty acid oxidation,ELOVL5
+577,Fatty acid oxidation,ELOVL6
+578,Fatty acid oxidation,ETFA
+579,Fatty acid oxidation,ETFB
+580,Fatty acid oxidation,ETFDH
+581,Fatty acid oxidation,GGT1
+582,Fatty acid oxidation,GGT2
+583,Fatty acid oxidation,GGT5
+584,Fatty acid oxidation,GGT6
+585,Fatty acid oxidation,GGT7
+586,Fatty acid oxidation,GGTLC1
+587,Fatty acid oxidation,GGTLC2
+588,Fatty acid oxidation,HACL1
+589,Fatty acid oxidation,HADH
+590,Fatty acid oxidation,HADHA
+591,Fatty acid oxidation,HADHB
+592,Fatty acid oxidation,HSD17B10
+593,Fatty acid oxidation,HSD17B4
+594,Fatty acid oxidation,LCAT
+595,Fatty acid oxidation,LIPC
+596,Fatty acid oxidation,MECR
+597,Fatty acid oxidation,MLYCD
+598,Fatty acid oxidation,MYO5B
+599,Fatty acid oxidation,PECR
+600,Fatty acid oxidation,PHYH
+601,Fatty acid oxidation,PPT1
+602,Fatty acid oxidation,PPT2
+603,Fatty acid oxidation,SLC25A20
+604,Fatty acid oxidation,SLC27A1
+605,Fatty acid oxidation,SLC27A2
+606,Fatty acid oxidation,SLC27A3
+607,Fatty acid oxidation,SLC27A4
+608,Fatty acid oxidation,SLC27A5
+609,Fatty acid oxidation,SLC27A6
+610,Fatty acid synthesis,ACAA2
+611,Fatty acid synthesis,ACAD9
+612,Fatty acid synthesis,ACADL
+613,Fatty acid synthesis,ACADM
+614,Fatty acid synthesis,ACADVL
+615,Fatty acid synthesis,ACOT1
+616,Fatty acid synthesis,ACOT2
+617,Fatty acid synthesis,ACOT4
+618,Fatty acid synthesis,ACOT6
+619,Fatty acid synthesis,ACSBG1
+620,Fatty acid synthesis,ACSBG2
+621,Fatty acid synthesis,ACSL1
+622,Fatty acid synthesis,ACSL3
+623,Fatty acid synthesis,ACSL4
+624,Fatty acid synthesis,ACSL5
+625,Fatty acid synthesis,ACSL6
+626,Fatty acid synthesis,ACSM1
+627,Fatty acid synthesis,ACSM2A
+628,Fatty acid synthesis,ACSM2B
+629,Fatty acid synthesis,ACSM3
+630,Fatty acid synthesis,ACSM4
+631,Fatty acid synthesis,ACSM5
+632,Fatty acid synthesis,BAAT
+633,Fatty acid synthesis,DECR1
+634,Fatty acid synthesis,DECR2
+635,Fatty acid synthesis,ECH1
+636,Fatty acid synthesis,ECHS1
+637,Fatty acid synthesis,ECI1
+638,Fatty acid synthesis,ECI2
+639,Fatty acid synthesis,ELOVL1
+640,Fatty acid synthesis,ELOVL2
+641,Fatty acid synthesis,ELOVL3
+642,Fatty acid synthesis,ELOVL4
+643,Fatty acid synthesis,ELOVL5
+644,Fatty acid synthesis,ELOVL6
+645,Fatty acid synthesis,ELOVL7
+646,Fatty acid synthesis,FADS1
+647,Fatty acid synthesis,FADS2
+648,Fatty acid synthesis,FADS3
+649,Fatty acid synthesis,FADS6
+650,Fatty acid synthesis,FASN
+651,Fatty acid synthesis,HACD1
+652,Fatty acid synthesis,HACD2
+653,Fatty acid synthesis,HACD3
+654,Fatty acid synthesis,HACD4
+655,Fatty acid synthesis,HADH
+656,Fatty acid synthesis,HADHA
+657,Fatty acid synthesis,HADHB
+658,Fatty acid synthesis,HIGD2A
+659,Fatty acid synthesis,HSD17B10
+660,Fatty acid synthesis,HSD17B12
+661,Fatty acid synthesis,LOXL2
+662,Fatty acid synthesis,PTGS1
+663,Fatty acid synthesis,PTGS2
+664,Fatty acid synthesis,RPL14
+665,Fatty acid synthesis,SCD
+666,Fatty acid synthesis,SCD5
+667,Fatty acid synthesis,SLC27A2
+668,Fatty acid synthesis,TBCB
+669,Fatty acid synthesis,TECR
+670,Fatty acid synthesis,TECRL
+671,Folate metabolism,100287639_AT1
+672,Folate metabolism,286297_AT1
+673,Folate metabolism,ALDH1L1
+674,Folate metabolism,ALDH1L2
+675,Folate metabolism,AMT
+676,Folate metabolism,DHFR
+677,Folate metabolism,FPGS
+678,Folate metabolism,FTCD
+679,Folate metabolism,GGH
+680,Folate metabolism,MTHFD1
+681,Folate metabolism,MTHFD1L
+682,Folate metabolism,MTHFD2
+683,Folate metabolism,MTHFD2L
+684,Folate metabolism,MTHFR
+685,Folate metabolism,MTHFS
+686,Fructose and mannose metabolism,AKR1A1
+687,Fructose and mannose metabolism,AKR1B1
+688,Fructose and mannose metabolism,AKR7A2
+689,Fructose and mannose metabolism,ALDOA
+690,Fructose and mannose metabolism,ALDOB
+691,Fructose and mannose metabolism,ALDOC
+692,Fructose and mannose metabolism,FBP1
+693,Fructose and mannose metabolism,FBP2
+694,Fructose and mannose metabolism,FPGT
+695,Fructose and mannose metabolism,FUK
+696,Fructose and mannose metabolism,GCK
+697,Fructose and mannose metabolism,GMDS
+698,Fructose and mannose metabolism,GMPPA
+699,Fructose and mannose metabolism,GMPPB
+700,Fructose and mannose metabolism,HK1
+701,Fructose and mannose metabolism,HK2
+702,Fructose and mannose metabolism,HK3
+703,Fructose and mannose metabolism,HKDC1
+704,Fructose and mannose metabolism,KHK
+705,Fructose and mannose metabolism,MPI
+706,Fructose and mannose metabolism,PFKFB1
+707,Fructose and mannose metabolism,PFKFB2
+708,Fructose and mannose metabolism,PFKFB3
+709,Fructose and mannose metabolism,PFKFB4
+710,Fructose and mannose metabolism,PFKL
+711,Fructose and mannose metabolism,PGM2
+712,Fructose and mannose metabolism,PMM1
+713,Fructose and mannose metabolism,PMM2
+714,Fructose and mannose metabolism,SORD
+715,Fructose and mannose metabolism,TNNI3K
+716,Fructose and mannose metabolism,TSTA3
+717,Galactose metabolism,AKR1A1
+718,Galactose metabolism,AKR1B1
+719,Galactose metabolism,ALDOA
+720,Galactose metabolism,ALDOB
+721,Galactose metabolism,ALDOC
+722,Galactose metabolism,B4GALT1
+723,Galactose metabolism,B4GALT2
+724,Galactose metabolism,GALE
+725,Galactose metabolism,GALK1
+726,Galactose metabolism,GALK2
+727,Galactose metabolism,GALT
+728,Galactose metabolism,GLB1
+729,Galactose metabolism,KHK
+730,Galactose metabolism,LALBA
+731,Galactose metabolism,LCT
+732,Galactose metabolism,MGAM
+733,Galactose metabolism,SI
+734,Galactose metabolism,UGP2
+735,Glutamate metabolism,ABAT
+736,Glutamate metabolism,ALDH4A1
+737,Glutamate metabolism,ALDH5A1
+738,Glutamate metabolism,CPS1
+739,Glutamate metabolism,FH
+740,Glutamate metabolism,GAD1
+741,Glutamate metabolism,GAD2
+742,Glutamate metabolism,GLS
+743,Glutamate metabolism,GLS2
+744,Glutamate metabolism,GLUD1
+745,Glutamate metabolism,GLUD2
+746,Glutamate metabolism,GLUL
+747,Glutamate metabolism,GPT
+748,Glutamate metabolism,GPT2
+749,Glutamate metabolism,GSR
+750,Glutamate metabolism,LGSN
+751,Glutathione metabolism,102724197_AT1
+752,Glutathione metabolism,2679_AT1
+753,Glutathione metabolism,ANPEP
+754,Glutathione metabolism,GCLC
+755,Glutathione metabolism,GCLM
+756,Glutathione metabolism,GGCT
+757,Glutathione metabolism,GGT1
+758,Glutathione metabolism,GGT2
+759,Glutathione metabolism,GGT5
+760,Glutathione metabolism,GGT6
+761,Glutathione metabolism,GGT7
+762,Glutathione metabolism,GGTLC1
+763,Glutathione metabolism,GGTLC2
+764,Glutathione metabolism,GPX1
+765,Glutathione metabolism,GPX2
+766,Glutathione metabolism,GPX3
+767,Glutathione metabolism,GPX4
+768,Glutathione metabolism,GPX6
+769,Glutathione metabolism,GPX7
+770,Glutathione metabolism,GSR
+771,Glutathione metabolism,GSS
+772,Glutathione metabolism,OPLAH
+773,Glutathione metabolism,PRDX1
+774,Glutathione metabolism,PRDX2
+775,Glutathione metabolism,PRDX3
+776,Glycerophospholipid metabolism,2713_AT1
+777,Glycerophospholipid metabolism,AADAC
+778,Glycerophospholipid metabolism,ABHD5
+779,Glycerophospholipid metabolism,ACHE
+780,Glycerophospholipid metabolism,AGK
+781,Glycerophospholipid metabolism,AGPAT1
+782,Glycerophospholipid metabolism,AGPAT2
+783,Glycerophospholipid metabolism,AGPAT3
+784,Glycerophospholipid metabolism,AGPAT4
+785,Glycerophospholipid metabolism,AGPAT5
+786,Glycerophospholipid metabolism,AKR1A1
+787,Glycerophospholipid metabolism,AKR1B1
+788,Glycerophospholipid metabolism,BCHE
+789,Glycerophospholipid metabolism,CDIPT
+790,Glycerophospholipid metabolism,CDS1
+791,Glycerophospholipid metabolism,CDS2
+792,Glycerophospholipid metabolism,CEL
+793,Glycerophospholipid metabolism,CEPT1
+794,Glycerophospholipid metabolism,CHAT
+795,Glycerophospholipid metabolism,CHKA
+796,Glycerophospholipid metabolism,CHKB
+797,Glycerophospholipid metabolism,CHPT1
+798,Glycerophospholipid metabolism,CLC
+799,Glycerophospholipid metabolism,CRLS1
+800,Glycerophospholipid metabolism,DAGLA
+801,Glycerophospholipid metabolism,DAGLB
+802,Glycerophospholipid metabolism,DGKA
+803,Glycerophospholipid metabolism,DGKB
+804,Glycerophospholipid metabolism,DGKD
+805,Glycerophospholipid metabolism,DGKE
+806,Glycerophospholipid metabolism,DGKG
+807,Glycerophospholipid metabolism,DGKH
+808,Glycerophospholipid metabolism,DGKI
+809,Glycerophospholipid metabolism,DGKQ
+810,Glycerophospholipid metabolism,DGKZ
+811,Glycerophospholipid metabolism,ENPP6
+812,Glycerophospholipid metabolism,EPT1
+813,Glycerophospholipid metabolism,ETNK1
+814,Glycerophospholipid metabolism,ETNK2
+815,Glycerophospholipid metabolism,ETNPPL
+816,Glycerophospholipid metabolism,GK
+817,Glycerophospholipid metabolism,GK2
+818,Glycerophospholipid metabolism,GPCPD1
+819,Glycerophospholipid metabolism,GPD1
+820,Glycerophospholipid metabolism,GPD2
+821,Glycerophospholipid metabolism,LCAT
+822,Glycerophospholipid metabolism,LCLAT1
+823,Glycerophospholipid metabolism,LGALS13
+824,Glycerophospholipid metabolism,LIPC
+825,Glycerophospholipid metabolism,LIPE
+826,Glycerophospholipid metabolism,LIPF
+827,Glycerophospholipid metabolism,LIPG
+828,Glycerophospholipid metabolism,LPIN1
+829,Glycerophospholipid metabolism,LPIN2
+830,Glycerophospholipid metabolism,LPIN3
+831,Glycerophospholipid metabolism,LPL
+832,Glycerophospholipid metabolism,MBOAT1
+833,Glycerophospholipid metabolism,MBOAT2
+834,Glycerophospholipid metabolism,PAFAH1B1
+835,Glycerophospholipid metabolism,PAFAH1B2
+836,Glycerophospholipid metabolism,PAFAH1B3
+837,Glycerophospholipid metabolism,PAFAH2
+838,Glycerophospholipid metabolism,PCYT1A
+839,Glycerophospholipid metabolism,PCYT1B
+840,Glycerophospholipid metabolism,PCYT2
+841,Glycerophospholipid metabolism,PEMT
+842,Glycerophospholipid metabolism,PGS1
+843,Glycerophospholipid metabolism,PHOSPHO1
+844,Glycerophospholipid metabolism,PI4K2A
+845,Glycerophospholipid metabolism,PI4KA
+846,Glycerophospholipid metabolism,PI4KB
+847,Glycerophospholipid metabolism,PIKFYVE
+848,Glycerophospholipid metabolism,PIP4K2A
+849,Glycerophospholipid metabolism,PIP4K2B
+850,Glycerophospholipid metabolism,PIP4K2C
+851,Glycerophospholipid metabolism,PIP5K1A
+852,Glycerophospholipid metabolism,PIP5K1B
+853,Glycerophospholipid metabolism,PIP5K1C
+854,Glycerophospholipid metabolism,PISD
+855,Glycerophospholipid metabolism,PLA2G10
+856,Glycerophospholipid metabolism,PLA2G12A
+857,Glycerophospholipid metabolism,PLA2G1B
+858,Glycerophospholipid metabolism,PLA2G2A
+859,Glycerophospholipid metabolism,PLA2G2D
+860,Glycerophospholipid metabolism,PLA2G2E
+861,Glycerophospholipid metabolism,PLA2G2F
+862,Glycerophospholipid metabolism,PLA2G3
+863,Glycerophospholipid metabolism,PLA2G4A
+864,Glycerophospholipid metabolism,PLA2G4B
+865,Glycerophospholipid metabolism,PLA2G4E
+866,Glycerophospholipid metabolism,PLA2G5
+867,Glycerophospholipid metabolism,PLA2G6
+868,Glycerophospholipid metabolism,PLA2G7
+869,Glycerophospholipid metabolism,PLD1
+870,Glycerophospholipid metabolism,PLD2
+871,Glycerophospholipid metabolism,PLD3
+872,Glycerophospholipid metabolism,PLD4
+873,Glycerophospholipid metabolism,PLD6
+874,Glycerophospholipid metabolism,PLPP1
+875,Glycerophospholipid metabolism,PLPP2
+876,Glycerophospholipid metabolism,PLPP3
+877,Glycerophospholipid metabolism,PLPP4
+878,Glycerophospholipid metabolism,PLPP5
+879,Glycerophospholipid metabolism,PLPPR2
+880,Glycerophospholipid metabolism,PLPPR3
+881,Glycerophospholipid metabolism,PLPPR4
+882,Glycerophospholipid metabolism,PNLIP
+883,Glycerophospholipid metabolism,PNLIPRP1
+884,Glycerophospholipid metabolism,PNLIPRP2
+885,Glycerophospholipid metabolism,PNLIPRP3
+886,Glycerophospholipid metabolism,PNPLA2
+887,Glycerophospholipid metabolism,PNPLA3
+888,Glycerophospholipid metabolism,PNPLA4
+889,Glycerophospholipid metabolism,PTDSS1
+890,Glycerophospholipid metabolism,PTDSS2
+891,Glycerophospholipid metabolism,PTPMT1
+892,Glycerophospholipid metabolism,SGMS1
+893,Glycerophospholipid metabolism,SGMS2
+894,Glycerophospholipid metabolism,SGPL1
+895,Glycerophospholipid metabolism,TKFC
+896,Glycine serine alanine and threonine metabolism,8781_AT1
+897,Glycine serine alanine and threonine metabolism,AGXT
+898,Glycine serine alanine and threonine metabolism,ALAS1
+899,Glycine serine alanine and threonine metabolism,ALAS2
+900,Glycine serine alanine and threonine metabolism,ALDH7A1
+901,Glycine serine alanine and threonine metabolism,AMT
+902,Glycine serine alanine and threonine metabolism,AOC3
+903,Glycine serine alanine and threonine metabolism,BHMT
+904,Glycine serine alanine and threonine metabolism,BHMT2
+905,Glycine serine alanine and threonine metabolism,CHDH
+906,Glycine serine alanine and threonine metabolism,DLD
+907,Glycine serine alanine and threonine metabolism,DMGDH
+908,Glycine serine alanine and threonine metabolism,GCAT
+909,Glycine serine alanine and threonine metabolism,GCSH
+910,Glycine serine alanine and threonine metabolism,GLDC
+911,Glycine serine alanine and threonine metabolism,GLYAT
+912,Glycine serine alanine and threonine metabolism,GNMT
+913,Glycine serine alanine and threonine metabolism,HAO1
+914,Glycine serine alanine and threonine metabolism,HAO2
+915,Glycine serine alanine and threonine metabolism,PDPR
+916,Glycine serine alanine and threonine metabolism,PHGDH
+917,Glycine serine alanine and threonine metabolism,PIPOX
+918,Glycine serine alanine and threonine metabolism,PSAT1
+919,Glycine serine alanine and threonine metabolism,PSPH
+920,Glycine serine alanine and threonine metabolism,SDS
+921,Glycine serine alanine and threonine metabolism,SDSL
+922,Glycine serine alanine and threonine metabolism,SHMT1
+923,Glycine serine alanine and threonine metabolism,SHMT2
+924,Glycine serine alanine and threonine metabolism,THNSL1
+925,Glycolysis/gluconeogenesis,286016_AT1
+926,Glycolysis/gluconeogenesis,AACS
+927,Glycolysis/gluconeogenesis,ACSS1
+928,Glycolysis/gluconeogenesis,ACSS2
+929,Glycolysis/gluconeogenesis,ACYP1
+930,Glycolysis/gluconeogenesis,ACYP2
+931,Glycolysis/gluconeogenesis,ADH1A
+932,Glycolysis/gluconeogenesis,ADH1B
+933,Glycolysis/gluconeogenesis,ADH1C
+934,Glycolysis/gluconeogenesis,ADH4
+935,Glycolysis/gluconeogenesis,ADH5
+936,Glycolysis/gluconeogenesis,ADH6
+937,Glycolysis/gluconeogenesis,ADH7
+938,Glycolysis/gluconeogenesis,ADHFE1
+939,Glycolysis/gluconeogenesis,AKR1A1
+940,Glycolysis/gluconeogenesis,ALDH1A1
+941,Glycolysis/gluconeogenesis,ALDH1A2
+942,Glycolysis/gluconeogenesis,ALDH1A3
+943,Glycolysis/gluconeogenesis,ALDH1B1
+944,Glycolysis/gluconeogenesis,ALDH2
+945,Glycolysis/gluconeogenesis,ALDH3A1
+946,Glycolysis/gluconeogenesis,ALDH3A2
+947,Glycolysis/gluconeogenesis,ALDH3B1
+948,Glycolysis/gluconeogenesis,ALDH3B2
+949,Glycolysis/gluconeogenesis,ALDH7A1
+950,Glycolysis/gluconeogenesis,ALDH9A1
+951,Glycolysis/gluconeogenesis,ALDOA
+952,Glycolysis/gluconeogenesis,ALDOB
+953,Glycolysis/gluconeogenesis,ALDOC
+954,Glycolysis/gluconeogenesis,BPGM
+955,Glycolysis/gluconeogenesis,CAT
+956,Glycolysis/gluconeogenesis,CYP2E1
+957,Glycolysis/gluconeogenesis,DLAT
+958,Glycolysis/gluconeogenesis,DLD
+959,Glycolysis/gluconeogenesis,ENO1
+960,Glycolysis/gluconeogenesis,ENO2
+961,Glycolysis/gluconeogenesis,ENO3
+962,Glycolysis/gluconeogenesis,FBP1
+963,Glycolysis/gluconeogenesis,FBP2
+964,Glycolysis/gluconeogenesis,G6PC
+965,Glycolysis/gluconeogenesis,G6PC2
+966,Glycolysis/gluconeogenesis,G6PC3
+967,Glycolysis/gluconeogenesis,GAPDH
+968,Glycolysis/gluconeogenesis,GAPDHS
+969,Glycolysis/gluconeogenesis,GCK
+970,Glycolysis/gluconeogenesis,GPD1
+971,Glycolysis/gluconeogenesis,GPD2
+972,Glycolysis/gluconeogenesis,GPI
+973,Glycolysis/gluconeogenesis,HK1
+974,Glycolysis/gluconeogenesis,HK2
+975,Glycolysis/gluconeogenesis,HK3
+976,Glycolysis/gluconeogenesis,HKDC1
+977,Glycolysis/gluconeogenesis,LDHA
+978,Glycolysis/gluconeogenesis,LDHAL6A
+979,Glycolysis/gluconeogenesis,LDHAL6B
+980,Glycolysis/gluconeogenesis,LDHB
+981,Glycolysis/gluconeogenesis,LDHC
+982,Glycolysis/gluconeogenesis,MIA3
+983,Glycolysis/gluconeogenesis,PCK1
+984,Glycolysis/gluconeogenesis,PCK2
+985,Glycolysis/gluconeogenesis,PDHA1
+986,Glycolysis/gluconeogenesis,PDHA2
+987,Glycolysis/gluconeogenesis,PDHB
+988,Glycolysis/gluconeogenesis,PDHX
+989,Glycolysis/gluconeogenesis,PFKL
+990,Glycolysis/gluconeogenesis,PFKM
+991,Glycolysis/gluconeogenesis,PFKP
+992,Glycolysis/gluconeogenesis,PGAM1
+993,Glycolysis/gluconeogenesis,PGAM2
+994,Glycolysis/gluconeogenesis,PGK1
+995,Glycolysis/gluconeogenesis,PGK2
+996,Glycolysis/gluconeogenesis,PGM1
+997,Glycolysis/gluconeogenesis,PGM2
+998,Glycolysis/gluconeogenesis,PKLR
+999,Glycolysis/gluconeogenesis,PKM
+1000,Glycolysis/gluconeogenesis,RWDD2A
+1001,Glycolysis/gluconeogenesis,TPI1
+1002,Glycolysis/gluconeogenesis,UEVLD
+1003,Glycolysis/gluconeogenesis,ZADH2
+1004,Glycosphingolipid metabolism,ABO
+1005,Glycosphingolipid metabolism,B3GALNT1
+1006,Glycosphingolipid metabolism,B3GALT1
+1007,Glycosphingolipid metabolism,B3GALT2
+1008,Glycosphingolipid metabolism,B3GALT4
+1009,Glycosphingolipid metabolism,B3GALT5
+1010,Glycosphingolipid metabolism,B3GNT2
+1011,Glycosphingolipid metabolism,B3GNT3
+1012,Glycosphingolipid metabolism,B3GNT4
+1013,Glycosphingolipid metabolism,B3GNT5
+1014,Glycosphingolipid metabolism,B4GALNT1
+1015,Glycosphingolipid metabolism,B4GALT1
+1016,Glycosphingolipid metabolism,B4GALT2
+1017,Glycosphingolipid metabolism,B4GALT3
+1018,Glycosphingolipid metabolism,B4GALT4
+1019,Glycosphingolipid metabolism,B4GALT6
+1020,Glycosphingolipid metabolism,B4GAT1
+1021,Glycosphingolipid metabolism,FUT1
+1022,Glycosphingolipid metabolism,FUT2
+1023,Glycosphingolipid metabolism,FUT3
+1024,Glycosphingolipid metabolism,FUT4
+1025,Glycosphingolipid metabolism,FUT5
+1026,Glycosphingolipid metabolism,FUT6
+1027,Glycosphingolipid metabolism,FUT7
+1028,Glycosphingolipid metabolism,FUT9
+1029,Glycosphingolipid metabolism,GALC
+1030,Glycosphingolipid metabolism,GBGT1
+1031,Glycosphingolipid metabolism,GCNT2
+1032,Glycosphingolipid metabolism,GLA
+1033,Glycosphingolipid metabolism,GLB1
+1034,Glycosphingolipid metabolism,GLB1L
+1035,Glycosphingolipid metabolism,GM2A
+1036,Glycosphingolipid metabolism,HEXA
+1037,Glycosphingolipid metabolism,HEXB
+1038,Glycosphingolipid metabolism,HEXDC
+1039,Glycosphingolipid metabolism,LCT
+1040,Glycosphingolipid metabolism,NAGA
+1041,Glycosphingolipid metabolism,NEU1
+1042,Glycosphingolipid metabolism,NEU2
+1043,Glycosphingolipid metabolism,NEU3
+1044,Glycosphingolipid metabolism,NEU4
+1045,Glycosphingolipid metabolism,ST3GAL1
+1046,Glycosphingolipid metabolism,ST3GAL2
+1047,Glycosphingolipid metabolism,ST3GAL4
+1048,Glycosphingolipid metabolism,ST3GAL5
+1049,Glycosphingolipid metabolism,ST3GAL6
+1050,Glycosphingolipid metabolism,ST6GALNAC2
+1051,Glycosphingolipid metabolism,ST6GALNAC3
+1052,Glycosphingolipid metabolism,ST6GALNAC4
+1053,Glycosphingolipid metabolism,ST6GALNAC5
+1054,Glycosphingolipid metabolism,ST6GALNAC6
+1055,Glycosphingolipid metabolism,ST8SIA1
+1056,Glycosphingolipid metabolism,ST8SIA5
+1057,Glycosphingolipid metabolism,UGT8
+1058,Glyoxylate and dicarboxylate metabolism,ALDH18A1
+1059,Glyoxylate and dicarboxylate metabolism,ALDH1A1
+1060,Glyoxylate and dicarboxylate metabolism,ALDH1A2
+1061,Glyoxylate and dicarboxylate metabolism,ALDH1A3
+1062,Glyoxylate and dicarboxylate metabolism,ALDH1B1
+1063,Glyoxylate and dicarboxylate metabolism,ALDH2
+1064,Glyoxylate and dicarboxylate metabolism,ALDH3A1
+1065,Glyoxylate and dicarboxylate metabolism,ALDH3A2
+1066,Glyoxylate and dicarboxylate metabolism,ALDH3B1
+1067,Glyoxylate and dicarboxylate metabolism,ALDH3B2
+1068,Glyoxylate and dicarboxylate metabolism,ALDH4A1
+1069,Glyoxylate and dicarboxylate metabolism,ALDH5A1
+1070,Glyoxylate and dicarboxylate metabolism,ALDH6A1
+1071,Glyoxylate and dicarboxylate metabolism,ALDH7A1
+1072,Glyoxylate and dicarboxylate metabolism,ALDH9A1
+1073,Glyoxylate and dicarboxylate metabolism,ALDOA
+1074,Glyoxylate and dicarboxylate metabolism,ALDOB
+1075,Glyoxylate and dicarboxylate metabolism,ALDOC
+1076,Glyoxylate and dicarboxylate metabolism,GRHPR
+1077,Glyoxylate and dicarboxylate metabolism,HAO1
+1078,Glyoxylate and dicarboxylate metabolism,HAO2
+1079,Glyoxylate and dicarboxylate metabolism,KHK
+1080,Glyoxylate and dicarboxylate metabolism,LDHA
+1081,Glyoxylate and dicarboxylate metabolism,LDHAL6A
+1082,Glyoxylate and dicarboxylate metabolism,LDHAL6B
+1083,Glyoxylate and dicarboxylate metabolism,LDHB
+1084,Glyoxylate and dicarboxylate metabolism,LDHC
+1085,Glyoxylate and dicarboxylate metabolism,LDHD
+1086,Glyoxylate and dicarboxylate metabolism,UEVLD
+1087,Heme degradation,BLVRA
+1088,Heme degradation,BLVRB
+1089,Heme degradation,HMOX1
+1090,Heme degradation,HMOX2
+1091,Heme degradation,UGT1A8
+1092,Heme synthesis,ALAD
+1093,Heme synthesis,BLVRA
+1094,Heme synthesis,BLVRB
+1095,Heme synthesis,CPOX
+1096,Heme synthesis,CYBRD1
+1097,Heme synthesis,FECH
+1098,Heme synthesis,HMBS
+1099,Heme synthesis,PPOX
+1100,Heme synthesis,UROD
+1101,Heme synthesis,UROS
+1102,Heparan sulfate degradation,GNS
+1103,Heparan sulfate degradation,GUSB
+1104,Heparan sulfate degradation,IDS
+1105,Heparan sulfate degradation,IDUA
+1106,Heparan sulfate degradation,NAGLU
+1107,Heparan sulfate degradation,SGSH
+1108,Histidine metabolism,ALDH1A1
+1109,Histidine metabolism,ALDH1A2
+1110,Histidine metabolism,ALDH1A3
+1111,Histidine metabolism,ALDH3A1
+1112,Histidine metabolism,ALDH3A2
+1113,Histidine metabolism,ALDH3B1
+1114,Histidine metabolism,ALDH3B2
+1115,Histidine metabolism,ALDH7A1
+1116,Histidine metabolism,ALDH9A1
+1117,Histidine metabolism,AMDHD1
+1118,Histidine metabolism,AOC1
+1119,Histidine metabolism,AOC2
+1120,Histidine metabolism,AOC3
+1121,Histidine metabolism,DDC
+1122,Histidine metabolism,FTCD
+1123,Histidine metabolism,HAL
+1124,Histidine metabolism,HDC
+1125,Histidine metabolism,HNMT
+1126,Histidine metabolism,MAOB
+1127,Histidine metabolism,UROC1
+1128,Hyaluronan metabolism,GUSB
+1129,Hyaluronan metabolism,HAS1
+1130,Hyaluronan metabolism,HAS2
+1131,Hyaluronan metabolism,HAS3
+1132,Hyaluronan metabolism,HEXA
+1133,Hyaluronan metabolism,HEXB
+1134,Hyaluronan metabolism,HYAL3
+1135,Inositol phosphate metabolism,CTDSPL2
+1136,Inositol phosphate metabolism,DUSP11
+1137,Inositol phosphate metabolism,FIG4
+1138,Inositol phosphate metabolism,HCST
+1139,Inositol phosphate metabolism,IMPA1
+1140,Inositol phosphate metabolism,IMPA2
+1141,Inositol phosphate metabolism,INPP1
+1142,Inositol phosphate metabolism,INPP4A
+1143,Inositol phosphate metabolism,INPP4B
+1144,Inositol phosphate metabolism,INPP5A
+1145,Inositol phosphate metabolism,INPP5B
+1146,Inositol phosphate metabolism,INPP5D
+1147,Inositol phosphate metabolism,INPP5E
+1148,Inositol phosphate metabolism,INPP5F
+1149,Inositol phosphate metabolism,INPP5J
+1150,Inositol phosphate metabolism,INPPL1
+1151,Inositol phosphate metabolism,IP6K1
+1152,Inositol phosphate metabolism,IP6K2
+1153,Inositol phosphate metabolism,IP6K3
+1154,Inositol phosphate metabolism,ISYNA1
+1155,Inositol phosphate metabolism,ITPK1
+1156,Inositol phosphate metabolism,ITPKA
+1157,Inositol phosphate metabolism,ITPKB
+1158,Inositol phosphate metabolism,ITPKC
+1159,Inositol phosphate metabolism,MDP1
+1160,Inositol phosphate metabolism,MINPP1
+1161,Inositol phosphate metabolism,MIOX
+1162,Inositol phosphate metabolism,MTMR1
+1163,Inositol phosphate metabolism,MTMR14
+1164,Inositol phosphate metabolism,MTMR2
+1165,Inositol phosphate metabolism,MTMR6
+1166,Inositol phosphate metabolism,MTMR7
+1167,Inositol phosphate metabolism,MTMR8
+1168,Inositol phosphate metabolism,NT5C
+1169,Inositol phosphate metabolism,NT5DC3
+1170,Inositol phosphate metabolism,NT5M
+1171,Inositol phosphate metabolism,OCRL
+1172,Inositol phosphate metabolism,PHPT1
+1173,Inositol phosphate metabolism,PI4K2A
+1174,Inositol phosphate metabolism,PI4KA
+1175,Inositol phosphate metabolism,PI4KB
+1176,Inositol phosphate metabolism,PIGF
+1177,Inositol phosphate metabolism,PIGG
+1178,Inositol phosphate metabolism,PIGN
+1179,Inositol phosphate metabolism,PIK3C2A
+1180,Inositol phosphate metabolism,PIK3C2B
+1181,Inositol phosphate metabolism,PIK3C2G
+1182,Inositol phosphate metabolism,PIK3C3
+1183,Inositol phosphate metabolism,PIK3CA
+1184,Inositol phosphate metabolism,PIK3CB
+1185,Inositol phosphate metabolism,PIK3CD
+1186,Inositol phosphate metabolism,PIK3CG
+1187,Inositol phosphate metabolism,PIK3R1
+1188,Inositol phosphate metabolism,PIK3R2
+1189,Inositol phosphate metabolism,PIK3R3
+1190,Inositol phosphate metabolism,PIK3R5
+1191,Inositol phosphate metabolism,PIP5K1A
+1192,Inositol phosphate metabolism,PIP5K1B
+1193,Inositol phosphate metabolism,PIP5K1C
+1194,Inositol phosphate metabolism,PIP5KL1
+1195,Inositol phosphate metabolism,PLCB1
+1196,Inositol phosphate metabolism,PLCB2
+1197,Inositol phosphate metabolism,PLCB3
+1198,Inositol phosphate metabolism,PLCB4
+1199,Inositol phosphate metabolism,PLCD1
+1200,Inositol phosphate metabolism,PLCD3
+1201,Inositol phosphate metabolism,PLCD4
+1202,Inositol phosphate metabolism,PLCE1
+1203,Inositol phosphate metabolism,PLCG1
+1204,Inositol phosphate metabolism,PLCG2
+1205,Inositol phosphate metabolism,PLCH1
+1206,Inositol phosphate metabolism,PLCH2
+1207,Inositol phosphate metabolism,PLCL1
+1208,Inositol phosphate metabolism,PLCXD2
+1209,Inositol phosphate metabolism,PLCZ1
+1210,Inositol phosphate metabolism,PLPP6
+1211,Inositol phosphate metabolism,PLPP7
+1212,Inositol phosphate metabolism,PLPPR5
+1213,Inositol phosphate metabolism,PMPCA
+1214,Inositol phosphate metabolism,PPIP5K1
+1215,Inositol phosphate metabolism,PPIP5K2
+1216,Inositol phosphate metabolism,PTEN
+1217,Inositol phosphate metabolism,PTPDC1
+1218,Inositol phosphate metabolism,PTPRQ
+1219,Inositol phosphate metabolism,SACM1L
+1220,Inositol phosphate metabolism,SGPP1
+1221,Inositol phosphate metabolism,SGPP2
+1222,Inositol phosphate metabolism,SYNJ1
+1223,Inositol phosphate metabolism,SYNJ2
+1224,Inositol phosphate metabolism,TNS2
+1225,Inositol phosphate metabolism,TPTE2
+1226,Keratan sulfate degradation,AGA
+1227,Keratan sulfate degradation,CTSA
+1228,Keratan sulfate degradation,FUCA1
+1229,Keratan sulfate degradation,FUCA2
+1230,Keratan sulfate degradation,GALNS
+1231,Keratan sulfate degradation,GLB1
+1232,Keratan sulfate degradation,GNS
+1233,Keratan sulfate degradation,HEXA
+1234,Keratan sulfate degradation,HEXB
+1235,Keratan sulfate degradation,NAGA
+1236,Keratan sulfate degradation,NEU1
+1237,Keratan sulfate synthesis,B3GNT2
+1238,Keratan sulfate synthesis,B3GNT3
+1239,Keratan sulfate synthesis,B3GNT4
+1240,Keratan sulfate synthesis,B3GNT7
+1241,Keratan sulfate synthesis,B3GNT8
+1242,Keratan sulfate synthesis,B3GNTL1
+1243,Keratan sulfate synthesis,B4GALT1
+1244,Keratan sulfate synthesis,B4GALT2
+1245,Keratan sulfate synthesis,B4GALT3
+1246,Keratan sulfate synthesis,B4GALT5
+1247,Keratan sulfate synthesis,B4GAT1
+1248,Keratan sulfate synthesis,CHST1
+1249,Keratan sulfate synthesis,CHST2
+1250,Keratan sulfate synthesis,CHST3
+1251,Keratan sulfate synthesis,CHST4
+1252,Keratan sulfate synthesis,CHST5
+1253,Keratan sulfate synthesis,CHST6
+1254,Keratan sulfate synthesis,ST3GAL1
+1255,Keratan sulfate synthesis,ST3GAL2
+1256,Keratan sulfate synthesis,ST3GAL4
+1257,Leukotriene metabolism,2679_AT1
+1258,Leukotriene metabolism,ADH1A
+1259,Leukotriene metabolism,ADH1B
+1260,Leukotriene metabolism,ADH1C
+1261,Leukotriene metabolism,ADH4
+1262,Leukotriene metabolism,ADH5
+1263,Leukotriene metabolism,ADH6
+1264,Leukotriene metabolism,ADH7
+1265,Leukotriene metabolism,ADHFE1
+1266,Leukotriene metabolism,CBR1
+1267,Leukotriene metabolism,CBR3
+1268,Leukotriene metabolism,CYP4F11
+1269,Leukotriene metabolism,CYP4F2
+1270,Leukotriene metabolism,CYP4F22
+1271,Leukotriene metabolism,CYP4F3
+1272,Leukotriene metabolism,CYP4F8
+1273,Leukotriene metabolism,DHRS4
+1274,Leukotriene metabolism,DPEP1
+1275,Leukotriene metabolism,DPEP2
+1276,Leukotriene metabolism,DPEP3
+1277,Leukotriene metabolism,GGT1
+1278,Leukotriene metabolism,GGT5
+1279,Leukotriene metabolism,GGT6
+1280,Leukotriene metabolism,GGT7
+1281,Leukotriene metabolism,LTC4S
+1282,Limonene and pinene degradation,CYP2C19
+1283,Limonene and pinene degradation,CYP2C9
+1284,Linoleate metabolism,ALOX15
+1285,Linoleate metabolism,ALOX15B
+1286,Linoleate metabolism,CYP19A1
+1287,Linoleate metabolism,CYP1A1
+1288,Linoleate metabolism,CYP1A2
+1289,Linoleate metabolism,CYP1B1
+1290,Linoleate metabolism,CYP2A13
+1291,Linoleate metabolism,CYP2A6
+1292,Linoleate metabolism,CYP2A7
+1293,Linoleate metabolism,CYP2B6
+1294,Linoleate metabolism,CYP2C18
+1295,Linoleate metabolism,CYP2C19
+1296,Linoleate metabolism,CYP2C8
+1297,Linoleate metabolism,CYP2C9
+1298,Linoleate metabolism,CYP2D6
+1299,Linoleate metabolism,CYP2E1
+1300,Linoleate metabolism,CYP2F1
+1301,Linoleate metabolism,CYP2J2
+1302,Linoleate metabolism,CYP2S1
+1303,Linoleate metabolism,CYP2U1
+1304,Linoleate metabolism,CYP3A4
+1305,Linoleate metabolism,CYP3A43
+1306,Linoleate metabolism,CYP3A5
+1307,Linoleate metabolism,CYP3A7
+1308,Linoleate metabolism,CYP4B1
+1309,Linoleate metabolism,CYP4F11
+1310,Linoleate metabolism,CYP4F12
+1311,Linoleate metabolism,CYP4F8
+1312,Linoleate metabolism,CYP4X1
+1313,Linoleate metabolism,CYP4Z1
+1314,Linoleate metabolism,EPHX2
+1315,Lipoate metabolism,DLD
+1316,Lysine metabolism,AADAT
+1317,Lysine metabolism,AASS
+1318,Lysine metabolism,ALDH7A1
+1319,Lysine metabolism,ALDH9A1
+1320,Lysine metabolism,ASH1L
+1321,Lysine metabolism,BBOX1
+1322,Lysine metabolism,DLD
+1323,Lysine metabolism,DLST
+1324,Lysine metabolism,DOT1L
+1325,Lysine metabolism,EHMT1
+1326,Lysine metabolism,EHMT2
+1327,Lysine metabolism,KMT2A
+1328,Lysine metabolism,KMT2B
+1329,Lysine metabolism,KMT2C
+1330,Lysine metabolism,KMT2D
+1331,Lysine metabolism,KMT2E
+1332,Lysine metabolism,KMT5A
+1333,Lysine metabolism,KMT5B
+1334,Lysine metabolism,KMT5C
+1335,Lysine metabolism,NSD1
+1336,Lysine metabolism,OGDH
+1337,Lysine metabolism,PDHX
+1338,Lysine metabolism,PIPOX
+1339,Lysine metabolism,SEC11A
+1340,Lysine metabolism,SEC11C
+1341,Lysine metabolism,SETD1A
+1342,Lysine metabolism,SETD1B
+1343,Lysine metabolism,SETD2
+1344,Lysine metabolism,SETD7
+1345,Lysine metabolism,SETDB1
+1346,Lysine metabolism,SETDB2
+1347,Lysine metabolism,SETMAR
+1348,Lysine metabolism,SHMT1
+1349,Lysine metabolism,SLC25A21
+1350,Lysine metabolism,SMYD3
+1351,Lysine metabolism,SPCS1
+1352,Lysine metabolism,SPCS2
+1353,Lysine metabolism,SPCS3
+1354,Lysine metabolism,SUV39H1
+1355,Lysine metabolism,SUV39H2
+1356,Lysine metabolism,TMLHE
+1357,Lysine metabolism,WHSC1
+1358,Lysine metabolism,WHSC1L1
+1359,Methionine and cysteine metabolism,ACY1
+1360,Methionine and cysteine metabolism,ADI1
+1361,Methionine and cysteine metabolism,AHCY
+1362,Methionine and cysteine metabolism,AHCYL1
+1363,Methionine and cysteine metabolism,AOC1
+1364,Methionine and cysteine metabolism,CBS
+1365,Methionine and cysteine metabolism,CBSL
+1366,Methionine and cysteine metabolism,CTH
+1367,Methionine and cysteine metabolism,DMGDH
+1368,Methionine and cysteine metabolism,ENOPH1
+1369,Methionine and cysteine metabolism,GOT1
+1370,Methionine and cysteine metabolism,GOT2
+1371,Methionine and cysteine metabolism,HNMT
+1372,Methionine and cysteine metabolism,IL4I1
+1373,Methionine and cysteine metabolism,LDHA
+1374,Methionine and cysteine metabolism,LDHAL6A
+1375,Methionine and cysteine metabolism,LDHAL6B
+1376,Methionine and cysteine metabolism,LDHB
+1377,Methionine and cysteine metabolism,LDHC
+1378,Methionine and cysteine metabolism,MAT1A
+1379,Methionine and cysteine metabolism,MAT2A
+1380,Methionine and cysteine metabolism,MAT2B
+1381,Methionine and cysteine metabolism,MDH1
+1382,Methionine and cysteine metabolism,MDH1B
+1383,Methionine and cysteine metabolism,MPST
+1384,Methionine and cysteine metabolism,MTR
+1385,Methionine and cysteine metabolism,NAGS
+1386,Methionine and cysteine metabolism,SARDH
+1387,Methionine and cysteine metabolism,SDS
+1388,Methionine and cysteine metabolism,SULT1A3
+1389,Methionine and cysteine metabolism,SUOX
+1390,Methionine and cysteine metabolism,TST
+1391,Methionine and cysteine metabolism,TXNRD1
+1392,Methionine and cysteine metabolism,TXNRD2
+1393,Methionine and cysteine metabolism,UEVLD
+1394,Miscellaneous,102724197_AT1
+1395,Miscellaneous,ACE
+1396,Miscellaneous,ACE2
+1397,Miscellaneous,ACO1
+1398,Miscellaneous,ACO2
+1399,Miscellaneous,ACOX1
+1400,Miscellaneous,ACOX3
+1401,Miscellaneous,ACSS1
+1402,Miscellaneous,ACSS2
+1403,Miscellaneous,ACSS3
+1404,Miscellaneous,ADH1A
+1405,Miscellaneous,ADH1B
+1406,Miscellaneous,ADH1C
+1407,Miscellaneous,ADH4
+1408,Miscellaneous,ADH5
+1409,Miscellaneous,ADH6
+1410,Miscellaneous,ADH7
+1411,Miscellaneous,ADHFE1
+1412,Miscellaneous,AGL
+1413,Miscellaneous,AKR1A1
+1414,Miscellaneous,AKR1B1
+1415,Miscellaneous,ALAS1
+1416,Miscellaneous,ALAS2
+1417,Miscellaneous,ALDH1A3
+1418,Miscellaneous,ALDH1B1
+1419,Miscellaneous,ALDH2
+1420,Miscellaneous,ALDH3A1
+1421,Miscellaneous,ALDH3A2
+1422,Miscellaneous,ALDH3B1
+1423,Miscellaneous,ALDH3B2
+1424,Miscellaneous,ALDH7A1
+1425,Miscellaneous,ALDH9A1
+1426,Miscellaneous,ALDOA
+1427,Miscellaneous,ALDOB
+1428,Miscellaneous,ALDOC
+1429,Miscellaneous,ALPL
+1430,Miscellaneous,BCKDHA
+1431,Miscellaneous,BCKDHB
+1432,Miscellaneous,CA1
+1433,Miscellaneous,CA12
+1434,Miscellaneous,CA13
+1435,Miscellaneous,CA14
+1436,Miscellaneous,CA2
+1437,Miscellaneous,CA3
+1438,Miscellaneous,CA4
+1439,Miscellaneous,CA5A
+1440,Miscellaneous,CA5B
+1441,Miscellaneous,CA6
+1442,Miscellaneous,CA7
+1443,Miscellaneous,CA8
+1444,Miscellaneous,CA9
+1445,Miscellaneous,CARNS1
+1446,Miscellaneous,CAT
+1447,Miscellaneous,CEL
+1448,Miscellaneous,CES1
+1449,Miscellaneous,CES2
+1450,Miscellaneous,CES3
+1451,Miscellaneous,CES5A
+1452,Miscellaneous,CLPS
+1453,Miscellaneous,CMA1
+1454,Miscellaneous,CNP
+1455,Miscellaneous,CP
+1456,Miscellaneous,CPA1
+1457,Miscellaneous,CPA2
+1458,Miscellaneous,CPA5
+1459,Miscellaneous,CPA6
+1460,Miscellaneous,CYB5R1
+1461,Miscellaneous,CYB5R2
+1462,Miscellaneous,CYB5R3
+1463,Miscellaneous,DBT
+1464,Miscellaneous,DLAT
+1465,Miscellaneous,DLST
+1466,Miscellaneous,ECHS1
+1467,Miscellaneous,EHHADH
+1468,Miscellaneous,EPX
+1469,Miscellaneous,FTH1
+1470,Miscellaneous,FTL
+1471,Miscellaneous,FTMT
+1472,Miscellaneous,G6PC
+1473,Miscellaneous,G6PC2
+1474,Miscellaneous,G6PC3
+1475,Miscellaneous,GGT1
+1476,Miscellaneous,GGT2
+1477,Miscellaneous,GGT5
+1478,Miscellaneous,GGT6
+1479,Miscellaneous,GGT7
+1480,Miscellaneous,GGTLC1
+1481,Miscellaneous,GGTLC2
+1482,Miscellaneous,GLA
+1483,Miscellaneous,GLB1
+1484,Miscellaneous,GLYCTK
+1485,Miscellaneous,HADHA
+1486,Miscellaneous,HIBCH
+1487,Miscellaneous,HSD17B7
+1488,Miscellaneous,HYKK
+1489,Miscellaneous,IDH1
+1490,Miscellaneous,IDH2
+1491,Miscellaneous,IDH3A
+1492,Miscellaneous,IDH3B
+1493,Miscellaneous,IDH3G
+1494,Miscellaneous,KL
+1495,Miscellaneous,LIPA
+1496,Miscellaneous,LPO
+1497,Miscellaneous,MPO
+1498,Miscellaneous,OGDH
+1499,Miscellaneous,PDHA1
+1500,Miscellaneous,PDHA2
+1501,Miscellaneous,PDHB
+1502,Miscellaneous,PFKL
+1503,Miscellaneous,PHYKPL
+1504,Miscellaneous,PRDX6
+1505,Miscellaneous,SCD
+1506,Miscellaneous,SCD5
+1507,Miscellaneous,SI
+1508,Miscellaneous,SOAT1
+1509,Miscellaneous,SOAT2
+1510,Miscellaneous,SULT1A1
+1511,Miscellaneous,TMEM91
+1512,Miscellaneous,TPSAB1
+1513,Miscellaneous,TPSB2
+1514,Miscellaneous,TPSD1
+1515,Miscellaneous,TST
+1516,Miscellaneous,TXNRD1
+1517,Miscellaneous,UGT1A1
+1518,Miscellaneous,UROD
+1519,Miscellaneous,ZADH2
+1520,N-glycan degradation,AGA
+1521,N-glycan degradation,CTSA
+1522,N-glycan degradation,FUCA1
+1523,N-glycan degradation,FUCA2
+1524,N-glycan degradation,GALNS
+1525,N-glycan degradation,GLB1
+1526,N-glycan degradation,HEXA
+1527,N-glycan degradation,HEXB
+1528,N-glycan degradation,MAN2B1
+1529,N-glycan degradation,MANBA
+1530,N-glycan degradation,NEU1
+1531,N-glycan metabolism,ALG5
+1532,N-glycan metabolism,DOLPP1
+1533,N-glycan metabolism,FDPS
+1534,N-glycan metabolism,GGPS1
+1535,N-glycan metabolism,MGAT4C
+1536,N-glycan metabolism,MGAT5
+1537,N-glycan synthesis,ALG10
+1538,N-glycan synthesis,ALG12
+1539,N-glycan synthesis,ALG5
+1540,NAD metabolism,ACP1
+1541,NAD metabolism,ACP5
+1542,NAD metabolism,ACP6
+1543,NAD metabolism,ACP7
+1544,NAD metabolism,ACPP
+1545,NAD metabolism,ACPT
+1546,NAD metabolism,CD38
+1547,NAD metabolism,ENPP1
+1548,NAD metabolism,ENPP3
+1549,NAD metabolism,NADK
+1550,NAD metabolism,NADSYN1
+1551,NAD metabolism,NAMPT
+1552,NAD metabolism,NAPRT
+1553,NAD metabolism,NMNAT1
+1554,NAD metabolism,NMNAT2
+1555,NAD metabolism,NMNAT3
+1556,NAD metabolism,NMRK1
+1557,NAD metabolism,NNMT
+1558,NAD metabolism,NNT
+1559,NAD metabolism,NT5C
+1560,NAD metabolism,NT5C1A
+1561,NAD metabolism,NT5C1B
+1562,NAD metabolism,NT5C2
+1563,NAD metabolism,NT5C3A
+1564,NAD metabolism,NT5E
+1565,NAD metabolism,NUDT12
+1566,NAD metabolism,PNP
+1567,NAD metabolism,PXYLP1
+1568,NAD metabolism,QPRT
+1569,Nucleotide interconversion,100507855_AT1
+1570,Nucleotide interconversion,2974_AT1
+1571,Nucleotide interconversion,ADA
+1572,Nucleotide interconversion,ADCY1
+1573,Nucleotide interconversion,ADCY10
+1574,Nucleotide interconversion,ADCY2
+1575,Nucleotide interconversion,ADCY3
+1576,Nucleotide interconversion,ADCY4
+1577,Nucleotide interconversion,ADCY5
+1578,Nucleotide interconversion,ADCY6
+1579,Nucleotide interconversion,ADCY7
+1580,Nucleotide interconversion,ADCY8
+1581,Nucleotide interconversion,ADCY9
+1582,Nucleotide interconversion,ADK
+1583,Nucleotide interconversion,ADSL
+1584,Nucleotide interconversion,ADSS
+1585,Nucleotide interconversion,ADSSL1
+1586,Nucleotide interconversion,AICDA
+1587,Nucleotide interconversion,AK1
+1588,Nucleotide interconversion,AK2
+1589,Nucleotide interconversion,AK3
+1590,Nucleotide interconversion,AK4
+1591,Nucleotide interconversion,AK5
+1592,Nucleotide interconversion,AK7
+1593,Nucleotide interconversion,AMPD1
+1594,Nucleotide interconversion,AMPD2
+1595,Nucleotide interconversion,AMPD3
+1596,Nucleotide interconversion,BPNT1
+1597,Nucleotide interconversion,CANT1
+1598,Nucleotide interconversion,CMPK1
+1599,Nucleotide interconversion,CMPK2
+1600,Nucleotide interconversion,CTPS1
+1601,Nucleotide interconversion,CTPS2
+1602,Nucleotide interconversion,DCK
+1603,Nucleotide interconversion,DCTPP1
+1604,Nucleotide interconversion,DGUOK
+1605,Nucleotide interconversion,DTYMK
+1606,Nucleotide interconversion,DUT
+1607,Nucleotide interconversion,ENTPD1
+1608,Nucleotide interconversion,ENTPD2
+1609,Nucleotide interconversion,ENTPD3
+1610,Nucleotide interconversion,ENTPD4
+1611,Nucleotide interconversion,ENTPD5
+1612,Nucleotide interconversion,ENTPD6
+1613,Nucleotide interconversion,ENTPD8
+1614,Nucleotide interconversion,GMPS
+1615,Nucleotide interconversion,GUCY1A2
+1616,Nucleotide interconversion,GUCY1A3
+1617,Nucleotide interconversion,GUCY1B3
+1618,Nucleotide interconversion,GUCY2C
+1619,Nucleotide interconversion,GUCY2D
+1620,Nucleotide interconversion,GUCY2F
+1621,Nucleotide interconversion,GUK1
+1622,Nucleotide interconversion,IMPDH1
+1623,Nucleotide interconversion,IMPDH2
+1624,Nucleotide interconversion,ITPA
+1625,Nucleotide interconversion,NME1
+1626,Nucleotide interconversion,NME2
+1627,Nucleotide interconversion,NME3
+1628,Nucleotide interconversion,NME4
+1629,Nucleotide interconversion,NME6
+1630,Nucleotide interconversion,NME7
+1631,Nucleotide interconversion,NPR1
+1632,Nucleotide interconversion,NPR2
+1633,Nucleotide interconversion,NT5C
+1634,Nucleotide interconversion,NT5C1A
+1635,Nucleotide interconversion,NT5C1B
+1636,Nucleotide interconversion,NT5C2
+1637,Nucleotide interconversion,NT5C3A
+1638,Nucleotide interconversion,NT5E
+1639,Nucleotide interconversion,NT5M
+1640,Nucleotide interconversion,NUDT5
+1641,Nucleotide interconversion,PAPSS1
+1642,Nucleotide interconversion,PAPSS2
+1643,Nucleotide interconversion,PDE10A
+1644,Nucleotide interconversion,PDE11A
+1645,Nucleotide interconversion,PDE1A
+1646,Nucleotide interconversion,PDE1B
+1647,Nucleotide interconversion,PDE1C
+1648,Nucleotide interconversion,PDE2A
+1649,Nucleotide interconversion,PDE3A
+1650,Nucleotide interconversion,PDE3B
+1651,Nucleotide interconversion,PDE4A
+1652,Nucleotide interconversion,PDE4B
+1653,Nucleotide interconversion,PDE4C
+1654,Nucleotide interconversion,PDE4D
+1655,Nucleotide interconversion,PDE5A
+1656,Nucleotide interconversion,PDE6A
+1657,Nucleotide interconversion,PDE6B
+1658,Nucleotide interconversion,PDE6C
+1659,Nucleotide interconversion,PDE6D
+1660,Nucleotide interconversion,PDE6G
+1661,Nucleotide interconversion,PDE6H
+1662,Nucleotide interconversion,PDE7A
+1663,Nucleotide interconversion,PDE7B
+1664,Nucleotide interconversion,PDE8A
+1665,Nucleotide interconversion,PDE8B
+1666,Nucleotide interconversion,PDE9A
+1667,Nucleotide interconversion,PHEX
+1668,Nucleotide interconversion,PNP
+1669,Nucleotide interconversion,RRM1
+1670,Nucleotide interconversion,RRM2
+1671,Nucleotide interconversion,RRM2B
+1672,Nucleotide interconversion,TK1
+1673,Nucleotide interconversion,TK2
+1674,Nucleotide interconversion,TXNRD1
+1675,Nucleotide interconversion,TYMS
+1676,Nucleotide interconversion,UCK1
+1677,Nucleotide interconversion,UCK2
+1678,Nucleotide interconversion,UCKL1
+1679,Nucleotide interconversion,UPP2
+1680,Nucleotide interconversion,XDH
+1681,Nucleotide metabolism,ITPA
+1682,Nucleotide salvage pathway,APRT
+1683,Nucleotide salvage pathway,HPRT1
+1684,Nucleotide sugar metabolism,UXS1
+1685,O-glycan metabolism,A4GNT
+1686,O-glycan metabolism,B3GNT6
+1687,O-glycan metabolism,B4GALT5
+1688,O-glycan metabolism,C1GALT1
+1689,O-glycan metabolism,GALNT1
+1690,O-glycan metabolism,GALNT10
+1691,O-glycan metabolism,GALNT11
+1692,O-glycan metabolism,GALNT12
+1693,O-glycan metabolism,GALNT13
+1694,O-glycan metabolism,GALNT14
+1695,O-glycan metabolism,GALNT15
+1696,O-glycan metabolism,GALNT2
+1697,O-glycan metabolism,GALNT3
+1698,O-glycan metabolism,GALNT4
+1699,O-glycan metabolism,GALNT5
+1700,O-glycan metabolism,GALNT6
+1701,O-glycan metabolism,GALNT7
+1702,O-glycan metabolism,GALNT8
+1703,O-glycan metabolism,GALNT9
+1704,O-glycan metabolism,GCNT1
+1705,O-glycan metabolism,GCNT3
+1706,O-glycan metabolism,GCNT4
+1707,O-glycan metabolism,ST3GAL1
+1708,O-glycan metabolism,ST6GALNAC1
+1709,Oxidative phosphorylation,ATP5A1
+1710,Oxidative phosphorylation,ATP5B
+1711,Oxidative phosphorylation,ATP5C1
+1712,Oxidative phosphorylation,ATP5D
+1713,Oxidative phosphorylation,ATP5E
+1714,Oxidative phosphorylation,ATP5F1
+1715,Oxidative phosphorylation,ATP5G1
+1716,Oxidative phosphorylation,ATP5G2
+1717,Oxidative phosphorylation,ATP5G3
+1718,Oxidative phosphorylation,ATP5H
+1719,Oxidative phosphorylation,ATP5I
+1720,Oxidative phosphorylation,ATP5J
+1721,Oxidative phosphorylation,ATP5J2
+1722,Oxidative phosphorylation,ATP5L
+1723,Oxidative phosphorylation,ATP5L2
+1724,Oxidative phosphorylation,ATP5O
+1725,Oxidative phosphorylation,ATP5S
+1726,Oxidative phosphorylation,COX1
+1727,Oxidative phosphorylation,COX2
+1728,Oxidative phosphorylation,COX3
+1729,Oxidative phosphorylation,COX4I1
+1730,Oxidative phosphorylation,COX4I2
+1731,Oxidative phosphorylation,COX5A
+1732,Oxidative phosphorylation,COX5B
+1733,Oxidative phosphorylation,COX6A1
+1734,Oxidative phosphorylation,COX6A2
+1735,Oxidative phosphorylation,COX6B1
+1736,Oxidative phosphorylation,COX6B2
+1737,Oxidative phosphorylation,COX6C
+1738,Oxidative phosphorylation,COX7A1
+1739,Oxidative phosphorylation,COX7A2
+1740,Oxidative phosphorylation,COX7A2L
+1741,Oxidative phosphorylation,COX7B
+1742,Oxidative phosphorylation,COX7B2
+1743,Oxidative phosphorylation,COX7C
+1744,Oxidative phosphorylation,COX8A
+1745,Oxidative phosphorylation,COX8C
+1746,Oxidative phosphorylation,CYC1
+1747,Oxidative phosphorylation,CYTB
+1748,Oxidative phosphorylation,ETFA
+1749,Oxidative phosphorylation,ETFB
+1750,Oxidative phosphorylation,ETFDH
+1751,Oxidative phosphorylation,GPD2
+1752,Oxidative phosphorylation,LHPP
+1753,Oxidative phosphorylation,ND1
+1754,Oxidative phosphorylation,ND2
+1755,Oxidative phosphorylation,ND3
+1756,Oxidative phosphorylation,ND4
+1757,Oxidative phosphorylation,ND4L
+1758,Oxidative phosphorylation,ND5
+1759,Oxidative phosphorylation,ND6
+1760,Oxidative phosphorylation,NDUFA1
+1761,Oxidative phosphorylation,NDUFA10
+1762,Oxidative phosphorylation,NDUFA11
+1763,Oxidative phosphorylation,NDUFA12
+1764,Oxidative phosphorylation,NDUFA13
+1765,Oxidative phosphorylation,NDUFA2
+1766,Oxidative phosphorylation,NDUFA3
+1767,Oxidative phosphorylation,NDUFA4
+1768,Oxidative phosphorylation,NDUFA5
+1769,Oxidative phosphorylation,NDUFA6
+1770,Oxidative phosphorylation,NDUFA7
+1771,Oxidative phosphorylation,NDUFA8
+1772,Oxidative phosphorylation,NDUFA9
+1773,Oxidative phosphorylation,NDUFAB1
+1774,Oxidative phosphorylation,NDUFB1
+1775,Oxidative phosphorylation,NDUFB10
+1776,Oxidative phosphorylation,NDUFB11
+1777,Oxidative phosphorylation,NDUFB2
+1778,Oxidative phosphorylation,NDUFB3
+1779,Oxidative phosphorylation,NDUFB4
+1780,Oxidative phosphorylation,NDUFB5
+1781,Oxidative phosphorylation,NDUFB6
+1782,Oxidative phosphorylation,NDUFB7
+1783,Oxidative phosphorylation,NDUFB8
+1784,Oxidative phosphorylation,NDUFB9
+1785,Oxidative phosphorylation,NDUFC1
+1786,Oxidative phosphorylation,NDUFC2
+1787,Oxidative phosphorylation,NDUFS1
+1788,Oxidative phosphorylation,NDUFS2
+1789,Oxidative phosphorylation,NDUFS3
+1790,Oxidative phosphorylation,NDUFS4
+1791,Oxidative phosphorylation,NDUFS5
+1792,Oxidative phosphorylation,NDUFS6
+1793,Oxidative phosphorylation,NDUFS7
+1794,Oxidative phosphorylation,NDUFS8
+1795,Oxidative phosphorylation,NDUFV1
+1796,Oxidative phosphorylation,NDUFV2
+1797,Oxidative phosphorylation,NDUFV3
+1798,Oxidative phosphorylation,NSF
+1799,Oxidative phosphorylation,PPA1
+1800,Oxidative phosphorylation,PPA2
+1801,Oxidative phosphorylation,TUSC3
+1802,Oxidative phosphorylation,UQCR10
+1803,Oxidative phosphorylation,UQCR11
+1804,Oxidative phosphorylation,UQCRB
+1805,Oxidative phosphorylation,UQCRC1
+1806,Oxidative phosphorylation,UQCRC2
+1807,Oxidative phosphorylation,UQCRFS1
+1808,Oxidative phosphorylation,UQCRH
+1809,Oxidative phosphorylation,UQCRQ
+1810,Pentose phosphate pathway,AKR1A1
+1811,Pentose phosphate pathway,AKR1B1
+1812,Pentose phosphate pathway,AKR1B10
+1813,Pentose phosphate pathway,AKR7A2
+1814,Pentose phosphate pathway,DCXR
+1815,Pentose phosphate pathway,DERA
+1816,Pentose phosphate pathway,G6PD
+1817,Pentose phosphate pathway,H6PD
+1818,Pentose phosphate pathway,PGD
+1819,Pentose phosphate pathway,PGLS
+1820,Pentose phosphate pathway,PGM1
+1821,Pentose phosphate pathway,PGM2
+1822,Pentose phosphate pathway,PRPS1
+1823,Pentose phosphate pathway,PRPS1L1
+1824,Pentose phosphate pathway,PRPS2
+1825,Pentose phosphate pathway,RBKS
+1826,Pentose phosphate pathway,RPE
+1827,Pentose phosphate pathway,RPIA
+1828,Pentose phosphate pathway,TALDO1
+1829,Pentose phosphate pathway,TKT
+1830,Pentose phosphate pathway,TKTL1
+1831,Pentose phosphate pathway,TKTL2
+1832,Pentose phosphate pathway,XYLB
+1833,Phenylalanine metabolism,ALDH1A3
+1834,Phenylalanine metabolism,ALDH3A1
+1835,Phenylalanine metabolism,ALDH3B1
+1836,Phenylalanine metabolism,ALDH3B2
+1837,Phenylalanine metabolism,AOC1
+1838,Phenylalanine metabolism,AOC2
+1839,Phenylalanine metabolism,COMT
+1840,Phenylalanine metabolism,DDC
+1841,Phenylalanine metabolism,DIO1
+1842,Phenylalanine metabolism,DIO2
+1843,Phenylalanine metabolism,DIO3
+1844,Phenylalanine metabolism,EPX
+1845,Phenylalanine metabolism,FAAH2
+1846,Phenylalanine metabolism,GLYAT
+1847,Phenylalanine metabolism,GOT1
+1848,Phenylalanine metabolism,GOT2
+1849,Phenylalanine metabolism,HPD
+1850,Phenylalanine metabolism,IL4I1
+1851,Phenylalanine metabolism,LPO
+1852,Phenylalanine metabolism,LRTOMT
+1853,Phenylalanine metabolism,MAOA
+1854,Phenylalanine metabolism,MAOB
+1855,Phenylalanine metabolism,PAH
+1856,Phenylalanine metabolism,PRDX6
+1857,Phenylalanine metabolism,PXDN
+1858,Phenylalanine metabolism,PXDNL
+1859,Phenylalanine metabolism,STS
+1860,Phenylalanine metabolism,SULT1A3
+1861,Phenylalanine metabolism,SULT1B1
+1862,Phenylalanine metabolism,SULT1C2
+1863,Phenylalanine metabolism,TAT
+1864,Phenylalanine metabolism,TH
+1865,Phenylalanine metabolism,TYR
+1866,Phosphatidylinositol phosphate metabolism,DPM2
+1867,Phosphatidylinositol phosphate metabolism,GPAA1
+1868,Phosphatidylinositol phosphate metabolism,MTMR2
+1869,Phosphatidylinositol phosphate metabolism,MTMR3
+1870,Phosphatidylinositol phosphate metabolism,OXSM
+1871,Phosphatidylinositol phosphate metabolism,PGAP1
+1872,Phosphatidylinositol phosphate metabolism,PI4KA
+1873,Phosphatidylinositol phosphate metabolism,PI4KB
+1874,Phosphatidylinositol phosphate metabolism,PIGA
+1875,Phosphatidylinositol phosphate metabolism,PIGB
+1876,Phosphatidylinositol phosphate metabolism,PIGC
+1877,Phosphatidylinositol phosphate metabolism,PIGF
+1878,Phosphatidylinositol phosphate metabolism,PIGG
+1879,Phosphatidylinositol phosphate metabolism,PIGH
+1880,Phosphatidylinositol phosphate metabolism,PIGK
+1881,Phosphatidylinositol phosphate metabolism,PIGL
+1882,Phosphatidylinositol phosphate metabolism,PIGM
+1883,Phosphatidylinositol phosphate metabolism,PIGN
+1884,Phosphatidylinositol phosphate metabolism,PIGO
+1885,Phosphatidylinositol phosphate metabolism,PIGP
+1886,Phosphatidylinositol phosphate metabolism,PIGQ
+1887,Phosphatidylinositol phosphate metabolism,PIGS
+1888,Phosphatidylinositol phosphate metabolism,PIGT
+1889,Phosphatidylinositol phosphate metabolism,PIGU
+1890,Phosphatidylinositol phosphate metabolism,PIGV
+1891,Phosphatidylinositol phosphate metabolism,PIGW
+1892,Phosphatidylinositol phosphate metabolism,PIGX
+1893,Phosphatidylinositol phosphate metabolism,PIGZ
+1894,Phosphatidylinositol phosphate metabolism,PIK3C2A
+1895,Phosphatidylinositol phosphate metabolism,PIK3C2B
+1896,Phosphatidylinositol phosphate metabolism,PIK3C2G
+1897,Phosphatidylinositol phosphate metabolism,PIP4K2A
+1898,Phosphatidylinositol phosphate metabolism,PIP4K2B
+1899,Phosphatidylinositol phosphate metabolism,PIP4K2C
+1900,Phosphatidylinositol phosphate metabolism,PLD1
+1901,Phosphatidylinositol phosphate metabolism,PLD2
+1902,Phosphatidylinositol phosphate metabolism,TPTE2
+1903,Propanoate metabolism,340811_AT1
+1904,Propanoate metabolism,AACS
+1905,Propanoate metabolism,ACAT1
+1906,Propanoate metabolism,ACSS1
+1907,Propanoate metabolism,ACSS2
+1908,Propanoate metabolism,ACSS3
+1909,Propanoate metabolism,ADH5
+1910,Propanoate metabolism,AKR1B10
+1911,Propanoate metabolism,AKR1B15
+1912,Propanoate metabolism,AKR1C1
+1913,Propanoate metabolism,AKR1C4
+1914,Propanoate metabolism,ALDH6A1
+1915,Propanoate metabolism,BCKDHA
+1916,Propanoate metabolism,BCKDHB
+1917,Propanoate metabolism,BDH2
+1918,Propanoate metabolism,CBR4
+1919,Propanoate metabolism,CTBP1
+1920,Propanoate metabolism,DBT
+1921,Propanoate metabolism,DHRS2
+1922,Propanoate metabolism,DLD
+1923,Propanoate metabolism,HSD11B1L
+1924,Propanoate metabolism,HSD11B2
+1925,Propanoate metabolism,HSD17B11
+1926,Propanoate metabolism,HSD17B14
+1927,Propanoate metabolism,HSD17B8
+1928,Propanoate metabolism,HSD3B7
+1929,Propanoate metabolism,HTATIP2
+1930,Propanoate metabolism,LDHA
+1931,Propanoate metabolism,LDHAL6A
+1932,Propanoate metabolism,LDHAL6B
+1933,Propanoate metabolism,LDHB
+1934,Propanoate metabolism,LDHC
+1935,Propanoate metabolism,MDH1B
+1936,Propanoate metabolism,RDH10
+1937,Propanoate metabolism,RDH12
+1938,Propanoate metabolism,RDH13
+1939,Propanoate metabolism,RDH14
+1940,Propanoate metabolism,SDR16C5
+1941,Propanoate metabolism,SDR42E1
+1942,Propanoate metabolism,SDR42E2
+1943,Propanoate metabolism,SDR9C7
+1944,Propanoate metabolism,UEVLD
+1945,Propanoate metabolism,WWOX
+1946,Purine catabolism,ACP2
+1947,Purine catabolism,ACP5
+1948,Purine catabolism,ACP6
+1949,Purine catabolism,ACPP
+1950,Purine catabolism,ADA
+1951,Purine catabolism,APRT
+1952,Purine catabolism,ENTPD1
+1953,Purine catabolism,ENTPD3
+1954,Purine catabolism,ENTPD8
+1955,Purine catabolism,GDA
+1956,Purine catabolism,GMPR
+1957,Purine catabolism,GMPR2
+1958,Purine catabolism,HPRT1
+1959,Purine catabolism,ITPA
+1960,Purine catabolism,LHPP
+1961,Purine catabolism,NT5C
+1962,Purine catabolism,NT5C1A
+1963,Purine catabolism,NT5C1B
+1964,Purine catabolism,NT5C1B-RDH14
+1965,Purine catabolism,NT5C2
+1966,Purine catabolism,NT5C3A
+1967,Purine catabolism,NT5E
+1968,Purine catabolism,NT5M
+1969,Purine catabolism,PNP
+1970,Purine catabolism,PPA1
+1971,Purine catabolism,PPA2
+1972,Purine catabolism,PRDX6
+1973,Purine catabolism,SLC25A17
+1974,Purine catabolism,TPO
+1975,Purine catabolism,XDH
+1976,Purine synthesis,ADSL
+1977,Purine synthesis,ATIC
+1978,Purine synthesis,GART
+1979,Purine synthesis,PAICS
+1980,Purine synthesis,PFAS
+1981,Purine synthesis,PPAT
+1982,Purine synthesis,UCK1
+1983,Purine synthesis,UCK2
+1984,Purine synthesis,UCKL1
+1985,Pyrimidine catabolism,ABAT
+1986,Pyrimidine catabolism,ACP2
+1987,Pyrimidine catabolism,ACP5
+1988,Pyrimidine catabolism,ACP6
+1989,Pyrimidine catabolism,ACPP
+1990,Pyrimidine catabolism,AGXT2
+1991,Pyrimidine catabolism,AICDA
+1992,Pyrimidine catabolism,CDA
+1993,Pyrimidine catabolism,DCK
+1994,Pyrimidine catabolism,DCTD
+1995,Pyrimidine catabolism,DPYD
+1996,Pyrimidine catabolism,DPYS
+1997,Pyrimidine catabolism,DPYSL2
+1998,Pyrimidine catabolism,DPYSL3
+1999,Pyrimidine catabolism,ENTPD1
+2000,Pyrimidine catabolism,ENTPD3
+2001,Pyrimidine catabolism,ENTPD8
+2002,Pyrimidine catabolism,GUCA1A
+2003,Pyrimidine catabolism,ITPA
+2004,Pyrimidine catabolism,NT5C
+2005,Pyrimidine catabolism,NT5C1A
+2006,Pyrimidine catabolism,NT5C1B
+2007,Pyrimidine catabolism,NT5C2
+2008,Pyrimidine catabolism,NT5C3A
+2009,Pyrimidine catabolism,NT5E
+2010,Pyrimidine catabolism,TYMP
+2011,Pyrimidine catabolism,UPB1
+2012,Pyrimidine catabolism,UPP1
+2013,Pyrimidine catabolism,UPP2
+2014,Pyrimidine synthesis,CAD
+2015,Pyrimidine synthesis,CTPS1
+2016,Pyrimidine synthesis,CTPS2
+2017,Pyrimidine synthesis,DHODH
+2018,Pyrimidine synthesis,DTYMK
+2019,Pyrimidine synthesis,FAM20B
+2020,Pyrimidine synthesis,FGGY
+2021,Pyrimidine synthesis,FN3K
+2022,Pyrimidine synthesis,FN3KRP
+2023,Pyrimidine synthesis,NME1
+2024,Pyrimidine synthesis,NME2
+2025,Pyrimidine synthesis,NME4
+2026,Pyrimidine synthesis,NOL9
+2027,Pyrimidine synthesis,PKM
+2028,Pyrimidine synthesis,RRM2B
+2029,Pyrimidine synthesis,TK2
+2030,Pyrimidine synthesis,UCK1
+2031,Pyrimidine synthesis,UCK2
+2032,Pyrimidine synthesis,UCKL1
+2033,Pyrimidine synthesis,UMPS
+2034,Pyrimidine synthesis,UPRT
+2035,Pyruvate metabolism,ACOT12
+2036,Pyruvate metabolism,ADH1A
+2037,Pyruvate metabolism,ADH1B
+2038,Pyruvate metabolism,ADH1C
+2039,Pyruvate metabolism,ADH4
+2040,Pyruvate metabolism,ADH5
+2041,Pyruvate metabolism,ADH6
+2042,Pyruvate metabolism,ADH7
+2043,Pyruvate metabolism,ADHFE1
+2044,Pyruvate metabolism,AKR1A1
+2045,Pyruvate metabolism,AKR1B1
+2046,Pyruvate metabolism,AKR1B10
+2047,Pyruvate metabolism,AKR7A2
+2048,Pyruvate metabolism,ALDH18A1
+2049,Pyruvate metabolism,ALDH1A1
+2050,Pyruvate metabolism,ALDH1A2
+2051,Pyruvate metabolism,ALDH1A3
+2052,Pyruvate metabolism,ALDH1B1
+2053,Pyruvate metabolism,ALDH2
+2054,Pyruvate metabolism,ALDH3A1
+2055,Pyruvate metabolism,ALDH3A2
+2056,Pyruvate metabolism,ALDH3B1
+2057,Pyruvate metabolism,ALDH3B2
+2058,Pyruvate metabolism,ALDH4A1
+2059,Pyruvate metabolism,ALDH5A1
+2060,Pyruvate metabolism,ALDH6A1
+2061,Pyruvate metabolism,ALDH7A1
+2062,Pyruvate metabolism,ALDH9A1
+2063,Pyruvate metabolism,CYB5D1
+2064,Pyruvate metabolism,CYP2E1
+2065,Pyruvate metabolism,GLO1
+2066,Pyruvate metabolism,GRHPR
+2067,Pyruvate metabolism,HAGH
+2068,Pyruvate metabolism,HAGHL
+2069,Pyruvate metabolism,LDHA
+2070,Pyruvate metabolism,LDHB
+2071,Pyruvate metabolism,LDHD
+2072,Pyruvate metabolism,ME1
+2073,Pyruvate metabolism,ME2
+2074,Pyruvate metabolism,ME3
+2075,Pyruvate metabolism,PC
+2076,Pyruvate metabolism,ZADH2
+2077,ROS detoxification,CAT
+2078,ROS detoxification,SOD1
+2079,ROS detoxification,SOD2
+2080,ROS detoxification,SOD3
+2081,Sphingolipid metabolism,644378_AT1
+2082,Sphingolipid metabolism,A4GALT
+2083,Sphingolipid metabolism,A4GNT
+2084,Sphingolipid metabolism,ACER1
+2085,Sphingolipid metabolism,ACER2
+2086,Sphingolipid metabolism,ACER3
+2087,Sphingolipid metabolism,ALG1L
+2088,Sphingolipid metabolism,ALG1L2
+2089,Sphingolipid metabolism,ARSA
+2090,Sphingolipid metabolism,ASAH1
+2091,Sphingolipid metabolism,ASAH2
+2092,Sphingolipid metabolism,B3GALNT1
+2093,Sphingolipid metabolism,B3GALNT2
+2094,Sphingolipid metabolism,B3GALT1
+2095,Sphingolipid metabolism,B3GALT2
+2096,Sphingolipid metabolism,B3GALT4
+2097,Sphingolipid metabolism,B3GALT5
+2098,Sphingolipid metabolism,B3GLCT
+2099,Sphingolipid metabolism,B3GNT2
+2100,Sphingolipid metabolism,B3GNT3
+2101,Sphingolipid metabolism,B3GNT4
+2102,Sphingolipid metabolism,B3GNT5
+2103,Sphingolipid metabolism,B3GNT6
+2104,Sphingolipid metabolism,B3GNT7
+2105,Sphingolipid metabolism,B3GNT8
+2106,Sphingolipid metabolism,B3GNT9
+2107,Sphingolipid metabolism,B3GNTL1
+2108,Sphingolipid metabolism,B4GALNT1
+2109,Sphingolipid metabolism,B4GALNT2
+2110,Sphingolipid metabolism,B4GALNT3
+2111,Sphingolipid metabolism,B4GALNT4
+2112,Sphingolipid metabolism,B4GALT1
+2113,Sphingolipid metabolism,B4GALT2
+2114,Sphingolipid metabolism,B4GALT3
+2115,Sphingolipid metabolism,B4GALT4
+2116,Sphingolipid metabolism,B4GALT5
+2117,Sphingolipid metabolism,B4GALT6
+2118,Sphingolipid metabolism,B4GALT7
+2119,Sphingolipid metabolism,CERK
+2120,Sphingolipid metabolism,CERS1
+2121,Sphingolipid metabolism,CERS2
+2122,Sphingolipid metabolism,CERS3
+2123,Sphingolipid metabolism,CERS4
+2124,Sphingolipid metabolism,CERS5
+2125,Sphingolipid metabolism,CERS6
+2126,Sphingolipid metabolism,CTSA
+2127,Sphingolipid metabolism,DEGS1
+2128,Sphingolipid metabolism,DEGS2
+2129,Sphingolipid metabolism,ENPP7
+2130,Sphingolipid metabolism,FUT1
+2131,Sphingolipid metabolism,FUT10
+2132,Sphingolipid metabolism,FUT11
+2133,Sphingolipid metabolism,FUT4
+2134,Sphingolipid metabolism,FUT7
+2135,Sphingolipid metabolism,FUT9
+2136,Sphingolipid metabolism,GAL3ST1
+2137,Sphingolipid metabolism,GALC
+2138,Sphingolipid metabolism,GALNS
+2139,Sphingolipid metabolism,GALNT7
+2140,Sphingolipid metabolism,GALNTL5
+2141,Sphingolipid metabolism,GBA
+2142,Sphingolipid metabolism,GBA2
+2143,Sphingolipid metabolism,GBGT1
+2144,Sphingolipid metabolism,GCNT7
+2145,Sphingolipid metabolism,GLA
+2146,Sphingolipid metabolism,GLB1
+2147,Sphingolipid metabolism,GLT6D1
+2148,Sphingolipid metabolism,GLT8D1
+2149,Sphingolipid metabolism,GLT8D2
+2150,Sphingolipid metabolism,GM2A
+2151,Sphingolipid metabolism,HEXA
+2152,Sphingolipid metabolism,HEXB
+2153,Sphingolipid metabolism,KDSR
+2154,Sphingolipid metabolism,LPIN1
+2155,Sphingolipid metabolism,LPIN2
+2156,Sphingolipid metabolism,LPIN3
+2157,Sphingolipid metabolism,MGAT4D
+2158,Sphingolipid metabolism,MGAT5B
+2159,Sphingolipid metabolism,NAGA
+2160,Sphingolipid metabolism,NEU1
+2161,Sphingolipid metabolism,NEU2
+2162,Sphingolipid metabolism,NEU3
+2163,Sphingolipid metabolism,OGT
+2164,Sphingolipid metabolism,PIGB
+2165,Sphingolipid metabolism,PIGM
+2166,Sphingolipid metabolism,PIGV
+2167,Sphingolipid metabolism,PIGZ
+2168,Sphingolipid metabolism,PLPP1
+2169,Sphingolipid metabolism,PLPP2
+2170,Sphingolipid metabolism,PLPP3
+2171,Sphingolipid metabolism,PLPP4
+2172,Sphingolipid metabolism,PLPP5
+2173,Sphingolipid metabolism,PLPPR2
+2174,Sphingolipid metabolism,PLPPR3
+2175,Sphingolipid metabolism,PLPPR4
+2176,Sphingolipid metabolism,POGLUT1
+2177,Sphingolipid metabolism,POMGNT1
+2178,Sphingolipid metabolism,PSAP
+2179,Sphingolipid metabolism,SGMS1
+2180,Sphingolipid metabolism,SGMS2
+2181,Sphingolipid metabolism,SGPL1
+2182,Sphingolipid metabolism,SGPP1
+2183,Sphingolipid metabolism,SGPP2
+2184,Sphingolipid metabolism,SLC33A1
+2185,Sphingolipid metabolism,SMPD1
+2186,Sphingolipid metabolism,SMPD2
+2187,Sphingolipid metabolism,SMPD3
+2188,Sphingolipid metabolism,SMPD4
+2189,Sphingolipid metabolism,SPHK1
+2190,Sphingolipid metabolism,SPHK2
+2191,Sphingolipid metabolism,SPTLC1
+2192,Sphingolipid metabolism,SPTLC2
+2193,Sphingolipid metabolism,SPTLC3
+2194,Sphingolipid metabolism,ST3GAL2
+2195,Sphingolipid metabolism,ST3GAL5
+2196,Sphingolipid metabolism,ST6GALNAC2
+2197,Sphingolipid metabolism,ST6GALNAC3
+2198,Sphingolipid metabolism,ST6GALNAC5
+2199,Sphingolipid metabolism,ST6GALNAC6
+2200,Sphingolipid metabolism,ST8SIA1
+2201,Sphingolipid metabolism,ST8SIA4
+2202,Sphingolipid metabolism,ST8SIA5
+2203,Sphingolipid metabolism,STT3A
+2204,Sphingolipid metabolism,STT3B
+2205,Sphingolipid metabolism,UGCG
+2206,Sphingolipid metabolism,UGGT1
+2207,Sphingolipid metabolism,UGGT2
+2208,Squalene and cholesterol synthesis,DHCR24
+2209,Squalene and cholesterol synthesis,IDI1
+2210,Squalene and cholesterol synthesis,IDI2
+2211,Squalene and cholesterol synthesis,MVD
+2212,Squalene and cholesterol synthesis,MVK
+2213,Squalene and cholesterol synthesis,PMVK
+2214,Starch and sucrose metabolism,AGL
+2215,Starch and sucrose metabolism,AMY1A
+2216,Starch and sucrose metabolism,AMY1B
+2217,Starch and sucrose metabolism,AMY1C
+2218,Starch and sucrose metabolism,AMY2A
+2219,Starch and sucrose metabolism,AMY2B
+2220,Starch and sucrose metabolism,ATHL1
+2221,Starch and sucrose metabolism,ENPP1
+2222,Starch and sucrose metabolism,ENPP2
+2223,Starch and sucrose metabolism,ENPP3
+2224,Starch and sucrose metabolism,GAA
+2225,Starch and sucrose metabolism,GANC
+2226,Starch and sucrose metabolism,GBE1
+2227,Starch and sucrose metabolism,GYG1
+2228,Starch and sucrose metabolism,GYG2
+2229,Starch and sucrose metabolism,GYS1
+2230,Starch and sucrose metabolism,GYS2
+2231,Starch and sucrose metabolism,LYZL1
+2232,Starch and sucrose metabolism,MGAM
+2233,Starch and sucrose metabolism,PGM2L1
+2234,Starch and sucrose metabolism,PYGB
+2235,Starch and sucrose metabolism,PYGL
+2236,Starch and sucrose metabolism,PYGM
+2237,Starch and sucrose metabolism,SI
+2238,Starch and sucrose metabolism,SLC3A1
+2239,Starch and sucrose metabolism,SLC3A2
+2240,Starch and sucrose metabolism,SLC7A9
+2241,Starch and sucrose metabolism,TREH
+2242,Starch and sucrose metabolism,UGDH
+2243,Steroid metabolism,158160_AT1
+2244,Steroid metabolism,AKR1C1
+2245,Steroid metabolism,AKR1C4
+2246,Steroid metabolism,COQ6
+2247,Steroid metabolism,CYP11A1
+2248,Steroid metabolism,CYP11B1
+2249,Steroid metabolism,CYP11B2
+2250,Steroid metabolism,CYP17A1
+2251,Steroid metabolism,CYP19A1
+2252,Steroid metabolism,CYP1B1
+2253,Steroid metabolism,CYP21A2
+2254,Steroid metabolism,CYP2D6
+2255,Steroid metabolism,CYP2E1
+2256,Steroid metabolism,CYP3A4
+2257,Steroid metabolism,CYP3A43
+2258,Steroid metabolism,CYP3A7
+2259,Steroid metabolism,CYP4V2
+2260,Steroid metabolism,HADH
+2261,Steroid metabolism,HADHA
+2262,Steroid metabolism,HSD11B1
+2263,Steroid metabolism,HSD11B2
+2264,Steroid metabolism,HSD17B1
+2265,Steroid metabolism,HSD17B10
+2266,Steroid metabolism,HSD17B11
+2267,Steroid metabolism,HSD17B12
+2268,Steroid metabolism,HSD17B2
+2269,Steroid metabolism,HSD17B3
+2270,Steroid metabolism,HSD17B4
+2271,Steroid metabolism,HSD17B6
+2272,Steroid metabolism,HSD17B7
+2273,Steroid metabolism,HSD17B8
+2274,Steroid metabolism,HSD3B1
+2275,Steroid metabolism,HSD3B2
+2276,Steroid metabolism,RDH8
+2277,Steroid metabolism,SRD5A1
+2278,Steroid metabolism,SRD5A2
+2279,Steroid metabolism,STS
+2280,Steroid metabolism,SULT1A1
+2281,Steroid metabolism,SULT1A3
+2282,Steroid metabolism,SULT1E1
+2283,Steroid metabolism,SULT2A1
+2284,Steroid metabolism,SULT2B1
+2285,Steroid metabolism,UGT1A1
+2286,Steroid metabolism,UGT1A10
+2287,Steroid metabolism,UGT1A3
+2288,Steroid metabolism,UGT1A4
+2289,Steroid metabolism,UGT1A5
+2290,Steroid metabolism,UGT1A6
+2291,Steroid metabolism,UGT1A7
+2292,Steroid metabolism,UGT1A8
+2293,Steroid metabolism,UGT1A9
+2294,Steroid metabolism,UGT2B17
+2295,Steroid metabolism,UGT2B28
+2296,Steroid metabolism,UGT2B4
+2297,Steroid metabolism,UGT2B7
+2298,Taurine and hypotaurine metabolism,ADO
+2299,Taurine and hypotaurine metabolism,CDO1
+2300,Taurine and hypotaurine metabolism,CSAD
+2301,Taurine and hypotaurine metabolism,GAD1
+2302,Taurine and hypotaurine metabolism,GAD2
+2303,Taurine and hypotaurine metabolism,SLC6A6
+2304,Tetrahydrobiopterin metabolism,ALPI
+2305,Tetrahydrobiopterin metabolism,ALPL
+2306,Tetrahydrobiopterin metabolism,ALPP
+2307,Tetrahydrobiopterin metabolism,ALPPL2
+2308,Tetrahydrobiopterin metabolism,GCH1
+2309,Tetrahydrobiopterin metabolism,PAH
+2310,Tetrahydrobiopterin metabolism,PCBD1
+2311,Tetrahydrobiopterin metabolism,PCBD2
+2312,Tetrahydrobiopterin metabolism,PTS
+2313,Tetrahydrobiopterin metabolism,QDPR
+2314,Tetrahydrobiopterin metabolism,SPR
+2315,Tetrahydrobiopterin metabolism,TPH1
+2316,Tetrahydrobiopterin metabolism,TPH2
+2317,Thiamine metabolism,THTPA
+2318,Thiamine metabolism,TPK1
+2319,Transport endoplasmic reticular,ABCC1
+2320,Transport endoplasmic reticular,COL4A3BP
+2321,Transport endoplasmic reticular,CP
+2322,Transport endoplasmic reticular,CRAT
+2323,Transport endoplasmic reticular,CYP8B1
+2324,Transport endoplasmic reticular,FABP1
+2325,Transport endoplasmic reticular,PTGS1
+2326,Transport endoplasmic reticular,PTGS2
+2327,Transport endoplasmic reticular,SLC22A5
+2328,Transport endoplasmic reticular,SLC25A20
+2329,Transport endoplasmic reticular,SLC27A5
+2330,Transport endoplasmic reticular,SLC33A1
+2331,Transport endoplasmic reticular,SLC35A2
+2332,Transport endoplasmic reticular,SLC35A3
+2333,Transport endoplasmic reticular,SLC35D1
+2334,Transport endoplasmic reticular,SLC37A4
+2335,Transport extracellular,0
+2336,Transport extracellular,386757_AT1
+2337,Transport extracellular,ABCA1
+2338,Transport extracellular,ABCA3
+2339,Transport extracellular,ABCA4
+2340,Transport extracellular,ABCA8
+2341,Transport extracellular,ABCB1
+2342,Transport extracellular,ABCB11
+2343,Transport extracellular,ABCB4
+2344,Transport extracellular,ABCB6
+2345,Transport extracellular,ABCC1
+2346,Transport extracellular,ABCC11
+2347,Transport extracellular,ABCC2
+2348,Transport extracellular,ABCC3
+2349,Transport extracellular,ABCC4
+2350,Transport extracellular,ABCC5
+2351,Transport extracellular,ABCC8
+2352,Transport extracellular,ABCC9
+2353,Transport extracellular,ABCG2
+2354,Transport extracellular,ABCG5
+2355,Transport extracellular,ABCG8
+2356,Transport extracellular,ACE2
+2357,Transport extracellular,ACP1
+2358,Transport extracellular,ALPI
+2359,Transport extracellular,AMT
+2360,Transport extracellular,AQP1
+2361,Transport extracellular,AQP10
+2362,Transport extracellular,AQP2
+2363,Transport extracellular,AQP3
+2364,Transport extracellular,AQP4
+2365,Transport extracellular,AQP5
+2366,Transport extracellular,AQP7
+2367,Transport extracellular,AQP8
+2368,Transport extracellular,AQP9
+2369,Transport extracellular,ATP10A
+2370,Transport extracellular,ATP11A
+2371,Transport extracellular,ATP11C
+2372,Transport extracellular,ATP1A1
+2373,Transport extracellular,ATP1A2
+2374,Transport extracellular,ATP1A3
+2375,Transport extracellular,ATP1A4
+2376,Transport extracellular,ATP1B1
+2377,Transport extracellular,ATP1B2
+2378,Transport extracellular,ATP1B3
+2379,Transport extracellular,ATP1B4
+2380,Transport extracellular,ATP2B1
+2381,Transport extracellular,ATP2B2
+2382,Transport extracellular,ATP2B3
+2383,Transport extracellular,ATP2B4
+2384,Transport extracellular,ATP4A
+2385,Transport extracellular,ATP4B
+2386,Transport extracellular,ATP8A1
+2387,Transport extracellular,ATP8B1
+2388,Transport extracellular,ATP8B2
+2389,Transport extracellular,BSG
+2390,Transport extracellular,CD36
+2391,Transport extracellular,CD38
+2392,Transport extracellular,CFTR
+2393,Transport extracellular,CNDP1
+2394,Transport extracellular,CNDP2
+2395,Transport extracellular,CP
+2396,Transport extracellular,DPEP1
+2397,Transport extracellular,FABP1
+2398,Transport extracellular,FABP12
+2399,Transport extracellular,FABP2
+2400,Transport extracellular,FABP3
+2401,Transport extracellular,FABP4
+2402,Transport extracellular,FABP5
+2403,Transport extracellular,FABP6
+2404,Transport extracellular,FABP7
+2405,Transport extracellular,FABP9
+2406,Transport extracellular,FLVCR1
+2407,Transport extracellular,FOLR1
+2408,Transport extracellular,FOLR2
+2409,Transport extracellular,FOLR3
+2410,Transport extracellular,GLTP
+2411,Transport extracellular,HNMT
+2412,Transport extracellular,KCNJ11
+2413,Transport extracellular,KCNJ8
+2414,Transport extracellular,LAP3
+2415,Transport extracellular,LIPA
+2416,Transport extracellular,LPL
+2417,Transport extracellular,MIP
+2418,Transport extracellular,NPC1L1
+2419,Transport extracellular,PEPD
+2420,Transport extracellular,PRODH2
+2421,Transport extracellular,RALBP1
+2422,Transport extracellular,RBP1
+2423,Transport extracellular,RBP2
+2424,Transport extracellular,RBP4
+2425,Transport extracellular,RHAG
+2426,Transport extracellular,RHBG
+2427,Transport extracellular,RHCG
+2428,Transport extracellular,SCARB1
+2429,Transport extracellular,SLC10A1
+2430,Transport extracellular,SLC10A2
+2431,Transport extracellular,SLC10A6
+2432,Transport extracellular,SLC11A1
+2433,Transport extracellular,SLC11A2
+2434,Transport extracellular,SLC12A1
+2435,Transport extracellular,SLC12A2
+2436,Transport extracellular,SLC12A3
+2437,Transport extracellular,SLC12A4
+2438,Transport extracellular,SLC12A5
+2439,Transport extracellular,SLC12A6
+2440,Transport extracellular,SLC12A7
+2441,Transport extracellular,SLC13A1
+2442,Transport extracellular,SLC13A2
+2443,Transport extracellular,SLC13A3
+2444,Transport extracellular,SLC13A4
+2445,Transport extracellular,SLC13A5
+2446,Transport extracellular,SLC14A1
+2447,Transport extracellular,SLC14A2
+2448,Transport extracellular,SLC15A1
+2449,Transport extracellular,SLC15A2
+2450,Transport extracellular,SLC16A1
+2451,Transport extracellular,SLC16A10
+2452,Transport extracellular,SLC16A2
+2453,Transport extracellular,SLC16A3
+2454,Transport extracellular,SLC16A7
+2455,Transport extracellular,SLC16A8
+2456,Transport extracellular,SLC17A1
+2457,Transport extracellular,SLC17A2
+2458,Transport extracellular,SLC17A3
+2459,Transport extracellular,SLC17A4
+2460,Transport extracellular,SLC17A6
+2461,Transport extracellular,SLC17A7
+2462,Transport extracellular,SLC17A8
+2463,Transport extracellular,SLC18A1
+2464,Transport extracellular,SLC18A2
+2465,Transport extracellular,SLC18A3
+2466,Transport extracellular,SLC19A1
+2467,Transport extracellular,SLC19A2
+2468,Transport extracellular,SLC19A3
+2469,Transport extracellular,SLC1A1
+2470,Transport extracellular,SLC1A2
+2471,Transport extracellular,SLC1A3
+2472,Transport extracellular,SLC1A4
+2473,Transport extracellular,SLC1A5
+2474,Transport extracellular,SLC1A6
+2475,Transport extracellular,SLC1A7
+2476,Transport extracellular,SLC20A1
+2477,Transport extracellular,SLC20A2
+2478,Transport extracellular,SLC22A1
+2479,Transport extracellular,SLC22A10
+2480,Transport extracellular,SLC22A11
+2481,Transport extracellular,SLC22A12
+2482,Transport extracellular,SLC22A13
+2483,Transport extracellular,SLC22A2
+2484,Transport extracellular,SLC22A3
+2485,Transport extracellular,SLC22A4
+2486,Transport extracellular,SLC22A5
+2487,Transport extracellular,SLC22A6
+2488,Transport extracellular,SLC22A7
+2489,Transport extracellular,SLC22A8
+2490,Transport extracellular,SLC23A1
+2491,Transport extracellular,SLC23A2
+2492,Transport extracellular,SLC24A1
+2493,Transport extracellular,SLC24A2
+2494,Transport extracellular,SLC24A3
+2495,Transport extracellular,SLC24A4
+2496,Transport extracellular,SLC25A1
+2497,Transport extracellular,SLC25A19
+2498,Transport extracellular,SLC25A21
+2499,Transport extracellular,SLC26A1
+2500,Transport extracellular,SLC26A11
+2501,Transport extracellular,SLC26A2
+2502,Transport extracellular,SLC26A3
+2503,Transport extracellular,SLC26A4
+2504,Transport extracellular,SLC26A6
+2505,Transport extracellular,SLC26A7
+2506,Transport extracellular,SLC26A8
+2507,Transport extracellular,SLC26A9
+2508,Transport extracellular,SLC27A1
+2509,Transport extracellular,SLC27A2
+2510,Transport extracellular,SLC27A3
+2511,Transport extracellular,SLC27A4
+2512,Transport extracellular,SLC27A5
+2513,Transport extracellular,SLC27A6
+2514,Transport extracellular,SLC28A1
+2515,Transport extracellular,SLC28A2
+2516,Transport extracellular,SLC28A3
+2517,Transport extracellular,SLC29A1
+2518,Transport extracellular,SLC29A2
+2519,Transport extracellular,SLC29A4
+2520,Transport extracellular,SLC2A1
+2521,Transport extracellular,SLC2A10
+2522,Transport extracellular,SLC2A11
+2523,Transport extracellular,SLC2A12
+2524,Transport extracellular,SLC2A13
+2525,Transport extracellular,SLC2A14
+2526,Transport extracellular,SLC2A2
+2527,Transport extracellular,SLC2A3
+2528,Transport extracellular,SLC2A4
+2529,Transport extracellular,SLC2A5
+2530,Transport extracellular,SLC2A6
+2531,Transport extracellular,SLC2A7
+2532,Transport extracellular,SLC2A8
+2533,Transport extracellular,SLC2A9
+2534,Transport extracellular,SLC30A1
+2535,Transport extracellular,SLC32A1
+2536,Transport extracellular,SLC33A1
+2537,Transport extracellular,SLC34A1
+2538,Transport extracellular,SLC34A2
+2539,Transport extracellular,SLC34A3
+2540,Transport extracellular,SLC36A1
+2541,Transport extracellular,SLC36A2
+2542,Transport extracellular,SLC36A4
+2543,Transport extracellular,SLC38A1
+2544,Transport extracellular,SLC38A2
+2545,Transport extracellular,SLC38A3
+2546,Transport extracellular,SLC38A4
+2547,Transport extracellular,SLC38A5
+2548,Transport extracellular,SLC3A1
+2549,Transport extracellular,SLC3A2
+2550,Transport extracellular,SLC40A1
+2551,Transport extracellular,SLC43A1
+2552,Transport extracellular,SLC43A2
+2553,Transport extracellular,SLC46A1
+2554,Transport extracellular,SLC47A1
+2555,Transport extracellular,SLC47A2
+2556,Transport extracellular,SLC4A1
+2557,Transport extracellular,SLC4A10
+2558,Transport extracellular,SLC4A2
+2559,Transport extracellular,SLC4A3
+2560,Transport extracellular,SLC4A4
+2561,Transport extracellular,SLC4A5
+2562,Transport extracellular,SLC4A7
+2563,Transport extracellular,SLC4A8
+2564,Transport extracellular,SLC4A9
+2565,Transport extracellular,SLC51A
+2566,Transport extracellular,SLC51B
+2567,Transport extracellular,SLC52A1
+2568,Transport extracellular,SLC52A2
+2569,Transport extracellular,SLC52A3
+2570,Transport extracellular,SLC5A1
+2571,Transport extracellular,SLC5A10
+2572,Transport extracellular,SLC5A11
+2573,Transport extracellular,SLC5A12
+2574,Transport extracellular,SLC5A2
+2575,Transport extracellular,SLC5A3
+2576,Transport extracellular,SLC5A5
+2577,Transport extracellular,SLC5A6
+2578,Transport extracellular,SLC5A7
+2579,Transport extracellular,SLC5A8
+2580,Transport extracellular,SLC5A9
+2581,Transport extracellular,SLC6A1
+2582,Transport extracellular,SLC6A11
+2583,Transport extracellular,SLC6A12
+2584,Transport extracellular,SLC6A13
+2585,Transport extracellular,SLC6A14
+2586,Transport extracellular,SLC6A18
+2587,Transport extracellular,SLC6A19
+2588,Transport extracellular,SLC6A2
+2589,Transport extracellular,SLC6A20
+2590,Transport extracellular,SLC6A3
+2591,Transport extracellular,SLC6A4
+2592,Transport extracellular,SLC6A5
+2593,Transport extracellular,SLC6A6
+2594,Transport extracellular,SLC6A7
+2595,Transport extracellular,SLC6A8
+2596,Transport extracellular,SLC6A9
+2597,Transport extracellular,SLC7A1
+2598,Transport extracellular,SLC7A10
+2599,Transport extracellular,SLC7A11
+2600,Transport extracellular,SLC7A2
+2601,Transport extracellular,SLC7A3
+2602,Transport extracellular,SLC7A5
+2603,Transport extracellular,SLC7A6
+2604,Transport extracellular,SLC7A7
+2605,Transport extracellular,SLC7A8
+2606,Transport extracellular,SLC7A9
+2607,Transport extracellular,SLC8A1
+2608,Transport extracellular,SLC8A2
+2609,Transport extracellular,SLC8A3
+2610,Transport extracellular,SLC9A1
+2611,Transport extracellular,SLC9A2
+2612,Transport extracellular,SLC9A3
+2613,Transport extracellular,SLC9A4
+2614,Transport extracellular,SLC9A5
+2615,Transport extracellular,SLCO1A2
+2616,Transport extracellular,SLCO1B1
+2617,Transport extracellular,SLCO1B3
+2618,Transport extracellular,SLCO1C1
+2619,Transport extracellular,SLCO2A1
+2620,Transport extracellular,SLCO2B1
+2621,Transport extracellular,SLCO3A1
+2622,Transport extracellular,SLCO4A1
+2623,Transport extracellular,STRA6
+2624,Transport extracellular,SULT2A1
+2625,Transport extracellular,TMEM27
+2626,Transport extracellular,TPP1
+2627,Transport golgi apparatus,ABCA1
+2628,Transport golgi apparatus,COL4A3BP
+2629,Transport golgi apparatus,HDLBP
+2630,Transport golgi apparatus,NPC1
+2631,Transport golgi apparatus,SLC2A1
+2632,Transport golgi apparatus,SLC35A1
+2633,Transport golgi apparatus,SLC35A2
+2634,Transport golgi apparatus,SLC35B2
+2635,Transport golgi apparatus,SLC35B4
+2636,Transport golgi apparatus,SLC35C1
+2637,Transport golgi apparatus,SLC35D2
+2638,Transport golgi apparatus,SLC9A7
+2639,Transport golgi apparatus,SLC9A8
+2640,Transport lysosomal,ATP6V0A1
+2641,Transport lysosomal,ATP6V0A2
+2642,Transport lysosomal,ATP6V0A4
+2643,Transport lysosomal,ATP6V0B
+2644,Transport lysosomal,ATP6V0C
+2645,Transport lysosomal,ATP6V0D1
+2646,Transport lysosomal,ATP6V0D2
+2647,Transport lysosomal,ATP6V0E1
+2648,Transport lysosomal,ATP6V1A
+2649,Transport lysosomal,ATP6V1B1
+2650,Transport lysosomal,ATP6V1B2
+2651,Transport lysosomal,ATP6V1C1
+2652,Transport lysosomal,ATP6V1C2
+2653,Transport lysosomal,ATP6V1D
+2654,Transport lysosomal,ATP6V1E1
+2655,Transport lysosomal,ATP6V1E2
+2656,Transport lysosomal,ATP6V1F
+2657,Transport lysosomal,ATP6V1G1
+2658,Transport lysosomal,ATP6V1G2
+2659,Transport lysosomal,ATP6V1G3
+2660,Transport lysosomal,ATP6V1H
+2661,Transport lysosomal,SLC17A5
+2662,Transport lysosomal,SLC27A5
+2663,Transport lysosomal,SLC29A3
+2664,Transport lysosomal,SLC36A1
+2665,Transport lysosomal,TCIRG1
+2666,Transport mitochondrial,ABAT
+2667,Transport mitochondrial,ABCB6
+2668,Transport mitochondrial,AQP8
+2669,Transport mitochondrial,AQP9
+2670,Transport mitochondrial,ATP10A
+2671,Transport mitochondrial,ATP8A1
+2672,Transport mitochondrial,CPT2
+2673,Transport mitochondrial,CRAT
+2674,Transport mitochondrial,CYP8B1
+2675,Transport mitochondrial,DBI
+2676,Transport mitochondrial,FTCD
+2677,Transport mitochondrial,MMAA
+2678,Transport mitochondrial,MPC1
+2679,Transport mitochondrial,MPC2
+2680,Transport mitochondrial,SLC16A1
+2681,Transport mitochondrial,SLC16A7
+2682,Transport mitochondrial,SLC22A1
+2683,Transport mitochondrial,SLC22A4
+2684,Transport mitochondrial,SLC22A9
+2685,Transport mitochondrial,SLC25A1
+2686,Transport mitochondrial,SLC25A10
+2687,Transport mitochondrial,SLC25A11
+2688,Transport mitochondrial,SLC25A12
+2689,Transport mitochondrial,SLC25A13
+2690,Transport mitochondrial,SLC25A14
+2691,Transport mitochondrial,SLC25A15
+2692,Transport mitochondrial,SLC25A16
+2693,Transport mitochondrial,SLC25A18
+2694,Transport mitochondrial,SLC25A19
+2695,Transport mitochondrial,SLC25A2
+2696,Transport mitochondrial,SLC25A20
+2697,Transport mitochondrial,SLC25A22
+2698,Transport mitochondrial,SLC25A26
+2699,Transport mitochondrial,SLC25A27
+2700,Transport mitochondrial,SLC25A28
+2701,Transport mitochondrial,SLC25A29
+2702,Transport mitochondrial,SLC25A37
+2703,Transport mitochondrial,SLC25A4
+2704,Transport mitochondrial,SLC25A5
+2705,Transport mitochondrial,SLC25A6
+2706,Transport mitochondrial,SLC27A2
+2707,Transport mitochondrial,SLC27A5
+2708,Transport mitochondrial,SLC29A1
+2709,Transport mitochondrial,SLC29A2
+2710,Transport mitochondrial,SLC37A1
+2711,Transport mitochondrial,STARD3
+2712,Transport mitochondrial,UCP1
+2713,Transport mitochondrial,UCP2
+2714,Transport mitochondrial,UCP3
+2715,Transport nuclear,PTGS1
+2716,Transport nuclear,PTGS2
+2717,Transport nuclear,SLC29A1
+2718,Transport nuclear,SLC29A2
+2719,Transport peroxisomal,8041_AT1
+2720,Transport peroxisomal,ABCD1
+2721,Transport peroxisomal,ABCD2
+2722,Transport peroxisomal,ABCD3
+2723,Transport peroxisomal,CRAT
+2724,Transport peroxisomal,CROT
+2725,Transport peroxisomal,CYP8B1
+2726,Transport peroxisomal,SCP2
+2727,Transport peroxisomal,SLC16A1
+2728,Transport peroxisomal,SLC25A1
+2729,Transport peroxisomal,SLC25A20
+2730,Transport peroxisomal,SLC27A2
+2731,Transport peroxisomal,SLC27A5
+2732,Transport peroxisomal,SLC6A6
+2733,Triacylglycerol synthesis,AGPAT1
+2734,Triacylglycerol synthesis,AGPAT2
+2735,Triacylglycerol synthesis,AGPAT3
+2736,Triacylglycerol synthesis,AGPAT4
+2737,Triacylglycerol synthesis,AGPAT5
+2738,Triacylglycerol synthesis,CEL
+2739,Triacylglycerol synthesis,DGAT1
+2740,Triacylglycerol synthesis,DGAT2
+2741,Triacylglycerol synthesis,GPAM
+2742,Triacylglycerol synthesis,GPAT4
+2743,Triacylglycerol synthesis,LIPC
+2744,Triacylglycerol synthesis,LPL
+2745,Triacylglycerol synthesis,MBOAT2
+2746,Triacylglycerol synthesis,MGLL
+2747,Triacylglycerol synthesis,MOGAT1
+2748,Triacylglycerol synthesis,MOGAT2
+2749,Triacylglycerol synthesis,PLA2G3
+2750,Triacylglycerol synthesis,PLPP1
+2751,Triacylglycerol synthesis,PLPP2
+2752,Triacylglycerol synthesis,PLPP3
+2753,Triacylglycerol synthesis,PNPLA3
+2754,Tryptophan metabolism,AADAT
+2755,Tryptophan metabolism,AANAT
+2756,Tryptophan metabolism,ACAT1
+2757,Tryptophan metabolism,ACAT2
+2758,Tryptophan metabolism,ACMSD
+2759,Tryptophan metabolism,AFMID
+2760,Tryptophan metabolism,ALDH1A1
+2761,Tryptophan metabolism,ALDH1A2
+2762,Tryptophan metabolism,ALDH1B1
+2763,Tryptophan metabolism,ALDH2
+2764,Tryptophan metabolism,ALDH3A2
+2765,Tryptophan metabolism,ALDH4A1
+2766,Tryptophan metabolism,ALDH7A1
+2767,Tryptophan metabolism,ALDH9A1
+2768,Tryptophan metabolism,AOC1
+2769,Tryptophan metabolism,AOC2
+2770,Tryptophan metabolism,AOX1
+2771,Tryptophan metabolism,ASMT
+2772,Tryptophan metabolism,AUH
+2773,Tryptophan metabolism,CYP1A1
+2774,Tryptophan metabolism,CYP1A2
+2775,Tryptophan metabolism,CYP1B1
+2776,Tryptophan metabolism,CYP2C19
+2777,Tryptophan metabolism,DDC
+2778,Tryptophan metabolism,ECH1
+2779,Tryptophan metabolism,ECHS1
+2780,Tryptophan metabolism,EHHADH
+2781,Tryptophan metabolism,GCDH
+2782,Tryptophan metabolism,HAAO
+2783,Tryptophan metabolism,HADH
+2784,Tryptophan metabolism,HADHA
+2785,Tryptophan metabolism,HADHB
+2786,Tryptophan metabolism,HSD17B10
+2787,Tryptophan metabolism,HSD17B4
+2788,Tryptophan metabolism,IDO1
+2789,Tryptophan metabolism,IDO2
+2790,Tryptophan metabolism,KMO
+2791,Tryptophan metabolism,KYAT1
+2792,Tryptophan metabolism,KYNU
+2793,Tryptophan metabolism,MAOA
+2794,Tryptophan metabolism,MAOB
+2795,Tryptophan metabolism,SLC25A21
+2796,Tryptophan metabolism,TDO2
+2797,Tryptophan metabolism,TPH1
+2798,Tryptophan metabolism,TPH2
+2799,Tyrosine metabolism,ADH1A
+2800,Tyrosine metabolism,ADH1B
+2801,Tyrosine metabolism,ADH1C
+2802,Tyrosine metabolism,ADH4
+2803,Tyrosine metabolism,ADH5
+2804,Tyrosine metabolism,ADH6
+2805,Tyrosine metabolism,ADH7
+2806,Tyrosine metabolism,ADHFE1
+2807,Tyrosine metabolism,AKR1A1
+2808,Tyrosine metabolism,ALDH1A3
+2809,Tyrosine metabolism,ALDH3A1
+2810,Tyrosine metabolism,ALDH3B1
+2811,Tyrosine metabolism,ALDH3B2
+2812,Tyrosine metabolism,AOC1
+2813,Tyrosine metabolism,AOC2
+2814,Tyrosine metabolism,AOC3
+2815,Tyrosine metabolism,CHPF
+2816,Tyrosine metabolism,CHSY1
+2817,Tyrosine metabolism,CHSY3
+2818,Tyrosine metabolism,COMT
+2819,Tyrosine metabolism,COMTD1
+2820,Tyrosine metabolism,CSGALNACT1
+2821,Tyrosine metabolism,CSGALNACT2
+2822,Tyrosine metabolism,DBH
+2823,Tyrosine metabolism,DCT
+2824,Tyrosine metabolism,DDC
+2825,Tyrosine metabolism,DUOX1
+2826,Tyrosine metabolism,DUOX2
+2827,Tyrosine metabolism,ESD
+2828,Tyrosine metabolism,FAH
+2829,Tyrosine metabolism,GGT5
+2830,Tyrosine metabolism,GOT1
+2831,Tyrosine metabolism,GOT2
+2832,Tyrosine metabolism,GPT
+2833,Tyrosine metabolism,GPT2
+2834,Tyrosine metabolism,GSTM2
+2835,Tyrosine metabolism,GSTZ1
+2836,Tyrosine metabolism,HGD
+2837,Tyrosine metabolism,HPD
+2838,Tyrosine metabolism,MAOA
+2839,Tyrosine metabolism,MAOB
+2840,Tyrosine metabolism,MOXD1
+2841,Tyrosine metabolism,NQO1
+2842,Tyrosine metabolism,PNMT
+2843,Tyrosine metabolism,PRDX6
+2844,Tyrosine metabolism,SULT1A1
+2845,Tyrosine metabolism,SULT1A2
+2846,Tyrosine metabolism,SULT1A3
+2847,Tyrosine metabolism,SULT4A1
+2848,Tyrosine metabolism,TAT
+2849,Tyrosine metabolism,TH
+2850,Tyrosine metabolism,TPO
+2851,Tyrosine metabolism,TYR
+2852,Tyrosine metabolism,TYRP1
+2853,Ubiquinone synthesis,COQ2
+2854,Ubiquinone synthesis,COQ3
+2855,Ubiquinone synthesis,COQ5
+2856,Ubiquinone synthesis,COQ6
+2857,Ubiquinone synthesis,COQ7
+2858,Urea cycle,ACY1
+2859,Urea cycle,ACY3
+2860,Urea cycle,ALDH18A1
+2861,Urea cycle,ALDH4A1
+2862,Urea cycle,AOC1
+2863,Urea cycle,AQP9
+2864,Urea cycle,ARG1
+2865,Urea cycle,ARG2
+2866,Urea cycle,CKB
+2867,Urea cycle,CKM
+2868,Urea cycle,CKMT1A
+2869,Urea cycle,CKMT1B
+2870,Urea cycle,CKMT2
+2871,Urea cycle,CPS1
+2872,Urea cycle,GAMT
+2873,Urea cycle,GATM
+2874,Urea cycle,NAGS
+2875,Urea cycle,NIT2
+2876,Urea cycle,OAT
+2877,Urea cycle,ODC1
+2878,Urea cycle,OTC
+2879,Urea cycle,SARDH
+2880,Urea cycle,SMS
+2881,Urea cycle,SRM
+2882,Valine leucine and isoleucine metabolism,ABAT
+2883,Valine leucine and isoleucine metabolism,ACAA2
+2884,Valine leucine and isoleucine metabolism,ACAD8
+2885,Valine leucine and isoleucine metabolism,ACADM
+2886,Valine leucine and isoleucine metabolism,ACADS
+2887,Valine leucine and isoleucine metabolism,ACADSB
+2888,Valine leucine and isoleucine metabolism,ACAT1
+2889,Valine leucine and isoleucine metabolism,ALDH1B1
+2890,Valine leucine and isoleucine metabolism,ALDH2
+2891,Valine leucine and isoleucine metabolism,ALDH3A2
+2892,Valine leucine and isoleucine metabolism,ALDH6A1
+2893,Valine leucine and isoleucine metabolism,ALDH7A1
+2894,Valine leucine and isoleucine metabolism,ALDH9A1
+2895,Valine leucine and isoleucine metabolism,AUH
+2896,Valine leucine and isoleucine metabolism,BCAT1
+2897,Valine leucine and isoleucine metabolism,BCAT2
+2898,Valine leucine and isoleucine metabolism,BCKDHA
+2899,Valine leucine and isoleucine metabolism,BCKDHB
+2900,Valine leucine and isoleucine metabolism,DBT
+2901,Valine leucine and isoleucine metabolism,DLD
+2902,Valine leucine and isoleucine metabolism,ECHS1
+2903,Valine leucine and isoleucine metabolism,EHHADH
+2904,Valine leucine and isoleucine metabolism,HADH
+2905,Valine leucine and isoleucine metabolism,HADHA
+2906,Valine leucine and isoleucine metabolism,HADHB
+2907,Valine leucine and isoleucine metabolism,HIBADH
+2908,Valine leucine and isoleucine metabolism,HSD17B10
+2909,Valine leucine and isoleucine metabolism,IVD
+2910,Valine leucine and isoleucine metabolism,LDHA
+2911,Valine leucine and isoleucine metabolism,LDHAL6A
+2912,Valine leucine and isoleucine metabolism,LDHAL6B
+2913,Valine leucine and isoleucine metabolism,LDHB
+2914,Valine leucine and isoleucine metabolism,LDHC
+2915,Valine leucine and isoleucine metabolism,MCCC1
+2916,Valine leucine and isoleucine metabolism,MCCC2
+2917,Valine leucine and isoleucine metabolism,MCEE
+2918,Valine leucine and isoleucine metabolism,MLYCD
+2919,Valine leucine and isoleucine metabolism,MUT
+2920,Valine leucine and isoleucine metabolism,OXCT1
+2921,Valine leucine and isoleucine metabolism,OXCT2
+2922,Valine leucine and isoleucine metabolism,UEVLD
+2923,Vitamin A metabolism,ADH1A
+2924,Vitamin A metabolism,ADH1B
+2925,Vitamin A metabolism,ADH1C
+2926,Vitamin A metabolism,ADH4
+2927,Vitamin A metabolism,ADH5
+2928,Vitamin A metabolism,ADH6
+2929,Vitamin A metabolism,ADH7
+2930,Vitamin A metabolism,ADHFE1
+2931,Vitamin A metabolism,ALDH1A1
+2932,Vitamin A metabolism,ALDH1A2
+2933,Vitamin A metabolism,BCO1
+2934,Vitamin A metabolism,DHRS3
+2935,Vitamin A metabolism,DHRS9
+2936,Vitamin A metabolism,GSTM1
+2937,Vitamin A metabolism,HSD17B6
+2938,Vitamin A metabolism,LRAT
+2939,Vitamin A metabolism,PNPLA4
+2940,Vitamin A metabolism,RDH10
+2941,Vitamin A metabolism,RDH11
+2942,Vitamin A metabolism,RDH12
+2943,Vitamin A metabolism,RDH13
+2944,Vitamin A metabolism,RDH14
+2945,Vitamin A metabolism,RDH16
+2946,Vitamin A metabolism,RDH5
+2947,Vitamin A metabolism,RDH8
+2948,Vitamin A metabolism,SDR16C5
+2949,Vitamin A metabolism,UGT1A1
+2950,Vitamin A metabolism,UGT1A10
+2951,Vitamin A metabolism,UGT1A3
+2952,Vitamin A metabolism,UGT1A4
+2953,Vitamin A metabolism,UGT1A5
+2954,Vitamin A metabolism,UGT1A6
+2955,Vitamin A metabolism,UGT1A7
+2956,Vitamin A metabolism,UGT1A8
+2957,Vitamin A metabolism,UGT1A9
+2958,Vitamin A metabolism,UGT2B10
+2959,Vitamin A metabolism,UGT2B11
+2960,Vitamin A metabolism,UGT2B15
+2961,Vitamin A metabolism,UGT2B17
+2962,Vitamin A metabolism,UGT2B28
+2963,Vitamin A metabolism,UGT2B4
+2964,Vitamin B2 metabolism,ACP1
+2965,Vitamin B2 metabolism,ACP5
+2966,Vitamin B2 metabolism,ACP6
+2967,Vitamin B2 metabolism,ACPP
+2968,Vitamin B2 metabolism,BLVRB
+2969,Vitamin B2 metabolism,ENPP1
+2970,Vitamin B2 metabolism,ENPP3
+2971,Vitamin B2 metabolism,FLAD1
+2972,Vitamin B2 metabolism,HEPH
+2973,Vitamin B2 metabolism,RFK
+2974,Vitamin B6 metabolism,AOX1
+2975,Vitamin B6 metabolism,PDXK
+2976,Vitamin B6 metabolism,PDXP
+2977,Vitamin B6 metabolism,PNPO
+2978,Vitamin C metabolism,ALDH1A1
+2979,Vitamin C metabolism,ALDH1A2
+2980,Vitamin C metabolism,ALDH1A3
+2981,Vitamin C metabolism,ALDH3A1
+2982,Vitamin C metabolism,ALDH3A2
+2983,Vitamin C metabolism,ALDH3B1
+2984,Vitamin C metabolism,ALDH3B2
+2985,Vitamin C metabolism,ALDH9A1
+2986,Vitamin C metabolism,GLRX
+2987,Vitamin C metabolism,GLRX2
+2988,Vitamin D metabolism,CYP24A1
+2989,Vitamin D metabolism,CYP27B1

@@ -1,0 +1,237 @@
+---
+title: "Nasa Brain GSEA Recon3D pathways analysis"
+author: "Deanne Taylor PhD, Children's Hospital of Philadelphia, UPenn"
+date: "2022-11-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fgsea)
+library(dplyr)
+
+```
+
+```{r configurable variables}
+
+#Configure this section for your own analysis. 
+
+#FGSEA GMT FILE CONFIGURATION
+
+#GMT file for fgsea on genes from RECON3D that were translated to mouse symbols for each pathway. The Oxidative Phosphorylation pathway had to be manually curated as we found the HGNC's HCOP doesn't translate the Atp* genes correctly. This was all done with the enclosed python programs for Recon3D parsing and gmt creation.
+
+recon3d_gmt<-gmtPathways("RECON3D_Hs_genes_subsystems_to_Mm/Recon3D_pathway_Mm_gene_symbol_withATP_tbl.gmt")
+
+
+#DATA INPUT CONFIGURATION
+
+#which dataset will this script analyze? 
+#"mo" was multi-omics, "st" was "spatial"
+#set datasource='mo' or datasource='st' as the choice below.
+#If you use another datasource abbreviation you will get errors.
+#all filenames and data choices depend on this variable
+#please choose your dataset (mo or st) here.
+
+datasource="mo"  
+
+#MultiOmics data directory with clusters from FindMarkers() 
+mofiledir="flight_vs_ground_exp_fc_tbls_Nov_2022/multiomics/"
+
+#Spatial data directory with clusters from FindMarkers() 
+stfiledir="flight_vs_ground_exp_fc_tbls_Nov_2022/spatial/"
+
+#Note: We are using the original output format of FindMarkers() output from Seurat 4. The FindMarkers() test was flight vs ground mouse groups for every cluster in the publication.
+#Single line example of the FindMarkers() output we are ingesting:
+#gene_symbol	p_val	avg_log2FC	pct.1	pct.2	p_val_adj	sample_id	cluster
+#Lrrtm4	6.456040920191234e-6	1.0128905434534448	0.065	0.046	0.20769083640255198	mo_brain	0
+
+#FGSEA RESULTS CONFIGURATION
+
+#Simple filtering of fgsea results -- select all pathways with fGSEA p-value < fgsea_pval_cutoff to save on output size (0.1 tends to work well).
+
+fgsea_pval_cutoff=1
+
+#Results from fgsea will be in csv files written in the same directory as the working directory default.
+
+#HEATMAP CONFIGURATION
+
+#cluster heatmap samples by column? 
+colcluster=FALSE
+
+#Where to output the pdf heatmaps (many if using the Recon3D gmt file)
+outdir="pdfs/"
+
+#Nothing else user-configurable below this section.
+
+```
+
+```{r RECON3D Mm fgsea analysis}
+
+#vector of file names in each dataset.
+stfilenames=list.files(stfiledir) #spatial sample set
+mofilenames=list.files(mofiledir) #multiomic sample set
+
+if(datasource=="mo"){
+    filedir = mofiledir
+    filenames = mofilenames
+}
+
+if(datasource=="st"){
+    filedir = stfiledir
+    filenames = stfilenames
+}
+
+#set up the dataframe to store the results.
+fgsea_df<-data.frame(dataset="", cluster=0, pathway="", pval=0, padj=0, log2err=0, ES=0, NES=0, size=0, leadingEdge="")
+
+#iterate through the fgsea analysis for each pathway in the recon3d_gmt file.
+
+for(filename in filenames){
+  #read in the results from each sample, FindAllMarkers()
+  
+  fd<-read.csv(paste(filedir, filename, sep=""), sep="\t")
+  log2fc<-fd[,3]
+  names(log2fc)<-fd[,1] #gene names
+  #sort the log2fc from FindAllMarkers() results, decreasing.
+  log2fc<-sort(log2fc, decreasing=TRUE) 
+
+ fgseaRes_brainsc <- fgsea(pathways = recon3d_gmt,
+                  stats = log2fc, scoreType="std", nPermSimple=10000,
+                  nproc=21)
+
+writable_fgsea<-fgseaRes_brainsc %>% rowwise() %>%
+  mutate(leadingEdge = paste(leadingEdge, collapse=',')) %>%
+  ungroup()
+
+
+writable_fgsea<-writable_fgsea[which(writable_fgsea$padj < fgsea_pval_cutoff),]
+
+#filter for results > 0.
+
+if(length(writable_fgsea[,1]>0)){
+  clusternum=fd$cluster[1]  #repeats identically down this column per file, select just one.
+  dataset<-fd$sample_id[1] #repeats identically down this column per file, select first one.
+  data_export<-cbind(dataset, cluster=clusternum,  writable_fgsea)
+  fgsea_df<-rbind(fgsea_df, data_export)
+        }
+}
+
+fgsea_df<-fgsea_df[-1,] #remove primed blank row. (yea, I could have indexed rows to avoid this step)
+
+#save without the numbered row names.
+write.csv(fgsea_df, row.names=FALSE, file=paste(datasource, "_brain_FGSEA_RECON3D_pathway_results.csv", sep=""))
+
+```
+
+```{r heatmaps of fold change}
+
+#This section outputs the results from each sample x gene as a heatmap organized by each RECON3D pathway.
+
+#You will want to use the supplied pdf format or alternatively pngs, as there's 80 rather large heatmaps output in this section.
+
+library(pheatmap)
+library(devtools)
+library(reshape2)
+library(data.table)
+library(tidyverse)
+library(colorRamps)
+
+#change fgsea_df and filenames according to the dataset you're processing.
+#datasource='mo' or datasource='st'
+
+if(datasource=="mo"){
+  
+fgsea_df<-mo_fgsea_df
+filenames<-mofilenames
+filedir=mofiledir
+plotsource="Single-cell RNA-seq"
+}
+
+if(datasource=="st"){
+  fgsea_df<-st_fgsea_df
+  filenames<-stfilenames
+  filedir=stfiledir
+  plotsource="Spatial transcriptomics"
+}
+
+leading_edge<-fgsea_df$leadingEdge #from above
+le_str<-paste(leading_edge, collapse=",")
+levec<-strsplit(le_str, ",")
+levec<-levec[[1]]
+levec<-unique(levec)
+levec<-sort(levec)
+levec<-levec[-1]
+
+ledf<-data.frame(rn=levec)
+rownames(ledf)<-ledf[,1]
+
+ctn<-0
+
+my_palette <-  colorRampPalette(c("#0072B2", "white", "yellow"))(100)
+log2fc_results=list()
+
+for(n in c(1:length(filenames))){
+  
+  fd<-read.csv(paste(filedir, filenames[n], sep=""), sep="\t")
+  fname<-strsplit(filenames[n], "_")[[1]]
+  cname<-paste(fname[1:3], collapse="_")
+  
+  log2fc<-data.frame("gene_symbol"=fd[,1], "cname"=fd[,3])
+  colnames(log2fc)<-c("gene_symbol", cname)
+  
+  log2fc_results[[n]]<-log2fc
+  names(log2fc_results)[n]<-cname
+}
+
+merged_log2fc<-log2fc_results %>% reduce(full_join, by='gene_symbol')
+colnames(merged_log2fc)<-c("gene_symbol", names(log2fc_results))
+row.names(merged_log2fc)<-merged_log2fc$gene_symbol
+
+merged_log2fc_result<-merge(ledf, merged_log2fc, by=0)
+rownames(merged_log2fc_result)<-merged_log2fc_result[,1]
+merged_log2fc_result<-merged_log2fc_result[-c(1:3)]
+
+write.csv(merged_log2fc_result, file=paste("fgsea_Recon3d_", datasource, "_brain_NASA_results.csv", sep=""))
+
+merged_log2fc<-merged_log2fc[,-1]
+
+write.csv(merged_log2fc, file=paste("fgsea_Recon3d_", datasource, "_brain_NASA_full_genelist_results.csv",sep=""))
+
+pathnames<-names(recon3d_gmt)
+for(n in 1:length(recon3d_gmt)){
+  
+  pathname<-pathnames[n]
+  pathway_genelist<-as.vector(recon3d_gmt[which(names(recon3d_gmt)==pathname)][[1]])
+  selected_genes<-merged_log2fc[which(rownames(merged_log2fc) %in% pathway_genelist),]
+  pathway_set.path.m<-as.matrix((selected_genes))
+  
+  rowfontsz<-300/nrow(selected_genes)
+  if(is.null(dim(pathway_set.path.m))) rowfontsz=10
+  
+  #must have at least two genes in the pathway to plot.
+  
+  if(dim(pathway_set.path.m)[1]>1){
+    
+    pathname<-str_replace(pathname, "/", "_") #housekeeping names
+    
+    pdf(file=paste(outdir, pathname, "_", datasource,  "_brain_pHeatmaps_cluster_noscale_colcluster_", colcluster, ".pdf", sep=""), width=11, height=8)
+    
+  #replace NA with zero fold change for display. 
+  #this is display-only choice. 
+  
+  pathway_set.path.m[is.na(pathway_set.path.m)] <- 0
+  
+  rg <- max(abs(pathway_set.path.m));
+  
+  #no extra notations in the pheatmap col or rows.
+  pheatmap(pathway_set.path.m,scale="none", clustering_distance_rows = "correlation",show_rownames = T, show_colnames = T, fontsize=5, fontsize_row=rowfontsz, cluster_rows=T, cluster_cols=colcluster, main=paste(pathname,"\n", plotsource,  "\nHeatmap of log2 FC flight vs ground"), color = my_palette, breaks = seq(-rg, rg, length.out = 100))
+  
+  dev.off()
+  
+  }
+  
+}
+
+
+```
+
