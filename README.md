@@ -70,5 +70,5 @@ This script also generates the figures from the paper.
 
 The input files and output data are available via Mendeley dataset link of which is available in the 'Data availability' section of the paper. 
 
-
-
+### Validation_RNAscope_quantification
+This section contains the code and data for the validation experiments performed in this study. The code folder contains the code to generate the two boxplots that show the RNAscope quantification for two genes of interest (Adcy1 and Gpc5) in this study. The data folder contains the csv files with quantified RNAscope signal for each gene as a separate folder. Each csv filename starts with the samplename used in the study.
