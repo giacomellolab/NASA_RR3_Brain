@@ -1,0 +1,104 @@
+---
+title: "RNAscope validation plots"
+author: "Yuvarani Masarapu"
+date: "2023-11-01"
+output: html_document
+---
+
+```{r load-libraries}
+library(ggplot2)
+library(readr)
+library(ggpubr)
+library(readxl)
+```
+
+# For channel green, No. 488, gene id Adcy1
+
+ * Detected in ST data, upregulated for spaceflight in Hippocampal CA3 neurons
+ 
+## Entire section
+
+Read the csv files with quantified RNAscope signal for each section
+
+```{r warning=FALSE, message=FALSE}
+#Flight
+FL1_488_summary <- read_csv("Adcy1/FL1_summary_488_entire.csv")
+FL3_488_summary <- read_csv("Adcy1/FL3_summary_488_entire.csv")
+FL5_488_summary <- read_csv("Adcy1/FL5_summary_488_entire.csv")
+
+#ground control
+GC3_488_summary <- read_csv("Adcy1/GC3_summary_488_entire.csv")
+GC9_488_summary <- read_csv("Adcy1/GC9_summary_488_entire.csv")
+
+#Combine the dataframe
+FL_vs_GC <- rbind(FL1_488_summary, FL3_488_summary, FL5_488_summary, GC3_488_summary, GC9_488_summary)
+
+#assign custom column names
+FL_vs_GC$Sample <- c("FL1","FL3", "FL5" ,"GC3","GC9")
+FL_vs_GC$Sample_group <- c("Flight", "Flight", "Flight", "Ground Control", "Ground Control")
+```
+
+Plot showing quantified signal by pixels detected
+
+* X-axis is Sample group. Each point is colored by sample.
+* Y-axis is the total pixel count detected as positive signal for the gene in the entire section.
+
+```{r warning=FALSE, fig.width=6, fig.height=6}
+col=rainbow(length(levels(factor(FL_vs_GC$Sample))))[factor(FL_vs_GC$Sample)]
+FL_vs_GC$Pixel_counts_detected <- FL_vs_GC$Count
+p1 <- FL_vs_GC %>% ggboxplot(x="Sample_group", y="Pixel_counts_detected", fill="Sample_group", label = FL_vs_GC$Sample, add="jitter", 
+                     add.params=list(shape=21, color="black", fill=col, size=3), bxp.errorbar = TRUE, bxp.errorbar.width = 0.2)
+p1
+```
+
+Save the plot
+```{r}
+dir <- getwd()
+ggsave(plot = p1, filename = paste(dir, "/final_plots/", "boxplot_rnascope_Adcy1_green_wholesection.pdf", sep = ""), dpi = 300)
+```
+
+
+# For channel red, No. 555, gene id Gpc5
+
+ * Detected in snMultiomics data, upregulated for spaceflight in one cluster: Astrocytes
+
+## Entire section
+
+```{r warning=FALSE, message=FALSE}
+rm(FL_vs_GC)
+
+#Flight tables
+FL1_488_summary <- read_csv("Gpc5/FL1_summary_555.csv")
+FL3_488_summary <- read_csv("Gpc5/FL3_summary_555.csv")
+FL5_488_summary <- read_csv("Gcp5/FL5_summary_555.csv")
+
+#Ground control tables
+GC3_488_summary <- read_csv("Gpc5/GC3_summary_555.csv")
+GC9_488_summary <- read_csv("Gpc5/GC9_summary_555.csv")
+
+#Combine flight and ground
+FL_vs_GC <- rbind(FL1_488_summary, FL3_488_summary, FL5_488_summary ,GC3_488_summary, GC9_488_summary)
+
+#Give custom column names
+FL_vs_GC$Sample <- c("FL1","FL3", "FL5" ,"GC3","GC9")
+FL_vs_GC$Sample_group <- c("Flight", "Flight", "Flight" ,"Ground Control", "Ground Control")
+```
+
+Plot showing quantified signal by pixels detected
+
+* X-axis is Sample group. Each point is colored by sample.
+* Y-axis is the total pixel count detected as positive signal for the gene in the entire section.
+
+```{r warning=FALSE, fig.width=6, fig.height=6}
+col=rainbow(length(levels(factor(FL_vs_GC$Sample))))[factor(FL_vs_GC$Sample)]
+FL_vs_GC$Pixel_counts_detected <- FL_vs_GC$Count
+p8 <- FL_vs_GC %>% ggboxplot(x="Sample_group", y="Pixel_counts_detected", fill="Sample_group", label = FL_vs_GC$Sample, add="jitter", 
+                     add.params=list(shape=21, color="black", fill=col, size=3), bxp.errorbar = TRUE, bxp.errorbar.width = 0.2)
+
+p8
+```
+
+```{r}
+dir <- getwd()
+ggsave(plot = p8, filename = paste(dir, "/final_plots/", "boxplot_rnascope_Gpc5_red_wholesection.pdf", sep = ""), dpi = 300)
+```
