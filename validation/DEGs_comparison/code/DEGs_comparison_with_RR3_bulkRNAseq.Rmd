@@ -1,0 +1,52 @@
+---
+title: "Comparison of DEGs with RR3 bulk RNAseq data"
+author: "Yuvarani Masarapu"
+date: "2023-10-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Read the 825 DEGs from the multiomics clusters
+```{r}
+library(readxl)
+degs <- read_excel("Supplementary_Table_3.xlsx", 
+    skip = 1)
+```
+
+Add expression labels 'upregulated' and 'downregulated' based on positive or negative logFC values for each gene
+```{r}
+degs$logFC <- as.numeric(degs$logFC)
+
+degs$expression_label <- ifelse(degs$logFC>=0, "upregulated", "downregulated")
+```
+
+# Read the RR3 bulk data DEGs list
+```{r}
+library(readr)
+RR3_degs <- read_csv("/RR3_brain_bulk_GLDS352/GLDS-352_rna_seq_differential_expression.csv")
+
+RR3_degs <- RR3_degs[RR3_degs$`P.value_(Space Flight)v(Ground Control)`<0.05, ] #629 genes with P-value less than 0.05
+
+RR3_degs$expression_lbl <- ifelse(RR3_degs$`Log2fc_(Space Flight)v(Ground Control)`>=0, "upregulated", "downregulated")
+```
+
+# Compare to find overlaps
+```{r}
+# Total 11 genes that overlap
+overlap_genes <- intersect(degs$Gene, RR3_degs$SYMBOL)
+
+d1 <- degs[(degs$Gene %in% overlap_genes), c(1,7)]
+colnames(d1) <- c("gene", "label")
+
+r1 <- RR3_degs[(RR3_degs$SYMBOL %in% overlap_genes), c(2,29)]
+colnames(r1) <- c("gene", "label")
+
+require(sqldf)
+
+a1Ina2 <- sqldf('SELECT * FROM d1 INTERSECT SELECT * FROM r1') # 2 genes that have the same directional change in expression as compared to the RR3 ST and multiomics datasets in this study.
+```
+
+

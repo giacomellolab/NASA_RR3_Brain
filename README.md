@@ -70,5 +70,9 @@ This script also generates the figures from the paper.
 
 The input files and output data are available via Mendeley dataset link of which is available in the 'Data availability' section of the paper. 
 
-### Validation_RNAscope_quantification
-This section contains the code and data for the validation experiments performed in this study. The code folder contains the code to generate the two boxplots that show the RNAscope quantification for two genes of interest (Adcy1 and Gpc5) in this study. The data folder contains the csv files with quantified RNAscope signal for each gene as a separate folder. Each csv filename starts with the samplename used in the study.
+### validation
+This section contains the code and data for the validation performed in this study. 
+
+The [RNAscope_valiation](validation/RNAscope_validation) folder contains the code to generate the two boxplots that show the RNAscope quantification for two genes of interest (Adcy1 and Gpc5) in this study. The data folder here contains the csv files with quantified RNAscope signal for each gene as a separate folder. Each csv filename starts with the samplename used in the study.
+
+The [DEGs_comparison](validation/DEGs_comparison) folder contains the code for the comparison analysis performed in this study. The comparison with the same RR3 mission bulkRNAseq DEGs is provided in this code file [DEGs_comparison_with_RR3_bulkRNAseq.Rmd](validation/DEGs_comparison/code/DEGs_comparison_with_RR3_bulkRNAseq.Rmd). The code with the comparison analysis done for the 11 genelab datasets mentioned in this study is compiled under the file [DEGs_comparison_with_GeneLab_datasets.Rmd](validation/DEGs_comparison/code/DEGs_comparison_with_GeneLab_datasets.Rmd). The DEGs list for both these comparisons are provided in the [data folder](validation/data).
