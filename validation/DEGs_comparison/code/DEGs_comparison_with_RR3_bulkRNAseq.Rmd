@@ -1,5 +1,5 @@
 ---
-title: "Comparison of DEGs with RR3 bulk RNAseq data"
+title: "Comparison of DEGs with RR3 bulk RNAseq data, hypergeometric test for gene overlap"
 author: "Yuvarani Masarapu"
 date: "2023-10-20"
 output: html_document
@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(readxl)
 degs <- read_excel("Supplementary_Table_3.xlsx", 
-    skip = 1)
+    skip = 1) # pdf version available with manuscript as Supplementary Table 3
 ```
 
 Add expression labels 'upregulated' and 'downregulated' based on positive or negative logFC values for each gene
@@ -49,4 +49,46 @@ require(sqldf)
 a1Ina2 <- sqldf('SELECT * FROM d1 INTERSECT SELECT * FROM r1') # 2 genes that have the same directional change in expression as compared to the RR3 ST and multiomics datasets in this study.
 ```
 
+# Hypergeometric distribution test 
 
+* We test the overlap of the 11 genes found above using phyper()
+* Null hypothesis: The overlap of 11 genes from geneset1 (multiomics DEGs) and geneset2 (RR3 bulkRNAseq DEGs) is a random sampling effect.
+
+## Pull names of all mouse genes captured by the multiomics RR3 brain dataset
+```{r}
+mo_brain <- readRDS("mo_brain_2022-08-26_with_annotations.rds")
+
+DefaultAssay(mo_brain) <- "RNA"
+all_genes <- rownames(mo_brain) #32170 Mus musculus genes from multiomics dataset
+```
+
+## Pull the genes captured by the bulkRNAseq data
+```{r}
+library(readr)
+bulkRNAseq_counts <- read_csv("GLDS-352_rna_seq_RSEM_Unnormalized_Counts.csv")
+#BiocManager::install("org.Mm.eg.db")
+library(org.Mm.eg.db)
+
+ensm.ids <- bulkRNAseq_counts$...1 #56748 Mus musculus genes from bulkRNAseq dataset
+bulkRNA_genes <- mapIds(org.Mm.eg.db, ensm.ids, keytype="ENSEMBL", column="SYMBOL", multiVals = "first") #convert ensemble ids into gene symbols
+```
+
+```{r}
+all_genes <- c(all_genes, bulkRNA_genes) #88918 genes in total that is tested 
+geneset1 <- degs$Gene
+geneset2 <- RR3_degs$SYMBOL
+commongenes <- intersect(geneset1, geneset2)
+```
+
+## phyper() run here
+```{r}
+hyper_pval <- phyper(
+  q = length(commongenes), 
+  m = length(geneset1),
+  n = length(all_genes) - length(geneset1),
+  k = length(geneset2), lower.tail=FALSE
+)
+
+hyper_pval
+# [1] 0.01582549
+```

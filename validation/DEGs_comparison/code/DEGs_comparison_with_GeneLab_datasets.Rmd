@@ -1,5 +1,5 @@
 ---
-title: "DEGs_comparison_snclusters"
+title: "DEGs_comparison_snclusters and hypergeometric distribution tests"
 author: "Yuvarani Masarapu"
 date: "2023-10-20"
 output: html_document
@@ -9,11 +9,19 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Read the seurat object for the multiomics dataset to fetch the genecount
+```{r}
+mo_brain <- readRDS("mo_brain_2022-08-26_with_annotations.rds")
+
+DefaultAssay(mo_brain) <- "RNA"
+mo_brain <- rownames(mo_brain)
+```
+
 # Read the 825 DEGs from the multiomics clusters
 ```{r}
 library(readxl)
 degs <- read_excel("Supplementary_Table_3.xlsx", 
-    skip = 1)
+    skip = 1) # pdf version of this sheet provided along with the manuscript, Supplementary Table 3
 ```
 
 Add expression labels 'upregulated' or 'downregulated' based on positive or negative logFC values for each gene
@@ -25,11 +33,15 @@ degs$expression_label <- ifelse(degs$logFC>=0, "upregulated", "downregulated")
 
 # Read the 11 NASA Genelab datasets used in the comparison analysis mentioned in the study
 
-* Combine them in one big dataframe format for comparison
-* We use a p-value of 0.05 to filter the genes. Same p-value was used in the RR3 ST and multiomics brain data analysis. Then label the gene as upregulated or downregulated
-* These datasets can be downloaded from the NASA OSDR website and the files are also provided in the **/data/other_datasets** folder to access.
+* Combine them in one big dataframe format for comparison.
+* We use a p-value of 0.05 to filter the genes. Same p-value was used in the RR3 ST and multiomics brain data analysis. Then label the gene as upregulated or downregulated by logFC threshold of 0.
+* These datasets can be downloaded from the NASA OSDR website and the files are also provided in the /other_datasets folder to access.
+* Link to each dataset is provided below the titles.
 
 ## RR1 eye GLDS 100
+
+* Link is https://osdr.nasa.gov/bio/repo/data/studies/OSD-100
+
 ```{r}
 library(readr)
 RR1_eye_GLDS100 <- read_csv("other_datasets/RR1_eye_GLDS100/GLDS-100_rna_seq_differential_expression.csv")
@@ -41,7 +53,35 @@ RR1_eye_GLDS100$expression_lbl <- ifelse(RR1_eye_GLDS100$`Log2fc_(Space Flight)v
 overlap1 <- unique(intersect(degs$Gene, RR1_eye_GLDS100$SYMBOL))
 ```
 
+### hypergeometric distribution test
+
+```{r}
+GLDS_100_rna_seq_Unnormalized_Counts <- read_csv("other_datasets/RR1_eye_GLDS100/GLDS-100_rna_seq_Unnormalized_Counts.csv")
+library(org.Mm.eg.db)
+
+ensm.ids <- GLDS_100_rna_seq_Unnormalized_Counts$...1 #pull the genes in a vector
+GLDS_100_genes <- mapIds(org.Mm.eg.db, ensm.ids, keytype="ENSEMBL", column="SYMBOL", multiVals = "first") #55536 genes
+#convert ensemble ids to gene symbols
+
+all_genes <- union(GLDS_100_genes, mo_brain) #42153
+```
+
+```{r}
+hyper_pval <- phyper(
+  q = length(overlap1), 
+  m = length(degs$Gene),
+  n = length(all_genes) - length(degs$Gene),
+  k = length(RR1_eye_GLDS100$SYMBOL), lower.tail=FALSE
+)
+
+hyper_pval
+# [1] 2.61579e-11
+```
+
 ## RR1 gastro musc GLDS 101
+
+* Link is https://osdr.nasa.gov/bio/repo/data/studies/OSD-101
+
 ```{r}
 library(readr)
 RR1_gastro_GLDS101 <- read_csv("other_datasets/RR1_gastro-musc_GLDS101/GLDS-101_rna_seq_differential_expression.csv")
@@ -53,7 +93,35 @@ RR1_gastro_GLDS101$expression_lbl <- ifelse(RR1_gastro_GLDS101$`Log2fc_(FLT)v(GC
 overlap2 <- unique(intersect(degs$Gene, RR1_gastro_GLDS101$SYMBOL))
 ```
 
+### hypergeometric distribution test
+
+```{r}
+GLDS_101_rna_seq_Unnormalized_Counts <- read_csv("other_datasets/RR1_gastro-musc_GLDS101/GLDS-101_rna_seq_Unnormalized_Counts.csv")
+library(org.Mm.eg.db)
+
+ensm.ids <- GLDS_101_rna_seq_Unnormalized_Counts$...1 #pull the genes in a vector
+GLDS_101_genes <- mapIds(org.Mm.eg.db, ensm.ids, keytype="ENSEMBL", column="SYMBOL", multiVals = "first") #55536 genes
+#convert ensemble ids to gene symbols
+
+all_genes <- union(GLDS_101_genes, mo_brain) #42153
+```
+
+```{r}
+hyper_pval <- phyper(
+  q = length(overlap2), 
+  m = length(degs$Gene),
+  n = length(all_genes) - length(degs$Gene),
+  k = length(RR1_gastro_GLDS101$SYMBOL), lower.tail=FALSE
+)
+
+hyper_pval
+# [1] 2.226356e-05
+```
+
 ## RR1 kidney GLDS 102
+
+* Link is https://osdr.nasa.gov/bio/repo/data/studies/OSD-102
+
 ```{r}
 library(readr)
 RR1_kidney_GLDS102 <- read_csv("other_datasets/RR1_kidney_GLDS102/GLDS-102_rna_seq_differential_expression.csv")
@@ -65,7 +133,34 @@ RR1_kidney_GLDS102$expression_lbl <- ifelse(RR1_kidney_GLDS102$`Log2fc_(Space Fl
 overlap3 <- unique(intersect(degs$Gene, RR1_kidney_GLDS102$SYMBOL))
 ```
 
+### hypergeometric distribution test
+
+```{r}
+GLDS_102_rna_seq_Unnormalized_Counts <- read_csv("other_datasets/RR1_kidney_GLDS102/GLDS-102_rna_seq_Unnormalized_Counts.csv")
+library(org.Mm.eg.db)
+
+ensm.ids <- GLDS_102_rna_seq_Unnormalized_Counts$...1
+GLDS_102_genes <- mapIds(org.Mm.eg.db, ensm.ids, keytype="ENSEMBL", column="SYMBOL", multiVals = "first") #55536 genes
+
+all_genes <- union(GLDS_102_genes, mo_brain) #42153
+```
+
+```{r}
+hyper_pval <- phyper(
+  q = length(overlap3), 
+  m = length(degs$Gene),
+  n = length(all_genes) - length(degs$Gene),
+  k = length(RR1_kidney_GLDS102$SYMBOL), lower.tail=FALSE
+)
+
+hyper_pval
+# [1] 2.622859e-08
+```
+
 ## RR1 liver GLDS 47
+
+* Link is https://osdr.nasa.gov/bio/repo/data/studies/OSD-47
+
 ```{r}
 library(readr)
 RR1_liver_GLDS47 <- read_csv("other_datasets/RR1_liver_GLDS47/GLDS-47_rna_seq_differential_expression.csv")
@@ -77,7 +172,34 @@ RR1_liver_GLDS47$expression_lbl <- ifelse(RR1_liver_GLDS47$`Log2fc_(Space Flight
 overlap4 <- unique(intersect(degs$Gene, RR1_liver_GLDS47$SYMBOL))
 ```
 
+### hypergeometric distribution test
+
+```{r}
+GLDS_47_rna_seq_Unnormalized_Counts <- read_csv("other_datasets/RR1_liver_GLDS47/GLDS-47_rna_seq_Unnormalized_Counts.csv")
+library(org.Mm.eg.db)
+
+ensm.ids <- GLDS_47_rna_seq_Unnormalized_Counts$...1
+GLDS_47_genes <- mapIds(org.Mm.eg.db, ensm.ids, keytype="ENSEMBL", column="SYMBOL", multiVals = "first") #55536 genes
+
+all_genes <- union(GLDS_47_genes, mo_brain) #42153
+```
+
+```{r}
+hyper_pval <- phyper(
+  q = length(overlap4), 
+  m = length(degs$Gene),
+  n = length(all_genes) - length(degs$Gene),
+  k = length(RR1_liver_GLDS47$SYMBOL), lower.tail=FALSE
+)
+
+hyper_pval
+# [1] 0.0325713
+```
+
 ## RR1 quad musc GLDS 103
+
+* Link is https://osdr.nasa.gov/bio/repo/data/studies/OSD-103
+
 ```{r}
 library(readr)
 RR1_quad_musc_GLDS103 <- read_csv("other_datasets/RR1_quad-musc_GLDS103/GLDS-103_rna_seq_differential_expression.csv")
@@ -89,7 +211,34 @@ RR1_quad_musc_GLDS103$expression_lbl <- ifelse(RR1_quad_musc_GLDS103$`Log2fc_(Sp
 overlap5 <- unique(intersect(degs$Gene, RR1_quad_musc_GLDS103$SYMBOL))
 ```
 
+### hypergeometric distribution test
+
+```{r}
+GLDS_103_rna_seq_Unnormalized_Counts <- read_csv("other_datasets/RR1_quad-musc_GLDS103/GLDS-103_rna_seq_Unnormalized_Counts.csv")
+library(org.Mm.eg.db)
+
+ensm.ids <- GLDS_103_rna_seq_Unnormalized_Counts$...1
+GLDS_103_genes <- mapIds(org.Mm.eg.db, ensm.ids, keytype="ENSEMBL", column="SYMBOL", multiVals = "first") #55536 genes
+
+all_genes <- union(GLDS_103_genes, mo_brain) #42153
+```
+
+```{r}
+hyper_pval <- phyper(
+  q = length(overlap5), 
+  m = length(degs$Gene),
+  n = length(all_genes) - length(degs$Gene),
+  k = length(RR1_quad_musc_GLDS103$SYMBOL), lower.tail=FALSE
+)
+
+hyper_pval
+# [1] 7.640832e-05
+```
+
 ## RR1 soleus musc GLDS 104
+
+* Link is https://osdr.nasa.gov/bio/repo/data/studies/OSD-104
+
 ```{r}
 library(readr)
 RR1_soleus_musc_GLDS104 <- read_csv("other_datasets/RR1_soleus-musc_GLDS104/GLDS-104_rna_seq_differential_expression.csv")
@@ -101,7 +250,34 @@ RR1_soleus_musc_GLDS104$expression_lbl <- ifelse(RR1_soleus_musc_GLDS104$`Log2fc
 overlap6 <- unique(intersect(degs$Gene, RR1_soleus_musc_GLDS104$SYMBOL))
 ```
 
+### hypergeometric distribution test
+
+```{r}
+GLDS_104_rna_seq_Unnormalized_Counts <- read_csv("other_datasets/RR1_soleus-musc_GLDS104/GLDS-104_rna_seq_Unnormalized_Counts.csv")
+library(org.Mm.eg.db)
+
+ensm.ids <- GLDS_104_rna_seq_Unnormalized_Counts$...1
+GLDS_104_genes <- mapIds(org.Mm.eg.db, ensm.ids, keytype="ENSEMBL", column="SYMBOL", multiVals = "first") #55536 genes
+
+all_genes <- union(GLDS_104_genes, mo_brain) #42153
+```
+
+```{r}
+hyper_pval <- phyper(
+  q = length(overlap6), 
+  m = length(degs$Gene),
+  n = length(all_genes) - length(degs$Gene),
+  k = length(RR1_soleus_musc_GLDS104$SYMBOL), lower.tail=FALSE
+)
+
+hyper_pval
+# [1] 3.396051e-14
+```
+
 ## RR1 tib ant musc GLDS 105
+
+* Link is https://osdr.nasa.gov/bio/repo/data/studies/OSD-105
+
 ```{r}
 library(readr)
 RR1_tib_ant_musc_GLDS105 <- read_csv("other_datasets/RR1_tib-ant-musc_GLDS105/GLDS-105_rna_seq_differential_expression.csv")
@@ -113,7 +289,34 @@ RR1_tib_ant_musc_GLDS105$expression_lbl <- ifelse(RR1_tib_ant_musc_GLDS105$`Log2
 overlap7 <- unique(intersect(degs$Gene, RR1_tib_ant_musc_GLDS105$SYMBOL))
 ```
 
+### hypergeometric distribution test
+
+```{r}
+GLDS_105_rna_seq_Unnormalized_Counts <- read_csv("other_datasets/RR1_tib-ant-musc_GLDS105/GLDS-105_rna_seq_Unnormalized_Counts.csv")
+library(org.Mm.eg.db)
+
+ensm.ids <- GLDS_105_rna_seq_Unnormalized_Counts$...1
+GLDS_105_genes <- mapIds(org.Mm.eg.db, ensm.ids, keytype="ENSEMBL", column="SYMBOL", multiVals = "first") #55536 genes
+
+all_genes <- union(GLDS_105_genes, mo_brain) #42153
+```
+
+```{r}
+hyper_pval <- phyper(
+  q = length(overlap7), 
+  m = length(degs$Gene),
+  n = length(all_genes) - length(degs$Gene),
+  k = length(RR1_tib_ant_musc_GLDS105$SYMBOL), lower.tail=FALSE
+)
+
+hyper_pval
+# [1] 3.1589e-09
+```
+
 ## RR3 adrenal GLDS 161
+
+* Link is https://osdr.nasa.gov/bio/repo/data/studies/OSD-161
+
 ```{r}
 library(readr)
 RR3_adrenal_GLDS161 <- read_csv("other_datasets/RR3_adrenal_GLDS161/GLDS-161_rna_seq_differential_expression.csv")
@@ -125,7 +328,34 @@ RR3_adrenal_GLDS161$expression_lbl <- ifelse(RR3_adrenal_GLDS161$`Log2fc_(Space 
 overlap8 <- unique(intersect(degs$Gene, RR3_adrenal_GLDS161$SYMBOL))
 ```
 
+### hypergeometric distribution test
+
+```{r}
+GLDS_161_rna_seq_Unnormalized_Counts <- read_csv("other_datasets/RR3_adrenal_GLDS161/GLDS-161_rna_seq_Unnormalized_Counts.csv")
+library(org.Mm.eg.db)
+
+ensm.ids <- GLDS_161_rna_seq_Unnormalized_Counts$...1
+GLDS_161_genes <- mapIds(org.Mm.eg.db, ensm.ids, keytype="ENSEMBL", column="SYMBOL", multiVals = "first") #55536 genes
+
+all_genes <- union(GLDS_161_genes, mo_brain) #42153
+```
+
+```{r}
+hyper_pval <- phyper(
+  q = length(overlap8), 
+  m = length(degs$Gene),
+  n = length(all_genes) - length(degs$Gene),
+  k = length(RR3_adrenal_GLDS161$SYMBOL), lower.tail=FALSE
+)
+
+hyper_pval
+# [1] 0.511294
+```
+
 ## RR3 eye GLDS 162
+
+* Link is https://osdr.nasa.gov/bio/repo/data/studies/OSD-162
+
 ```{r}
 library(readr)
 RR3_eye_GLDS162 <- read_csv("other_datasets/RR3_eye_GLDS162/GLDS-162_rna_seq_differential_expression.csv")
@@ -137,7 +367,34 @@ RR3_eye_GLDS162$expression_lbl <- ifelse(RR3_eye_GLDS162$`Log2fc_(Space Flight)v
 overlap9 <- unique(intersect(degs$Gene, RR3_eye_GLDS162$SYMBOL))
 ```
 
+### hypergeometric distribution test
+
+```{r}
+GLDS_162_rna_seq_Unnormalized_Counts <- read_csv("other_datasets/RR3_eye_GLDS162/GLDS-162_rna_seq_Unnormalized_Counts.csv")
+library(org.Mm.eg.db)
+
+ensm.ids <- GLDS_162_rna_seq_Unnormalized_Counts$...1
+GLDS_162_genes <- mapIds(org.Mm.eg.db, ensm.ids, keytype="ENSEMBL", column="SYMBOL", multiVals = "first") #55536 genes
+
+all_genes <- union(GLDS_162_genes, mo_brain) #42153
+```
+
+```{r}
+hyper_pval <- phyper(
+  q = length(overlap9), 
+  m = length(degs$Gene),
+  n = length(all_genes) - length(degs$Gene),
+  k = length(RR3_eye_GLDS162$SYMBOL), lower.tail=FALSE
+)
+
+hyper_pval
+# [1] 0.06789543
+```
+
 ## RR3 kidney GLDS 163
+
+* Link is https://osdr.nasa.gov/bio/repo/data/studies/OSD-163
+
 ```{r}
 library(readr)
 RR3_kidney_GLDS163 <- read_csv("other_datasets/RR3_kidney_GLDS163/GLDS-163_rna_seq_differential_expression.csv")
@@ -149,7 +406,34 @@ RR3_kidney_GLDS163$expression_lbl <- ifelse(RR3_kidney_GLDS163$`Log2fc_(Space Fl
 overlap10 <- unique(intersect(degs$Gene, RR3_kidney_GLDS163$SYMBOL))
 ```
 
+### hypergeometric distribution test
+
+```{r}
+GLDS_163_rna_seq_Unnormalized_Counts <- read_csv("other_datasets/RR3_kidney_GLDS163/GLDS-163_rna_seq_Unnormalized_Counts.csv")
+library(org.Mm.eg.db)
+
+ensm.ids <- GLDS_163_rna_seq_Unnormalized_Counts$...1
+GLDS_163_genes <- mapIds(org.Mm.eg.db, ensm.ids, keytype="ENSEMBL", column="SYMBOL", multiVals = "first") #55536 genes
+
+all_genes <- union(GLDS_163_genes, mo_brain) #42153
+```
+
+```{r}
+hyper_pval <- phyper(
+  q = length(overlap10), 
+  m = length(degs$Gene),
+  n = length(all_genes) - length(degs$Gene),
+  k = length(RR3_kidney_GLDS163$SYMBOL), lower.tail=FALSE
+)
+
+hyper_pval
+# [1] 0.001412185
+```
+
 ## RR3 liver GLDS 168
+
+* Link is https://osdr.nasa.gov/bio/repo/data/studies/OSD-168
+
 ```{r}
 library(readr)
 RR3_liver_GLDS168 <- read_csv("other_datasets/RR3_liver_GLDS168/GLDS-168_rna_seq_differential_expression.csv")
@@ -161,12 +445,35 @@ RR3_liver_GLDS168$expression_lbl <- ifelse(RR3_liver_GLDS168$`Log2fc_(RR3_FLT_wE
 overlap11 <- unique(intersect(degs$Gene, RR3_liver_GLDS168$SYMBOL))
 ```
 
+### hypergeometric distribution test
+
+```{r}
+GLDS_168_rna_seq_Unnormalized_Counts <- read_csv("other_datasets/RR3_liver_GLDS168/GLDS-168_rna_seq_Unnormalized_Counts.csv")
+library(org.Mm.eg.db)
+
+ensm.ids <- GLDS_168_rna_seq_Unnormalized_Counts$...1
+GLDS_168_genes <- mapIds(org.Mm.eg.db, ensm.ids, keytype="ENSEMBL", column="SYMBOL", multiVals = "first") #55536 genes
+
+all_genes <- union(GLDS_168_genes, mo_brain) #42153
+```
+
+```{r}
+hyper_pval <- phyper(
+  q = length(overlap11), 
+  m = length(degs$Gene),
+  n = length(all_genes) - length(degs$Gene),
+  k = length(RR3_liver_GLDS168$SYMBOL), lower.tail=FALSE
+)
+
+hyper_pval
+# [1] 0.8589291
+```
+
 # Find Overlap across all datasets
 ```{r}
-common.all <- intersect(overlap1, intersect(overlap2, intersect(overlap3, intersect(overlap4, intersect(overlap5, intersect(overlap6, intersect(overlap7, intersect(overlap8, (intersect(overlap9, intersect(overlap10, overlap11)))))))))))
-
 overlap.all <- union(overlap1, union(overlap2, union(overlap3, union(overlap4, union(overlap5, union(overlap6, union(overlap7, union(overlap8, (union(overlap9, union(overlap10, overlap11)))))))))))
-overlap.all <- unique(overlap.all)
+
+overlap.all <- unique(overlap.all) # 461 genes overlapping across all 11 datasets combined
 ```
 
 # Put data in 1 single excel file
@@ -176,6 +483,7 @@ df <- data.frame("Mission" = c("RR1", "RR1", "RR1", "RR1", "RR1", "RR1", "RR1", 
                  "Organ" = c("Eye", "Gastrocnemius Muscle", "Kidney", "Liver", "Quadriceps Muscle", "Soleus Muscle", "Tibialis Anterior Muscle", "Adrenal Gland", "Eye", "Kidney", "Liver"),
                  "Overlapping_Spaceflight_multiomics_genes" = c(toString(overlap1), toString(overlap2), toString(overlap3), toString(overlap4), toString(overlap5), toString(overlap6), toString(overlap7), toString(overlap8), toString(overlap9), toString(overlap10), toString(overlap11)))
 
-writexl::write_xlsx(df, path = "Supplementary_Table_5.xlsx", col_names = TRUE)
+writexl::write_xlsx(df, path = "Supplementary_Table_5.xlsx", col_names = TRUE) # pdf version available with the manuscript, Supplementary Table 5
+# later modified to also include the resultant p-values from the hypergeometric distribution tests
 ```
 
