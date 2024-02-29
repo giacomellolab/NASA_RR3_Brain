@@ -1,0 +1,73 @@
+---
+title: "convert seurat to anndata"
+author: "Yuvarani Masarapu"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r read_spatial_data}
+library(Seurat)
+library(SeuratObject)
+library(STutility)
+library(SeuratDisk)
+indir <- getwd()
+st.brain <- readRDS(paste(indir, "/220512_RR3_brain_SCTpersection_harmony_annot.rds", sep = ""))
+DefaultAssay(st.brain) <- "RNA"
+st.brain.obj <- SplitObject(object = st.brain, split.by = "sample_name_cond")
+
+unique(st.brain$sample_name_cond)
+# [1] "CF2_158_A1" "CF2_158_B1" "CF7_158_C1" "CF7_158_D1" "CG7_159_A1" "CG7_159_B1" "CF1_159_C1" "CF1_159_D1"
+# [9] "CG9_304_A1" "CG9_304_B1" "CG8_304_C1" "CG8_304_D1"
+# 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+
+st.brain@meta.data
+st.brain@tools$Staffli@meta.data
+
+for(i in 1:length(st.brain.obj)){
+  DefaultAssay(st.brain.obj[[i]]) <- "RNA"
+  colnames(st.brain.obj[[i]]) <- substr(colnames(st.brain.obj[[i]]), 1, nchar(colnames(st.brain.obj[[i]]))-2)
+  #st.brain.obj[[i]] <- UpdateSeuratObject(st.brain.obj)
+}
+
+# save barcodes separately for each section because you will need that later
+for(i in 1:length(st.brain.obj)){
+  temp <- colnames(st.brain.obj[[i]])
+  write.csv(temp, file = paste(indir, "/barcodes_for_anndata/", names(st.brain.obj)[i], ".csv", sep = ""), row.names = FALSE, col.names = FALSE)
+}
+
+# save all genes in a csv file
+# write.csv(rownames(st.brain.obj[[1]]), file = "st.brain_genes.csv", row.names = FALSE, col.names = FALSE)
+```
+
+```{r install-SCP, eval=FALSE}
+if (!require("devtools", quietly = TRUE)) {
+  install.packages("devtools")
+}
+devtools::install_github("zhanghao-njmu/SCP")
+```
+
+```{r save_seurat_to_anndata}
+indir <- getwd()
+library(SCP)
+for(i in 1:length(st.brain.obj)){
+  DefaultAssay(st.brain.obj[[i]]) <- "RNA" #this is a very important step
+  dat <- SCP::srt_to_adata(srt = st.brain.obj[[i]],
+                         features = rownames(st.brain.obj[[i]]),
+                         assay_X = "RNA",
+                         slot_X = "counts",
+                         verbose = TRUE)
+  dat$write_h5ad(paste(indir, "/anndata_objects/", st.brain.obj[[i]], ".h5ad", sep = ""))
+  #dat$var_keys
+}
+
+rm(st.brain)
+rm(st.brain.obj)
+gc()
+rm(i, indir, temp)
+rm(dat)
+gc()
+```

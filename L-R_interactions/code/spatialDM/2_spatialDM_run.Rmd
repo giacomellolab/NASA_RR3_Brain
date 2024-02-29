@@ -1,0 +1,266 @@
+---
+title: "SpatialDM for LR interactions- RR3 brain"
+author: "Yuvarani Masarapu"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Load reticulate library
+
+```{r}
+library(reticulate)
+```
+
+## Create virtual env with name 'test' and python v3.9.18
+```{r}
+virtualenv_create("test", version = "3.9")
+```
+
+### Change python path and start the virtual env
+
+List packages there
+
+```{r}
+use_python("/Users/yuvarani.masarapu/.virtualenvs/test/bin/python")
+# indicate that we want to use a specific virtualenv
+use_virtualenv("test")
+
+#reticulate::repl_python()
+py_list_packages(
+  envname = "test",
+  type = c("virtualenv"),
+  python = NULL
+)
+```
+
+### Check python version
+```{bash}
+python --version #3.9.5
+```
+
+### Check python path
+```{bash}
+which python
+```
+
+### Install pip version
+```{bash}
+python3 -m pip --version # pip 21.1.1
+```
+
+### Install numpy version for spatialDM
+
+```{bash}
+#downgrade numpy to avoid the np.float64 issue
+pip3 install --no-user numpy==1.22.4
+```
+
+## Install SpatialDM
+```{bash}
+pip3 install -U git+https://github.com/StatBiomed/SpatialDM
+```
+
+### Import modules for spatialDM
+
+```{python check-spatialDM_installation}
+import os
+import pandas as pd
+import numpy as np
+import anndata as ann
+
+import spatialdm as sdm
+from spatialdm.datasets import dataset
+import spatialdm.plottings as pl
+
+import matplotlib.pyplot as plt
+print("SpatailDM version: %s" %sdm.__version__)
+```
+
+# Read anndata
+
+## Load the 10X spaceranger counts and images so that we can pull out spatial barcodes information that is lost when the ST seurat object is converted to anndata for the analysis.
+
+```{python}
+import os
+paths = []
+directory = '/NASA_RR3/SpatialDM_LR_interactions_project/spaceranger_outs_RR3_brain'
+for dir_path in os.listdir(directory):
+  paths.append(os.path.join(directory, dir_path))
+  
+#reorder paths to remove DS_store file and also reorder paths so they appear in sample orders from F1 to F3 and G1 to G3
+paths
+updated_paths = [paths[12], paths[7], paths[2], paths[4], paths[10], paths[8], paths[1], paths[0], paths[9], paths[11], paths[6], paths[5]]
+
+anndata_samps = []
+for i in range(0, len(updated_paths)):
+  anndata_samps.append(sc.read_visium(path = updated_paths[i], genome=None, count_file='filtered_feature_bc_matrix.h5', load_images=True, source_image_path=None))
+```
+
+## Read csv files with spatial barcodes from the final ST seurat object
+
+```{python}
+import pandas as pd
+import os.path
+import os
+
+working_dir = "/NASA_RR3/SpatialDM_LR_interactions_project/barcodes_for_anndata"
+
+for root, dirs, files in os.walk(working_dir):
+    file_list = []
+    for filename in files:
+        if filename.endswith('.csv'):
+            file_list.append(os.path.join(root, filename)) 
+    df_list = [pd.read_table(file) for file in file_list]
+
+
+files
+# the order is
+#['CF1_159_C1.csv', 'CF7_158_D1.csv', 'CF7_158_C1.csv', 'CF2_158_B1.csv', 'CG7_159_B1.csv', 'CF1_159_D1.csv', 'CG9_304_B1.csv', 'CG8_304_D1.csv', 'CG9_304_A1.csv', 'CG7_159_A1.csv', 'CF2_158_A1.csv', 'CG8_304_C1.csv']
+# F1_1, F3_2, F3_1, F2_2, G1_2, F1_2, G3_2, G2_2, G3_1, G1_1, F2_1, G2_1
+#   0     1     2     3     4     5     6     7     8     9    10    11
+df_list[11].x
+
+# reorder the barcodes list so that the order matches the anndata list
+spatial_coords = [df_list[0], df_list[5], df_list[10], df_list[3], df_list[2], df_list[1], df_list[9], df_list[4], df_list[11], df_list[7], df_list[8], df_list[6]]
+
+spatial_coords
+```
+
+## Main ST anndata object
+```{python}
+#Read the st seurat converted anndata object
+dat = ann.read_h5ad("st_brain.h5ad")
+dat.X #log-transformed expression
+dat.raw #raw count data
+dat.obs_keys
+dat.obsm #spatial coordinates saved here
+dat.uns
+len(dat.var)
+
+# split the st brain object by each sample
+sample_names = ['CF1_159_C1','CF1_159_D1','CF2_158_A1','CF2_158_B1','CF7_158_C1','CF7_158_D1','CG7_159_A1','CG7_159_B1','CG8_304_C1','CG8_304_D1','CG9_304_A1','CG9_304_B1']
+st_brain_list = []
+for i in range(0, len(sample_names)):
+  print(i)
+  st_brain_list.append(dat[dat.obs.sample_name_cond == sample_names[i]])
+  #st_brain_list[i].obs.index #just to check the barcodes
+  st_brain_list[i].raw = st_brain_list[i] # save copy of raw counts in the .raw layer
+  sc.pp.log1p(st_brain_list[i]) # do log1p so log transformed values are saved in the .X layer as spatial DM needs
+  st_brain_list[i].raw
+  st_brain_list[i].X
+```
+
+# Assign spatial layer with coordinates to the ST object
+
+```{python}
+# check one by one, for each object, if barcodes match 
+# we do this and if it matches the value of true or false is assigned to each spot
+# these true false values are feeded back to the anndata object as a new metadata column called barcode_check
+# now we subset the annadata objects for only those barcodes that match by making use of this barcode_check column
+# Since now both the objects in anndata_samps and in st_brain_list will contain the same number of final filtered barcodes used in the analysis
+# The asignment of image coordinates can be done now
+for i in range(0, len(spatial_coords)):
+  anndata_samps[i].obs['barcode_check'] = anndata_samps[i].obs.index.isin(spatial_coords[i].x)
+  anndata_samps[i] = anndata_samps[i][anndata_samps[i].obs.barcode_check]
+  st_brain_list[i].obsm['spatial'] = anndata_samps[i].obsm['spatial']
+  st_brain_list[i].obsm['spatial']
+```
+
+# Now run spatialDM
+
+```{python}
+for adata in st_brain_list:
+    #adata.obsm['spatial'] = adata.obsm['spatial'].values
+    sdm.weight_matrix(adata, l=250, cutoff=0.2, single_cell=False) # weight_matrix by rbf kernel
+    sdm.extract_lr(adata, 'mouse', min_cell=3)      # find overlapping LRs from CellChatDB
+    #if you get an error at this step, go and install python certificates from /Applications/Python folder
+    #double click on both the install file and the shell command file
+    sdm.spatialdm_global(adata, 1000, specified_ind=None, method='z-score', nproc=1)     # global Moran selection
+    sdm.sig_pairs(adata, method='z-score', fdr=True, threshold=0.1)     # select significant pairs
+    sdm.spatialdm_local(adata, n_perm=1000, method='z-score', specified_ind=None, nproc=1)     # local spot selection
+    sdm.sig_spots(adata, method='z-score', fdr=False, threshold=0.1)   
+    print(' done!')
+```
+
+## look at the global LR pairs for each section picked up by cellchatDB
+
+```{python}
+for adata in st_brain_list:
+  print(adata.obs['sample_name_cond'])
+  print(adata.uns['global_res'].selected.sum())
+  adata.uns['global_res'].sort_values(by='fdr').head()
+```
+
+## look at the global LR pairs for each section picked up by cellchatDB
+
+```{python}
+for adata in st_brain_list:
+  print(adata.obs['sample_name_cond'])
+```
+
+## Differential test
+
+```{python}
+from spatialdm.diff_utils import *
+```
+
+```{python}
+concat=concat_obj(st_brain_list, sample_names, 'mouse', 'z-score', fdr=False)
+```
+
+## concat with fdr correction
+```{python}
+concat_fdr = concat_obj(st_brain_list, sample_names, 'mouse', 'z-score', fdr=TRUE)
+```
+
+p-values for each LR pair stored in the p_df dataframe.
+
+```{python}
+from pandas import DataFrame
+df1 = pd.DataFrame(concat.uns['p_df'])
+df1.to_csv('significant_LR_all_sections_p_value.csv')
+
+concat.uns['p_df'] #1260 L-R pairs selected across all pairs for differential testing
+```
+
+true or false values saved in tf_df for whether the LR pair is selected in each sample.
+
+```{python}
+from pandas import DataFrame
+df1 = pd.DataFrame(concat.uns['tf_df'])
+df1.to_csv('significant_LR_all_sections_tf_value.csv')
+
+concat.uns['tf_df'].head()
+```
+
+z-scores stored in zscore_df 
+
+```{python}
+from pandas import DataFrame
+df1 = pd.DataFrame(concat.uns['zscore_df'])
+df1.to_csv('significant_LR_all_sections_zscore_value.csv')
+
+concat.uns['zscore_df'].head()
+```
+
+## differential test based on condition
+
+Later, we can focus on differential pairs within 2 contrasting conditions. By default, pairs with z-score difference greater than 30% quantile and a corrected differential significance (.diff_fdr) smaller than 0.1 are selected, while different parameters can be applied in diff_quantile1, diff_quantile2, and fdr_co, respectively.
+
+```{python}
+differential_test(concat, sample_names, conditions)
+```
+
+```{python}
+group_differential_pairs(concat, 'Flight', 'Ground-control')
+```
+
+```{python}
+for i in range(0, len(st_brain_list)):
+  pl.plot_pairs(st_brain_list[i], ['CADM1_CADM1', 'PTN_PTPRZ1'], figsize=(60, 8), pdf = sample_names[i])
+```
+
