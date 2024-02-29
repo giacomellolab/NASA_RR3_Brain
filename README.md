@@ -25,7 +25,7 @@ The deconvolution results saved as an R object can be downloaded from the Mendel
 ### Ligand Receptor interactions analysis
 L-R interactions were analysed via this [code](L-R_interactions/code/L_R_Brain.Rmd). Resultant plots are shown and discussed in the manuscript.
 The code for running SpatialDM is available under the folder [spatialDM](L-R_interactions/code/spatialDM). The order of running the code follows the numerical ids appended to each script name as '1_', '2_'.
-To run spatialDM via RStudio, the 'reticulate' package was used to create a virtual environment and install necessary package versions. Details of the same are provided within the scripts. The main spatialDM code chunk took approx. 5 minutes to run on macOS Monterey (version 12.6) with 32 GB RAM, and R version 4.3.2.
+To run spatialDM via RStudio, the 'reticulate' package was used to create a virtual environment with python version 3.9.5 and install necessary package dependencies for spatialDM mainly numpy version 1.22.4. Details of the same are provided within the scripts. The main spatialDM code chunk took approx. 5 minutes to run on macOS Monterey (version 12.6) with 32 GB RAM, and R version 4.3.2.
 
 ### Celltype interactions analysis using Misty and Progeny
 More details on this analysis can be found in our manuscript and all the code required to run this analysis is available as a Snakemake pipeline in the github repository: **https://github.com/saezlab/astromouse**
