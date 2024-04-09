@@ -1,0 +1,825 @@
+---
+title: "figures nasa rr3"
+author: "Yuvarani Masarapu"
+date: '2022-07-12'
+output: html_document
+---
+
+# Libraries
+```{r lib-load, message=FALSE, warning=FALSE, echo=FALSE}
+library(Seurat)
+library(SeuratObject)
+library(STutility)
+library(ggplot2)
+library(patchwork)
+library(dplyr)
+library(data.table)
+library(Signac)
+library(cowplot)
+library(grid)
+library(dplyr)
+library(Biobase)
+library(BiocManager)
+library(ggrastr)
+```
+
+# Read the multiomics and ST dataset objects (download from Mendeley data cited in the manuscript)
+
+```{r}
+mo_brain <- readRDS(file = "mo_brain_2022-08-26_with_annotations.rds")
+brain_color <- c("#D3A588")
+
+st_brain <- readRDS(file = "RR3-brain_ST_final_object.rds")
+```
+
+# Color codes
+
+## Flight, ground
+```{r}
+coldef_FG <- c("#EF5B70", "#7CC6D8") # red, blue for flight, ground
+```
+
+# Figure 2
+
+## 2A (nUMI per nuclei)
+```{r}
+mo_brain$orig.ident <- "Brain"
+p <- VlnPlot(object = mo_brain, features = "nCount_ATAC", group.by = "orig.ident", pt.size = 0, assay = "ATAC", cols = brain_color) + ggtitle("Peaks per cell in ATAC-seq (brain)")
+ggsave(p, filename = "violins_UMI_atac_B.pdf", dpi = 300, width = 10, height = 5)
+```
+
+## 2B (nPeaks per nuclei)
+```{r}
+mo_brain$orig.ident <- "Brain"
+p <- VlnPlot(object = mo_brain, features = "nCount_RNA", group.by = "orig.ident", pt.size = 0, assay = "RNA", cols = brain_color) + ggtitle("UMI per cell in RNAseq (brain)")
+ggsave(p, filename = "violins_UMI_rnaseq_B.pdf", dpi = 300, width = 10, height = 5)
+```
+
+## 2F (nUMI per spot)
+```{r}
+p <- VlnPlot(object = st_brain, features = "nCount_RNA", group.by = "orig.ident", pt.size = 0, assay = "RNA", cols = brain_color) + ggtitle("UMI per spot in ST (brain)")
+ggsave(p, filename = "violins_UMI_ST_B.pdf", dpi = 300, width = 10, height = 5)
+```
+
+## 2G (nGenes per spot)
+```{r}
+p <- VlnPlot(object = st_brain, features = "nFeature_RNA", group.by = "orig.ident", pt.size = 0, assay = "RNA", cols = brain_color) + ggtitle("Genes per spot in ST (brain)")
+ggsave(p, filename = "violins_nGene_ST_B.pdf", dpi = 300, width = 10, height = 5)
+```
+
+## 2C (multiomics correlation plot)
+
+Custom function for correlation plot
+```{r corr_plot_function}
+corr_plot <- function(df_name, x_col, y_col, idx, idy){
+  
+  p <- ggplot(df_name, aes(x_col, y_col)) + 
+  geom_point_rast(colour = "blue",alpha = 0.2) + 
+  stat_cor(method = "pearson", label.x = 0, label.y = 3.7,label.sep = ";") + 
+  stat_smooth(method = "lm", color="black", se = F) +
+  theme_classic() + 
+  labs(x = paste(names(df_name[idx]), "(log (1 + avgUMI))", sep = " "), y = paste(names(df_name)[idy], "(log (1 + avgUMI))", sep = " "))
+  
+  return(p)
+}
+```
+
+Pooled samples F vs GC within multiomics
+```{r}
+#MO brain
+umis2 <- mo_brain@assays$RNA@counts
+sum.expr2 <- lapply(unique(mo_brain$cell_flight_status), function(id) {
+  umis_subset2 <- umis2[, mo_brain$cell_flight_status %in% id]  #subset counts dataframe
+  log1p(Matrix::rowMeans(umis_subset2)) #log(1+x) of the counts and then avg. of that
+})
+
+sum.expr2 <- as.data.frame(sum.expr2)
+colnames(sum.expr2) <- unique(mo_brain$cell_flight_status)
+mo_brain.df <- sum.expr2
+
+rm(umis2, sum.expr2)
+```
+
+```{r}
+out.dir <- getwd()
+
+p <- corr_plot(mo_brain.df, mo_brain.df$flight, mo_brain.df$ground, 2,1)
+ggsave(p, filename = paste(out.dir, "/correlation_plots/pooled_samples_compare_MO.pdf", sep = ""), dpi = 300)
+```
+
+## 2H (correlation plots ST)
+```{r}
+#ST brain
+umis2 <- st_brain@assays$RNA@counts
+sum.expr2 <- lapply(unique(st_brain$sample_condition), function(id) {
+  umis_subset2 <- umis2[, st_brain$sample_condition %in% id]  #subset counts dataframe
+  #print(class(umis_subset2))
+  log1p(Matrix::rowMeans(umis_subset2)) #log(1+x) of the counts and then avg. of that
+})
+
+sum.expr2 <- as.data.frame(sum.expr2)
+colnames(sum.expr2) <- unique(st_brain$sample_condition)
+st_brain.df <- sum.expr2
+```
+
+```{r}
+out.dir <- getwd()
+
+p <- corr_plot(st_brain.df, st_brain.df$flight, st_brain.df$ground, 2,1)
+ggsave(p, filename = paste(out.dir, "/correlation_plots/correlations_onlyST/flight_vs_ground/pooled_samples_compare.pdf", sep = ""), dpi = 300)
+```
+
+## 2D (UMAP of multiomics clusters)
+```{r}
+coldef_ST_B <- c("#004A55", "#0031D4", "#00CBD4", "#006A21", "#799400", "#FFD66A", "#D4C200", "#D6E279", "#D4D6FF", "#D3AAFF", "#7500BF", "#AA0084", "#FF9A94", "#FF8861", "#D43938", "#946E55", "#7F1100", "#9B9A9A")
+```
+
+```{r}
+new.cluster.ids <- c("0" = "0 - Neurogenesis I", 
+                     "1" = "1 - Synaptic transmission I",
+                     "2" = "2 - Neuronal activity, synaptic transmission I",
+                     "3" = "3 - Myelination",
+                     "4" = "4 - Astrocytes",
+                     "5" = "5 - Glutamatergic synaptic transmission I",
+                     "6" = "6 - Glutamatergic synaptic transmission II",
+                     "7" =  "7 - Glial development",
+                     "8" = "8 - Glutamatergic synaptic transmission III",
+                     "9" = "9 - Neurogenesis II",
+                     "10" = "10 - Microglia",
+                     "11"  = "11 - GABAergic synaptic transmission",
+                     "12"  = "12 - Neurovasculature",
+                     "13" = "13 - Neuronal activity, synaptic transmission II",
+                     "14"  = "14 - Neuroendocrine activity",
+                     "15" = "15 - Neuronal activity, synaptic transmission III",
+                     "16" = "16 - Glutamatergic synaptic transmission IV",
+                     "17" = "17 - Synaptic transmission II"
+                    )
+
+mo_brain$clusters = factor(new.cluster.ids[as.character(mo_brain@active.ident)], levels = new.cluster.ids)
+saveRDS(mo_brain, file = "mo_brain_2022-10-28_with_unique_clustersID.rds")
+
+library(ggplot2)
+p1 <- DimPlot(mo_brain, reduction = "wnn_cc_umap", cols = coldef_ST_B, group.by = "clusters")
+ggsave(p1, filename = "multiomics_cl_annotations_B_without_labels.pdf", dpi = 300, width = 12, height = 8)
+
+p1 <- DimPlot(mo_brain, reduction = "wnn_cc_umap", cols = coldef_ST_B, group.by = "clusters", label = TRUE)
+ggsave(p1, filename = "multiomics_cl_annotations_B_with_labels.pdf", dpi = 300, width = 12, height = 8)
+```
+
+## 2E (marker genes multiomics cluster categories)
+
+```{r}
+markers <- c("Lingo2", "Meg3", "Asic2", "Tenm2", "Dab1",
+             "Ttr", "Bmp6", "Ptgds", "Stk39", "Enpp2",
+             "Rarb", "Meis2", "Foxp2", "Dgkb", "Cacna2d3",
+             "Kcnq5", "Tafa1", "Cntnap5b", "Zfhx3", "Rnf220",
+             "Chn2", "Olfm3", "Cadps2", "Sox6", "Sox2ot",
+             "Plp1", "Mbp", "Plcl1", "St18", "Edil3",
+             "Tgfbr1", "Cst3", "Hexb", "Elmo1", "Epb41l2",
+             "Nxph1", "Kcnc2", "Hs3st4", "Adarb2", "Eml5",
+             "Gria1", "Slc1a3", "Luzp2", "Npas3", "Lama2",
+             "Grip1", "Erbb4", "Grik1", "Galntl6", "Fgf13",
+             "Gpc5", "Slc1a2", "Pitpnc1", "Atp1a2", "Gm3764")
+unique(duplicated(markers))
+
+markers <- unique(markers)
+```
+
+```{r}
+p <- DotPlot(object = mo_brain, assay = "SCT" ,features = markers, group.by = "short_cl" %>% rev()) +
+  coord_flip() + 
+  theme(axis.text.x = element_text(angle = -90)) +
+  scale_colour_gradientn(colours = RColorBrewer::brewer.pal(n = 11, name = "RdBu") %>% rev()) + labs(y = "Celltype groups")
+ggsave(p, filename = "dotplot_multiomics_cl_markers.pdf", dpi = 300, height = 12, width = 6)
+```
+
+
+# Figure 3
+
+## 3A (ST clusters UMAP)
+
+```{r}
+new.cluster.ids <- c("0" = "0 - Midbrain neurons", 
+                     "1" = "1 - Cortical neurons, top layers",
+                     "2" = "2 - Neuroendocrine neurons",
+                     "3" = "3 - Amygdalar and piriform neurons",
+                     "4" = "4 - White matter",
+                     "5" = "5 - Thalamic neurons",
+                     "6" = "6 - Hippocampal CA1 neurons, pyramidal layer",
+                     "7" =  "7 - Auditory and entorhinal neurons",
+                     "8" = "8 - Hippocampal CA3 neurons",
+                     "9" = "9 - Cortical neurons, bottom layers",
+                     "10" = "10 - Hippocampal CA1 neurons, striatam radiatum",
+                     "11"  = "11 - Dentate gyrus neurons",
+                     "12"  = "12 - Corpus callosum",
+                     "13" = "13 - Neurovasculature",
+                     "14"  = "14 - Caudate/putamen neurons",
+                     "15" = "15 - Retrosplenial neurons",
+                     "16" = "16 - Choroid plexus and subventricular structures",
+                     "17" = "17 - Choroid plexus"
+                    )
+
+library(ggplot2)
+p1 <- DimPlot(st_brain, reduction = "umap", cols = coldef_ST_B, group.by = "clusters")
+ggsave(p1, filename = "spatial_cl_annotations_B_without_labels.pdf", dpi = 300, width = 12, height = 8)
+
+p1 <- DimPlot(st_brain, reduction = "umap", cols = coldef_ST_B, group.by = "clusters", label = TRUE)
+ggsave(p1, filename = "spatial_cl_annotations_B_with_labels.pdf", dpi = 300, width = 12, height = 8)
+```
+
+## 3B (ST marker genes dimplot)
+```{r}
+DefaultAssay(st_brain) <- "SCT"
+wnn_markers <- FindAllMarkers(st_brain, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25, recorrect_umi = FALSE)
+
+write.csv(wnn_markers, file = "markers_ST_B.csv", col.names = T, row.names = T)
+```
+
+```{r}
+library(dplyr)
+top10B <- wnn_markers %>%
+  group_by(cluster) %>%
+  dplyr::filter(p_val_adj < 0.01) %>%
+  dplyr::filter(row_number() %in% 1:5)
+
+p <- DotPlot(st_brain, features = unique(top10B$gene) %>% rev()) + 
+  coord_flip() + 
+  scale_colour_gradientn(colours = RColorBrewer::brewer.pal(n = 11, name = "RdBu") %>% rev()) + labs(y = "cluster")
+ggsave(p, filename = "dotplot_ST_cl_markers_ALL.pdf", dpi = 300, height = 15, width = 10)
+```
+
+## 3C (spatial plots)
+
+```{r fig.height=7, fig.width=7}
+genes <- c("Wfs1", "Dkk3", "Prox1")
+DefaultAssay(st_brain) <- "SCT"
+for(i in 1:length(genes))
+{
+  p <- ST.FeaturePlot(object = st_brain, features = genes[i], pt.size = 1.8, label.by = "sample_name_cond", ncol = 2)
+  ggsave(filename = paste("/3C/without_tissue/", genes[i], "_.pdf", sep = ""), plot = p, dpi = 300)
+}
+```
+
+## 3D (plot made from consensus pathway analysis - website linked in the article)
+
+## 3E Stereoscope figure - download from deconvolution_results.zip in Mendeley dataset cited in the article
+
+```{r}
+brain_deconv <- readRDS("<deconvolution_object_rds>")
+#DefaultAssay(brain_deconv) <- "hvg2000"
+```
+
+Calculate proportions of each sn cluster on each ST cluster
+```{r}
+types = c("top20_degs","top50_degs","top100_degs", "hvg2000")
+
+cell.prop.cl = list()
+clusters = levels(brain_deconv$seurat_clusters)
+
+for (type in types){
+  cell.prop = list()
+  for (cl in clusters) {
+      cp = rowSums(brain_deconv@assays[[type]]@counts[,brain_deconv$seurat_clusters == cl])
+      cp = cp/sum(cp)
+      cp[cp < 0.1] <- 0 #cell proportions below 10% get no value
+      cell.prop[[cl]] = cp
+      
+  }
+  cell.prop = Reduce(cbind, cell.prop)
+  colnames(cell.prop) = clusters
+  cell.prop.cl[[type]] = cell.prop
+}
+```
+
+```{r}
+for(sample in names(cell.prop.cl)){
+  sn_cluster_names <- c("multiomics cluster 0", "multiomics cluster 1", "multiomics cluster 2", "multiomics cluster 3", "multiomics cluster 4", "multiomics cluster 5", "multiomics cluster 6", "multiomics cluster 7", "multiomics cluster 8", "multiomics cluster 9", "multiomics cluster 10", "multiomics cluster 11", "multiomics cluster 12", "multiomics cluster 13", "multiomics cluster 14", "multiomics cluster 15", "multiomics cluster 16", "multiomics cluster 17")
+  rownames(cell.prop.cl[[sample]]) <- sn_cluster_names
+
+  ST_cluster_names <- c("ST cluster 0", "ST cluster 1", "ST cluster 2", "ST cluster 3", "ST cluster 4", "ST cluster 5", "ST cluster 6", "ST cluster 7", "ST cluster 8", "ST cluster 9", "ST cluster 10", "ST cluster 11", "ST cluster 12", "ST cluster 13", "ST cluster 14", "ST cluster 15", "ST cluster 16", "ST cluster 17")
+  colnames(cell.prop.cl[[sample]]) <- ST_cluster_names
+}
+
+#temp <- as.data.frame(cell.prop.cl[["hvg2000"]])
+#rowMeans(temp)
+```
+
+```{r}
+coldef_ST_B <- c("#004A55", "#0031D4", "#00CBD4", "#006A21", "#799400", "#FFD66A", "#D4C200", "#D6E279", "#D4D6FF", "#D3AAFF", "#7500BF", "#AA0084", "#FF9A94", "#FF8861", "#D43938", "#946E55", "#7F1100", "#9B9A9A")
+coldef_multiB <- coldef_ST_B
+celltypes <- lapply(cell.prop.cl, function(x){
+  temp <- rownames(x)
+})
+```
+
+```{r}
+for (type in types){
+  tot.prop = data.frame(cell.prop.cl[[type]])
+  tot.prop$Multiomics_cluster = factor(rownames(tot.prop), levels = celltypes[[sample]])
+  l = reshape2::melt(tot.prop, id.vars = "Multiomics_cluster")
+    
+  p5 <- ggplot(l, aes(x = variable, y = value, fill = Multiomics_cluster)) + 
+          geom_bar(position = "fill", stat = "identity") + 
+          RotatedAxis() + 
+          scale_fill_manual(values = coldef_multiB) + 
+          ggtitle(paste("All spots", sep = "")) + 
+          theme(plot.title = element_text(face = "bold", hjust = 0.5), 
+                axis.title = element_text(face = "bold")) + 
+          xlab("ST clusters") + 
+          ylab("Celltype proportions")
+
+  
+  ggsave(p5, filename = paste(getwd(), "/deconv_all-cluster_proportions_", type, "_B.pdf", sep = ""), dpi = 300, width = 10, height = 10)  
+  print(p5)
+    
+}
+```
+
+## 3F, 4D, 4E, 4F (figures made from MISTy pipeline available as snakemake pipeline linked in the github repository cited in the article)
+
+# Figure 4
+
+## 4A (Ligand receptor expression dotplot - code in the LR analysis code file. Can be found in our github repository cited in the article)
+
+## 4B
+The code to generate the plots can be found in the html file that contains all the plots generated for the multiomics data analysis. This rendered html file is provided as source data in Mendeley dataset cited in the article.
+
+## 4C (motif accessibility violin plots)
+
+The code to generate the plots can be found in the html file that contains all the plots generated for the multiomics data analysis. This rendered html file is provided as source data in Mendeley dataset cited in the article.
+
+## 4D
+## 4E
+## 4F
+figures made from MISTy pipeline available as snakemake pipeline linked in the github repository cited in the article - these are 4D, E, and F
+
+
+# Figure 5
+
+## 5A
+## 5B
+## 5C
+The code to generate the heatmaps for the metabolic pathway fold changes (5A, B, C) is provided in the github repository under the metabolic analysis section.
+
+# Supplementary Figure 4
+
+## 4B (Proportions by sample group)
+
+```{r}
+samples.list <- SplitObject(object = brain_deconv, split.by = "sample_condition")
+```
+
+```{r}
+types = c("hvg2000")
+clusters <- lapply(samples.list, function(x){
+  temp <- levels(x$seurat_clusters)
+})
+
+for (type in types){
+  cell.prop.sample <- list()
+  for (sample in 1:length(samples.list)){
+    cell.prop.cl = list()
+    for (cl in clusters[[sample]]) {
+      cp = rowSums(samples.list[[sample]]@assays[[type]]@counts[ ,samples.list[[sample]]$seurat_clusters == cl])
+      cp = cp/sum(cp)
+      #cp[cp < 0.1] <- 0 #cell proportions below 10% get no value
+      cell.prop.cl[[cl]] = cp
+      
+  }
+    cell.prop.cl = Reduce(cbind, cell.prop.cl)
+    colnames(cell.prop.cl) = clusters[[sample]]
+    cell.prop.sample[[sample]] = cell.prop.cl
+  }
+}
+```
+
+```{r}
+for(sample in names(cell.prop.sample)){
+  sn_cluster_names <- c("multiomics cluster 0", "multiomics cluster 1", "multiomics cluster 2", "multiomics cluster 3", "multiomics cluster 4", "multiomics cluster 5", "multiomics cluster 6", "multiomics cluster 7", "multiomics cluster 8", "multiomics cluster 9", "multiomics cluster 10", "multiomics cluster 11", "multiomics cluster 12", "multiomics cluster 13", "multiomics cluster 14", "multiomics cluster 15", "multiomics cluster 16", "multiomics cluster 17")
+  rownames(cell.prop.sample[[sample]]) <- sn_cluster_names
+
+  ST_cluster_names <- c("ST cluster 0", "ST cluster 1", "ST cluster 2", "ST cluster 3", "ST cluster 4", "ST cluster 5", "ST cluster 6", "ST cluster 7", "ST cluster 8", "ST cluster 9", "ST cluster 10", "ST cluster 11", "ST cluster 12", "ST cluster 13", "ST cluster 14", "ST cluster 15", "ST cluster 16", "ST cluster 17")
+  colnames(cell.prop.sample[[sample]]) <- ST_cluster_names
+}
+```
+
+```{r}
+coldef_ST_B <- c("#004A55", "#0031D4", "#00CBD4", "#006A21", "#799400", "#FFD66A", "#D4C200", "#D6E279", "#D4D6FF", "#D3AAFF", "#7500BF", "#AA0084", "#FF9A94", "#FF8861", "#D43938", "#946E55", "#7F1100", "#9B9A9A")
+coldef_multiB <- coldef_ST_B
+celltypes <- lapply(cell.prop.sample, function(x){
+  temp <- rownames(x)
+})
+```
+
+```{r}
+library(ggplot2)
+library(ggpubr)
+#save all barplots in a list
+plots.group <- list()
+new_names <- c("Flight", "Ground control") # in order the sample groups appear in the cell.prop.sample list
+names(cell.prop.sample) <- new_names
+
+for (type in types){
+  for(sample in names(cell.prop.sample)){
+    tot.prop = data.frame(cell.prop.sample[[sample]])
+    tot.prop$Multiomics_cluster = factor(rownames(tot.prop), levels = celltypes[[sample]])
+    l = reshape2::melt(tot.prop, id.vars = "Multiomics_cluster")
+    
+    plots.group[[sample]] <- ggplot(l, aes(x = variable, y = value, fill = Multiomics_cluster)) + 
+          geom_bar(position = "fill", stat = "identity") + 
+          RotatedAxis() + 
+          scale_fill_manual(values = coldef_multiB) + 
+          ggtitle(paste(sample, sep = "")) + 
+          theme(plot.title = element_text(face = "bold", hjust = 0.5), 
+                axis.title = element_text(face = "bold"),
+                legend.text = element_text(size = 5),
+                legend.title = element_text(size = 6), 
+                legend.key.width = unit(0.25, "cm"),
+                legend.key.height = unit(0.25, "cm")) + 
+          xlab("ST clusters") + 
+          ylab("Celltype proportions")
+          #theme()
+    
+    print(plots.group[[sample]])
+  }
+}
+```
+
+```{r}
+#For printing, we want all flight samples in one plot and all ground samples in another plot
+legend.group <- cowplot::get_legend(plot = plots.group[["Flight"]])
+legend.group
+
+for(f in names(plots.group)){
+  plots.group[[f]] <- plots.group[[f]] + NoLegend()
+}
+
+library(ggpubr)
+legend.group <- as_ggplot(legend.group)
+```
+
+```{r}
+plots.group[[1]]  <- plots.group[[1]] + theme(plot.title = element_text(size = 6),
+                     axis.text = element_text(size = 5),
+                     axis.title = element_text(size = 5),
+                     legend.text = element_text(size = 5),
+                     legend.title = element_text(size = 5))
+plots.group[[1]]
+
+plots.group[[2]]  <- plots.group[[2]] + theme(plot.title = element_text(size = 6),
+                     axis.text = element_text(size = 5),
+                     axis.title = element_text(size = 5),
+                     legend.text = element_text(size = 5),
+                     legend.title = element_text(size = 5))
+plots.group[[2]]
+
+legend.group
+
+library(gridExtra)
+temp.group <- cowplot::plot_grid(plotlist = plots.group[1:2], ncol = 2, nrow = 1)
+#temp <- ggdraw() + draw_plot(temp) + draw_plot_label(c("A"), c(0, 0, 0.5))
+p.group <- grid.arrange(temp.group, legend.group, ncol=2, widths=c(2.7, 0.5))
+```
+
+## 4C - Proportions by samples
+```{r}
+samples.list <- SplitObject(object = brain_deconv, split.by = "bio_origin")
+```
+
+```{r}
+types = c("hvg2000")
+clusters <- lapply(samples.list, function(x){
+  temp <- levels(x$seurat_clusters)
+})
+
+for (type in types){
+  cell.prop.sample <- list()
+  for (sample in 1:length(samples.list)){
+    cell.prop.cl = list()
+    for (cl in clusters[[sample]]) {
+      cp = rowSums(samples.list[[sample]]@assays[[type]]@counts[ ,samples.list[[sample]]$seurat_clusters == cl])
+      cp = cp/sum(cp)
+      #cp[cp < 0.1] <- 0 #cell proportions below 10% get no value
+      cell.prop.cl[[cl]] = cp
+      
+  }
+    cell.prop.cl = Reduce(cbind, cell.prop.cl)
+    colnames(cell.prop.cl) = clusters[[sample]]
+    cell.prop.sample[[sample]] = cell.prop.cl
+  }
+}
+
+names(cell.prop.sample) <- names(samples.list)
+```
+
+```{r}
+for(sample in names(cell.prop.sample)){
+  sn_cluster_names <- c("multiomics cluster 0", "multiomics cluster 1", "multiomics cluster 2", "multiomics cluster 3", "multiomics cluster 4", "multiomics cluster 5", "multiomics cluster 6", "multiomics cluster 7", "multiomics cluster 8", "multiomics cluster 9", "multiomics cluster 10", "multiomics cluster 11", "multiomics cluster 12", "multiomics cluster 13", "multiomics cluster 14", "multiomics cluster 15", "multiomics cluster 16", "multiomics cluster 17")
+  rownames(cell.prop.sample[[sample]]) <- sn_cluster_names
+
+  ST_cluster_names <- c("ST cluster 0", "ST cluster 1", "ST cluster 2", "ST cluster 3", "ST cluster 4", "ST cluster 5", "ST cluster 6", "ST cluster 7", "ST cluster 8", "ST cluster 9", "ST cluster 10", "ST cluster 11", "ST cluster 12", "ST cluster 13", "ST cluster 14", "ST cluster 15", "ST cluster 16", "ST cluster 17")
+  colnames(cell.prop.sample[[sample]]) <- ST_cluster_names
+}
+```
+
+```{r}
+coldef_ST_B <- c("#004A55", "#0031D4", "#00CBD4", "#006A21", "#799400", "#FFD66A", "#D4C200", "#D6E279", "#D4D6FF", "#D3AAFF", "#7500BF", "#AA0084", "#FF9A94", "#FF8861", "#D43938", "#946E55", "#7F1100", "#9B9A9A")
+coldef_multiB <- coldef_ST_B
+celltypes <- lapply(cell.prop.sample, function(x){
+  temp <- rownames(x)
+})
+```
+
+```{r}
+#save all barplots in a list
+plots <- list()
+new_names <- c("F2", "F3", "G1", "F1", "G3", "G2") # in order they appear in the cell.prop.sample list
+names(cell.prop.sample) <- new_names
+
+for (type in types){
+  for(sample in names(cell.prop.sample)){
+    tot.prop = data.frame(cell.prop.sample[[sample]])
+    tot.prop$Multiomics_cluster = factor(rownames(tot.prop), levels = celltypes[[sample]])
+    l = reshape2::melt(tot.prop, id.vars = "Multiomics_cluster")
+    
+    plots[[sample]] <- ggplot(l, aes(x = variable, y = value, fill = Multiomics_cluster)) + 
+          geom_bar(position = "fill", stat = "identity") + 
+          RotatedAxis() + 
+          scale_fill_manual(values = coldef_multiB) + 
+          ggtitle(paste("Sample ", sample, sep = "")) + 
+          theme(plot.title = element_text(face = "bold", hjust = 0.5), 
+                axis.title = element_text(face = "bold")) + 
+          xlab("ST clusters") + 
+          ylab("Celltype proortions")
+    
+    print(plots[[sample]])
+  }
+}
+```
+
+```{r}
+all.samps.plots <- plots
+
+for(sample in names(plots))
+{
+  plots[[sample]]  <- plots[[sample]] + theme(plot.title = element_text(size = 6, hjust = 0.5, face = "bold"),
+                                              axis.text = element_text(size = 5, face = "bold"),
+                                              axis.title = element_text(size = 5),
+                                              legend.text = element_text(size = 5),
+                                              legend.title = element_text(size = 6),
+                                              legend.key.width = unit(0.25, "cm"),
+                                              legend.key.height = unit(0.25, "cm"))
+  print(plots[[sample]])
+
+}
+
+rm(all.samps.plots)
+```
+
+
+```{r}
+#For printing, we want all flight samples in one plot and all ground samples in another plot
+new_order <- c("F1", "F2", "F3", "G1", "G2", "G3")
+plots_neworder <- plots[new_order]
+
+legend <- cowplot::get_legend(plot = plots[[1]])
+
+for(f in names(plots_neworder)){
+  plots_neworder[[f]] <- plots_neworder[[f]] + NoLegend()
+}
+
+library(ggpubr)
+legend <- as_ggplot(legend)
+```
+
+```{r}
+library(gridExtra)
+temp <- cowplot::plot_grid(plotlist = plots_neworder[1:3], ncol = 3, nrow = 1)
+#temp <- ggdraw() + draw_plot(temp) + draw_plot_label(c("A"), c(0, 0, 0.5))
+flight.samples.plots <- grid.arrange(temp, legend, ncol=2, widths=c(6.3, 0.7))
+
+ggsave(plot = flight.samples.plots ,filename = "barplot_cluster_proportions_eachsample_flight_samples.pdf", width = 18, height = 6, dpi = 300)
+```
+
+```{r}
+library(gridExtra)
+temp <- cowplot::plot_grid(plotlist = plots_neworder[4:6], ncol = 3, nrow = 1)
+ground.samples.plots <- grid.arrange(temp, legend, ncol=2, widths=c(6.3, 0.7))
+
+ggsave(plot = ground.samples.plots ,filename = "barplot_cluster_proportions_eachsample_ground_samples.pdf", width = 18, height = 6, dpi = 300)
+```
+
+```{r}
+temp <- cowplot::plot_grid(plotlist = plots_neworder[1:6], ncol = 3, nrow = 2, labels = "C")
+ground.flight.sample.plots <- grid.arrange(temp, legend, ncol=2, widths=c(6, 0.8))
+```
+
+```{r}
+row1_A <- p5 + theme(plot.title = element_text(size = 6),
+                     axis.text = element_text(size = 5),
+                     axis.title = element_text(size = 5),
+                     legend.text = element_text(size = 5),
+                     legend.title = element_text(size = 6),
+                     legend.key.height = unit(0.25, "cm"),
+                     legend.key.width = unit(0.25, "cm"))
+
+row1 <- cowplot::plot_grid(plotlist = list(row1_A, p.group), ncol = 2, nrow = 1, labels = c("A","B"), axis = "left", rel_widths = c(1.3,2))
+row1
+
+grid.plot <- cowplot::plot_grid(plotlist = list(row1, ground.flight.sample.plots), ncol = 1, nrow = 2, rel_heights = c(1,2.2))
+grid.plot
+
+#ggsave(filename = "barplots_in_grid.pdf", plot = grid.plot, dpi = 300, width = 25, height = 24)
+#ggsave(umap.combined, filename = paste(getwd(), "/umaps_combined_proportions.pdf", sep = ""), width = 210, height = 276, units = "mm") #pdf size format by Nature journal for figures
+ggsave(plot = grid.plot, filename = paste(getwd(), "/barplots_in_grid.pdf", sep = ""), width = 210, height = 276, units = "mm", dpi = 300) #pdf size format by Nature journal for figures
+ggsave(plot = grid.plot, filename = paste(getwd(), "/barplots_in_grid.png", sep = ""), width = 210, height = 276, units = "mm", dpi = 500) #pdf size format by Nature journal for figures
+```
+
+# Supplementary Figure 5
+
+UMAP expression plots for all multiomics clusters on ST data
+
+```{r, warning=FALSE, verbose=FALSE, message=FALSE, eval=FALSE}
+DefaultAssay(brain_deconv) <- "hvg2000"
+celltype_names <- c("0-Neurogenesis I", 
+                     "1-Synaptic Transmission I",
+                     "2-Neuronal activity, Synaptic Transmission I",
+                     "3-Myelination",
+                     "4-Astrocytes",
+                     "5-Glutamatergic Synaptic Transmission I",
+                     "6-Glutamatergic Synaptic Transmission II",
+                     "7-Glial development",
+                     "8-Glutamatergic Synaptic Transmission III",
+                     "9-Neurogenesis II",
+                     "10-Microglia",
+                     "11-GABAergic Synaptic Transmission",
+                     "12-Neurovasculature",
+                     "13-Neuronal activity, Synaptic Transmission II",
+                     "14-Neuroendocrine activity",
+                     "15-Neuronal activity, Synaptic Transmission III",
+                     "16-Glutamatergic Synaptic Transmission IV",
+                     "17-Synaptic transmission II"
+                    )
+small.leg <- theme(legend.text = element_text(size=5), legend.key.width = unit(0.1,"cm"), legend.key.height = unit(0.2, "cm"))
+cc = scale_color_gradientn(colors = c("grey", "yellow", "red", "black"))
+
+library(cowplot)
+library(ggplot2)
+library(gridExtra)
+library(patchwork)
+
+for (type in types){
+  cat("For",type, "\n")
+  brain_deconv@active.assay = type
+  umaps.list <- list()
+  temp.celltypes <- rownames(brain_deconv)
+  for(x in 1:length(temp.celltypes))
+  {
+    umaps.list[[x]] <- FeaturePlot(brain_deconv, features = temp.celltypes[x], combine = T, reduction = "umap", pt.size = 0.05) + cc + small.leg + ggtitle(celltype_names[x]) + theme(axis.text = element_text(size = 5),
+                                                                    plot.title = element_text(size = 6),
+                                                                    axis.title = element_text(size = 5))
+  }
+  umap.combined <- grid.arrange(grobs = umaps.list, ncol=4)
+  ggsave(umap.combined, filename = paste(getwd(), "/umaps_combined_proportions.pdf", sep = ""), width = 210, height = 276, units = "mm") #pdf size format by Nature journal for figures
+  ggsave(umap.combined, filename = paste(getwd(), "/umaps_combined_proportions.png", sep = ""), width = 210, height = 276, units = "mm", dpi = 300) #pdf size format by Nature journal for figures
+}
+```
+
+# Supplementary Figure 6
+
+Split by sample condition
+
+```{r, warning=FALSE, verbose=FALSE, message=FALSE, eval=FALSE}
+DefaultAssay(brain_deconv) <- "hvg2000"
+celltype_names <- c("0-Neurogenesis I", 
+                     "1-Synaptic Transmission I",
+                     "2-Neuronal activity, Synaptic Transmission I",
+                     "3-Myelination",
+                     "4-Astrocytes",
+                     "5-Glutamatergic Synaptic Transmission I",
+                     "6-Glutamatergic Synaptic Transmission II",
+                     "7-Glial development",
+                     "8-Glutamatergic Synaptic Transmission III",
+                     "9-Neurogenesis II",
+                     "10-Microglia",
+                     "11-GABAergic Synaptic Transmission",
+                     "12-Neurovasculature",
+                     "13-Neuronal activity, Synaptic Transmission II",
+                     "14-Neuroendocrine activity",
+                     "15-Neuronal activity, Synaptic Transmission III",
+                     "16-Glutamatergic Synaptic Transmission IV",
+                     "17-Synaptic transmission II"
+                    )
+small.leg <- theme(legend.text = element_text(size=5), legend.key.width = unit(0.1,"cm"), legend.key.height = unit(0.2, "cm"))
+cc = scale_color_gradientn(colors = c("grey", "yellow", "red", "black"))
+
+library(cowplot)
+library(ggplot2)
+library(gridExtra)
+library(patchwork)
+
+brain_deconv$condition <- brain_deconv$sample_condition
+brain_deconv$condition[brain_deconv$condition %in% "flight"] <- "Flight"
+brain_deconv$condition[brain_deconv$condition %in% "ground"] <- "Ground control"
+
+for (type in types){
+  cat("For",type, "\n")
+  brain_deconv@active.assay = type
+  umaps.list <- list()
+  temp.celltypes <- rownames(brain_deconv)
+  for(x in 1:length(temp.celltypes))
+  {
+    umaps.list[[x]] <- FeaturePlot(brain_deconv, features = temp.celltypes[x], reduction = "umap", pt.size = 0.02, split.by = "condition")
+    umaps.list[[x]][[1]] <- umaps.list[[x]][[1]] + small.leg + theme(axis.text = element_text(size = 5),
+                                                                    plot.title = element_text(size = 6),
+                                                                    axis.title = element_text(size = 5))
+    umaps.list[[x]][[2]] <- umaps.list[[x]][[2]] + small.leg + theme(axis.text = element_text(size = 5),
+                                                                    plot.title = element_text(size = 6),
+                                                                    axis.title = element_text(size = 5))
+    print(umaps.list[[x]])
+  }
+  #umap.combined <- grid.arrange(grobs = umaps.list, ncol=8)
+  umap.combined <- cowplot::plot_grid(plotlist = umaps.list, ncol = 4, nrow = 5)
+  ggsave(umap.combined, filename = paste(getwd(), "/umaps_combined_proportions-split-view.pdf", sep = ""), width = 210, height = 276, units = "mm") #pdf size format by Nature journal for figures
+  ggsave(umap.combined, filename = paste(getwd(), "/umaps_combined_proportions_split-view.png", sep = ""), width = 210, height = 276, units = "mm", dpi = 300) #pdf size format by Nature journal for figures
+  umap.combined <- cowplot::plot_grid(plotlist = umaps.list, ncol = 3, nrow = 7)
+  ggsave(umap.combined, filename = paste(getwd(), "/umaps_combined_proportions-split-view_test.pdf", sep = ""), width = 450, height = 600, units = "mm") #pdf size format by Nature journal for figures
+  ggsave(umap.combined, filename = paste(getwd(), "/umaps_combined_proportions-split-view_test.png", sep = ""), width = 450, height = 600, units = "mm", dpi = 600) #pdf size format by Nature journal for figures
+}
+```
+
+# Supplementary Figure 9
+
+Code to generate this LR spatial heatmaps is included in the spatialDM analysis code available on our github repository linked to the article
+
+# Supplementary Figure 13 A
+
+Spatial heatmap with Adcy1 signal for RNAscope comparison
+
+```{r}
+imgs <- list.files(path = "RR3_brain_HE_imgs", full.names = T)
+st_brain@tools$Staffli@imgs <- imgs
+
+st_brain <- LoadImages(st_brain, time.resolve = FALSE, xdim = 2000)
+```
+
+### Adcy1 
+```{r fig.height=7, fig.width=7}
+sample_names <- unique(st_brain$sample_name_cond)
+DefaultAssay(st_brain) <- "SCT"
+for(i in 1:12)
+{
+  p <- FeatureOverlay(object = st_brain, features = "Adcy1", sampleids = i, ncols = 1, pt.size = 1.5, label.by = "sample_name_cond")
+  ggsave(filename = paste("/NASA_RR3_revision_RNAscope/ST_signal/Adcy1/with_tissue/", sample_names[i], "_Adcy1.pdf", sep = ""), plot = p, dpi = 300)
+}
+```
+
+```{r fig.height=7, fig.width=7}
+sample_names <- unique(st_brain$sample_name_cond)
+DefaultAssay(st_brain) <- "SCT"
+for(i in 1:12)
+{
+  p <- ST.FeaturePlot(object = st_brain, features = "Adcy1", indices = i, pt.size = 1.8, label.by = "sample_name_cond")
+  ggsave(filename = paste("/NASA_RR3_revision_RNAscope/ST_signal/Adcy1/without_tissue/", sample_names[i], "_Adcy1.pdf", sep = ""), plot = p, dpi = 300)
+}
+```
+
+```{r fig.height=7, fig.width=7}
+sample_names <- unique(st_brain$sample_name_cond)
+DefaultAssay(st_brain) <- "SCT"
+p <- ST.FeaturePlot(object = st_brain, features = "Adcy1", indices = c(1:12), ncol = 4 ,pt.size = 1.2, label.by = "sample_name_cond")
+ggsave(filename = paste("/NASA_RR3_revision_RNAscope/ST_signal/Adcy1/without_tissue/","Adcy1_allsections.pdf", sep = ""), plot = p, dpi = 300, height = 10, width = 12)
+```
+
+### Gpc5
+
+```{r fig.height=7, fig.width=7}
+sample_names <- unique(st_brain$sample_name_cond)
+DefaultAssay(st_brain) <- "SCT"
+for(i in 1:12)
+{
+  p <- FeatureOverlay(object = st_brain, features = "Gpc5", sampleids = i, ncols = 1, pt.size = 1.5, label.by = "sample_name_cond")
+  ggsave(filename = paste("/NASA_RR3_revision_RNAscope/ST_signal/Gpc5/with_tissue/", sample_names[i], "_Gpc5.pdf", sep = ""), plot = p, dpi = 300)
+}
+```
+
+```{r fig.height=7, fig.width=7}
+sample_names <- unique(st_brain$sample_name_cond)
+DefaultAssay(st_brain) <- "SCT"
+for(i in 1:12)
+{
+  p <- ST.FeaturePlot(object = st_brain, features = "Gpc5", indices = i, pt.size = 1.8, label.by = "sample_name_cond")
+  ggsave(filename = paste("/NASA_RR3_revision_RNAscope/ST_signal/Gpc5/without_tissue/", sample_names[i], "_Gpc5.pdf", sep = ""), plot = p, dpi = 300)
+}
+```
+
+```{r fig.height=7, fig.width=7}
+sample_names <- unique(st_brain$sample_name_cond)
+DefaultAssay(st_brain) <- "SCT"
+p <- ST.FeaturePlot(object = st_brain, features = "Gpc5", indices = c(1:12), ncol = 4 ,pt.size = 1.2, label.by = "sample_name_cond")
+ggsave(filename = paste("/NASA_RR3_revision_RNAscope/ST_signal/Gpc5/without_tissue/","Gpc5_allsections.pdf", sep = ""), plot = p, dpi = 300, height = 10, width = 12)
+```
+
+# Supplementary Figure 13 B
+
+The quantification files containing the pixel counts for each gene validated as well as the code to generate the boxplots are available under the RNAscope validation section of the github repository linked to the article.
