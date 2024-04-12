@@ -37,14 +37,7 @@ suppressPackageStartupMessages(require(readxl))
 ```{r}
 path1 <- 'path to directory where the multiomics data resides'
 
-
-file <- 'multiomics data object in the format .RData'
-load_object <- paste0(path1, file)
-load_object
-
-load(load_object)
-
-seurat_multi
+seurat_multi <- readRDS(file = path1)
 names(seurat_multi[[]])
 
 DefaultAssay(seurat_multi) <- "SCT"
@@ -52,7 +45,7 @@ DefaultAssay(seurat_multi) <- "SCT"
 Idents(seurat_multi) <- seurat_multi$wsnn_cc_res.0.2
 table(Idents(seurat_multi))
 
-brain_LR <- subset(seurat_multi, idents = c('4', '5', '11', '14'))
+brain_LR <- subset(seurat_multi, idents = c('4', '5', '11', '14')) #we took the multiomics clusters with the largest spaceflight changes based on DEGs results
 
 brain_LR_counts <- as.data.frame(brain_LR@assays$SCT@counts)
 
@@ -64,7 +57,6 @@ dim(brain_LR_counts)
 dim(brain_LR_metadata)
 
 rm(seurat_multi)
-
 ```
 
 
@@ -75,8 +67,6 @@ length(x)
 
 human = useMart("ensembl", dataset = "hsapiens_gene_ensembl", verbose = TRUE, host = "dec2021.archive.ensembl.org")
 mouse = useMart("ensembl", dataset = "mmusculus_gene_ensembl", verbose = TRUE, host = "dec2021.archive.ensembl.org")
-
-
 
 genesV2 = getLDS(attributes = c("mgi_symbol"), 
                  filters = "mgi_symbol", 
@@ -111,20 +101,17 @@ head(brain_LR_counts)
 
 
 ```{r}
-
 # normalize counts
-
 brain_LR_counts <- NormalizeData(object = brain_LR_counts)
-
 
 setwd(path1)
 write.table(brain_LR_counts, 'brain_LR_counts.txt', sep='\t',  col.names = T, quote=F)
 
 
-brain_LR_metadata$cell_type[which(brain_LR_metadata$cell_type == '4')] <- '4 Astrocytes'
-brain_LR_metadata$cell_type[which(brain_LR_metadata$cell_type == '5')] <- '5 Gluta Telencephalon'
-brain_LR_metadata$cell_type[which(brain_LR_metadata$cell_type == '11')] <-'11 Gaba Telencephalon'
-brain_LR_metadata$cell_type[which(brain_LR_metadata$cell_type == '14')] <-'14 Hypothalamus'
+brain_LR_metadata$cell_type[which(brain_LR_metadata$cell_type == '4')] <- 'multiomics cluster 4'
+brain_LR_metadata$cell_type[which(brain_LR_metadata$cell_type == '5')] <- 'multiomics cluster 5'
+brain_LR_metadata$cell_type[which(brain_LR_metadata$cell_type == '11')] <-'multiomics cluster 11'
+brain_LR_metadata$cell_type[which(brain_LR_metadata$cell_type == '14')] <-'multiomics cluster 14'
 head(brain_LR_metadata)
 
 write.table(brain_LR_metadata,
@@ -133,32 +120,32 @@ write.table(brain_LR_metadata,
             col.names = T,
             row.names = F,
             sep = '\t')
-
 ```
 
 ```{r}
 DE_genes_SC <- data.frame() # Create empty data.frame
-  excel_sheet <- read.xlsx(paste0(path1,"formatted_de_genes_2022_06-09.xlsx"), colNames  = TRUE, sheet = 2) # Read sheet i
+  excel_sheet <- read.xlsx(paste0(path1,"formatted_de_genes_2022_06-09.xlsx"), colNames  = TRUE, sheet = 2) # Read sheet i, these are DEGs list from the supplementary data multiomics but for 4, 5, 1, 14
+  # the row values being used here will be different depending on the indexes for the DEGs in your excel sheet
   DE_genes_SC <- rbind(DE_genes_SC, excel_sheet) 
-  Cl4 <-  DE_genes_SC[1:93,1:4] 
+  Cl4 <-  DE_genes_SC[1:93,1:4] #DEGs for multiomics cl 4
   colnames(Cl4) <-  Cl4[1,]
   Cl4 <- Cl4[-1,]
  Cl4$cluster <- '4'
  Cl4 <- Cl4[,c(5,1:4)]
  
-   Cl5 <-  DE_genes_SC[1:171,5:8] 
+   Cl5 <-  DE_genes_SC[1:171,5:8] #DEGs for multiomics cl 5
   colnames(Cl5) <-  Cl5[1,]
   Cl5 <- Cl5[-1,]
    Cl5$cluster <- '5'
  Cl5 <- Cl5[,c(5,1:4)]
   
-   Cl11 <-  DE_genes_SC[1:47,17:20] 
+   Cl11 <-  DE_genes_SC[1:47,17:20] #DEGs for multiomics cl 11
   colnames(Cl11) <-  Cl11[1,]
   Cl11 <- Cl11[-1,]
    Cl11$cluster <- '11'
  Cl11 <- Cl11[,c(5,1:4)]
   
-    Cl14 <-  DE_genes_SC[1:28,21:24] 
+    Cl14 <-  DE_genes_SC[1:28,21:24] #DEGs for multiomics cl 4
   colnames(Cl14) <-  Cl14[1,]
   Cl14 <- Cl14[-1,]
    Cl14$cluster <- '14'
@@ -204,32 +191,26 @@ head(genesV3)
 brain2 <- brain[brain$Gene %in% genesV2[,1],]
 brain2$Gene <- genesV3[,2]
 head(brain2)
-
 ```
   
- 
-
 
 ```{r}
-
-brain2$cluster[which(brain2$cluster == '4')] <- '4 Astrocytes'
-brain2$cluster[which(brain2$cluster == '5')] <- '5 Gluta Telencephalon'
-brain2$cluster[which(brain2$cluster == '11')] <-'11 Gaba Telencephalon'
-brain2$cluster[which(brain2$cluster == '14')] <-'14 Hypothalamus'
+brain2$cluster[which(brain2$cluster == '4')] <- 'multiomics cluster 4'
+brain2$cluster[which(brain2$cluster == '5')] <- 'multiomics cluster 5'
+brain2$cluster[which(brain2$cluster == '11')] <-'multiomics cluster 11'
+brain2$cluster[which(brain2$cluster == '14')] <-'multiomics cluster 14'
 
 brain_up <- brain2[which(brain2$logFC>0),]
-  brain_down <- brain2[which(brain2$logFC<=0),]
+brain_down <- brain2[which(brain2$logFC<=0),]
  
-
-  
-  write.table(brain_up[,1:2],
+write.table(brain_up[,1:2],
             file = 'cellPhone/brain_LR_up.txt',
             quote = F,
             col.names = T,
             row.names = F,
             sep = '\t')
   
-   write.table(brain_down,
+write.table(brain_down,
             file = 'cellPhone/brain_LR_down.txt',
             quote = F,
             col.names = T,
@@ -246,7 +227,8 @@ system('pip install CellPhoneDB==3.0.2')
 
 #system('python3 -m pip install --upgrade pip')
 
-plot <- "cellphonedb method degs_analysis  /../../Space2/cellPhone/brain_LR_metadata.txt  /../../Space2/cellPhone/brain_LR_counts.txt  /../../Space2/cellPhone/brain_LR_up.txt  --counts-data=gene_name --output-path=/../../Space2/cellPhone/out/"
+plot <- "cellphonedb method degs_analysis  /../../Space2/cellPhone/brain_LR_metadata.txt  /../../Space2/cellPhone/brain_LR_counts.txt  /../../Space2/cellPhone/brain_LR_up.txt  --counts-data=gene_name --output-path=/../../Space2/cellPhone/out/" 
+#this is to run cellphoneDB plot
 
 
 plot <- "cellphonedb plot dot_plot --/../../Space2/cellPhone/brain_LR_metadata.txt --pvalues-path=/../../Space2/cellPhone/out/pvalues.txt
@@ -259,8 +241,9 @@ address = "/Library/Frameworks/Python.framework/Versions/3.8/bin/"
 plot_address <- paste0(address, plot)
 plot_address
 system(plot_address)
-
 ```
+
+Recommendation from CellPhoneDB authors:
 
 But shortly, we recommend to do differential expression for the same cluster/cell type between your two groups. This will tell you what is significantly upregulated in each of your group.
 Then, you can give this list of differentially expressed genes (DEGs) to cellphoneDB to extract the interactions where these DEGs are participating.
@@ -273,36 +256,22 @@ If you are using Seurat, you might want to follow https://github.com/ventolab/Ce
  
 Hope this is of help,
  
-Best
- 
+Best,
 Luz
 
-# DotPlot for relevant interactions flight upregulated ligand_recceptor pairs
+# DotPlot for relevant interactions flight upregulated ligand_recceptor pairs (multiomics cluster 4, 11 considered only)
+
+Discussion on this in the manuscript file and the peer-review file.
 
 ```{r}
 brain_celltype_interaction <- c(
-  '4 Astrocytes|5 Gluta Telencephalon',
   '4 Astrocytes|11 Gaba Telencephalon',
-  '4 Astrocytes|14 Hypothalamus',
-  '5 Gluta Telencephalon|4 Astrocytes',
-  '5 Gluta Telencephalon|11 Gaba Telencephalon',
-  '5 Gluta Telencephalon|14 Hypothalamus',
-  '11 Gaba Telencephalon|4 Astrocytes',
-  '11 Gaba Telencephalon|5 Gluta Telencephalon',
-  '11 Gaba Telencephalon|14 Hypothalamus',
-  '14 Hypothalamus|4 Astrocytes',
-  '14 Hypothalamus|5 Gluta Telencephalon',
-  '14 Hypothalamus|11 Gaba Telencephalon')
+  '11 Gaba Telencephalon|4 Astrocytes')
 
 brain_up_LR <- c(
 'CADM1_NECTIN3',
 'CADM3_CADM1',
-'CADM1_CADM1',
-'EGFR_NRG1',
-'EGFR_TGFA',
 'EGFR_COPA',
-'PTN_PTPRZ1',
-'EFNA5_EPHA5',
 'VEGFA_GRIN2B')
 
 write.table(brain_celltype_interaction, file = '/../../SPACE2/cellPhone/in/Brain_celltype_interaction.txt', sep = '\t', quote = F, row.names = F, col.names = F)
@@ -325,7 +294,6 @@ plot <- 'cellphonedb plot dot_plot --rows in/brain_up_LR_rows.txt --columns in/B
 plot_address <- paste0(address, plot)
 plot_address
 system(plot_address)
-
 ```
 
 ```{r}
@@ -354,18 +322,8 @@ pvals_LR <- cbind(rownames(pvals_LR), pvals_LR)
 colnames(pvals_LR)[1] <- 'L_R0'
 
 brain_celltype_interaction <- c(
-  '4 Astrocytes|5 Gluta Telencephalon',
   '4 Astrocytes|11 Gaba Telencephalon',
-  '4 Astrocytes|14 Hypothalamus',
-  '5 Gluta Telencephalon|4 Astrocytes',
-  '5 Gluta Telencephalon|11 Gaba Telencephalon',
-  '5 Gluta Telencephalon|14 Hypothalamus',
-  '11 Gaba Telencephalon|4 Astrocytes',
-  '11 Gaba Telencephalon|5 Gluta Telencephalon',
-  '11 Gaba Telencephalon|14 Hypothalamus',
-  '14 Hypothalamus|4 Astrocytes',
-  '14 Hypothalamus|5 Gluta Telencephalon',
-  '14 Hypothalamus|11 Gaba Telencephalon')
+  '11 Gaba Telencephalon|4 Astrocytes')
 
 
 pvals2 <- pvals0[,brain_celltype_interaction]
@@ -381,6 +339,7 @@ write.table(rownames(pvals3), '/../../Space2/cellPhone/in/brain_up2_rows.txt', s
 plot <- 'cellphonedb plot dot_plot --rows in/brain_up2.txt --columns in/brain_celltype-interaction --output-name Brain_up.png'
 
 ```
+
 ```{r}
 dotplot_LR <- function(pvals4b, means4b, namn = c(1:dim(pvals4b)[1]))
 {
@@ -403,8 +362,6 @@ means4b <- means4b[,c(18, 1:12)]
 
 pvals5 <- reshape2::melt(pvals4b, id=c('L_R'))
 means5 <- reshape2::melt(means4b, id = c('L_R'))
-
-
 
 level1 <- pvals5[1:dim(pvals4b)[1],1]
 plot.data = cbind(pvals5,log2(means5[,3]))
@@ -431,23 +388,14 @@ ggplot2::ggplot(plot.data,aes(x=clusters,y=pair)) +
         plot.margin = unit(c(0.1,1,0,2), "cm")) +
         scale_x_discrete(
           labels = c(
-  '4 Astrocytes|5 Gluta Telencephalon',
   '4 Astrocytes|11 Gaba Telencephalon',
-  '4 Astrocytes|14 Hypothalamus',
-  '5 Gluta Telencephalon|4 Astrocytes',
-  '5 Gluta Telencephalon|11 Gaba Telencephalon',
-  '5 Gluta Telencephalon|14 Hypothalamus',
-  '11 Gaba Telencephalon|4 Astrocytes',
-  '11 Gaba Telencephalon|5 Gluta Telencephalon',
-  '11 Gaba Telencephalon|14 Hypothalamus',
-  '14 Hypothalamus|4 Astrocytes',
-  '14 Hypothalamus|5 Gluta Telencephalon',
-  '14 Hypothalamus|11 Gaba Telencephalon')) +
+  '11 Gaba Telencephalon|4 Astrocytes')) +
 coord_flip()
 }
 
 dotplot_LR(pvals3, means3)
 ```
+
 ```{r}
 # in order to edit so that all pairs are annotated as L_R and not R_L
 # produce xlsx files as below and edit. R_L becomes L_R in the CONDUIT_SAN_TOP and vice versa. For means the ratio has to be changed by 1/value. Edited xlsx files are saved with suffix c and then opened to make the ggplot manually.
@@ -472,7 +420,6 @@ library(xlsx)
 #install.packages(c("readxl","writexl")) 
 library(readxl)
 library(writexl)
-
 
 
 pvals4_calc('Brain_up', brain_up_LR, brain_celltype_interaction)
